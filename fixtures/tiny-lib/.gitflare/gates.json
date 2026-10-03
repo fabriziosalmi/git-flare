@@ -1,0 +1,1 @@
+{ "test": { "commands": ["node --test"], "timeoutSec": 120 } }

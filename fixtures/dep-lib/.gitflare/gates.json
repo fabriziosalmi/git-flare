@@ -1,0 +1,1 @@
+{ "test": { "install": ["npm ci --ignore-scripts --no-audit --no-fund"], "commands": ["node --test"], "timeoutSec": 180 } }

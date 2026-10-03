@@ -1,0 +1,383 @@
+{
+  "date": "2026-10-02",
+  "where": "Cloudflare production runtime (gf-bench Worker, spikes/bench/index.ts driven by spikes/bench/drive.mjs), Artifacts mocked inside the registry: these are the Durable Objects own limits",
+  "registryReviews": {
+    "what": "recordReview throughput (200 concurrent) on one registry as the approval graph grows (role-separated swarm: 500 reviewers, 5000 workers)",
+    "before": {
+      "code": "the earlier build: every review rewrote all edges as one storage value and ran Tarjan on the whole graph",
+      "runs": [
+        {
+          "edges": 0,
+          "reviewsPerSec": 775,
+          "wallMsFor200": 258
+        },
+        {
+          "edges": 2000,
+          "reviewsPerSec": 333,
+          "wallMsFor200": 601
+        },
+        {
+          "edges": 5000,
+          "reviewsPerSec": 169,
+          "wallMsFor200": 1181
+        },
+        {
+          "edges": 10000,
+          "reviewsPerSec": 116,
+          "wallMsFor200": 1723
+        },
+        {
+          "edges": 20000,
+          "reviewsPerSec": 65,
+          "wallMsFor200": 3077
+        }
+      ],
+      "note": "Loading edges 14,500 to 20,000 took more than 30 minutes and one invocation ended with a Worker exception (1101)."
+    },
+    "after": {
+      "code": "this commit: one storage key per edge, adjacency sets, the author SCC as forward ∩ backward reachability",
+      "runs": [
+        {
+          "edges": 0,
+          "prefillWallMs": 0,
+          "reviewsPerSec": 1316,
+          "wallMsFor200": 152
+        },
+        {
+          "edges": 2000,
+          "prefillWallMs": 2411,
+          "reviewsPerSec": 1399,
+          "wallMsFor200": 143
+        },
+        {
+          "edges": 5000,
+          "prefillWallMs": 3777,
+          "reviewsPerSec": 877,
+          "wallMsFor200": 228
+        },
+        {
+          "edges": 10000,
+          "prefillWallMs": 5630,
+          "reviewsPerSec": 1333,
+          "wallMsFor200": 150
+        },
+        {
+          "edges": 20000,
+          "prefillWallMs": 10841,
+          "reviewsPerSec": 893,
+          "wallMsFor200": 224
+        },
+        {
+          "edges": 50000,
+          "prefillWallMs": 32629,
+          "reviewsPerSec": 913,
+          "wallMsFor200": 219
+        },
+        {
+          "edges": 100000,
+          "prefillWallMs": 57592,
+          "reviewsPerSec": 943,
+          "wallMsFor200": 212
+        }
+      ]
+    }
+  },
+  "claims": {
+    "what": "n agents per shard each claim twice: firstClaim includes the fork lookup in the registry (once per agent per shard), steady is the second claim. Shards run in parallel invocations; aggregate = claims / slowest shard wall time.",
+    "runs": [
+      {
+        "shards": 1,
+        "claimsPerShard": 400,
+        "steady": {
+          "ok": 400,
+          "slowestShardWallMs": 385,
+          "aggregatePerSec": 1039,
+          "perShard": [
+            1039
+          ]
+        },
+        "firstClaim": {
+          "ok": 400,
+          "slowestShardWallMs": 1216,
+          "aggregatePerSec": 329
+        },
+        "joinsPerSec": [
+          1205
+        ]
+      },
+      {
+        "shards": 1,
+        "claimsPerShard": 400,
+        "steady": {
+          "ok": 400,
+          "slowestShardWallMs": 386,
+          "aggregatePerSec": 1036,
+          "perShard": [
+            1036
+          ]
+        },
+        "firstClaim": {
+          "ok": 400,
+          "slowestShardWallMs": 787,
+          "aggregatePerSec": 508
+        },
+        "joinsPerSec": [
+          1015
+        ]
+      },
+      {
+        "shards": 1,
+        "claimsPerShard": 400,
+        "steady": {
+          "ok": 400,
+          "slowestShardWallMs": 389,
+          "aggregatePerSec": 1028,
+          "perShard": [
+            1028
+          ]
+        },
+        "firstClaim": {
+          "ok": 400,
+          "slowestShardWallMs": 674,
+          "aggregatePerSec": 593
+        },
+        "joinsPerSec": [
+          1136
+        ]
+      },
+      {
+        "shards": 8,
+        "claimsPerShard": 400,
+        "steady": {
+          "ok": 3200,
+          "slowestShardWallMs": 720,
+          "aggregatePerSec": 4444,
+          "perShard": [
+            556,
+            1515,
+            877,
+            1384,
+            1026,
+            1005,
+            833,
+            1266
+          ]
+        },
+        "firstClaim": {
+          "ok": 3200,
+          "slowestShardWallMs": 2213,
+          "aggregatePerSec": 1446
+        },
+        "joinsPerSec": [
+          1290,
+          1034,
+          1303,
+          1476,
+          1365,
+          1619,
+          1732,
+          864
+        ]
+      },
+      {
+        "shards": 8,
+        "claimsPerShard": 400,
+        "steady": {
+          "ok": 3200,
+          "slowestShardWallMs": 556,
+          "aggregatePerSec": 5755,
+          "perShard": [
+            891,
+            1361,
+            719,
+            941,
+            753,
+            1143,
+            993,
+            971
+          ]
+        },
+        "firstClaim": {
+          "ok": 3200,
+          "slowestShardWallMs": 1189,
+          "aggregatePerSec": 2691
+        },
+        "joinsPerSec": [
+          1286,
+          1075,
+          1498,
+          2198,
+          1747,
+          1176,
+          1600,
+          1770
+        ]
+      },
+      {
+        "shards": 32,
+        "claimsPerShard": 400,
+        "steady": {
+          "ok": 12800,
+          "slowestShardWallMs": 666,
+          "aggregatePerSec": 19219,
+          "perShard": [
+            1093,
+            879,
+            873,
+            1587,
+            1058,
+            928,
+            1216,
+            1408,
+            1216,
+            818,
+            746,
+            950,
+            1072,
+            930,
+            887,
+            645,
+            1413,
+            889,
+            781,
+            1070,
+            810,
+            901,
+            877,
+            791,
+            971,
+            794,
+            601,
+            650,
+            815,
+            786,
+            742,
+            1294
+          ]
+        },
+        "firstClaim": {
+          "ok": 12800,
+          "slowestShardWallMs": 1874,
+          "aggregatePerSec": 6830
+        },
+        "joinsPerSec": [
+          470,
+          438,
+          552,
+          427,
+          536,
+          548,
+          670,
+          549,
+          474,
+          468,
+          537,
+          534,
+          498,
+          632,
+          1078,
+          1099,
+          578,
+          866,
+          1093,
+          492,
+          1108,
+          952,
+          481,
+          1408,
+          860,
+          1187,
+          1176,
+          738,
+          1130,
+          617,
+          1356,
+          415
+        ]
+      },
+      {
+        "shards": 32,
+        "claimsPerShard": 400,
+        "steady": {
+          "ok": 12800,
+          "slowestShardWallMs": 993,
+          "aggregatePerSec": 12890,
+          "perShard": [
+            403,
+            554,
+            673,
+            687,
+            1170,
+            551,
+            455,
+            471,
+            474,
+            1149,
+            612,
+            666,
+            567,
+            909,
+            1724,
+            575,
+            649,
+            498,
+            559,
+            649,
+            537,
+            460,
+            853,
+            484,
+            1487,
+            593,
+            436,
+            1311,
+            763,
+            693,
+            480,
+            913
+          ]
+        },
+        "firstClaim": {
+          "ok": 12800,
+          "slowestShardWallMs": 7988,
+          "aggregatePerSec": 1602
+        },
+        "joinsPerSec": [
+          1143,
+          641,
+          1058,
+          538,
+          651,
+          1061,
+          1404,
+          1093,
+          1003,
+          606,
+          656,
+          568,
+          745,
+          512,
+          676,
+          576,
+          579,
+          851,
+          840,
+          873,
+          1127,
+          1246,
+          484,
+          1187,
+          697,
+          928,
+          1198,
+          1278,
+          567,
+          586,
+          1290,
+          522
+        ]
+      }
+    ],
+    "note": "An earlier 32-shard run on the same build gave a 2,875/s steady aggregate, dominated by one slow shard; another attempt had one invocation fail with HTTP 500 before error reporting was added to the probe. Variance between runs is large."
+  }
+}

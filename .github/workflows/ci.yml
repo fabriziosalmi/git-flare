@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@1.98.1
+        with:
+          components: clippy
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.18
+
+      - name: Rust tests
+        run: cargo test --manifest-path crates/aimp-wasm/Cargo.toml
+
+      - name: Rust clippy
+        run: cargo clippy --manifest-path crates/aimp-wasm/Cargo.toml -- -D warnings
+
+      - name: Rebuild WASM (canonical Docker build) and verify committed pkg is identical
+        run: |
+          sh scripts/build-wasm.sh
+          git diff --exit-code crates/aimp-wasm/pkg/
+
+      - run: npm ci
+
+      - name: Log-odds table is generated, not hand-edited
+        run: node scripts/gen-logodds.mjs --check
+
+      - run: npm run typecheck
+
+      - name: Tests (inside workerd)
+        run: npm test
+
+      - name: Deploy dry-run for every environment
+        run: |
+          npx wrangler deploy --dry-run --outdir /tmp/dry-prod
+          npx wrangler deploy --dry-run --outdir /tmp/dry-staging --env staging
+          npx wrangler deploy --dry-run --outdir /tmp/dry-dev --env dev

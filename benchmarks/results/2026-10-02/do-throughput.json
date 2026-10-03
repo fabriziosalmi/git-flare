@@ -1,0 +1,917 @@
+{
+  "meta": {
+    "date": "2026-10-02",
+    "where": "Cloudflare production runtime (workers.dev), account on Workers Paid",
+    "note": "Durable Object throughput measured with Artifacts mocked inside the DO; claim = lease reservation + 2 SQLite-backed storage writes + RPC. Per-claim latency omitted: inside a Worker Date.now() only advances on I/O, so only wall times across awaits are meaningful. Shard runs were concurrent invocations, one DO each; aggregate = sum(ok) / slowest shard wall time."
+  },
+  "single": [
+    {
+      "repo": "br2394ssolo0",
+      "n": 400,
+      "joinMs": 203,
+      "claims": {
+        "ok": 400,
+        "wallMs": 317,
+        "perSec": 1262
+      },
+      "hotTask": {
+        "granted": 1,
+        "wallMs": 222,
+        "perSec": 1802
+      }
+    },
+    {
+      "repo": "br2394ssolo1",
+      "n": 400,
+      "joinMs": 182,
+      "claims": {
+        "ok": 400,
+        "wallMs": 383,
+        "perSec": 1044
+      },
+      "hotTask": {
+        "granted": 1,
+        "wallMs": 190,
+        "perSec": 2105
+      }
+    },
+    {
+      "repo": "br2394ssolo2",
+      "n": 400,
+      "joinMs": 220,
+      "claims": {
+        "ok": 400,
+        "wallMs": 341,
+        "perSec": 1173
+      },
+      "hotTask": {
+        "granted": 1,
+        "wallMs": 210,
+        "perSec": 1905
+      }
+    },
+    {
+      "repo": "br2394ssolo3",
+      "n": 400,
+      "joinMs": 196,
+      "claims": {
+        "ok": 400,
+        "wallMs": 310,
+        "perSec": 1290
+      },
+      "hotTask": {
+        "granted": 1,
+        "wallMs": 199,
+        "perSec": 2010
+      }
+    }
+  ],
+  "shards": {
+    "8": [
+      {
+        "repo": "bk8x2413s1",
+        "n": 400,
+        "joinMs": 313,
+        "claims": {
+          "ok": 400,
+          "wallMs": 602,
+          "perSec": 664
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 372,
+          "perSec": 1075
+        }
+      },
+      {
+        "repo": "bk8x2413s2",
+        "n": 400,
+        "joinMs": 263,
+        "claims": {
+          "ok": 400,
+          "wallMs": 396,
+          "perSec": 1010
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 303,
+          "perSec": 1320
+        }
+      },
+      {
+        "repo": "bk8x2413s3",
+        "n": 400,
+        "joinMs": 273,
+        "claims": {
+          "ok": 400,
+          "wallMs": 491,
+          "perSec": 815
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 330,
+          "perSec": 1212
+        }
+      },
+      {
+        "repo": "bk8x2413s4",
+        "n": 400,
+        "joinMs": 250,
+        "claims": {
+          "ok": 400,
+          "wallMs": 405,
+          "perSec": 988
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 265,
+          "perSec": 1509
+        }
+      },
+      {
+        "repo": "bk8x2413s5",
+        "n": 400,
+        "joinMs": 359,
+        "claims": {
+          "ok": 400,
+          "wallMs": 401,
+          "perSec": 998
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 348,
+          "perSec": 1149
+        }
+      },
+      {
+        "repo": "bk8x2413s6",
+        "n": 400,
+        "joinMs": 234,
+        "claims": {
+          "ok": 400,
+          "wallMs": 341,
+          "perSec": 1173
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 255,
+          "perSec": 1569
+        }
+      },
+      {
+        "repo": "bk8x2413s7",
+        "n": 400,
+        "joinMs": 197,
+        "claims": {
+          "ok": 400,
+          "wallMs": 348,
+          "perSec": 1149
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 207,
+          "perSec": 1932
+        }
+      },
+      {
+        "repo": "bk8x2413s8",
+        "n": 400,
+        "joinMs": 665,
+        "claims": {
+          "ok": 400,
+          "wallMs": 356,
+          "perSec": 1124
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 353,
+          "perSec": 1133
+        }
+      }
+    ],
+    "16": [
+      {
+        "repo": "bk16x2416s1",
+        "n": 400,
+        "joinMs": 390,
+        "claims": {
+          "ok": 400,
+          "wallMs": 654,
+          "perSec": 612
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 348,
+          "perSec": 1149
+        }
+      },
+      {
+        "repo": "bk16x2416s2",
+        "n": 400,
+        "joinMs": 182,
+        "claims": {
+          "ok": 400,
+          "wallMs": 337,
+          "perSec": 1187
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 273,
+          "perSec": 1465
+        }
+      },
+      {
+        "repo": "bk16x2416s3",
+        "n": 400,
+        "joinMs": 286,
+        "claims": {
+          "ok": 400,
+          "wallMs": 468,
+          "perSec": 855
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 301,
+          "perSec": 1329
+        }
+      },
+      {
+        "repo": "bk16x2416s4",
+        "n": 400,
+        "joinMs": 230,
+        "claims": {
+          "ok": 400,
+          "wallMs": 497,
+          "perSec": 805
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 293,
+          "perSec": 1365
+        }
+      },
+      {
+        "repo": "bk16x2416s5",
+        "n": 400,
+        "joinMs": 380,
+        "claims": {
+          "ok": 400,
+          "wallMs": 544,
+          "perSec": 735
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 318,
+          "perSec": 1258
+        }
+      },
+      {
+        "repo": "bk16x2416s6",
+        "n": 400,
+        "joinMs": 246,
+        "claims": {
+          "ok": 400,
+          "wallMs": 418,
+          "perSec": 957
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 279,
+          "perSec": 1434
+        }
+      },
+      {
+        "repo": "bk16x2416s7",
+        "n": 400,
+        "joinMs": 248,
+        "claims": {
+          "ok": 400,
+          "wallMs": 417,
+          "perSec": 959
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 271,
+          "perSec": 1476
+        }
+      },
+      {
+        "repo": "bk16x2416s8",
+        "n": 400,
+        "joinMs": 303,
+        "claims": {
+          "ok": 400,
+          "wallMs": 470,
+          "perSec": 851
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 372,
+          "perSec": 1075
+        }
+      },
+      {
+        "repo": "bk16x2416s9",
+        "n": 400,
+        "joinMs": 283,
+        "claims": {
+          "ok": 400,
+          "wallMs": 425,
+          "perSec": 941
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 240,
+          "perSec": 1667
+        }
+      },
+      {
+        "repo": "bk16x2416s10",
+        "n": 400,
+        "joinMs": 276,
+        "claims": {
+          "ok": 400,
+          "wallMs": 535,
+          "perSec": 748
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 252,
+          "perSec": 1587
+        }
+      },
+      {
+        "repo": "bk16x2416s11",
+        "n": 400,
+        "joinMs": 240,
+        "claims": {
+          "ok": 400,
+          "wallMs": 405,
+          "perSec": 988
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 265,
+          "perSec": 1509
+        }
+      },
+      {
+        "repo": "bk16x2416s12",
+        "n": 400,
+        "joinMs": 236,
+        "claims": {
+          "ok": 400,
+          "wallMs": 400,
+          "perSec": 1000
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 251,
+          "perSec": 1594
+        }
+      },
+      {
+        "repo": "bk16x2416s13",
+        "n": 400,
+        "joinMs": 492,
+        "claims": {
+          "ok": 400,
+          "wallMs": 349,
+          "perSec": 1146
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 204,
+          "perSec": 1961
+        }
+      },
+      {
+        "repo": "bk16x2416s14",
+        "n": 400,
+        "joinMs": 429,
+        "claims": {
+          "ok": 400,
+          "wallMs": 354,
+          "perSec": 1130
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 296,
+          "perSec": 1351
+        }
+      },
+      {
+        "repo": "bk16x2416s15",
+        "n": 400,
+        "joinMs": 218,
+        "claims": {
+          "ok": 400,
+          "wallMs": 327,
+          "perSec": 1223
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 249,
+          "perSec": 1606
+        }
+      },
+      {
+        "repo": "bk16x2416s16",
+        "n": 400,
+        "joinMs": 277,
+        "claims": {
+          "ok": 400,
+          "wallMs": 519,
+          "perSec": 771
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 314,
+          "perSec": 1274
+        }
+      }
+    ],
+    "32": [
+      {
+        "repo": "bk32x2418s1",
+        "n": 400,
+        "joinMs": 248,
+        "claims": {
+          "ok": 400,
+          "wallMs": 654,
+          "perSec": 612
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 488,
+          "perSec": 820
+        }
+      },
+      {
+        "repo": "bk32x2418s2",
+        "n": 400,
+        "joinMs": 249,
+        "claims": {
+          "ok": 400,
+          "wallMs": 318,
+          "perSec": 1258
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 225,
+          "perSec": 1778
+        }
+      },
+      {
+        "repo": "bk32x2418s3",
+        "n": 400,
+        "joinMs": 184,
+        "claims": {
+          "ok": 400,
+          "wallMs": 316,
+          "perSec": 1266
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 218,
+          "perSec": 1835
+        }
+      },
+      {
+        "repo": "bk32x2418s4",
+        "n": 400,
+        "joinMs": 545,
+        "claims": {
+          "ok": 400,
+          "wallMs": 645,
+          "perSec": 620
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 398,
+          "perSec": 1005
+        }
+      },
+      {
+        "repo": "bk32x2418s5",
+        "n": 400,
+        "joinMs": 397,
+        "claims": {
+          "ok": 400,
+          "wallMs": 458,
+          "perSec": 873
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 273,
+          "perSec": 1465
+        }
+      },
+      {
+        "repo": "bk32x2418s6",
+        "n": 400,
+        "joinMs": 362,
+        "claims": {
+          "ok": 400,
+          "wallMs": 600,
+          "perSec": 667
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 365,
+          "perSec": 1096
+        }
+      },
+      {
+        "repo": "bk32x2418s7",
+        "n": 400,
+        "joinMs": 232,
+        "claims": {
+          "ok": 400,
+          "wallMs": 388,
+          "perSec": 1031
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 260,
+          "perSec": 1538
+        }
+      },
+      {
+        "repo": "bk32x2418s8",
+        "n": 400,
+        "joinMs": 519,
+        "claims": {
+          "ok": 400,
+          "wallMs": 474,
+          "perSec": 844
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 421,
+          "perSec": 950
+        }
+      },
+      {
+        "repo": "bk32x2418s9",
+        "n": 400,
+        "joinMs": 263,
+        "claims": {
+          "ok": 400,
+          "wallMs": 328,
+          "perSec": 1220
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 255,
+          "perSec": 1569
+        }
+      },
+      {
+        "repo": "bk32x2418s10",
+        "n": 400,
+        "joinMs": 540,
+        "claims": {
+          "ok": 400,
+          "wallMs": 641,
+          "perSec": 624
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 415,
+          "perSec": 964
+        }
+      },
+      {
+        "repo": "bk32x2418s11",
+        "n": 400,
+        "joinMs": 494,
+        "claims": {
+          "ok": 400,
+          "wallMs": 511,
+          "perSec": 783
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 368,
+          "perSec": 1087
+        }
+      },
+      {
+        "repo": "bk32x2418s12",
+        "n": 400,
+        "joinMs": 198,
+        "claims": {
+          "ok": 400,
+          "wallMs": 368,
+          "perSec": 1087
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 225,
+          "perSec": 1778
+        }
+      },
+      {
+        "repo": "bk32x2418s13",
+        "n": 400,
+        "joinMs": 281,
+        "claims": {
+          "ok": 400,
+          "wallMs": 567,
+          "perSec": 705
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 351,
+          "perSec": 1140
+        }
+      },
+      {
+        "repo": "bk32x2418s14",
+        "n": 400,
+        "joinMs": 397,
+        "claims": {
+          "ok": 400,
+          "wallMs": 612,
+          "perSec": 654
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 347,
+          "perSec": 1153
+        }
+      },
+      {
+        "repo": "bk32x2418s15",
+        "n": 400,
+        "joinMs": 289,
+        "claims": {
+          "ok": 400,
+          "wallMs": 402,
+          "perSec": 995
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 316,
+          "perSec": 1266
+        }
+      },
+      {
+        "repo": "bk32x2418s16",
+        "n": 400,
+        "joinMs": 339,
+        "claims": {
+          "ok": 400,
+          "wallMs": 527,
+          "perSec": 759
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 319,
+          "perSec": 1254
+        }
+      },
+      {
+        "repo": "bk32x2418s17",
+        "n": 400,
+        "joinMs": 423,
+        "claims": {
+          "ok": 400,
+          "wallMs": 331,
+          "perSec": 1208
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 434,
+          "perSec": 922
+        }
+      },
+      {
+        "repo": "bk32x2418s18",
+        "n": 400,
+        "joinMs": 261,
+        "claims": {
+          "ok": 400,
+          "wallMs": 535,
+          "perSec": 748
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 236,
+          "perSec": 1695
+        }
+      },
+      {
+        "repo": "bk32x2418s19",
+        "n": 400,
+        "joinMs": 373,
+        "claims": {
+          "ok": 400,
+          "wallMs": 412,
+          "perSec": 971
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 451,
+          "perSec": 887
+        }
+      },
+      {
+        "repo": "bk32x2418s20",
+        "n": 400,
+        "joinMs": 410,
+        "claims": {
+          "ok": 400,
+          "wallMs": 498,
+          "perSec": 803
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 525,
+          "perSec": 762
+        }
+      },
+      {
+        "repo": "bk32x2418s21",
+        "n": 400,
+        "joinMs": 242,
+        "claims": {
+          "ok": 400,
+          "wallMs": 472,
+          "perSec": 847
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 252,
+          "perSec": 1587
+        }
+      },
+      {
+        "repo": "bk32x2418s22",
+        "n": 400,
+        "joinMs": 422,
+        "claims": {
+          "ok": 400,
+          "wallMs": 667,
+          "perSec": 600
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 335,
+          "perSec": 1194
+        }
+      },
+      {
+        "repo": "bk32x2418s23",
+        "n": 400,
+        "joinMs": 343,
+        "claims": {
+          "ok": 400,
+          "wallMs": 545,
+          "perSec": 734
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 510,
+          "perSec": 784
+        }
+      },
+      {
+        "repo": "bk32x2418s24",
+        "n": 400,
+        "joinMs": 171,
+        "claims": {
+          "ok": 400,
+          "wallMs": 406,
+          "perSec": 985
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 207,
+          "perSec": 1932
+        }
+      },
+      {
+        "repo": "bk32x2418s25",
+        "n": 400,
+        "joinMs": 329,
+        "claims": {
+          "ok": 400,
+          "wallMs": 555,
+          "perSec": 721
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 433,
+          "perSec": 924
+        }
+      },
+      {
+        "repo": "bk32x2418s26",
+        "n": 400,
+        "joinMs": 436,
+        "claims": {
+          "ok": 400,
+          "wallMs": 416,
+          "perSec": 962
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 504,
+          "perSec": 794
+        }
+      },
+      {
+        "repo": "bk32x2418s27",
+        "n": 400,
+        "joinMs": 478,
+        "claims": {
+          "ok": 400,
+          "wallMs": 575,
+          "perSec": 696
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 502,
+          "perSec": 797
+        }
+      },
+      {
+        "repo": "bk32x2418s28",
+        "n": 400,
+        "joinMs": 219,
+        "claims": {
+          "ok": 400,
+          "wallMs": 405,
+          "perSec": 988
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 317,
+          "perSec": 1262
+        }
+      },
+      {
+        "repo": "bk32x2418s29",
+        "n": 400,
+        "joinMs": 244,
+        "claims": {
+          "ok": 400,
+          "wallMs": 510,
+          "perSec": 784
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 308,
+          "perSec": 1299
+        }
+      },
+      {
+        "repo": "bk32x2418s30",
+        "n": 400,
+        "joinMs": 465,
+        "claims": {
+          "ok": 400,
+          "wallMs": 501,
+          "perSec": 798
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 352,
+          "perSec": 1136
+        }
+      },
+      {
+        "repo": "bk32x2418s31",
+        "n": 400,
+        "joinMs": 408,
+        "claims": {
+          "ok": 400,
+          "wallMs": 590,
+          "perSec": 678
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 331,
+          "perSec": 1208
+        }
+      },
+      {
+        "repo": "bk32x2418s32",
+        "n": 400,
+        "joinMs": 315,
+        "claims": {
+          "ok": 400,
+          "wallMs": 334,
+          "perSec": 1198
+        },
+        "hotTask": {
+          "granted": 1,
+          "wallMs": 209,
+          "perSec": 1914
+        }
+      }
+    ]
+  }
+}

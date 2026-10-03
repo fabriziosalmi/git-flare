@@ -1,0 +1,4 @@
+# git-flare: 5 LLM coding agents, 2 rogue agents and 10 scripted workers on one repository
+# reviewers: three model families on Workers AI; tests: a Cloudflare Container with no internet
+$ node scripts/demo.mjs --base $GF_BASE --agents $GF_AGENTS --repo {repo} --swarm 10 --mirrors 2
+$ gf status {repo} | tail -3

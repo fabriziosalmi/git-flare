@@ -1,0 +1,275 @@
+{
+  "voice": "thalia",
+  "note": "Narration and visual plan of the demo video. Card numbers are read from benchmarks/results/2026-10-02/ at build time; the demo and guard scenes describe the recorded run on staging (repository gfdemo-980, report benchmarks/results/2026-10-02/demo-gfdemo-980.json). Times in cast/dash visuals are seconds into those recordings. Build: video/README.md.",
+  "segments": [
+    {
+      "id": "title",
+      "chapter": "git-flare",
+      "visual": {
+        "card": "title"
+      },
+      "text": "This is git-flare: a merge fabric for many coding agents working on one repository. The platform runs entirely on Cloudflare: Workers, Durable Objects, Artifacts, Containers, Queues, and Workers AI."
+    },
+    {
+      "id": "problem",
+      "chapter": "The problem",
+      "visual": {
+        "card": "problem",
+        "steps": [
+          [
+            "coordination",
+            "Coordination:"
+          ],
+          [
+            "review",
+            "Review:"
+          ],
+          [
+            "trust",
+            "And trust:"
+          ],
+          [
+            null,
+            "Every measurement"
+          ]
+        ]
+      },
+      "text": "Point a swarm of coding agents at one Git repository, and three things break. Coordination: agents race for the same work, and collide on every push to main. Review: ten copies of the same model agreeing are not ten independent opinions. And trust: on Artifacts, as on plain Git, any write token can push to main, or rewrite it. Every measurement in this video comes from a script in the repository."
+    },
+    {
+      "id": "architecture",
+      "chapter": "How it works",
+      "visual": {
+        "card": "architecture",
+        "steps": [
+          [
+            "agents",
+            "Agents use"
+          ],
+          [
+            "shards",
+            "Tasks live"
+          ],
+          [
+            "push",
+            "Each agent pushes"
+          ],
+          [
+            "diff",
+            "The platform computes"
+          ],
+          [
+            "review",
+            "Reviewers from"
+          ],
+          [
+            "queue",
+            "Approved patches"
+          ],
+          [
+            "land",
+            "It composes"
+          ],
+          [
+            "guard",
+            "Read replicas"
+          ]
+        ]
+      },
+      "text": "Here is the shape of it. Agents use a small command-line tool, G F, and plain git. Tasks live in sharded Durable Objects, which lease each task to exactly one agent, with a fencing epoch. Each agent pushes to its own Artifacts fork, then submits the commit. The platform computes the diff itself, from repository objects, and runs its gates. Reviewers from different model families score that diff. Approved patches reach a single merge queue, the only writer of main. It composes compatible patches into one commit, runs the project's own tests in a Container with no internet, and pushes with a compare-and-swap. Read replicas spread the clones, and a guard, fed by Artifacts events through Queues, watches main."
+    },
+    {
+      "id": "demo-run",
+      "chapter": "Live demo",
+      "visual": {
+        "cast": "demo",
+        "from": 0,
+        "to": 9
+      },
+      "text": "Let's run it, live on Cloudflare. One command starts five coding agents, running Qwen Coder on Workers AI, two rogue agents, and ten scripted workers, on a fresh repository with four task shards and two replicas."
+    },
+    {
+      "id": "demo-code",
+      "visual": {
+        "dash": "demo",
+        "from": 8,
+        "to": 62
+      },
+      "text": "Each agent joins, gets its own fork, and claims one task. The models write the code and its tests, run the tests locally, and submit the commit. On the dashboard, claims turn into patches, waiting for review."
+    },
+    {
+      "id": "demo-rogue",
+      "visual": {
+        "dash": "demo",
+        "from": 159.5,
+        "to": 171,
+        "crop": [
+          326,
+          0,
+          960
+        ]
+      },
+      "text": "Two agents are hostile. One breaks the add function. The other breaks it too, and edits the test so that it still passes. The diff comes from the platform, not from the agent, so the reviewers see both changes. Llama and Mistral reject them, and Mistral spells it out: the tests were altered to pass the incorrect implementation."
+    },
+    {
+      "id": "demo-reviews",
+      "visual": {
+        "cast": "demo",
+        "from": 131,
+        "to": 135
+      },
+      "text": "Every LLM patch was approved by at least two model families. On one of them, Mistral said no, and Llama and OpenAI outweighed it: evidence adds up across independent families, while inside one family, each extra opinion counts half as much as the one before."
+    },
+    {
+      "id": "demo-merge",
+      "visual": {
+        "dash": "demo",
+        "from": 126,
+        "to": 158
+      },
+      "text": "Approved patches go to the merge queue. Fifteen patches landed in four commits, the largest batching eight, and before every push, the project's tests ran in the container. Main moved four times, each time with a compare-and-swap, and both replicas followed."
+    },
+    {
+      "id": "demo-status",
+      "visual": {
+        "cast": "demo",
+        "from": 136.9,
+        "to": 139
+      },
+      "text": "The status agrees: the guard has seen no write from outside the merge queue, and both replicas are current."
+    },
+    {
+      "id": "guard-tamper",
+      "chapter": "Main guard",
+      "visual": {
+        "cast": "guard",
+        "from": 0,
+        "to": 9.5
+      },
+      "text": "Now, trust. Artifacts has no branch protection: any write token can move main. So let's play the attacker. With account access, we mint a write token outside git-flare, and push an innocent-looking commit to main. It adds an install script that pipes a download into a shell."
+    },
+    {
+      "id": "guard-alert",
+      "visual": {
+        "dash": "guard",
+        "from": 12.5,
+        "to": 17.9,
+        "crop": [
+          0,
+          190,
+          1120
+        ]
+      },
+      "text": "Artifacts reports both, the new token and the push, as events delivered through Queues. Seconds later, the guard flags a write token that git-flare never minted, and stops every merge until an operator decides."
+    },
+    {
+      "id": "guard-restore",
+      "visual": {
+        "cast": "guard",
+        "from": 13.8,
+        "to": 20.2
+      },
+      "text": "One command puts main back to the last head the merge queue produced, revokes every write token on the repository, and merges resume. The replicas never saw the bad commit: while an alert is up, they are not synced."
+    },
+    {
+      "id": "sandbox",
+      "chapter": "Tests in a sandbox",
+      "visual": {
+        "card": "sandbox",
+        "steps": [
+          [
+            "probe",
+            "A probe test"
+          ],
+          [
+            "root",
+            "Run as root"
+          ],
+          [
+            "linger",
+            "And nothing of a run"
+          ]
+        ]
+      },
+      "text": "The project's tests run in a Cloudflare Container started with internet disabled. Dependencies come from a read-only proxy to the npm registry, and the tests run as an unprivileged user. A probe test, submitted as an ordinary patch, found no internet, a proxy that refuses writes, and installed packages it could not touch. Run as root, the same probe rewrote a dependency, broke another test, and was rejected. And nothing of a run survives into the next: a test that left a process running, and files behind, found neither one run later. With that cleanup broken on purpose, the check failed."
+    },
+    {
+      "id": "scale-claims",
+      "chapter": "Scale",
+      "visual": {
+        "card": "scale-claims"
+      },
+      "text": "Now scale, measured on Cloudflare. Under load, we saw no rate-limit errors from Artifacts: past a few hundred operations per second, its control plane queues, and responses slow down. Our first claim path called Artifacts three times per claim, and twice more at submit, and topped out at a hundred and twenty-one claims per second. So claims stopped calling Artifacts. On a run of the same size, the platform went from a hundred and twenty-one to almost seven hundred claims per second, and a longer run passed a thousand, from a single test client."
+    },
+    {
+      "id": "scale-objects",
+      "visual": {
+        "card": "scale-objects",
+        "steps": [
+          [
+            "claims",
+            "A single task shard"
+          ],
+          [
+            "reviews",
+            "Recording a review"
+          ]
+        ]
+      },
+      "text": "The coordination layer stays flat. These numbers come from a bench Worker calling the Durable Objects directly, with Artifacts mocked. A single task shard handles about a thousand claims per second, and thirty-two shards reached thirteen and nineteen thousand, in two of three runs. Recording a review used to slow down as the approval graph grew, down to sixty-five per second at twenty thousand edges. Now it holds around nine hundred to fourteen hundred per second, up to a hundred thousand edges."
+    },
+    {
+      "id": "scale-replicas",
+      "visual": {
+        "card": "scale-replicas"
+      },
+      "text": "And when hundreds of agents clone at once, a single repository starts failing. With four replicas serving the clones, kept in sync by the merge queue, failed clones dropped from about a quarter to five percent, and successful clones per second almost tripled."
+    },
+    {
+      "id": "limits",
+      "chapter": "Limits",
+      "visual": {
+        "card": "limits",
+        "steps": [
+          [
+            "l1",
+            "Conflicts are"
+          ],
+          [
+            "l2",
+            "Test dependencies"
+          ],
+          [
+            "l3",
+            "One registry"
+          ],
+          [
+            "l4",
+            "Onboarding"
+          ],
+          [
+            "l5",
+            "And near-duplicate"
+          ]
+        ]
+      },
+      "text": "What isn't solved yet, we say plainly. Conflicts are detected per file. Test dependencies are npm only. One registry per repository records about a thousand reviews per second. Onboarding is bounded by fork creation, a few seconds per agent. And near-duplicate detection is textual, so similar patches are flagged for reviewers, never silently closed."
+    },
+    {
+      "id": "dx",
+      "chapter": "Try it",
+      "visual": {
+        "card": "dx"
+      },
+      "text": "From zero to a submitted patch takes five commands: log in, join, claim, commit, and submit. The platform deploys with wrangler, and runs locally with no Cloudflare account, with Artifacts and the tests mocked."
+    },
+    {
+      "id": "close",
+      "visual": {
+        "card": "close"
+      },
+      "pad": 2.5,
+      "text": "git-flare. Many agents, one main, and nothing merged that the platform did not check. The code, the scripts, and every raw result are in the repository."
+    }
+  ]
+}

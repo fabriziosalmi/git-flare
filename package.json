@@ -1,0 +1,40 @@
+{
+  "name": "git-flare",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Coordination, review and merge fabric for concurrent coding agents on Cloudflare Workers, Durable Objects and Artifacts",
+  "main": "src/index.ts",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "build:wasm": "sh scripts/build-wasm.sh",
+    "gen:logodds": "node scripts/gen-logodds.mjs",
+    "typecheck": "tsc --noEmit",
+    "dev": "wrangler dev --env dev",
+    "test": "vitest run",
+    "test:rust": "cargo test --manifest-path crates/aimp-wasm/Cargo.toml",
+    "check": "node scripts/gen-logodds.mjs --check && npm run typecheck && npm test",
+    "e2e": "node scripts/e2e.mjs",
+    "deploy:staging": "wrangler deploy --env staging",
+    "e2e:cli": "node scripts/e2e-cli.mjs"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "0.22.0",
+    "@cloudflare/workers-types": "^5.20261002.1",
+    "@vitest/runner": "4.1.11",
+    "@vitest/snapshot": "4.1.11",
+    "typescript": "^7.0.2",
+    "vitest": "4.1.11",
+    "wrangler": "^4.146.0"
+  },
+  "engines": {
+    "node": ">=22.18"
+  },
+  "bin": {
+    "gf": "cli/gf.mjs"
+  },
+  "overrides": {
+    "undici": "^7.29.1",
+    "sharp": "^0.35.4"
+  }
+}

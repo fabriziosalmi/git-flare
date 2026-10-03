@@ -1,0 +1,12 @@
+// gf-agents: LLM reviewers and the coding-agent "brain" on Workers AI. Secrets: AGENTS_TOKEN, REVIEWER_KEYS.
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "gf-agents",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-22",
+  "observability": { "enabled": true },
+  "ai": { "binding": "AI" },
+  // The git-flare Worker this one talks to (a service binding: workers.dev Workers of one account cannot
+  // fetch each other). Without the binding, set a GF_BASE var to the git-flare URL instead.
+  "services": [{ "binding": "GF", "service": "git-flare-staging" }]
+}

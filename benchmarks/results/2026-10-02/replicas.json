@@ -1,0 +1,238 @@
+{
+  "date": "2026-10-02",
+  "what": "clone throughput of one Artifacts repository vs the same load spread over 4 repositories (independent repos, then the real read replicas of rp-5435). A clone = ref advertisement + upload-pack of main (protocol v0), from inside the staging Worker (src/bench.ts op clone).",
+  "note": "Error strings normalise digits: \"HTTP 5N\" are HTTP 5xx answers from the Artifacts git endpoint. Capacity per repository varied between runs (about 30-100 clones/s).",
+  "run1_independentRepos": {
+    "oneRepo480InFlight": {
+      "repo": "cl-0-804",
+      "inFlight": 480,
+      "attempted": 2000,
+      "succeeded": 1344,
+      "opWindowMs": 21027,
+      "succeededPerSec": 64,
+      "latencyMs": {
+        "p50": 5666,
+        "p95": 7287,
+        "p99": 7621,
+        "max": 8035
+      },
+      "errors": {
+        "HTTP 5N advertisement": 409,
+        "HTTP 5N upload-pack (N bytes)": 247
+      }
+    },
+    "fourRepos120InFlightEach": {
+      "perRepo": [
+        {
+          "repo": "cl-0-804",
+          "inFlight": 120,
+          "attempted": 500,
+          "succeeded": 499,
+          "opWindowMs": 13135,
+          "succeededPerSec": 38,
+          "latencyMs": {
+            "p50": 1802,
+            "p95": 6594,
+            "p99": 7088,
+            "max": 7098
+          },
+          "errors": {
+            "HTTP 5N upload-pack (N bytes)": 1
+          }
+        },
+        {
+          "repo": "cl-1-810",
+          "inFlight": 120,
+          "attempted": 500,
+          "succeeded": 500,
+          "opWindowMs": 5584,
+          "succeededPerSec": 90,
+          "latencyMs": {
+            "p50": 1260,
+            "p95": 1549,
+            "p99": 1579,
+            "max": 1673
+          },
+          "errors": {}
+        },
+        {
+          "repo": "cl-2-815",
+          "inFlight": 120,
+          "attempted": 500,
+          "succeeded": 500,
+          "opWindowMs": 12638,
+          "succeededPerSec": 40,
+          "latencyMs": {
+            "p50": 1679,
+            "p95": 5405,
+            "p99": 9090,
+            "max": 11007
+          },
+          "errors": {}
+        },
+        {
+          "repo": "cl-3-820",
+          "inFlight": 120,
+          "attempted": 500,
+          "succeeded": 500,
+          "opWindowMs": 6099,
+          "succeededPerSec": 82,
+          "latencyMs": {
+            "p50": 1323,
+            "p95": 1642,
+            "p99": 1853,
+            "max": 1955
+          },
+          "errors": {}
+        }
+      ],
+      "total": {
+        "attempted": 2000,
+        "succeeded": 1999,
+        "failedPct": 0.1,
+        "aggregatePerSec": 152,
+        "slowestWindowMs": 13135
+      }
+    }
+  },
+  "singleRepoKnee": [
+    {
+      "inFlight": 120,
+      "attempted": 500,
+      "succeeded": 500,
+      "succeededPerSec": 87,
+      "p50": 1214,
+      "errors": {}
+    },
+    {
+      "inFlight": 240,
+      "attempted": 1000,
+      "succeeded": 999,
+      "succeededPerSec": 93,
+      "p50": 2551,
+      "errors": {
+        "HTTP 5N upload-pack (N bytes)": 1
+      }
+    },
+    {
+      "inFlight": 360,
+      "attempted": 1500,
+      "succeeded": 1169,
+      "succeededPerSec": 104,
+      "p50": 2811,
+      "errors": {
+        "HTTP 5N upload-pack (N bytes)": 91,
+        "HTTP 5N advertisement": 240
+      }
+    }
+  ],
+  "run2_realReplicas": {
+    "repo": "rp-5435 (4 replicas)",
+    "mainOnly480InFlight": {
+      "repo": "rp-5435",
+      "inFlight": 480,
+      "attempted": 2000,
+      "succeeded": 1480,
+      "opWindowMs": 34806,
+      "succeededPerSec": 43,
+      "latencyMs": {
+        "p50": 8910,
+        "p95": 12612,
+        "p99": 12728,
+        "max": 12990
+      },
+      "errors": {
+        "HTTP 5N advertisement": 412,
+        "HTTP 5N upload-pack (N bytes)": 108
+      }
+    },
+    "fourReplicas120InFlightEach": {
+      "perRepo": [
+        {
+          "repo": "rp-5435--m0",
+          "inFlight": 120,
+          "attempted": 500,
+          "succeeded": 500,
+          "opWindowMs": 12955,
+          "succeededPerSec": 39,
+          "latencyMs": {
+            "p50": 2998,
+            "p95": 3405,
+            "p99": 3988,
+            "max": 3996
+          },
+          "errors": {}
+        },
+        {
+          "repo": "rp-5435--m1",
+          "inFlight": 120,
+          "attempted": 500,
+          "succeeded": 500,
+          "opWindowMs": 15400,
+          "succeededPerSec": 32,
+          "latencyMs": {
+            "p50": 3497,
+            "p95": 4199,
+            "p99": 4245,
+            "max": 4282
+          },
+          "errors": {}
+        },
+        {
+          "repo": "rp-5435--m2",
+          "inFlight": 120,
+          "attempted": 500,
+          "succeeded": 499,
+          "opWindowMs": 12296,
+          "succeededPerSec": 41,
+          "latencyMs": {
+            "p50": 2652,
+            "p95": 3503,
+            "p99": 3990,
+            "max": 9415
+          },
+          "errors": {
+            "HTTP 5N upload-pack (N bytes)": 1
+          }
+        },
+        {
+          "repo": "rp-5435--m3",
+          "inFlight": 120,
+          "attempted": 500,
+          "succeeded": 402,
+          "opWindowMs": 11493,
+          "succeededPerSec": 35,
+          "latencyMs": {
+            "p50": 2811,
+            "p95": 3577,
+            "p99": 3583,
+            "max": 3602
+          },
+          "errors": {
+            "HTTP 5N upload-pack (N bytes)": 57,
+            "HTTP 5N advertisement": 41
+          }
+        }
+      ],
+      "total": {
+        "attempted": 2000,
+        "succeeded": 1901,
+        "failedPct": 5,
+        "aggregatePerSec": 123,
+        "slowestWindowMs": 15400
+      }
+    }
+  },
+  "e2eWithReplicas": {
+    "checks": 68,
+    "passed": 68,
+    "mirrors": 4,
+    "mirrorSyncs": 8,
+    "lastSyncMsAllFourParallel": 688
+  },
+  "guardOnReplicas": {
+    "note": "Subscriptions created seconds before the first merges missed 4 of the first 10 push events; a later merge cycle produced exactly 5 own-push events (1 main + 4 replicas) within 6 s, 0 foreign.",
+    "ownPushesBefore": 6,
+    "ownPushesAfter": 11
+  }
+}

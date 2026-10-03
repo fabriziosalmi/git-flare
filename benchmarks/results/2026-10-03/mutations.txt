@@ -1,0 +1,33 @@
+Pre-publication review fixes, each re-introduced on purpose (2026-10-03).
+Script: mutations.py in this directory (run it from anywhere; it restores every file it touches).
+KILLED = a test failed, as it must. Output of the last full run:
+
+KILLED  diff uses the multiset diff (moved lines invisible again): 1 failed test
+KILLED  binary-content gate off: 3 failed tests
+KILLED  secret scan ignores binary strings: 2 failed tests
+KILLED  no-symlinks gate off: 1 failed test
+KILLED  mode-only changes skipped: 1 failed test
+KILLED  moved lines not cancelled in SimHash input: 1 failed test
+KILLED  body buffered whole: 1 failed test
+KILLED  guard ignores rollbacks between rounds: 1 failed test
+KILLED  fast-forward back (lone patch lands as the agent's commit): 2 failed tests
+KILLED  binary gate trusts the extension (no signature check): 2 failed tests
+KILLED  gates scan every reported line, not only new content: 1 failed test
+KILLED  eval heuristic ignores binary strings: 2 failed tests
+KILLED  tab not printable in binary strings: 1 failed test
+KILLED  secrets past the display caps not kept: 1 failed test
+KILLED  binary judged on old or new content: 1 failed test
+KILLED  composeTree applies updates in their order (file -> directory fails): 1 failed test
+KILLED  an emptied directory cannot become a file: 1 failed test
+KILLED  changedPaths ignores mode changes: 1 failed test
+KILLED  no mark for a missing final newline: 1 failed test
+KILLED  restore revokes only on main: 1 failed test
+
+Live, on staging (real test container), see container-linger.json:
+KILLED  test user's processes not killed, only /tmp wiped: the linger check failed
+        ("a process from an earlier run is still writing"); the fixed build was redeployed after the run.
+
+Fixes without a dedicated test: the LLM reviewers' abstention on long changes and their fenced prompt
+(agents/), the constant-time token comparison of the agents Worker, storing guard events deferred during a
+round, removing package-manager configs and pinning their settings before install, tini as PID 1 and
+chown -h in the container. Killing after each command and the wipe are checked live by the linger probe.

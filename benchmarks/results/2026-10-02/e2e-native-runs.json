@@ -1,0 +1,126 @@
+{
+  "date": "2026-10-02",
+  "where": "staging Worker on workers.dev + Cloudflare Artifacts (namespace gf-staging); server timings measured inside the Durable Object",
+  "notes": [
+    "runs 1-6: before the alternate-name fork fallback; runs 7-8: after it",
+    "joins counted include the first worker join; failures were zombie forks (see docs/spikes)"
+  ],
+  "runs": [
+    {
+      "checks": "26/26",
+      "racers": 8,
+      "claimMs": 73,
+      "diffMs": 138,
+      "mergeMs": 483,
+      "uploadPackMs": 158,
+      "receivePackMs": 121,
+      "joinsOk": 6,
+      "joins": 9,
+      "joinMsMax": 3968
+    },
+    {
+      "checks": "30/30",
+      "racers": 12,
+      "claimMs": 100,
+      "diffMs": 442,
+      "mergeMs": 830,
+      "uploadPackMs": 313,
+      "receivePackMs": 155,
+      "joinsOk": 9,
+      "joins": 13,
+      "joinMsMax": 4695
+    },
+    {
+      "checks": "30/30",
+      "racers": 12,
+      "claimMs": 67,
+      "diffMs": 238,
+      "mergeMs": 578,
+      "uploadPackMs": 267,
+      "receivePackMs": 107,
+      "joinsOk": 11,
+      "joins": 13,
+      "joinMsMax": 4822
+    },
+    {
+      "checks": "30/30",
+      "racers": 12,
+      "claimMs": 403,
+      "diffMs": 558,
+      "mergeMs": 1020,
+      "uploadPackMs": 318,
+      "receivePackMs": 194,
+      "joinsOk": 12,
+      "joins": 13,
+      "joinMsMax": 4685
+    },
+    {
+      "checks": "34/34",
+      "racers": 16,
+      "claimMs": 367,
+      "diffMs": 309,
+      "mergeMs": 693,
+      "uploadPackMs": 283,
+      "receivePackMs": 109,
+      "joinsOk": 13,
+      "joins": 17,
+      "joinMsMax": 18179
+    },
+    {
+      "checks": "34/34",
+      "racers": 16,
+      "claimMs": 440,
+      "diffMs": 464,
+      "mergeMs": 1311,
+      "uploadPackMs": 329,
+      "receivePackMs": 223,
+      "joinsOk": 14,
+      "joins": 17,
+      "joinMsMax": 19177
+    },
+    {
+      "checks": "34/34",
+      "racers": 16,
+      "claimMs": 91,
+      "diffMs": 265,
+      "mergeMs": 726,
+      "uploadPackMs": 227,
+      "receivePackMs": 124,
+      "joinsOk": 17,
+      "joins": 17,
+      "joinMsMax": 6238
+    },
+    {
+      "checks": "34/34",
+      "racers": 16,
+      "claimMs": 374,
+      "diffMs": 472,
+      "mergeMs": 1073,
+      "uploadPackMs": 312,
+      "receivePackMs": 240,
+      "joinsOk": 17,
+      "joins": 17,
+      "joinMsMax": 6800
+    }
+  ],
+  "medianNote": "the median fields below took the 5th of the 8 sorted values; the true medians (mean of the 4th and 5th) are claimMs 233.5, diffMs 375.5, mergeMs 778",
+  "median": {
+    "claimMs": 367,
+    "diffMs": 442,
+    "mergeMs": 830
+  },
+  "range": {
+    "claimMs": [
+      67,
+      440
+    ],
+    "diffMs": [
+      138,
+      558
+    ],
+    "mergeMs": [
+      483,
+      1311
+    ]
+  }
+}

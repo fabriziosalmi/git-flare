@@ -1,0 +1,874 @@
+{
+  "date": "2026-10-02",
+  "where": "native: staging Worker + Cloudflare Artifacts + Cloudflare Containers (TestRunner, internet disabled, standard-1); mock: wrangler dev --env dev",
+  "fixture": "fixtures/tiny-lib (node --test)",
+  "runs": {
+    "native": {
+      "mode": "native",
+      "repo": "tl-950753",
+      "summary": {
+        "checks": 28,
+        "passed": 28,
+        "testRunner": "container",
+        "testRuns": 7,
+        "testFailures": 5,
+        "testRejections": 1,
+        "testMsTotal": 9358,
+        "pushes": 2,
+        "rounds": [
+          {
+            "via": "tests-failed",
+            "patches": 4,
+            "testPassed": false,
+            "testMs": 7102,
+            "roundMs": 8236
+          },
+          {
+            "via": "tests-failed",
+            "patches": 2,
+            "testPassed": false,
+            "testMs": 385,
+            "roundMs": 645
+          },
+          {
+            "via": "fast-forward",
+            "patches": 1,
+            "testPassed": true,
+            "testMs": 293,
+            "roundMs": 1204
+          },
+          {
+            "via": "tests-failed",
+            "patches": 3,
+            "testPassed": false,
+            "testMs": 448,
+            "roundMs": 1161
+          },
+          {
+            "via": "tests-failed",
+            "patches": 2,
+            "testPassed": false,
+            "testMs": 490,
+            "roundMs": 979
+          },
+          {
+            "via": "tests-failed",
+            "patches": 1,
+            "testPassed": false,
+            "testMs": 295,
+            "roundMs": 724
+          },
+          {
+            "via": "batch",
+            "patches": 2,
+            "testPassed": true,
+            "testMs": 345,
+            "roundMs": 1338
+          }
+        ],
+        "s3LogTail": "'\n  stack: |-\n    TestContext.<anonymous> (file:///workspace/run/test/math.test.mjs:5:26)\n    Test.runInAsyncScope (node:async_hooks:214:14)\n    Test.run (node:internal/test_runner/test:1047:25)\n    Test.start (node:internal/test_runner/test:944:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)\n  ...\n# Subtest: mul\nok 2 - mul\n  ---\n  duration_ms: 0.27507\n  type: 'test'\n  ...\n# Subtest: shout\nok 3 - shout\n  ---\n  duration_ms: 1.52874\n  type: 'test'\n  ...\n1..3\n# tests 3\n# suites 0\n# pass 2\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 219.833287\n\n[exit 1]\n"
+      },
+      "checks": [
+        {
+          "name": "health",
+          "ok": true
+        },
+        {
+          "name": "init",
+          "ok": true
+        },
+        {
+          "name": "register t-reviewer-gpt",
+          "ok": true
+        },
+        {
+          "name": "register t-reviewer-gemini",
+          "ok": true
+        },
+        {
+          "name": "register t-verifier",
+          "ok": true
+        },
+        {
+          "name": "join t-verifier",
+          "ok": true
+        },
+        {
+          "name": "register t-worker-S1",
+          "ok": true
+        },
+        {
+          "name": "join t-worker-S1",
+          "ok": true
+        },
+        {
+          "name": "register t-worker-S2",
+          "ok": true
+        },
+        {
+          "name": "join t-worker-S2",
+          "ok": true
+        },
+        {
+          "name": "register t-worker-S3",
+          "ok": true
+        },
+        {
+          "name": "join t-worker-S3",
+          "ok": true
+        },
+        {
+          "name": "register t-worker-S4",
+          "ok": true
+        },
+        {
+          "name": "join t-worker-S4",
+          "ok": true
+        },
+        {
+          "name": "claim S1",
+          "ok": true
+        },
+        {
+          "name": "submit S1 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "claim S2",
+          "ok": true
+        },
+        {
+          "name": "submit S2 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "claim S3",
+          "ok": true
+        },
+        {
+          "name": "submit S3 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "claim S4",
+          "ok": true
+        },
+        {
+          "name": "submit S4 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "all four queued",
+          "ok": true
+        },
+        {
+          "name": "S1, S2, S4 merged",
+          "ok": true
+        },
+        {
+          "name": "S3 rejected by the project tests",
+          "ok": true
+        },
+        {
+          "name": "real test log names the failing test",
+          "ok": true
+        },
+        {
+          "name": "verification claim",
+          "ok": true
+        },
+        {
+          "name": "main has the merged files and the original add()",
+          "ok": true
+        }
+      ],
+      "steps": [
+        {
+          "call": "GET /api/health",
+          "status": 200,
+          "ms": 385
+        },
+        {
+          "call": "POST /api/repos/<repo>/init",
+          "status": 200,
+          "ms": 1578
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3455
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 5472
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 8982
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 2556
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 2720
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 718,
+          "serverMs": {
+            "provisioning": 515
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) S1",
+          "ms": 1462
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 898,
+          "serverMs": {
+            "diffAndGates": 387
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 465,
+          "serverMs": {
+            "provisioning": 238
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) S2",
+          "ms": 1153
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 621,
+          "serverMs": {
+            "diffAndGates": 336
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 530,
+          "serverMs": {
+            "provisioning": 366
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) S3",
+          "ms": 1290
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 706,
+          "serverMs": {
+            "diffAndGates": 372
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 535,
+          "serverMs": {
+            "provisioning": 395
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) S4",
+          "ms": 1281
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 608,
+          "serverMs": {
+            "diffAndGates": 372
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 89
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 90
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 90
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 89
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 158
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 158
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 166
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 166
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 52
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 50
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 46
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 50
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 47
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 52
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 56
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 55
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 53
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 67
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 461
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 52
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 50
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 49
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 145
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 48
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 69
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 54
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 56
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 56
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 47
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 44
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 52
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 53
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 60
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 601
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 47
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 47
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 43
+        },
+        {
+          "call": "approvals → queue settled (tests in container, bisection)",
+          "ms": 16759
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 538,
+          "serverMs": {
+            "provisioning": 387
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/release",
+          "status": 200,
+          "ms": 176
+        }
+      ]
+    },
+    "mock": {
+      "mode": "mock",
+      "repo": "e2e-mur1p77q",
+      "summary": {
+        "checks": 31,
+        "passed": 31,
+        "testRunner": "mock",
+        "testRuns": 5,
+        "testFailures": 3,
+        "testRejections": 1,
+        "testMsTotal": 0,
+        "pushes": 2,
+        "rounds": [
+          {
+            "via": "tests-failed",
+            "patches": 4,
+            "testPassed": false,
+            "testMs": 0,
+            "roundMs": 1
+          },
+          {
+            "via": "batch",
+            "patches": 2,
+            "testPassed": true,
+            "testMs": 0,
+            "roundMs": 2
+          },
+          {
+            "via": "tests-failed",
+            "patches": 2,
+            "testPassed": false,
+            "testMs": 0,
+            "roundMs": 2
+          },
+          {
+            "via": "tests-failed",
+            "patches": 1,
+            "testPassed": false,
+            "testMs": 0,
+            "roundMs": 1
+          },
+          {
+            "via": "batch",
+            "patches": 1,
+            "testPassed": true,
+            "testMs": 0,
+            "roundMs": 0
+          }
+        ],
+        "s3LogTail": "TESTS_FAILED: [mock runner] 9 files: failing marker in src/math.mjs"
+      },
+      "checks": [
+        {
+          "name": "health",
+          "ok": true
+        },
+        {
+          "name": "init",
+          "ok": true
+        },
+        {
+          "name": "seed tiny-lib (mock)",
+          "ok": true
+        },
+        {
+          "name": "register t-reviewer-gpt",
+          "ok": true
+        },
+        {
+          "name": "register t-reviewer-gemini",
+          "ok": true
+        },
+        {
+          "name": "register t-verifier",
+          "ok": true
+        },
+        {
+          "name": "join t-verifier",
+          "ok": true
+        },
+        {
+          "name": "register t-worker-S1",
+          "ok": true
+        },
+        {
+          "name": "join t-worker-S1",
+          "ok": true
+        },
+        {
+          "name": "register t-worker-S2",
+          "ok": true
+        },
+        {
+          "name": "join t-worker-S2",
+          "ok": true
+        },
+        {
+          "name": "register t-worker-S3",
+          "ok": true
+        },
+        {
+          "name": "join t-worker-S3",
+          "ok": true
+        },
+        {
+          "name": "register t-worker-S4",
+          "ok": true
+        },
+        {
+          "name": "join t-worker-S4",
+          "ok": true
+        },
+        {
+          "name": "claim S1",
+          "ok": true
+        },
+        {
+          "name": "dev-commit S1",
+          "ok": true
+        },
+        {
+          "name": "submit S1 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "claim S2",
+          "ok": true
+        },
+        {
+          "name": "dev-commit S2",
+          "ok": true
+        },
+        {
+          "name": "submit S2 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "claim S3",
+          "ok": true
+        },
+        {
+          "name": "dev-commit S3",
+          "ok": true
+        },
+        {
+          "name": "submit S3 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "claim S4",
+          "ok": true
+        },
+        {
+          "name": "dev-commit S4",
+          "ok": true
+        },
+        {
+          "name": "submit S4 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "all four queued",
+          "ok": true
+        },
+        {
+          "name": "S1, S2, S4 merged",
+          "ok": true
+        },
+        {
+          "name": "S3 rejected by the project tests",
+          "ok": true
+        },
+        {
+          "name": "main has the merged files and the original add()",
+          "ok": true
+        }
+      ],
+      "steps": [
+        {
+          "call": "GET /api/health",
+          "status": 200,
+          "ms": 37
+        },
+        {
+          "call": "POST /api/repos/<repo>/init",
+          "status": 200,
+          "ms": 27
+        },
+        {
+          "call": "POST /api/repos/<repo>/dev-advance-main",
+          "status": 200,
+          "ms": 3
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 4
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 2
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 1
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 15,
+          "serverMs": {
+            "provisioning": 10
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/dev-commit",
+          "status": 200,
+          "ms": 3
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 16,
+          "serverMs": {
+            "diffAndGates": 11
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 2,
+          "serverMs": {
+            "provisioning": 0
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/dev-commit",
+          "status": 200,
+          "ms": 8
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 7,
+          "serverMs": {
+            "diffAndGates": 4
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 5,
+          "serverMs": {
+            "provisioning": 1
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/dev-commit",
+          "status": 200,
+          "ms": 2
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 9,
+          "serverMs": {
+            "diffAndGates": 7
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 2,
+          "serverMs": {
+            "provisioning": 0
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/dev-commit",
+          "status": 200,
+          "ms": 2
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 23,
+          "serverMs": {
+            "diffAndGates": 20
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 7
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 10
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 10
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 10
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 15
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 15
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 15
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 15
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 12
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 7
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 4
+        },
+        {
+          "call": "approvals → queue settled (tests in container, bisection)",
+          "ms": 1041
+        },
+        {
+          "call": "GET /api/repos/<repo>/dev-main-files",
+          "status": 200,
+          "ms": 4
+        }
+      ]
+    }
+  }
+}

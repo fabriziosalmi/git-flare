@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-02",
+  "what": "main guard driven by Artifacts event subscriptions (Queues) plus a head check at every merge round",
+  "where": "git-flare-staging Worker + Artifacts namespace gf-staging + queue gf-events-staging; repository gd-4436 watched with scripts/watch-repo.mjs (events: pushed, token.created, cloned, fetched)",
+  "subscriptionFacts": [
+    "Repository-level events (pushed, cloned, fetched, token.*) need a subscription per repository: source artifacts.repo with namespace and repo_name; the API rejects a subscription without them.",
+    "repo_name '*' is accepted by the API but delivered nothing for pushes to other repositories within 60 s: it matches a repository literally named '*'.",
+    "Event types in the API are the short names (pushed, token.created); the cf.artifacts.repo.* names are rejected at creation and appear only in delivered messages."
+  ],
+  "run": {
+    "e2e": { "checks": 66, "passed": 66, "pushesToMain": 2 },
+    "guardAfterE2e": { "events": 18, "ownPushes": 2, "foreignPushes": 0, "foreignWriteTokens": 0, "clones": 10, "maxEventLagMs": 8032 },
+    "tamper": {
+      "how": "a write token issued with `wrangler artifacts repos issue-token` (outside the platform), then a commit pushed to main with it",
+      "alertAfterSec": 5,
+      "firstSignal": "foreign-write-token (the token.created event arrived before the push event)",
+      "afterwards": { "foreignPushes": 1, "foreignWriteTokens": 1, "queueLastError": "MAIN_GUARD: write token ... minted on gd-4436 outside the platform" }
+    },
+    "restore": {
+      "mainBefore": "ec5ceb352190",
+      "mainAfter": "7930a639e850",
+      "expectedHead": "7930a639e850",
+      "revokedWriteTokens": 3,
+      "restorePushEvent": "recognised as own",
+      "guardState": "ok"
+    }
+  }
+}

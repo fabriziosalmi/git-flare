@@ -1,0 +1,8 @@
+# Artifacts has no branch protection: any write token can move main
+$ gf status {repo} | tail -3
+# someone with account access mints a write token outside git-flare and pushes to main
+$ node scripts/video/tamper.mjs {repo}
+$ node scripts/video/wait-guard.mjs {repo}
+# one command: main back to the last head the merge queue produced, write tokens revoked
+$ gf admin repo guard {repo} restore
+$ gf status {repo} | tail -3

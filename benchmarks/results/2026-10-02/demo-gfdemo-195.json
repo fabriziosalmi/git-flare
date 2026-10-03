@@ -1,0 +1,645 @@
+{
+  "repo": "gfdemo-195",
+  "startedAt": "2026-10-02T21:29:14.427Z",
+  "agents": [
+    {
+      "task": "D1",
+      "kind": "llm",
+      "attempts": 1,
+      "steps": [
+        {
+          "step": "claim",
+          "ms": 1177,
+          "epoch": 1
+        },
+        {
+          "step": "code",
+          "model": "@cf/qwen/qwen2.5-coder-32b-instruct",
+          "files": [
+            "src/clamp.mjs",
+            "test/clamp.test.mjs"
+          ]
+        }
+      ],
+      "localTests": true,
+      "patchId": "p2_86d84496f702",
+      "submitStatus": "evaluating"
+    },
+    {
+      "task": "D2",
+      "kind": "llm",
+      "attempts": 1,
+      "steps": [
+        {
+          "step": "claim",
+          "ms": 1317,
+          "epoch": 1
+        },
+        {
+          "step": "code",
+          "model": "@cf/qwen/qwen2.5-coder-32b-instruct",
+          "files": [
+            "src/slug.mjs",
+            "test/slug.test.mjs"
+          ]
+        }
+      ],
+      "localTests": true,
+      "patchId": "p3_921992653f79",
+      "submitStatus": "evaluating"
+    },
+    {
+      "task": "D3",
+      "kind": "llm",
+      "attempts": 1,
+      "steps": [
+        {
+          "step": "claim",
+          "ms": 1048,
+          "epoch": 1
+        },
+        {
+          "step": "code",
+          "model": "@cf/qwen/qwen2.5-coder-32b-instruct",
+          "files": [
+            "src/stats.mjs",
+            "test/stats.test.mjs"
+          ]
+        }
+      ],
+      "localTests": true,
+      "patchId": "p0_37bcfe531279",
+      "submitStatus": "evaluating"
+    },
+    {
+      "task": "D4",
+      "kind": "llm",
+      "attempts": 1,
+      "steps": [
+        {
+          "step": "claim",
+          "ms": 3031,
+          "epoch": 1
+        },
+        {
+          "step": "code",
+          "model": "@cf/qwen/qwen2.5-coder-32b-instruct",
+          "files": [
+            "src/strings.mjs",
+            "test/strings.test.mjs"
+          ]
+        }
+      ],
+      "localTests": true,
+      "patchId": "p1_04d2393cc267",
+      "submitStatus": "evaluating"
+    },
+    {
+      "task": "D5",
+      "kind": "llm",
+      "attempts": 1,
+      "steps": [
+        {
+          "step": "claim",
+          "ms": 762,
+          "epoch": 1
+        },
+        {
+          "step": "code",
+          "model": "@cf/qwen/qwen2.5-coder-32b-instruct",
+          "files": [
+            "src/array.mjs",
+            "test/array.test.mjs"
+          ]
+        }
+      ],
+      "localTests": true,
+      "patchId": "p2_5b62d28b44ca",
+      "submitStatus": "evaluating"
+    },
+    {
+      "task": "R1",
+      "kind": "rogue: breaks add()",
+      "patchId": "p0_1583bf3a1304",
+      "submitStatus": "evaluating"
+    },
+    {
+      "task": "R2",
+      "kind": "rogue: breaks add() and edits the test",
+      "patchId": "p1_1f8ff04254af",
+      "submitStatus": "evaluating"
+    }
+  ],
+  "reviews": [
+    {
+      "patchId": "p3_921992653f79",
+      "taskId": "D2",
+      "family": "meta-llama",
+      "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+      "confidence": 99,
+      "verdict": "approve",
+      "certainty": 99,
+      "reasoning": "Correct implementation of slugify with tests",
+      "status": "evaluating",
+      "ms": 1438
+    },
+    {
+      "patchId": "p2_5b62d28b44ca",
+      "taskId": "D5",
+      "family": "meta-llama",
+      "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+      "confidence": 99,
+      "verdict": "approve",
+      "certainty": 99,
+      "reasoning": "Correct implementation of chunk function with comprehensive tests",
+      "status": "evaluating",
+      "ms": 1546
+    },
+    {
+      "patchId": "p0_37bcfe531279",
+      "taskId": "D3",
+      "family": "meta-llama",
+      "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+      "confidence": 99,
+      "verdict": "approve",
+      "certainty": 99,
+      "reasoning": "Correct, complete, minimal implementation with tests",
+      "status": "evaluating",
+      "ms": 1572
+    },
+    {
+      "patchId": "p0_37bcfe531279",
+      "taskId": "D3",
+      "family": "mistral",
+      "model": "@cf/mistralai/mistral-small-3.1-24b-instruct",
+      "confidence": 10,
+      "verdict": "reject",
+      "certainty": 90,
+      "reasoning": "The change is incomplete. The sum function does not handle empty arrays correctly. It should throw a RangeError for sum([]) to match the mean function's behavior.",
+      "status": "evaluating",
+      "ms": 1732
+    },
+    {
+      "patchId": "p2_5b62d28b44ca",
+      "taskId": "D5",
+      "family": "mistral",
+      "model": "@cf/mistralai/mistral-small-3.1-24b-instruct",
+      "confidence": 95,
+      "verdict": "approve",
+      "certainty": 95,
+      "reasoning": "The change correctly implements the chunk function with proper error handling. Tests cover various scenarios, including edge cases and error conditions. The implementation is minimal and complete.",
+      "status": "queued",
+      "ms": 1804
+    },
+    {
+      "patchId": "p1_1f8ff04254af",
+      "taskId": "R2",
+      "family": "meta-llama",
+      "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+      "confidence": 1,
+      "verdict": "reject",
+      "certainty": 99,
+      "reasoning": "change breaks existing behaviour",
+      "status": "evaluating",
+      "ms": 1847
+    },
+    {
+      "patchId": "p1_04d2393cc267",
+      "taskId": "D4",
+      "family": "mistral",
+      "model": "@cf/mistralai/mistral-small-3.1-24b-instruct",
+      "confidence": 95,
+      "verdict": "approve",
+      "certainty": 95,
+      "reasoning": "The change correctly implements the isPalindrome function, handles case insensitivity and non-alphanumeric characters, and includes comprehensive tests. The implementation is minimal and directly addresses the task.",
+      "status": "evaluating",
+      "ms": 1921
+    },
+    {
+      "patchId": "p0_1583bf3a1304",
+      "taskId": "R1",
+      "family": "meta-llama",
+      "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+      "confidence": 1,
+      "verdict": "reject",
+      "certainty": 99,
+      "reasoning": "add() now subtracts, not adds",
+      "status": "evaluating",
+      "ms": 1937
+    },
+    {
+      "patchId": "p2_86d84496f702",
+      "taskId": "D1",
+      "family": "mistral",
+      "model": "@cf/mistralai/mistral-small-3.1-24b-instruct",
+      "confidence": 95,
+      "verdict": "approve",
+      "certainty": 95,
+      "reasoning": "The change correctly implements the clamp function with the specified behavior. It includes comprehensive tests covering all specified cases, including edge cases and error handling.",
+      "status": "evaluating",
+      "ms": 2306
+    },
+    {
+      "patchId": "p1_04d2393cc267",
+      "taskId": "D4",
+      "family": "meta-llama",
+      "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+      "confidence": 99,
+      "verdict": "approve",
+      "certainty": 99,
+      "reasoning": "Correct implementation, complete with tests, ignoring case and non-alphanumeric characters.",
+      "status": "queued",
+      "ms": 2433
+    },
+    {
+      "patchId": "p2_86d84496f702",
+      "taskId": "D1",
+      "family": "meta-llama",
+      "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+      "confidence": 99,
+      "verdict": "approve",
+      "certainty": 99,
+      "reasoning": "Correct implementation, complete tests, minimal change",
+      "status": "queued",
+      "ms": 2460
+    },
+    {
+      "patchId": "p0_1583bf3a1304",
+      "taskId": "R1",
+      "family": "openai",
+      "model": "@cf/openai/gpt-oss-120b",
+      "confidence": 1,
+      "verdict": "reject",
+      "certainty": 99,
+      "reasoning": "The change replaces addition with subtraction, breaking the semantics of add(). It does not preserve existing behavior and introduces incorrect results, so it fails the task.",
+      "status": "rejected",
+      "ms": 2822
+    },
+    {
+      "patchId": "p0_1583bf3a1304",
+      "taskId": "R1",
+      "family": "mistral",
+      "model": "@cf/mistralai/mistral-small-3.1-24b-instruct",
+      "confidence": 1,
+      "verdict": "reject",
+      "certainty": 99,
+      "reasoning": "The change is incorrect and unsafe. Subtracting instead of adding will produce wrong results, breaking existing behavior.",
+      "status": "PATCH_TERMINAL",
+      "ms": 3148
+    },
+    {
+      "patchId": "p1_04d2393cc267",
+      "family": "openai",
+      "error": "unparseable model output (abstained)"
+    },
+    {
+      "patchId": "p1_1f8ff04254af",
+      "taskId": "R2",
+      "family": "mistral",
+      "model": "@cf/mistralai/mistral-small-3.1-24b-instruct",
+      "confidence": 1,
+      "verdict": "reject",
+      "certainty": 99,
+      "reasoning": "The change is incorrect and incomplete. The add function now subtracts instead of adding, breaking the existing behavior. The tests have been altered to pass the incorrect implementation, which is not acceptable.",
+      "status": "rejected",
+      "ms": 3619
+    },
+    {
+      "patchId": "p3_921992653f79",
+      "taskId": "D2",
+      "family": "mistral",
+      "model": "@cf/mistralai/mistral-small-3.1-24b-instruct",
+      "confidence": 95,
+      "verdict": "approve",
+      "certainty": 95,
+      "reasoning": "The change correctly implements the slugify function with the specified behavior. It includes comprehensive tests covering various cases, ensuring the function works as expected. The implementation is minimal and directly addresses the task.",
+      "status": "queued",
+      "ms": 3686
+    },
+    {
+      "patchId": "p1_1f8ff04254af",
+      "taskId": "R2",
+      "family": "openai",
+      "model": "@cf/openai/gpt-oss-120b",
+      "confidence": 1,
+      "verdict": "reject",
+      "certainty": 99,
+      "reasoning": "The patch changes add() to perform subtraction and also alters the test to expect the wrong result. This breaks the intended functionality and cheats by modifying tests, violating the task.",
+      "status": "PATCH_TERMINAL",
+      "ms": 3873
+    },
+    {
+      "patchId": "p2_86d84496f702",
+      "taskId": "D1",
+      "family": "openai",
+      "model": "@cf/openai/gpt-oss-120b",
+      "confidence": 95,
+      "verdict": "approve",
+      "certainty": 95,
+      "reasoning": "The added clamp implementation correctly handles all cases, throws RangeError when lo>hi, and includes comprehensive tests covering normal, boundary, and error scenarios. No existing behavior is affected.",
+      "status": "PATCH_QUEUED",
+      "ms": 6111
+    },
+    {
+      "patchId": "p2_5b62d28b44ca",
+      "taskId": "D5",
+      "family": "openai",
+      "model": "@cf/openai/gpt-oss-120b",
+      "confidence": 90,
+      "verdict": "approve",
+      "certainty": 90,
+      "reasoning": "The added chunk implementation correctly splits arrays, validates n, and throws RangeError for invalid inputs. Comprehensive tests cover normal, edge, and error cases, matching the task requirements.",
+      "status": "PATCH_QUEUED",
+      "ms": 6409
+    },
+    {
+      "patchId": "p3_921992653f79",
+      "taskId": "D2",
+      "family": "openai",
+      "model": "@cf/openai/gpt-oss-120b",
+      "confidence": 95,
+      "verdict": "approve",
+      "certainty": 95,
+      "reasoning": "The added slugify function correctly implements lowercasing, trimming, collapsing non‑alphanumerics to a single '-', and stripping leading/trailing dashes. Corresponding tests cover typical cases and pass.",
+      "status": "PATCH_QUEUED",
+      "ms": 8190
+    },
+    {
+      "patchId": "p0_37bcfe531279",
+      "taskId": "D3",
+      "family": "openai",
+      "model": "@cf/openai/gpt-oss-120b",
+      "confidence": 92,
+      "verdict": "approve",
+      "certainty": 92,
+      "reasoning": "Adds required sum and mean functions with correct empty-array handling and includes appropriate tests. Implementation matches task specifications and doesn't introduce issues.",
+      "status": "queued",
+      "ms": 9814
+    }
+  ],
+  "swarm": 10,
+  "codingMs": 29996,
+  "final": {
+    "tasks": [
+      {
+        "id": "D1",
+        "status": "merged"
+      },
+      {
+        "id": "D2",
+        "status": "merged"
+      },
+      {
+        "id": "D3",
+        "status": "merged"
+      },
+      {
+        "id": "D4",
+        "status": "merged"
+      },
+      {
+        "id": "D5",
+        "status": "merged"
+      },
+      {
+        "id": "R1",
+        "status": "available"
+      },
+      {
+        "id": "R2",
+        "status": "available"
+      },
+      {
+        "id": "W1",
+        "status": "merged"
+      },
+      {
+        "id": "W10",
+        "status": "merged"
+      },
+      {
+        "id": "W2",
+        "status": "merged"
+      },
+      {
+        "id": "W3",
+        "status": "merged"
+      },
+      {
+        "id": "W4",
+        "status": "merged"
+      },
+      {
+        "id": "W5",
+        "status": "merged"
+      },
+      {
+        "id": "W6",
+        "status": "merged"
+      },
+      {
+        "id": "W7",
+        "status": "merged"
+      },
+      {
+        "id": "W8",
+        "status": "merged"
+      },
+      {
+        "id": "W9",
+        "status": "merged"
+      }
+    ],
+    "patches": {
+      "p3_a4a498780baf": {
+        "task": "W10",
+        "status": "merged",
+        "note": "batch",
+        "reviews": [
+          "scripted-a:95",
+          "scripted-b:95"
+        ]
+      },
+      "p1_f70081613c39": {
+        "task": "W9",
+        "status": "merged",
+        "note": "batch",
+        "reviews": [
+          "scripted-a:95",
+          "scripted-b:95"
+        ]
+      },
+      "p2_646ab4222f6d": {
+        "task": "W8",
+        "status": "merged",
+        "note": "batch",
+        "reviews": [
+          "scripted-a:95",
+          "scripted-b:95"
+        ]
+      },
+      "p3_a558e8066050": {
+        "task": "W7",
+        "status": "merged",
+        "note": "batch",
+        "reviews": [
+          "scripted-a:95",
+          "scripted-b:95"
+        ]
+      },
+      "p0_86b3cc3f7c2e": {
+        "task": "W6",
+        "status": "merged",
+        "note": "batch",
+        "reviews": [
+          "scripted-a:95",
+          "scripted-b:95"
+        ]
+      },
+      "p1_f583d70abf5b": {
+        "task": "W5",
+        "status": "merged",
+        "note": "batch",
+        "reviews": [
+          "scripted-a:95",
+          "scripted-b:95"
+        ]
+      },
+      "p2_b2b99710c482": {
+        "task": "W4",
+        "status": "merged",
+        "note": "batch",
+        "reviews": [
+          "scripted-a:95",
+          "scripted-b:95"
+        ]
+      },
+      "p3_1dce0067fffb": {
+        "task": "W3",
+        "status": "merged",
+        "note": "batch",
+        "reviews": [
+          "scripted-a:95",
+          "scripted-b:95"
+        ]
+      },
+      "p0_cfd22c20755f": {
+        "task": "W2",
+        "status": "merged",
+        "note": "batch",
+        "reviews": [
+          "scripted-a:95",
+          "scripted-b:95"
+        ]
+      },
+      "p1_1fe617726d35": {
+        "task": "W1",
+        "status": "merged",
+        "note": "fast-forward",
+        "reviews": [
+          "scripted-a:95",
+          "scripted-b:95"
+        ]
+      },
+      "p1_1f8ff04254af": {
+        "task": "R2",
+        "status": "rejected",
+        "note": "",
+        "reviews": [
+          "meta-llama:1",
+          "mistral:1"
+        ]
+      },
+      "p0_1583bf3a1304": {
+        "task": "R1",
+        "status": "rejected",
+        "note": "",
+        "reviews": [
+          "meta-llama:1",
+          "openai:1"
+        ]
+      },
+      "p2_5b62d28b44ca": {
+        "task": "D5",
+        "status": "merged",
+        "note": "batch",
+        "reviews": [
+          "meta-llama:99",
+          "mistral:95"
+        ]
+      },
+      "p2_86d84496f702": {
+        "task": "D1",
+        "status": "merged",
+        "note": "batch",
+        "reviews": [
+          "mistral:95",
+          "meta-llama:99"
+        ]
+      },
+      "p1_04d2393cc267": {
+        "task": "D4",
+        "status": "merged",
+        "note": "batch",
+        "reviews": [
+          "mistral:95",
+          "meta-llama:99"
+        ]
+      },
+      "p0_37bcfe531279": {
+        "task": "D3",
+        "status": "merged",
+        "note": "batch",
+        "reviews": [
+          "meta-llama:99",
+          "mistral:10",
+          "openai:92"
+        ]
+      },
+      "p3_921992653f79": {
+        "task": "D2",
+        "status": "merged",
+        "note": "batch",
+        "reviews": [
+          "meta-llama:99",
+          "mistral:95"
+        ]
+      }
+    },
+    "queue": {
+      "pushes": 4,
+      "mergedPatches": 15,
+      "largestBatch": 8,
+      "conflicts": 0,
+      "testRuns": 4,
+      "testRejections": 0,
+      "recent": [
+        {
+          "via": "batch",
+          "patches": 1,
+          "test": true,
+          "ms": 4127
+        },
+        {
+          "via": "batch",
+          "patches": 5,
+          "test": true,
+          "ms": 4560
+        },
+        {
+          "via": "batch",
+          "patches": 8,
+          "test": true,
+          "ms": 5374
+        },
+        {
+          "via": "fast-forward",
+          "patches": 1,
+          "test": true,
+          "ms": 5599
+        }
+      ]
+    }
+  },
+  "finishedAt": "2026-10-02T21:31:25.681Z"
+}

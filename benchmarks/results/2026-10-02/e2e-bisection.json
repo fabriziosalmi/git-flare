@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-02",
+  "what": "B3 suspect-set bisection, same scenario as e2e-tests-gate.json (4 approved patches, the 2nd breaks add())",
+  "where": "staging Worker + Cloudflare Artifacts + Cloudflare Containers (warm container)",
+  "before": {
+    "source": "e2e-tests-gate.json (runs.native)",
+    "testRuns": 7,
+    "testMsTotal": 9358,
+    "note": "includes a 7.1 s cold start"
+  },
+  "after": {
+    "repo": "tl-b3-4010",
+    "checks": 28,
+    "passed": 28,
+    "testRunner": "container",
+    "testRuns": 5,
+    "testFailures": 3,
+    "testRejections": 1,
+    "testMsTotal": 2823,
+    "pushes": 2,
+    "rounds": [
+      {
+        "via": "tests-failed",
+        "patches": 4,
+        "testPassed": false,
+        "testMs": 1298,
+        "roundMs": 2291
+      },
+      {
+        "via": "tests-failed",
+        "patches": 2,
+        "testPassed": false,
+        "testMs": 376,
+        "roundMs": 535
+      },
+      {
+        "via": "fast-forward",
+        "patches": 1,
+        "testPassed": true,
+        "testMs": 350,
+        "roundMs": 1289
+      },
+      {
+        "via": "tests-failed",
+        "patches": 1,
+        "testPassed": false,
+        "testMs": 272,
+        "roundMs": 771
+      },
+      {
+        "via": "batch",
+        "patches": 2,
+        "testPassed": true,
+        "testMs": 527,
+        "roundMs": 1502
+      }
+    ],
+    "s3LogTail": "  stack: |-\n    TestContext.<anonymous> (file:///workspace/run/test/math.test.mjs:5:26)\n    Test.runInAsyncScope (node:async_hooks:214:14)\n    Test.run (node:internal/test_runner/test:1047:25)\n    Test.start (node:internal/test_runner/test:944:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)\n  ...\n# Subtest: mul\nok 2 - mul\n  ---\n  duration_ms: 0.249364\n  type: 'test'\n  ...\n# Subtest: shout\nok 3 - shout\n  ---\n  duration_ms: 1.134171\n  type: 'test'\n  ...\n1..3\n# tests 3\n# suites 0\n# pass 2\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 200.393326\n\n[exit 1]\n"
+  }
+}

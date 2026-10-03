@@ -1,0 +1,178 @@
+{
+  "what": "scripts/e2e-deps.mjs on staging, real test container: dependency install, sandbox probe, and the linger probe (DP4 leaves a detached process and files in every directory the test user can write: /tmp, /var/tmp, /dev/shm, /dev/mqueue, its home; DP5, one run later, checks they are gone)",
+  "build": "the build with the pre-publication review fixes (2026-10-03): test-user processes killed and checked gone around every run and command, every directory the test user can write wiped",
+  "fixed": {
+    "date": "2026-10-03T00:52:32.998Z",
+    "base": "https://git-flare-staging.freetekno.workers.dev",
+    "repo": "dl-of61i",
+    "checks": 7,
+    "passed": 7,
+    "outcomes": {
+      "DP1": "merged",
+      "DP2": "rejected",
+      "DP3": "merged",
+      "DP4": "merged",
+      "DP5": "merged"
+    },
+    "testRuns": [
+      {
+        "via": "batch",
+        "patches": 1,
+        "passed": true,
+        "testMs": 1785,
+        "results": [
+          {
+            "command": "npm ci --ignore-scripts --no-audit --no-fund",
+            "exitCode": 0,
+            "ms": 1060,
+            "phase": "install"
+          },
+          {
+            "command": "node --test",
+            "exitCode": 0,
+            "ms": 236
+          }
+        ]
+      },
+      {
+        "via": "tests-failed",
+        "patches": 3,
+        "passed": false,
+        "testMs": 6190,
+        "results": [
+          {
+            "command": "npm ci --ignore-scripts --no-audit --no-fund",
+            "exitCode": 0,
+            "ms": 636,
+            "phase": "install"
+          },
+          {
+            "command": "node --test",
+            "exitCode": 1,
+            "ms": 5496
+          }
+        ]
+      },
+      {
+        "via": "tests-failed",
+        "patches": 2,
+        "passed": false,
+        "testMs": 6232,
+        "results": [
+          {
+            "command": "npm ci --ignore-scripts --no-audit --no-fund",
+            "exitCode": 0,
+            "ms": 609,
+            "phase": "install"
+          },
+          {
+            "command": "node --test",
+            "exitCode": 1,
+            "ms": 5506
+          }
+        ]
+      },
+      {
+        "via": "tests-failed",
+        "patches": 1,
+        "passed": false,
+        "testMs": 2211,
+        "results": [
+          {
+            "command": "npm ci --ignore-scripts --no-audit --no-fund",
+            "exitCode": 0,
+            "ms": 1479,
+            "phase": "install"
+          },
+          {
+            "command": "node --test",
+            "exitCode": 1,
+            "ms": 671
+          }
+        ]
+      },
+      {
+        "via": "batch",
+        "patches": 2,
+        "passed": true,
+        "testMs": 7315,
+        "results": [
+          {
+            "command": "npm ci --ignore-scripts --no-audit --no-fund",
+            "exitCode": 0,
+            "ms": 1302,
+            "phase": "install"
+          },
+          {
+            "command": "node --test",
+            "exitCode": 0,
+            "ms": 5948
+          }
+        ]
+      },
+      {
+        "via": "batch",
+        "patches": 1,
+        "passed": true,
+        "testMs": 8295,
+        "results": [
+          {
+            "command": "npm ci --ignore-scripts --no-audit --no-fund",
+            "exitCode": 0,
+            "ms": 1434,
+            "phase": "install"
+          },
+          {
+            "command": "node --test",
+            "exitCode": 0,
+            "ms": 6796
+          }
+        ]
+      }
+    ],
+    "queue": {
+      "testRuns": 6,
+      "testRejections": 1,
+      "pushes": 3
+    }
+  },
+  "mutant": {
+    "what": "same script against a deliberately broken build, deployed for one run and replaced: killTestUser() returned at once and only /tmp was wiped",
+    "repo": "dl-lhwis",
+    "checks": [
+      {
+        "ok": true,
+        "name": "the first patches pass the static gates"
+      },
+      {
+        "ok": true,
+        "name": "the linger probe merged (its test left a process running when it returned)"
+      },
+      {
+        "ok": true,
+        "name": "the patch using the dependency merged"
+      },
+      {
+        "ok": true,
+        "name": "the breaking patch was rejected by the tests"
+      },
+      {
+        "ok": true,
+        "name": "the sandbox probe passed in the real container (no internet, read-only proxy, deps and npm cache out of reach, not root)"
+      },
+      {
+        "ok": true,
+        "name": "every test run installed the dependency first (npm ci through the registry proxy)"
+      },
+      {
+        "ok": false,
+        "name": "nothing of an earlier run survived into the next (no process, no file in /tmp, /var/tmp, /dev/shm, /home/node)"
+      }
+    ],
+    "dp5": "rejected",
+    "dp5Log": [
+      "not ok 2 - nothing of an earlier run survived",
+      "    a process from an earlier run is still writing"
+    ]
+  }
+}

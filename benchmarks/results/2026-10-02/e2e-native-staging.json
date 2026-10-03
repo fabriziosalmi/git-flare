@@ -1,0 +1,285 @@
+{
+  "mode": "native",
+  "repo": "e2e-942055",
+  "summary": {
+    "checks": 26,
+    "passed": 26,
+    "claimServerProvisioningMs": 73,
+    "submitServerDiffMs": 138,
+    "mergeServerMs": {
+      "total": 483,
+      "uploadPack": 158,
+      "receivePack": 121
+    },
+    "racers": 8
+  },
+  "checks": [
+    {
+      "name": "health",
+      "ok": true
+    },
+    {
+      "name": "init",
+      "ok": true
+    },
+    {
+      "name": "register worker-claude",
+      "ok": true
+    },
+    {
+      "name": "register reviewer-gpt",
+      "ok": true
+    },
+    {
+      "name": "register reviewer-gemini",
+      "ok": true
+    },
+    {
+      "name": "join provisions the agent fork",
+      "ok": true
+    },
+    {
+      "name": "claim",
+      "ok": true
+    },
+    {
+      "name": "status carries no credential",
+      "ok": true
+    },
+    {
+      "name": "fork token cannot push to main",
+      "ok": true
+    },
+    {
+      "name": "submit computes the diff server-side and passes gates",
+      "ok": true
+    },
+    {
+      "name": "reviewer reads the platform-computed diff",
+      "ok": true
+    },
+    {
+      "name": "one approval is not enough",
+      "ok": true
+    },
+    {
+      "name": "second family approval merges (fast-forward)",
+      "ok": true
+    },
+    {
+      "name": "task merged at the submitted commit",
+      "ok": true
+    },
+    {
+      "name": "second claim (for verification token)",
+      "ok": true
+    },
+    {
+      "name": "claim base commit is the merged commit (main advanced on Artifacts)",
+      "ok": true
+    },
+    {
+      "name": "git ls-remote on Artifacts main == merged commit",
+      "ok": true
+    },
+    {
+      "name": "register racer0",
+      "ok": true
+    },
+    {
+      "name": "register racer1",
+      "ok": true
+    },
+    {
+      "name": "register racer2",
+      "ok": true
+    },
+    {
+      "name": "register racer3",
+      "ok": true
+    },
+    {
+      "name": "register racer4",
+      "ok": true
+    },
+    {
+      "name": "register racer5",
+      "ok": true
+    },
+    {
+      "name": "register racer6",
+      "ok": true
+    },
+    {
+      "name": "register racer7",
+      "ok": true
+    },
+    {
+      "name": "8 concurrent claims grant exactly one lease",
+      "ok": true
+    }
+  ],
+  "steps": [
+    {
+      "call": "GET /api/health",
+      "status": 200,
+      "ms": 165
+    },
+    {
+      "call": "POST /api/repos/<repo>/init",
+      "status": 200,
+      "ms": 759
+    },
+    {
+      "call": "POST /api/repos/<repo>/join",
+      "status": 200,
+      "ms": 2955
+    },
+    {
+      "call": "POST /api/repos/<repo>/claim",
+      "status": 200,
+      "ms": 324,
+      "serverMs": {
+        "provisioning": 73
+      }
+    },
+    {
+      "call": "GET /api/repos/<repo>/status",
+      "status": 200,
+      "ms": 30
+    },
+    {
+      "call": "git clone(main, read token) + commit + push(fork, write token)",
+      "ms": 1298
+    },
+    {
+      "call": "POST /api/repos/<repo>/submit",
+      "status": 200,
+      "ms": 378,
+      "serverMs": {
+        "diffAndGates": 138
+      }
+    },
+    {
+      "call": "GET /api/repos/<repo>/patches/p_d75a4fd8f402/diff",
+      "status": 200,
+      "ms": 31
+    },
+    {
+      "call": "POST /api/repos/<repo>/attest",
+      "status": 200,
+      "ms": 54
+    },
+    {
+      "call": "POST /api/repos/<repo>/attest",
+      "status": 200,
+      "ms": 578,
+      "mergeMs": {
+        "total": 483,
+        "uploadPack": 158,
+        "receivePack": 121
+      }
+    },
+    {
+      "call": "GET /api/repos/<repo>/status",
+      "status": 200,
+      "ms": 28
+    },
+    {
+      "call": "POST /api/repos/<repo>/claim",
+      "status": 200,
+      "ms": 180,
+      "serverMs": {
+        "provisioning": 76
+      }
+    },
+    {
+      "call": "POST /api/repos/<repo>/release",
+      "status": 200,
+      "ms": 136
+    },
+    {
+      "call": "POST /api/repos/<repo>/join",
+      "status": 200,
+      "ms": 2901
+    },
+    {
+      "call": "POST /api/repos/<repo>/join",
+      "status": 502,
+      "ms": 3193
+    },
+    {
+      "call": "POST /api/repos/<repo>/join",
+      "status": 502,
+      "ms": 3288
+    },
+    {
+      "call": "POST /api/repos/<repo>/join",
+      "status": 502,
+      "ms": 3404
+    },
+    {
+      "call": "POST /api/repos/<repo>/join",
+      "status": 200,
+      "ms": 3468
+    },
+    {
+      "call": "POST /api/repos/<repo>/join",
+      "status": 200,
+      "ms": 3475
+    },
+    {
+      "call": "POST /api/repos/<repo>/join",
+      "status": 200,
+      "ms": 3958
+    },
+    {
+      "call": "POST /api/repos/<repo>/join",
+      "status": 200,
+      "ms": 3968
+    },
+    {
+      "call": "POST /api/repos/<repo>/claim",
+      "status": 409,
+      "ms": 36
+    },
+    {
+      "call": "POST /api/repos/<repo>/claim",
+      "status": 409,
+      "ms": 37
+    },
+    {
+      "call": "POST /api/repos/<repo>/claim",
+      "status": 409,
+      "ms": 74
+    },
+    {
+      "call": "POST /api/repos/<repo>/claim",
+      "status": 409,
+      "ms": 75
+    },
+    {
+      "call": "POST /api/repos/<repo>/claim",
+      "status": 409,
+      "ms": 76
+    },
+    {
+      "call": "POST /api/repos/<repo>/claim",
+      "status": 409,
+      "ms": 76
+    },
+    {
+      "call": "POST /api/repos/<repo>/claim",
+      "status": 409,
+      "ms": 77
+    },
+    {
+      "call": "POST /api/repos/<repo>/claim",
+      "status": 200,
+      "ms": 188,
+      "serverMs": {
+        "provisioning": 74
+      }
+    }
+  ]
+}

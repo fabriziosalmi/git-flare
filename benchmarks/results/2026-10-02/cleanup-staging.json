@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-02",
+  "what": "deletion of closed patches' task branches from agent forks, and of idle forks; staging + Artifacts",
+  "runs": [
+    { "repo": "gd-4436", "branchesDeleted": 9, "failed": 0, "forksKept": 18, "note": "forks recorded before activity marks existed are stamped on the first sweep and only counted from then" },
+    {
+      "repo": "rp-5435",
+      "scenario": "one more patch merged through gf (task CL1), then POST /api/repos/rp-5435/cleanup",
+      "forkTaskRefsBefore": ["refs/heads/task/CL1/1"],
+      "branchesDeleted": 11,
+      "failed": 0,
+      "forkTaskRefsAfter": [],
+      "verifiedWith": "git ls-remote on the agent's fork with a read token"
+    }
+  ],
+  "idleForks": "covered by tests (lastSeenAt aged in storage): dry run, deletion, fork kept while a queued patch reads from it, shards forget the fork, the agent gets a new fork on its next join; a real idle deletion on staging needs a fork unseen for at least one day"
+}

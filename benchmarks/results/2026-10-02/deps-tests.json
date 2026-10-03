@@ -1,0 +1,114 @@
+{
+  "date": "2026-10-02",
+  "what": "a repository whose tests need an npm dependency (fixtures/dep-lib, dependency ms@2.1.3), on staging (Artifacts + Containers). scripts/e2e-deps.mjs.",
+  "design": [
+    "The test container keeps internet disabled; the only reachable name is registry.npm.internal, routed by Container.interceptOutboundHttp to the RegistryProxy Worker entrypoint, which forwards GET/HEAD to registry.npmjs.org and refuses everything else.",
+    "Install commands come from the protected .gitflare/gates.json and run as root with npm_config_ignore_scripts=true and a root-only, content-addressed npm cache (npm checks it against the lockfile integrity hashes).",
+    "Test commands run as the unprivileged node user (su-exec): node_modules and the npm cache are out of reach, /tmp and the test HOME are wiped before every run."
+  ],
+  "run": {
+    "date": "2026-10-02T19:02:55.068Z",
+    "base": "https://git-flare-staging.freetekno.workers.dev",
+    "repo": "dl-bxoj7",
+    "checks": 5,
+    "passed": 5,
+    "outcomes": {
+      "DP1": "merged",
+      "DP2": "rejected",
+      "DP3": "merged"
+    },
+    "testRuns": [
+      {
+        "via": "fast-forward",
+        "patches": 1,
+        "passed": true,
+        "testMs": 5122,
+        "results": [
+          {
+            "command": "npm ci --ignore-scripts --no-audit --no-fund",
+            "exitCode": 0,
+            "ms": 1905,
+            "phase": "install"
+          },
+          {
+            "command": "node --test",
+            "exitCode": 0,
+            "ms": 342
+          }
+        ]
+      },
+      {
+        "via": "tests-failed",
+        "patches": 2,
+        "passed": false,
+        "testMs": 5960,
+        "results": [
+          {
+            "command": "npm ci --ignore-scripts --no-audit --no-fund",
+            "exitCode": 0,
+            "ms": 562,
+            "phase": "install"
+          },
+          {
+            "command": "node --test",
+            "exitCode": 1,
+            "ms": 5365
+          }
+        ]
+      },
+      {
+        "via": "tests-failed",
+        "patches": 1,
+        "passed": false,
+        "testMs": 2092,
+        "results": [
+          {
+            "command": "npm ci --ignore-scripts --no-audit --no-fund",
+            "exitCode": 0,
+            "ms": 1443,
+            "phase": "install"
+          },
+          {
+            "command": "node --test",
+            "exitCode": 1,
+            "ms": 612
+          }
+        ]
+      },
+      {
+        "via": "batch",
+        "patches": 1,
+        "passed": true,
+        "testMs": 7543,
+        "results": [
+          {
+            "command": "npm ci --ignore-scripts --no-audit --no-fund",
+            "exitCode": 0,
+            "ms": 1667,
+            "phase": "install"
+          },
+          {
+            "command": "node --test",
+            "exitCode": 0,
+            "ms": 5835
+          }
+        ]
+      }
+    ],
+    "queue": {
+      "testRuns": 4,
+      "testRejections": 1,
+      "pushes": 2
+    }
+  },
+  "liveMutation": {
+    "change": "test commands run as root instead of the node user",
+    "outcomes": {
+      "DP1": "merged",
+      "DP2": "rejected",
+      "DP3": "rejected"
+    },
+    "checks": "4/5",
+    "observed": "the sandbox probe wrote node_modules/ms/index.js, its assertion failed, and the tampered dependency also broke test/seconds.test.mjs in the same run (ReferenceError: tampered is not defined); DP3 was rejected. With the fix restored the probe passes."
+  }
+}

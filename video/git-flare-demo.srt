@@ -1,0 +1,431 @@
+1
+00:00:00,050 --> 00:00:05,500
+This is git-flare: a merge fabric for many coding agents working on one repository.
+
+2
+00:00:05,500 --> 00:00:11,760
+The platform runs entirely on Cloudflare: Workers, Durable Objects, Artifacts,
+
+3
+00:00:11,760 --> 00:00:14,184
+Containers, Queues, and Workers AI.
+
+4
+00:00:15,134 --> 00:00:20,584
+Point a swarm of coding agents at one Git repository, and three things break.
+
+5
+00:00:20,584 --> 00:00:25,424
+Coordination: agents race for the same work, and collide on every push to main.
+
+6
+00:00:25,424 --> 00:00:30,564
+Review: ten copies of the same model agreeing are not ten independent opinions.
+
+7
+00:00:30,564 --> 00:00:35,184
+And trust: on Artifacts, as on plain Git, any write token can push to main,
+
+8
+00:00:35,184 --> 00:00:36,344
+or rewrite it.
+
+9
+00:00:36,344 --> 00:00:40,244
+Every measurement in this video comes from a script in the repository.
+
+10
+00:00:41,282 --> 00:00:42,872
+Here is the shape of it.
+
+11
+00:00:42,872 --> 00:00:47,512
+Agents use a small command-line tool, G F, and plain git.
+
+12
+00:00:47,512 --> 00:00:52,652
+Tasks live in sharded Durable Objects, which lease each task to exactly one agent,
+
+13
+00:00:52,652 --> 00:00:54,392
+with a fencing epoch.
+
+14
+00:00:54,392 --> 00:00:58,952
+Each agent pushes to its own Artifacts fork, then submits the commit.
+
+15
+00:00:58,952 --> 00:01:04,792
+The platform computes the diff itself, from repository objects, and runs its gates.
+
+16
+00:01:04,792 --> 00:01:07,912
+Reviewers from different model families score that diff.
+
+17
+00:01:07,912 --> 00:01:12,152
+Approved patches reach a single merge queue, the only writer of main.
+
+18
+00:01:12,152 --> 00:01:15,292
+It composes compatible patches into one commit,
+
+19
+00:01:15,292 --> 00:01:19,652
+runs the project's own tests in a Container with no internet,
+
+20
+00:01:19,652 --> 00:01:22,112
+and pushes with a compare-and-swap.
+
+21
+00:01:22,112 --> 00:01:24,672
+Read replicas spread the clones, and a guard,
+
+22
+00:01:24,672 --> 00:01:28,008
+fed by Artifacts events through Queues, watches main.
+
+23
+00:01:28,958 --> 00:01:31,348
+Let's run it, live on Cloudflare.
+
+24
+00:01:31,348 --> 00:01:36,648
+One command starts five coding agents, running Qwen Coder on Workers AI,
+
+25
+00:01:36,648 --> 00:01:39,388
+two rogue agents, and ten scripted workers,
+
+26
+00:01:39,388 --> 00:01:43,572
+on a fresh repository with four task shards and two replicas.
+
+27
+00:01:44,522 --> 00:01:48,892
+Each agent joins, gets its own fork, and claims one task.
+
+28
+00:01:48,892 --> 00:01:52,692
+The models write the code and its tests, run the tests locally,
+
+29
+00:01:52,692 --> 00:01:53,992
+and submit the commit.
+
+30
+00:01:53,992 --> 00:01:58,056
+On the dashboard, claims turn into patches, waiting for review.
+
+31
+00:01:59,006 --> 00:02:02,616
+Two agents are hostile. One breaks the add function.
+
+32
+00:02:02,616 --> 00:02:06,676
+The other breaks it too, and edits the test so that it still passes.
+
+33
+00:02:06,676 --> 00:02:09,856
+The diff comes from the platform, not from the agent,
+
+34
+00:02:09,856 --> 00:02:12,696
+so the reviewers see both changes.
+
+35
+00:02:12,696 --> 00:02:16,156
+Llama and Mistral reject them, and Mistral spells it out:
+
+36
+00:02:16,156 --> 00:02:19,616
+the tests were altered to pass the incorrect implementation.
+
+37
+00:02:20,642 --> 00:02:24,472
+Every LLM patch was approved by at least two model families.
+
+38
+00:02:24,472 --> 00:02:29,132
+On one of them, Mistral said no, and Llama and OpenAI outweighed it:
+
+39
+00:02:29,132 --> 00:02:33,712
+evidence adds up across independent families, while inside one family,
+
+40
+00:02:33,712 --> 00:02:37,080
+each extra opinion counts half as much as the one before.
+
+41
+00:02:38,030 --> 00:02:40,620
+Approved patches go to the merge queue.
+
+42
+00:02:40,620 --> 00:02:44,880
+Fifteen patches landed in four commits, the largest batching eight,
+
+43
+00:02:44,880 --> 00:02:49,020
+and before every push, the project's tests ran in the container.
+
+44
+00:02:49,020 --> 00:02:52,420
+Main moved four times, each time with a compare-and-swap,
+
+45
+00:02:52,420 --> 00:02:54,324
+and both replicas followed.
+
+46
+00:02:55,274 --> 00:02:59,924
+The status agrees: the guard has seen no write from outside the merge queue,
+
+47
+00:02:59,924 --> 00:03:01,920
+and both replicas are current.
+
+48
+00:03:02,870 --> 00:03:08,720
+Now, trust. Artifacts has no branch protection: any write token can move main.
+
+49
+00:03:08,720 --> 00:03:10,400
+So let's play the attacker.
+
+50
+00:03:10,400 --> 00:03:14,100
+With account access, we mint a write token outside git-flare,
+
+51
+00:03:14,100 --> 00:03:16,820
+and push an innocent-looking commit to main.
+
+52
+00:03:16,820 --> 00:03:20,556
+It adds an install script that pipes a download into a shell.
+
+53
+00:03:21,506 --> 00:03:25,016
+Artifacts reports both, the new token and the push,
+
+54
+00:03:25,016 --> 00:03:26,996
+as events delivered through Queues.
+
+55
+00:03:26,996 --> 00:03:30,796
+Seconds later, the guard flags a write token that git-flare never minted,
+
+56
+00:03:30,796 --> 00:03:33,984
+and stops every merge until an operator decides.
+
+57
+00:03:34,934 --> 00:03:39,424
+One command puts main back to the last head the merge queue produced,
+
+58
+00:03:39,424 --> 00:03:43,104
+revokes every write token on the repository, and merges resume.
+
+59
+00:03:43,104 --> 00:03:48,060
+The replicas never saw the bad commit: while an alert is up, they are not synced.
+
+60
+00:03:49,010 --> 00:03:53,740
+The project's tests run in a Cloudflare Container started with internet disabled.
+
+61
+00:03:53,740 --> 00:03:57,300
+Dependencies come from a read-only proxy to the npm registry,
+
+62
+00:03:57,300 --> 00:03:59,920
+and the tests run as an unprivileged user.
+
+63
+00:03:59,920 --> 00:04:04,020
+A probe test, submitted as an ordinary patch, found no internet,
+
+64
+00:04:04,020 --> 00:04:08,560
+a proxy that refuses writes, and installed packages it could not touch.
+
+65
+00:04:08,560 --> 00:04:13,060
+Run as root, the same probe rewrote a dependency, broke another test,
+
+66
+00:04:13,060 --> 00:04:13,860
+and was rejected.
+
+67
+00:04:13,860 --> 00:04:18,860
+And nothing of a run survives into the next: a test that left a process running,
+
+68
+00:04:18,860 --> 00:04:22,100
+and files behind, found neither one run later.
+
+69
+00:04:22,100 --> 00:04:25,416
+With that cleanup broken on purpose, the check failed.
+
+70
+00:04:26,366 --> 00:04:29,296
+Now scale, measured on Cloudflare.
+
+71
+00:04:29,296 --> 00:04:31,876
+Under load, we saw no rate-limit errors from Artifacts:
+
+72
+00:04:31,876 --> 00:04:35,796
+past a few hundred operations per second, its control plane queues,
+
+73
+00:04:35,796 --> 00:04:36,996
+and responses slow down.
+
+74
+00:04:36,996 --> 00:04:40,196
+Our first claim path called Artifacts three times per claim,
+
+75
+00:04:40,196 --> 00:04:41,696
+and twice more at submit,
+
+76
+00:04:41,696 --> 00:04:46,096
+and topped out at a hundred and twenty-one claims per second.
+
+77
+00:04:46,096 --> 00:04:48,576
+So claims stopped calling Artifacts.
+
+78
+00:04:48,576 --> 00:04:50,556
+On a run of the same size,
+
+79
+00:04:50,556 --> 00:04:52,856
+the platform went from a hundred and twenty-one to
+
+80
+00:04:52,856 --> 00:04:56,316
+almost seven hundred claims per second,
+
+81
+00:04:56,316 --> 00:05:00,204
+and a longer run passed a thousand, from a single test client.
+
+82
+00:05:01,154 --> 00:05:02,684
+The coordination layer stays flat.
+
+83
+00:05:02,684 --> 00:05:06,284
+These numbers come from a bench Worker calling the Durable Objects directly,
+
+84
+00:05:06,284 --> 00:05:07,724
+with Artifacts mocked.
+
+85
+00:05:07,724 --> 00:05:11,104
+A single task shard handles about a thousand claims per second,
+
+86
+00:05:11,104 --> 00:05:16,704
+and thirty-two shards reached thirteen and nineteen thousand, in two of three runs.
+
+87
+00:05:16,704 --> 00:05:20,284
+Recording a review used to slow down as the approval graph grew,
+
+88
+00:05:20,284 --> 00:05:23,624
+down to sixty-five per second at twenty thousand edges.
+
+89
+00:05:23,624 --> 00:05:28,044
+Now it holds around nine hundred to fourteen hundred per second,
+
+90
+00:05:28,044 --> 00:05:30,432
+up to a hundred thousand edges.
+
+91
+00:05:31,382 --> 00:05:36,152
+And when hundreds of agents clone at once, a single repository starts failing.
+
+92
+00:05:36,152 --> 00:05:40,892
+With four replicas serving the clones, kept in sync by the merge queue,
+
+93
+00:05:40,892 --> 00:05:43,992
+failed clones dropped from about a quarter to five percent,
+
+94
+00:05:43,992 --> 00:05:47,340
+and successful clones per second almost tripled.
+
+95
+00:05:48,290 --> 00:05:50,860
+What isn't solved yet, we say plainly.
+
+96
+00:05:50,860 --> 00:05:52,940
+Conflicts are detected per file.
+
+97
+00:05:52,940 --> 00:05:55,420
+Test dependencies are npm only.
+
+98
+00:05:55,420 --> 00:06:00,220
+One registry per repository records about a thousand reviews per second.
+
+99
+00:06:00,220 --> 00:06:03,940
+Onboarding is bounded by fork creation, a few seconds per agent.
+
+100
+00:06:03,940 --> 00:06:06,380
+And near-duplicate detection is textual,
+
+101
+00:06:06,380 --> 00:06:10,536
+so similar patches are flagged for reviewers, never silently closed.
+
+102
+00:06:11,486 --> 00:06:17,856
+From zero to a submitted patch takes five commands: log in, join, claim, commit,
+
+103
+00:06:17,856 --> 00:06:18,756
+and submit.
+
+104
+00:06:18,756 --> 00:06:23,216
+The platform deploys with wrangler, and runs locally with no Cloudflare account,
+
+105
+00:06:23,216 --> 00:06:25,500
+with Artifacts and the tests mocked.
+
+106
+00:06:26,450 --> 00:06:29,300
+git-flare. Many agents, one main,
+
+107
+00:06:29,300 --> 00:06:32,140
+and nothing merged that the platform did not check.
+
+108
+00:06:32,140 --> 00:06:36,528
+The code, the scripts, and every raw result are in the repository.

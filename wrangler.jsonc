@@ -1,0 +1,41 @@
+// Top level = production. `wrangler dev` / `wrangler deploy` without --env therefore target real
+// Artifacts; local development uses `--env dev` (mock, no Cloudflare resources touched).
+// durable_objects, vars and artifacts are NOT inherited by environments: each env declares them.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "git-flare",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-22",
+  "compatibility_flags": ["nodejs_compat"],
+  "rules": [{ "type": "CompiledWasm", "globs": ["**/*.wasm"], "fallthrough": false }, { "type": "Data", "globs": ["**/*.woff2"], "fallthrough": false }],
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["RepoCoordinator"] },
+    { "tag": "v2", "new_sqlite_classes": ["RepoRegistry"] },
+    { "tag": "v3", "new_sqlite_classes": ["TestRunner"] },
+    { "tag": "v4", "new_sqlite_classes": ["Revocations"] }
+  ],
+  "observability": { "enabled": true },
+  "durable_objects": { "bindings": [{ "name": "REPO_COORDINATOR", "class_name": "RepoCoordinator" }, { "name": "REPO_REGISTRY", "class_name": "RepoRegistry" }, { "name": "REVOCATIONS", "class_name": "Revocations" }, { "name": "TEST_RUNNER", "class_name": "TestRunner" }] },
+  "containers": [{ "class_name": "TestRunner", "scheduling_policy": "durable_object", "images": { "runner": { "dockerfile": "./containers/test-runner/Dockerfile" } } }],
+  "artifacts": [{ "binding": "ARTIFACTS", "namespace": "gf-prod", "remote": true }],
+  "ratelimits": [{ "name": "AGENT_LIMITER", "namespace_id": "4101", "simple": { "limit": 600, "period": 60 } }],
+  "queues": { "consumers": [{ "queue": "gf-events", "max_batch_size": 50, "max_batch_timeout": 2 }] },
+  "vars": { "ARTIFACTS_MODE": "native", "TEST_RUNNER_MODE": "container" },
+  "env": {
+    "dev": {
+      "name": "git-flare-dev",
+      "durable_objects": { "bindings": [{ "name": "REPO_COORDINATOR", "class_name": "RepoCoordinator" }, { "name": "REPO_REGISTRY", "class_name": "RepoRegistry" }, { "name": "REVOCATIONS", "class_name": "Revocations" }] },
+      "artifacts": [],
+      "vars": { "ARTIFACTS_MODE": "mock", "TEST_RUNNER_MODE": "mock" }
+    },
+    "staging": {
+      "name": "git-flare-staging",
+      "durable_objects": { "bindings": [{ "name": "REPO_COORDINATOR", "class_name": "RepoCoordinator" }, { "name": "REPO_REGISTRY", "class_name": "RepoRegistry" }, { "name": "REVOCATIONS", "class_name": "Revocations" }, { "name": "TEST_RUNNER", "class_name": "TestRunner" }] },
+      "containers": [{ "class_name": "TestRunner", "scheduling_policy": "durable_object", "images": { "runner": { "dockerfile": "./containers/test-runner/Dockerfile" } } }],
+      "artifacts": [{ "binding": "ARTIFACTS", "namespace": "gf-staging", "remote": true }],
+      "ratelimits": [{ "name": "AGENT_LIMITER", "namespace_id": "4102", "simple": { "limit": 600, "period": 60 } }],
+      "queues": { "consumers": [{ "queue": "gf-events-staging", "max_batch_size": 50, "max_batch_timeout": 2 }] },
+      "vars": { "ARTIFACTS_MODE": "native", "TEST_RUNNER_MODE": "container", "BENCH": "1" }
+    }
+  }
+}

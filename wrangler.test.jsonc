@@ -1,0 +1,18 @@
+// Configuration used only by the test suite (vitest-pool-workers bundles an older wrangler that does not
+// know Durable Object-managed containers). Mirrors `env.dev` in wrangler.jsonc: Artifacts and the test
+// runner are mocked; nothing here is ever deployed.
+{
+  "name": "git-flare-test",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-22",
+  "compatibility_flags": ["nodejs_compat"],
+  "rules": [{ "type": "CompiledWasm", "globs": ["**/*.wasm"], "fallthrough": false }, { "type": "Data", "globs": ["**/*.woff2"], "fallthrough": false }],
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["RepoCoordinator"] },
+    { "tag": "v2", "new_sqlite_classes": ["RepoRegistry"] },
+    { "tag": "v3", "new_sqlite_classes": ["TestRunner"] },
+    { "tag": "v4", "new_sqlite_classes": ["Revocations"] }
+  ],
+  "durable_objects": { "bindings": [{ "name": "REPO_COORDINATOR", "class_name": "RepoCoordinator" }, { "name": "REPO_REGISTRY", "class_name": "RepoRegistry" }, { "name": "REVOCATIONS", "class_name": "Revocations" }] },
+  "vars": { "ARTIFACTS_MODE": "mock", "TEST_RUNNER_MODE": "mock" }
+}

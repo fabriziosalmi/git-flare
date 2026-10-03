@@ -1,0 +1,573 @@
+{
+  "date": "2026-10-02",
+  "what": "throughput of Cloudflare Artifacts operations under load, measured from inside the staging Worker (POST /api/bench/artifacts, src/bench.ts) driven by scripts/bench-artifacts.mjs",
+  "where": "git-flare-staging Worker, namespace gf-staging, one deployment, one client location",
+  "documentedLimits": {
+    "source": "https://developers.cloudflare.com/artifacts/platform/limits/ (read 2026-10-02)",
+    "controlPlane": "2,000 requests per 10 seconds per namespace",
+    "git": "2,000 requests per 10 seconds per artifact",
+    "repositories": "unlimited",
+    "namespaces": "unlimited"
+  },
+  "notes": [
+    "Every operation except refs also calls ns.get(repo) first (binding handle).",
+    "Rates are operations divided by the operation window measured inside the Worker (setup and token clean-up excluded).",
+    "The first step of the token run is omitted: it hit an isolate still running the previous build (no operation window)."
+  ],
+  "runs": [
+    {
+      "label": "info(): one repo",
+      "repo": "bench-b1",
+      "op": "info",
+      "concurrencyPerInvocation": 6,
+      "steps": [
+        {
+          "invocations": 1,
+          "perInvocation": 50,
+          "attempted": 50,
+          "succeeded": 50,
+          "failed": 0,
+          "serverWindowMs": 518,
+          "clientWallMs": 1392,
+          "attemptedPerSec": 97,
+          "succeededPerSec": 97,
+          "latencyMs": {
+            "p50": 44,
+            "p95": 224,
+            "p99": 224,
+            "max": 224
+          },
+          "revoked": 0,
+          "errors": {},
+          "created": 0
+        },
+        {
+          "invocations": 10,
+          "perInvocation": 50,
+          "attempted": 500,
+          "succeeded": 500,
+          "failed": 0,
+          "serverWindowMs": 1584,
+          "clientWallMs": 2392,
+          "attemptedPerSec": 316,
+          "succeededPerSec": 316,
+          "latencyMs": {
+            "p50": 148,
+            "p95": 392,
+            "p99": 485,
+            "max": 506
+          },
+          "revoked": 0,
+          "errors": {},
+          "created": 0
+        },
+        {
+          "invocations": 40,
+          "perInvocation": 50,
+          "attempted": 2000,
+          "succeeded": 2000,
+          "failed": 0,
+          "serverWindowMs": 6278,
+          "clientWallMs": 6909,
+          "attemptedPerSec": 319,
+          "succeededPerSec": 319,
+          "latencyMs": {
+            "p50": 702,
+            "p95": 926,
+            "p99": 940,
+            "max": 954
+          },
+          "revoked": 0,
+          "errors": {},
+          "created": 0
+        },
+        {
+          "invocations": 80,
+          "perInvocation": 50,
+          "attempted": 4000,
+          "succeeded": 4000,
+          "failed": 0,
+          "serverWindowMs": 11488,
+          "clientWallMs": 11787,
+          "attemptedPerSec": 348,
+          "succeededPerSec": 348,
+          "latencyMs": {
+            "p50": 1336,
+            "p95": 1530,
+            "p99": 1568,
+            "max": 1654
+          },
+          "revoked": 0,
+          "errors": {},
+          "created": 0
+        }
+      ]
+    },
+    {
+      "label": "info(): one invocation, 50 in flight",
+      "repo": "bench-b1",
+      "op": "info",
+      "concurrencyPerInvocation": 50,
+      "steps": [
+        {
+          "invocations": 1,
+          "perInvocation": 200,
+          "attempted": 200,
+          "succeeded": 200,
+          "failed": 0,
+          "opWindowMs": 1129,
+          "clientWallMs": 2556,
+          "attemptedPerSec": 177,
+          "succeededPerSec": 177,
+          "latencyMs": {
+            "p50": 266,
+            "p95": 367,
+            "p99": 415,
+            "max": 415
+          },
+          "revoked": 0,
+          "revokeWindowMs": 0,
+          "revokedPerSec": null,
+          "errors": {},
+          "created": 0
+        }
+      ]
+    },
+    {
+      "label": "createToken(read): one repo",
+      "repo": "bench-b1",
+      "op": "token",
+      "concurrencyPerInvocation": 6,
+      "steps": [
+        {
+          "invocations": 40,
+          "perInvocation": 50,
+          "attempted": 2000,
+          "succeeded": 2000,
+          "failed": 0,
+          "opWindowMs": 8574,
+          "clientWallMs": 14344,
+          "attemptedPerSec": 233,
+          "succeededPerSec": 233,
+          "latencyMs": {
+            "p50": 942,
+            "p95": 1326,
+            "p99": 1530,
+            "max": 1643
+          },
+          "revoked": 2000,
+          "revokeWindowMs": 5835,
+          "revokedPerSec": 343,
+          "errors": {},
+          "created": 0
+        },
+        {
+          "invocations": 80,
+          "perInvocation": 50,
+          "attempted": 4000,
+          "succeeded": 4000,
+          "failed": 0,
+          "opWindowMs": 17400,
+          "clientWallMs": 44866,
+          "attemptedPerSec": 230,
+          "succeededPerSec": 230,
+          "latencyMs": {
+            "p50": 1825,
+            "p95": 2437,
+            "p99": 2566,
+            "max": 3913
+          },
+          "revoked": 4000,
+          "revokeWindowMs": 31980,
+          "revokedPerSec": 125,
+          "errors": {},
+          "created": 0
+        }
+      ]
+    },
+    {
+      "label": "createToken(read): four repos at the same time",
+      "repo": "bench-b1",
+      "op": "token",
+      "concurrencyPerInvocation": 6,
+      "steps": [
+        {
+          "invocations": 40,
+          "perInvocation": 50,
+          "attempted": 2000,
+          "succeeded": 2000,
+          "failed": 0,
+          "opWindowMs": 19289,
+          "clientWallMs": 34437,
+          "attemptedPerSec": 104,
+          "succeededPerSec": 104,
+          "latencyMs": {
+            "p50": 1395,
+            "p95": 2337,
+            "p99": 2743,
+            "max": 5986
+          },
+          "revoked": 2000,
+          "revokeWindowMs": 15074,
+          "revokedPerSec": 133,
+          "errors": {},
+          "created": 0
+        }
+      ]
+    },
+    {
+      "label": "createToken(read): four repos at the same time",
+      "repo": "tl-b3-4010",
+      "op": "token",
+      "concurrencyPerInvocation": 6,
+      "steps": [
+        {
+          "invocations": 40,
+          "perInvocation": 50,
+          "attempted": 2000,
+          "succeeded": 2000,
+          "failed": 0,
+          "opWindowMs": 17518,
+          "clientWallMs": 33202,
+          "attemptedPerSec": 114,
+          "succeededPerSec": 114,
+          "latencyMs": {
+            "p50": 1131,
+            "p95": 2164,
+            "p99": 2450,
+            "max": 8347
+          },
+          "revoked": 2000,
+          "revokeWindowMs": 14876,
+          "revokedPerSec": 134,
+          "errors": {},
+          "created": 0
+        }
+      ]
+    },
+    {
+      "label": "createToken(read): four repos at the same time",
+      "repo": "demo-952872",
+      "op": "token",
+      "concurrencyPerInvocation": 6,
+      "steps": [
+        {
+          "invocations": 40,
+          "perInvocation": 50,
+          "attempted": 2000,
+          "succeeded": 2000,
+          "failed": 0,
+          "opWindowMs": 19476,
+          "clientWallMs": 34451,
+          "attemptedPerSec": 103,
+          "succeededPerSec": 103,
+          "latencyMs": {
+            "p50": 1393,
+            "p95": 2332,
+            "p99": 2633,
+            "max": 2831
+          },
+          "revoked": 2000,
+          "revokeWindowMs": 15313,
+          "revokedPerSec": 131,
+          "errors": {},
+          "created": 0
+        }
+      ]
+    },
+    {
+      "label": "createToken(read): four repos at the same time",
+      "repo": "demo-952872--a1a9fc95ed502",
+      "op": "token",
+      "concurrencyPerInvocation": 6,
+      "steps": [
+        {
+          "invocations": 40,
+          "perInvocation": 50,
+          "attempted": 2000,
+          "succeeded": 2000,
+          "failed": 0,
+          "opWindowMs": 19174,
+          "clientWallMs": 34262,
+          "attemptedPerSec": 104,
+          "succeededPerSec": 104,
+          "latencyMs": {
+            "p50": 1245,
+            "p95": 2136,
+            "p99": 4545,
+            "max": 8411
+          },
+          "revoked": 2000,
+          "revokeWindowMs": 15729,
+          "revokedPerSec": 127,
+          "errors": {},
+          "created": 0
+        }
+      ]
+    },
+    {
+      "label": "readTree(): one repo",
+      "repo": "bench-b1",
+      "op": "readTree",
+      "concurrencyPerInvocation": 6,
+      "steps": [
+        {
+          "invocations": 1,
+          "perInvocation": 50,
+          "attempted": 50,
+          "succeeded": 50,
+          "failed": 0,
+          "opWindowMs": 399,
+          "clientWallMs": 935,
+          "attemptedPerSec": 125,
+          "succeededPerSec": 125,
+          "latencyMs": {
+            "p50": 38,
+            "p95": 126,
+            "p99": 126,
+            "max": 126
+          },
+          "revoked": 0,
+          "revokeWindowMs": 0,
+          "revokedPerSec": null,
+          "errors": {},
+          "created": 0
+        },
+        {
+          "invocations": 40,
+          "perInvocation": 50,
+          "attempted": 2000,
+          "succeeded": 2000,
+          "failed": 0,
+          "opWindowMs": 7143,
+          "clientWallMs": 7332,
+          "attemptedPerSec": 280,
+          "succeededPerSec": 280,
+          "latencyMs": {
+            "p50": 895,
+            "p95": 1031,
+            "p99": 1055,
+            "max": 1076
+          },
+          "revoked": 0,
+          "revokeWindowMs": 0,
+          "revokedPerSec": null,
+          "errors": {},
+          "created": 0
+        },
+        {
+          "invocations": 80,
+          "perInvocation": 50,
+          "attempted": 4000,
+          "succeeded": 4000,
+          "failed": 0,
+          "opWindowMs": 12441,
+          "clientWallMs": 12596,
+          "attemptedPerSec": 322,
+          "succeededPerSec": 322,
+          "latencyMs": {
+            "p50": 1500,
+            "p95": 1793,
+            "p99": 1832,
+            "max": 1889
+          },
+          "revoked": 0,
+          "revokeWindowMs": 0,
+          "revokedPerSec": null,
+          "errors": {},
+          "created": 0
+        }
+      ]
+    },
+    {
+      "label": "git GET info/refs: one repo",
+      "repo": "bench-b1",
+      "op": "refs",
+      "concurrencyPerInvocation": 6,
+      "steps": [
+        {
+          "invocations": 1,
+          "perInvocation": 50,
+          "attempted": 50,
+          "succeeded": 50,
+          "failed": 0,
+          "opWindowMs": 644,
+          "clientWallMs": 1039,
+          "attemptedPerSec": 78,
+          "succeededPerSec": 78,
+          "latencyMs": {
+            "p50": 71,
+            "p95": 102,
+            "p99": 111,
+            "max": 111
+          },
+          "revoked": 1,
+          "revokeWindowMs": 39,
+          "revokedPerSec": 26,
+          "errors": {},
+          "created": 0
+        },
+        {
+          "invocations": 40,
+          "perInvocation": 50,
+          "attempted": 2000,
+          "succeeded": 2000,
+          "failed": 0,
+          "opWindowMs": 6839,
+          "clientWallMs": 7618,
+          "attemptedPerSec": 292,
+          "succeededPerSec": 292,
+          "latencyMs": {
+            "p50": 798,
+            "p95": 1052,
+            "p99": 1069,
+            "max": 1127
+          },
+          "revoked": 40,
+          "revokeWindowMs": 252,
+          "revokedPerSec": 159,
+          "errors": {},
+          "created": 0
+        },
+        {
+          "invocations": 80,
+          "perInvocation": 50,
+          "attempted": 4000,
+          "succeeded": 4000,
+          "failed": 0,
+          "opWindowMs": 10885,
+          "clientWallMs": 11762,
+          "attemptedPerSec": 367,
+          "succeededPerSec": 367,
+          "latencyMs": {
+            "p50": 1331,
+            "p95": 1550,
+            "p99": 1581,
+            "max": 1636
+          },
+          "revoked": 80,
+          "revokeWindowMs": 476,
+          "revokedPerSec": 168,
+          "errors": {},
+          "created": 0
+        }
+      ]
+    },
+    {
+      "label": "git GET info/refs: two repos at the same time",
+      "repo": "bench-b1",
+      "op": "refs",
+      "concurrencyPerInvocation": 6,
+      "steps": [
+        {
+          "invocations": 80,
+          "perInvocation": 50,
+          "attempted": 4000,
+          "succeeded": 3995,
+          "failed": 5,
+          "opWindowMs": 15558,
+          "clientWallMs": 17691,
+          "attemptedPerSec": 257,
+          "succeededPerSec": 257,
+          "latencyMs": {
+            "p50": 865,
+            "p95": 1779,
+            "p99": 2708,
+            "max": 4045
+          },
+          "revoked": 80,
+          "revokeWindowMs": 251,
+          "revokedPerSec": 319,
+          "errors": {
+            "HTTP N": 5
+          },
+          "created": 0
+        }
+      ]
+    },
+    {
+      "label": "git GET info/refs: two repos at the same time",
+      "repo": "tl-b3-4010",
+      "op": "refs",
+      "concurrencyPerInvocation": 6,
+      "steps": [
+        {
+          "invocations": 80,
+          "perInvocation": 50,
+          "attempted": 4000,
+          "succeeded": 4000,
+          "failed": 0,
+          "opWindowMs": 11774,
+          "clientWallMs": 13872,
+          "attemptedPerSec": 340,
+          "succeededPerSec": 340,
+          "latencyMs": {
+            "p50": 1022,
+            "p95": 1783,
+            "p99": 3854,
+            "max": 4157
+          },
+          "revoked": 80,
+          "revokeWindowMs": 209,
+          "revokedPerSec": 383,
+          "errors": {},
+          "created": 0
+        }
+      ]
+    },
+    {
+      "label": "fork(): concurrent forks of a minutes-old repo",
+      "repo": "bench-b1",
+      "op": "fork",
+      "concurrencyPerInvocation": 20,
+      "steps": [
+        {
+          "invocations": 1,
+          "perInvocation": 20,
+          "attempted": 20,
+          "succeeded": 17,
+          "failed": 3,
+          "opWindowMs": 4796,
+          "clientWallMs": 5389,
+          "attemptedPerSec": 4,
+          "succeededPerSec": 4,
+          "latencyMs": {
+            "p50": 3163,
+            "p95": 4796,
+            "p99": 4796,
+            "max": 4796
+          },
+          "revoked": 0,
+          "revokeWindowMs": 0,
+          "revokedPerSec": null,
+          "errors": {
+            "An internal error occurred.": 3
+          },
+          "created": 17
+        },
+        {
+          "invocations": 4,
+          "perInvocation": 20,
+          "attempted": 80,
+          "succeeded": 80,
+          "failed": 0,
+          "opWindowMs": 4973,
+          "clientWallMs": 6057,
+          "attemptedPerSec": 16,
+          "succeededPerSec": 16,
+          "latencyMs": {
+            "p50": 2751,
+            "p95": 3755,
+            "p99": 4973,
+            "max": 4973
+          },
+          "revoked": 0,
+          "revokeWindowMs": 0,
+          "revokedPerSec": null,
+          "errors": {},
+          "created": 80
+        }
+      ]
+    }
+  ]
+}

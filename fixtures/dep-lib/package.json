@@ -1,0 +1,13 @@
+{
+  "name": "dep-lib",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "git-flare fixture whose tests need an installed dependency",
+  "dependencies": {
+    "ms": "2.1.3"
+  },
+  "scripts": {
+    "test": "node --test"
+  }
+}

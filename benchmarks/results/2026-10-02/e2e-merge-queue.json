@@ -1,0 +1,3695 @@
+{
+  "date": "2026-10-02",
+  "where": "staging Worker on workers.dev + Cloudflare Artifacts (gf-staging); local run: wrangler dev --env dev (mock)",
+  "runs": {
+    "local_mock_queue8": {
+      "mode": "mock",
+      "repo": "e2e-mur0htc9",
+      "shards": 4,
+      "summary": {
+        "checks": 104,
+        "passed": 104,
+        "shards": 4,
+        "racers": 30,
+        "queue": {
+          "patches": 10,
+          "merged": 9,
+          "conflicts": 1,
+          "pushes": 2,
+          "batchCommits": 1,
+          "fastForwards": 1,
+          "largestBatch": 9,
+          "rounds": 2,
+          "recent": [
+            {
+              "via": "batch",
+              "patches": 9,
+              "conflicts": 1,
+              "ms": 1
+            },
+            {
+              "via": "fast-forward",
+              "patches": 1,
+              "conflicts": 0,
+              "ms": 1
+            }
+          ]
+        },
+        "claimServerProvisioningMs": 44,
+        "submitServerDiffMs": 145
+      },
+      "checks": [
+        {
+          "name": "health",
+          "ok": true
+        },
+        {
+          "name": "init (sharded)",
+          "ok": true
+        },
+        {
+          "name": "register reviewer-gpt",
+          "ok": true
+        },
+        {
+          "name": "register reviewer-gemini",
+          "ok": true
+        },
+        {
+          "name": "register verifier",
+          "ok": true
+        },
+        {
+          "name": "join verifier",
+          "ok": true
+        },
+        {
+          "name": "register worker-claude",
+          "ok": true
+        },
+        {
+          "name": "join worker-claude",
+          "ok": true
+        },
+        {
+          "name": "claim T1",
+          "ok": true
+        },
+        {
+          "name": "dev-commit T1",
+          "ok": true
+        },
+        {
+          "name": "submit T1 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "status carries no credential",
+          "ok": true
+        },
+        {
+          "name": "reviewer reads the platform-computed diff",
+          "ok": true
+        },
+        {
+          "name": "one approval is not enough",
+          "ok": true
+        },
+        {
+          "name": "second family approval queues the patch",
+          "ok": true
+        },
+        {
+          "name": "fast-forward: main is exactly the submitted commit",
+          "ok": true
+        },
+        {
+          "name": "register racer0",
+          "ok": true
+        },
+        {
+          "name": "register racer1",
+          "ok": true
+        },
+        {
+          "name": "register racer2",
+          "ok": true
+        },
+        {
+          "name": "register racer3",
+          "ok": true
+        },
+        {
+          "name": "register racer4",
+          "ok": true
+        },
+        {
+          "name": "register racer5",
+          "ok": true
+        },
+        {
+          "name": "register racer6",
+          "ok": true
+        },
+        {
+          "name": "register racer7",
+          "ok": true
+        },
+        {
+          "name": "register racer8",
+          "ok": true
+        },
+        {
+          "name": "register racer9",
+          "ok": true
+        },
+        {
+          "name": "register racer10",
+          "ok": true
+        },
+        {
+          "name": "register racer11",
+          "ok": true
+        },
+        {
+          "name": "register racer12",
+          "ok": true
+        },
+        {
+          "name": "register racer13",
+          "ok": true
+        },
+        {
+          "name": "register racer14",
+          "ok": true
+        },
+        {
+          "name": "register racer15",
+          "ok": true
+        },
+        {
+          "name": "register racer16",
+          "ok": true
+        },
+        {
+          "name": "register racer17",
+          "ok": true
+        },
+        {
+          "name": "register racer18",
+          "ok": true
+        },
+        {
+          "name": "register racer19",
+          "ok": true
+        },
+        {
+          "name": "register racer20",
+          "ok": true
+        },
+        {
+          "name": "register racer21",
+          "ok": true
+        },
+        {
+          "name": "register racer22",
+          "ok": true
+        },
+        {
+          "name": "register racer23",
+          "ok": true
+        },
+        {
+          "name": "register racer24",
+          "ok": true
+        },
+        {
+          "name": "register racer25",
+          "ok": true
+        },
+        {
+          "name": "register racer26",
+          "ok": true
+        },
+        {
+          "name": "register racer27",
+          "ok": true
+        },
+        {
+          "name": "register racer28",
+          "ok": true
+        },
+        {
+          "name": "register racer29",
+          "ok": true
+        },
+        {
+          "name": "30 concurrent claims grant exactly one lease",
+          "ok": true
+        },
+        {
+          "name": "register qworker0",
+          "ok": true
+        },
+        {
+          "name": "register qworker1",
+          "ok": true
+        },
+        {
+          "name": "register qworker2",
+          "ok": true
+        },
+        {
+          "name": "register qworker3",
+          "ok": true
+        },
+        {
+          "name": "register qworker4",
+          "ok": true
+        },
+        {
+          "name": "register qworker5",
+          "ok": true
+        },
+        {
+          "name": "register qworker6",
+          "ok": true
+        },
+        {
+          "name": "register qworker7",
+          "ok": true
+        },
+        {
+          "name": "join qworker1",
+          "ok": true
+        },
+        {
+          "name": "join qworker0",
+          "ok": true
+        },
+        {
+          "name": "join qworker2",
+          "ok": true
+        },
+        {
+          "name": "join qworker3",
+          "ok": true
+        },
+        {
+          "name": "join qworker4",
+          "ok": true
+        },
+        {
+          "name": "join qworker5",
+          "ok": true
+        },
+        {
+          "name": "join qworker6",
+          "ok": true
+        },
+        {
+          "name": "join qworker7",
+          "ok": true
+        },
+        {
+          "name": "register xworker-X1",
+          "ok": true
+        },
+        {
+          "name": "register xworker-X2",
+          "ok": true
+        },
+        {
+          "name": "join xworker-X1",
+          "ok": true
+        },
+        {
+          "name": "join xworker-X2",
+          "ok": true
+        },
+        {
+          "name": "claim Q1",
+          "ok": true
+        },
+        {
+          "name": "claim Q2",
+          "ok": true
+        },
+        {
+          "name": "claim Q4",
+          "ok": true
+        },
+        {
+          "name": "claim Q5",
+          "ok": true
+        },
+        {
+          "name": "claim Q7",
+          "ok": true
+        },
+        {
+          "name": "claim Q8",
+          "ok": true
+        },
+        {
+          "name": "claim Q6",
+          "ok": true
+        },
+        {
+          "name": "claim X2",
+          "ok": true
+        },
+        {
+          "name": "claim Q3",
+          "ok": true
+        },
+        {
+          "name": "claim X1",
+          "ok": true
+        },
+        {
+          "name": "dev-commit Q1",
+          "ok": true
+        },
+        {
+          "name": "dev-commit Q2",
+          "ok": true
+        },
+        {
+          "name": "dev-commit Q5",
+          "ok": true
+        },
+        {
+          "name": "dev-commit Q7",
+          "ok": true
+        },
+        {
+          "name": "dev-commit Q4",
+          "ok": true
+        },
+        {
+          "name": "dev-commit Q6",
+          "ok": true
+        },
+        {
+          "name": "dev-commit Q8",
+          "ok": true
+        },
+        {
+          "name": "dev-commit X2",
+          "ok": true
+        },
+        {
+          "name": "dev-commit Q3",
+          "ok": true
+        },
+        {
+          "name": "dev-commit X1",
+          "ok": true
+        },
+        {
+          "name": "submit Q1 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q2 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q5 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q7 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q4 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q6 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit X2 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q3 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q8 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit X1 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "all queue patches approved into the queue",
+          "ok": true
+        },
+        {
+          "name": "every disjoint patch merged",
+          "ok": true
+        },
+        {
+          "name": "exactly one of the conflicting pair merged, the other is a CONFLICT",
+          "ok": true
+        },
+        {
+          "name": "batching: fewer pushes than merged patches",
+          "ok": true
+        },
+        {
+          "name": "main contains every merged file with the submitted content",
+          "ok": true
+        },
+        {
+          "name": "shared file holds the winner of the conflict",
+          "ok": true
+        },
+        {
+          "name": "pre-existing files are untouched",
+          "ok": true
+        }
+      ],
+      "steps": [
+        {
+          "call": "GET /api/health",
+          "status": 200,
+          "ms": 92
+        },
+        {
+          "call": "POST /api/repos/<repo>/init",
+          "status": 200,
+          "ms": 51
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 15
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 34
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 75,
+          "serverMs": {
+            "provisioning": 44
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/dev-commit",
+          "status": 200,
+          "ms": 57
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 184,
+          "serverMs": {
+            "diffAndGates": 145
+          }
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 18
+        },
+        {
+          "call": "GET /api/repos/<repo>/patches/p2_f88608ddb2ad/diff",
+          "status": 200,
+          "ms": 5
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 13
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 45
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 75
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 23
+        },
+        {
+          "call": "approval → merged (client-observed, includes polling)",
+          "ms": 600
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 143
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 142
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 153
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 167
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 160
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 159
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 180
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 180
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 179
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 178
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 174
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 181
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 166
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 166
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 174
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 247
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 247
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 247
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 247
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 247
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 247
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 244
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 242
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 242
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 241
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 241
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 244
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 244
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 244
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 270
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 65,
+          "serverMs": {
+            "provisioning": 6
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 181,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 182,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 182,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 182,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 182,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 182,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 183,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 183,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 182,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 182,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 182,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 182,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 182,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 182,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 182,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 182,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 184,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 185,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 185,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 186,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 186,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 186,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 187,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 186,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 187,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 187,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 199,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 199,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 199,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 21
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 22
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 53
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 53
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 53
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 53
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 56
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 57
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 12
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 18
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 31,
+          "serverMs": {
+            "provisioning": 3
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 81,
+          "serverMs": {
+            "provisioning": 6
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 86,
+          "serverMs": {
+            "provisioning": 8
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 87,
+          "serverMs": {
+            "provisioning": 9
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 86,
+          "serverMs": {
+            "provisioning": 7
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 86,
+          "serverMs": {
+            "provisioning": 8
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 87,
+          "serverMs": {
+            "provisioning": 9
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 86,
+          "serverMs": {
+            "provisioning": 7
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 94,
+          "serverMs": {
+            "provisioning": 7
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 93,
+          "serverMs": {
+            "provisioning": 6
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/dev-commit",
+          "status": 200,
+          "ms": 90
+        },
+        {
+          "call": "POST /api/repos/<repo>/dev-commit",
+          "status": 200,
+          "ms": 40
+        },
+        {
+          "call": "POST /api/repos/<repo>/dev-commit",
+          "status": 200,
+          "ms": 55
+        },
+        {
+          "call": "POST /api/repos/<repo>/dev-commit",
+          "status": 200,
+          "ms": 55
+        },
+        {
+          "call": "POST /api/repos/<repo>/dev-commit",
+          "status": 200,
+          "ms": 57
+        },
+        {
+          "call": "POST /api/repos/<repo>/dev-commit",
+          "status": 200,
+          "ms": 55
+        },
+        {
+          "call": "POST /api/repos/<repo>/dev-commit",
+          "status": 200,
+          "ms": 56
+        },
+        {
+          "call": "POST /api/repos/<repo>/dev-commit",
+          "status": 200,
+          "ms": 56
+        },
+        {
+          "call": "POST /api/repos/<repo>/dev-commit",
+          "status": 200,
+          "ms": 50
+        },
+        {
+          "call": "POST /api/repos/<repo>/dev-commit",
+          "status": 200,
+          "ms": 51
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 68,
+          "serverMs": {
+            "diffAndGates": 20
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 68,
+          "serverMs": {
+            "diffAndGates": 21
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 96,
+          "serverMs": {
+            "diffAndGates": 12
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 96,
+          "serverMs": {
+            "diffAndGates": 15
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 95,
+          "serverMs": {
+            "diffAndGates": 15
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 95,
+          "serverMs": {
+            "diffAndGates": 17
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 95,
+          "serverMs": {
+            "diffAndGates": 16
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 95,
+          "serverMs": {
+            "diffAndGates": 17
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 95,
+          "serverMs": {
+            "diffAndGates": 18
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 93,
+          "serverMs": {
+            "diffAndGates": 18
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 33
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 34
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 35
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 35
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 35
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 35
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 35
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 35
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 35
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 35
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 15
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 92
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 92
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 91
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 91
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 91
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 91
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 91
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 92
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 92
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 20
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 20
+        },
+        {
+          "call": "queue: 10 approvals → all settled (client-observed)",
+          "ms": 640
+        },
+        {
+          "call": "GET /api/repos/<repo>/dev-main-files",
+          "status": 200,
+          "ms": 11
+        }
+      ]
+    },
+    "native_queue6": {
+      "mode": "native",
+      "repo": "q-948552",
+      "shards": 4,
+      "summary": {
+        "checks": 65,
+        "passed": 65,
+        "shards": 4,
+        "racers": 8,
+        "queue": {
+          "patches": 8,
+          "merged": 7,
+          "conflicts": 1,
+          "pushes": 2,
+          "batchCommits": 1,
+          "fastForwards": 1,
+          "largestBatch": 7,
+          "rounds": 2,
+          "recent": [
+            {
+              "via": "batch",
+              "patches": 7,
+              "conflicts": 1,
+              "ms": 747
+            },
+            {
+              "via": "fast-forward",
+              "patches": 1,
+              "conflicts": 0,
+              "ms": 720
+            }
+          ]
+        },
+        "claimServerProvisioningMs": 328,
+        "submitServerDiffMs": 341
+      },
+      "checks": [
+        {
+          "name": "health",
+          "ok": true
+        },
+        {
+          "name": "init (sharded)",
+          "ok": true
+        },
+        {
+          "name": "register reviewer-gpt",
+          "ok": true
+        },
+        {
+          "name": "register reviewer-gemini",
+          "ok": true
+        },
+        {
+          "name": "register verifier",
+          "ok": true
+        },
+        {
+          "name": "join verifier",
+          "ok": true
+        },
+        {
+          "name": "register worker-claude",
+          "ok": true
+        },
+        {
+          "name": "join worker-claude",
+          "ok": true
+        },
+        {
+          "name": "claim T1",
+          "ok": true
+        },
+        {
+          "name": "fork token cannot push to main",
+          "ok": true
+        },
+        {
+          "name": "submit T1 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "status carries no credential",
+          "ok": true
+        },
+        {
+          "name": "reviewer reads the platform-computed diff",
+          "ok": true
+        },
+        {
+          "name": "one approval is not enough",
+          "ok": true
+        },
+        {
+          "name": "second family approval queues the patch",
+          "ok": true
+        },
+        {
+          "name": "fast-forward: main is exactly the submitted commit",
+          "ok": true
+        },
+        {
+          "name": "register racer0",
+          "ok": true
+        },
+        {
+          "name": "register racer1",
+          "ok": true
+        },
+        {
+          "name": "register racer2",
+          "ok": true
+        },
+        {
+          "name": "register racer3",
+          "ok": true
+        },
+        {
+          "name": "register racer4",
+          "ok": true
+        },
+        {
+          "name": "register racer5",
+          "ok": true
+        },
+        {
+          "name": "register racer6",
+          "ok": true
+        },
+        {
+          "name": "register racer7",
+          "ok": true
+        },
+        {
+          "name": "8 concurrent claims grant exactly one lease",
+          "ok": true
+        },
+        {
+          "name": "register qworker0",
+          "ok": true
+        },
+        {
+          "name": "register qworker1",
+          "ok": true
+        },
+        {
+          "name": "register qworker2",
+          "ok": true
+        },
+        {
+          "name": "register qworker4",
+          "ok": true
+        },
+        {
+          "name": "register qworker3",
+          "ok": true
+        },
+        {
+          "name": "register qworker5",
+          "ok": true
+        },
+        {
+          "name": "join qworker2",
+          "ok": true
+        },
+        {
+          "name": "join qworker0",
+          "ok": true
+        },
+        {
+          "name": "join qworker4",
+          "ok": true
+        },
+        {
+          "name": "join qworker5",
+          "ok": true
+        },
+        {
+          "name": "join qworker3",
+          "ok": true
+        },
+        {
+          "name": "join qworker1",
+          "ok": true
+        },
+        {
+          "name": "register xworker-X1",
+          "ok": true
+        },
+        {
+          "name": "register xworker-X2",
+          "ok": true
+        },
+        {
+          "name": "join xworker-X1",
+          "ok": true
+        },
+        {
+          "name": "join xworker-X2",
+          "ok": true
+        },
+        {
+          "name": "claim Q6",
+          "ok": true
+        },
+        {
+          "name": "claim Q2",
+          "ok": true
+        },
+        {
+          "name": "claim Q4",
+          "ok": true
+        },
+        {
+          "name": "claim X1",
+          "ok": true
+        },
+        {
+          "name": "claim Q1",
+          "ok": true
+        },
+        {
+          "name": "claim Q5",
+          "ok": true
+        },
+        {
+          "name": "claim X2",
+          "ok": true
+        },
+        {
+          "name": "claim Q3",
+          "ok": true
+        },
+        {
+          "name": "submit Q6 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q2 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit X2 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q1 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q5 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit X1 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q3 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q4 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "all queue patches approved into the queue",
+          "ok": true
+        },
+        {
+          "name": "every disjoint patch merged",
+          "ok": true
+        },
+        {
+          "name": "exactly one of the conflicting pair merged, the other is a CONFLICT",
+          "ok": true
+        },
+        {
+          "name": "batching: fewer pushes than merged patches",
+          "ok": true
+        },
+        {
+          "name": "verification claim",
+          "ok": true
+        },
+        {
+          "name": "main contains every merged file with the submitted content",
+          "ok": true
+        },
+        {
+          "name": "shared file holds the winner of the conflict",
+          "ok": true
+        },
+        {
+          "name": "pre-existing files are untouched",
+          "ok": true
+        }
+      ],
+      "steps": [
+        {
+          "call": "GET /api/health",
+          "status": 200,
+          "ms": 194
+        },
+        {
+          "call": "POST /api/repos/<repo>/init",
+          "status": 200,
+          "ms": 1283
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3599
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3016
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 765,
+          "serverMs": {
+            "provisioning": 328
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) T1",
+          "ms": 1451
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 590,
+          "serverMs": {
+            "diffAndGates": 341
+          }
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 59
+        },
+        {
+          "call": "GET /api/repos/<repo>/patches/p2_5299dfb7decb/diff",
+          "status": 200,
+          "ms": 45
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 101
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 244
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 57
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 62
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 51
+        },
+        {
+          "call": "approval → merged (client-observed, includes polling)",
+          "ms": 1172
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3632
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3705
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 4231
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 4292
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 4307
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 5165
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 5781
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 5781
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 314,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 314,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 315,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 316,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 673,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 678,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 678,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 1365,
+          "serverMs": {
+            "provisioning": 853
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 2773
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 2782
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 2834
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3061
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3581
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3594
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 1883
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 1888
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 273,
+          "serverMs": {
+            "provisioning": 59
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q6",
+          "ms": 1574
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 1880,
+          "serverMs": {
+            "provisioning": 67
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q2",
+          "ms": 1086
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 2981,
+          "serverMs": {
+            "provisioning": 374
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q4",
+          "ms": 1322
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 4320,
+          "serverMs": {
+            "provisioning": 396
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) X1",
+          "ms": 1233
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 5573,
+          "serverMs": {
+            "provisioning": 393
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q1",
+          "ms": 1113
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 6701,
+          "serverMs": {
+            "provisioning": 395
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q5",
+          "ms": 1759
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 8469,
+          "serverMs": {
+            "provisioning": 395
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) X2",
+          "ms": 1126
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 9608,
+          "serverMs": {
+            "provisioning": 892
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q3",
+          "ms": 1550
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 9304,
+          "serverMs": {
+            "diffAndGates": 294
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 8631,
+          "serverMs": {
+            "diffAndGates": 191
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 2156,
+          "serverMs": {
+            "diffAndGates": 220
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 5063,
+          "serverMs": {
+            "diffAndGates": 218
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 3367,
+          "serverMs": {
+            "diffAndGates": 283
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 6410,
+          "serverMs": {
+            "diffAndGates": 477
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 1106,
+          "serverMs": {
+            "diffAndGates": 762
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 8119,
+          "serverMs": {
+            "diffAndGates": 927
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 84
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 89
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 91
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 101
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 102
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 106
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 110
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 357
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 162
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 161
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 161
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 165
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 166
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 165
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 165
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 179
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 63
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 75
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 52
+        },
+        {
+          "call": "queue: 8 approvals → all settled (client-observed)",
+          "ms": 1373
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 565,
+          "serverMs": {
+            "provisioning": 417
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/release",
+          "status": 200,
+          "ms": 191
+        }
+      ]
+    },
+    "native_queue24": {
+      "mode": "native",
+      "repo": "q-948638",
+      "shards": 4,
+      "summary": {
+        "checks": 133,
+        "passed": 133,
+        "shards": 4,
+        "racers": 4,
+        "queue": {
+          "patches": 26,
+          "merged": 25,
+          "conflicts": 1,
+          "pushes": 2,
+          "batchCommits": 1,
+          "fastForwards": 1,
+          "largestBatch": 25,
+          "rounds": 2,
+          "recent": [
+            {
+              "via": "batch",
+              "patches": 25,
+              "conflicts": 1,
+              "ms": 2008
+            },
+            {
+              "via": "fast-forward",
+              "patches": 1,
+              "conflicts": 0,
+              "ms": 1870
+            }
+          ]
+        },
+        "claimServerProvisioningMs": 370,
+        "submitServerDiffMs": 483
+      },
+      "checks": [
+        {
+          "name": "health",
+          "ok": true
+        },
+        {
+          "name": "init (sharded)",
+          "ok": true
+        },
+        {
+          "name": "register reviewer-gpt",
+          "ok": true
+        },
+        {
+          "name": "register reviewer-gemini",
+          "ok": true
+        },
+        {
+          "name": "register verifier",
+          "ok": true
+        },
+        {
+          "name": "join verifier",
+          "ok": true
+        },
+        {
+          "name": "register worker-claude",
+          "ok": true
+        },
+        {
+          "name": "join worker-claude",
+          "ok": true
+        },
+        {
+          "name": "claim T1",
+          "ok": true
+        },
+        {
+          "name": "fork token cannot push to main",
+          "ok": true
+        },
+        {
+          "name": "submit T1 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "status carries no credential",
+          "ok": true
+        },
+        {
+          "name": "reviewer reads the platform-computed diff",
+          "ok": true
+        },
+        {
+          "name": "one approval is not enough",
+          "ok": true
+        },
+        {
+          "name": "second family approval queues the patch",
+          "ok": true
+        },
+        {
+          "name": "fast-forward: main is exactly the submitted commit",
+          "ok": true
+        },
+        {
+          "name": "register racer0",
+          "ok": true
+        },
+        {
+          "name": "register racer1",
+          "ok": true
+        },
+        {
+          "name": "register racer2",
+          "ok": true
+        },
+        {
+          "name": "register racer3",
+          "ok": true
+        },
+        {
+          "name": "4 concurrent claims grant exactly one lease",
+          "ok": true
+        },
+        {
+          "name": "register qworker0",
+          "ok": true
+        },
+        {
+          "name": "register qworker1",
+          "ok": true
+        },
+        {
+          "name": "register qworker2",
+          "ok": true
+        },
+        {
+          "name": "register qworker3",
+          "ok": true
+        },
+        {
+          "name": "register qworker5",
+          "ok": true
+        },
+        {
+          "name": "register qworker8",
+          "ok": true
+        },
+        {
+          "name": "register qworker4",
+          "ok": true
+        },
+        {
+          "name": "register qworker6",
+          "ok": true
+        },
+        {
+          "name": "register qworker7",
+          "ok": true
+        },
+        {
+          "name": "register qworker11",
+          "ok": true
+        },
+        {
+          "name": "register qworker9",
+          "ok": true
+        },
+        {
+          "name": "register qworker13",
+          "ok": true
+        },
+        {
+          "name": "register qworker12",
+          "ok": true
+        },
+        {
+          "name": "register qworker10",
+          "ok": true
+        },
+        {
+          "name": "register qworker17",
+          "ok": true
+        },
+        {
+          "name": "register qworker19",
+          "ok": true
+        },
+        {
+          "name": "register qworker14",
+          "ok": true
+        },
+        {
+          "name": "register qworker20",
+          "ok": true
+        },
+        {
+          "name": "register qworker16",
+          "ok": true
+        },
+        {
+          "name": "register qworker22",
+          "ok": true
+        },
+        {
+          "name": "register qworker21",
+          "ok": true
+        },
+        {
+          "name": "register qworker23",
+          "ok": true
+        },
+        {
+          "name": "register qworker15",
+          "ok": true
+        },
+        {
+          "name": "register qworker18",
+          "ok": true
+        },
+        {
+          "name": "join qworker12",
+          "ok": true
+        },
+        {
+          "name": "join qworker1",
+          "ok": true
+        },
+        {
+          "name": "join qworker8",
+          "ok": true
+        },
+        {
+          "name": "join qworker6",
+          "ok": true
+        },
+        {
+          "name": "join qworker20",
+          "ok": true
+        },
+        {
+          "name": "join qworker2",
+          "ok": true
+        },
+        {
+          "name": "join qworker9",
+          "ok": true
+        },
+        {
+          "name": "join qworker7",
+          "ok": true
+        },
+        {
+          "name": "join qworker11",
+          "ok": true
+        },
+        {
+          "name": "join qworker17",
+          "ok": true
+        },
+        {
+          "name": "join qworker16",
+          "ok": true
+        },
+        {
+          "name": "join qworker22",
+          "ok": true
+        },
+        {
+          "name": "join qworker5",
+          "ok": true
+        },
+        {
+          "name": "join qworker0",
+          "ok": true
+        },
+        {
+          "name": "join qworker4",
+          "ok": true
+        },
+        {
+          "name": "join qworker10",
+          "ok": true
+        },
+        {
+          "name": "join qworker13",
+          "ok": true
+        },
+        {
+          "name": "join qworker14",
+          "ok": true
+        },
+        {
+          "name": "join qworker19",
+          "ok": true
+        },
+        {
+          "name": "join qworker23",
+          "ok": true
+        },
+        {
+          "name": "join qworker21",
+          "ok": true
+        },
+        {
+          "name": "join qworker3",
+          "ok": true
+        },
+        {
+          "name": "join qworker18",
+          "ok": true
+        },
+        {
+          "name": "join qworker15",
+          "ok": true
+        },
+        {
+          "name": "register xworker-X2",
+          "ok": true
+        },
+        {
+          "name": "register xworker-X1",
+          "ok": true
+        },
+        {
+          "name": "join xworker-X2",
+          "ok": true
+        },
+        {
+          "name": "join xworker-X1",
+          "ok": true
+        },
+        {
+          "name": "claim Q4",
+          "ok": true
+        },
+        {
+          "name": "claim Q13",
+          "ok": true
+        },
+        {
+          "name": "claim Q17",
+          "ok": true
+        },
+        {
+          "name": "claim Q22",
+          "ok": true
+        },
+        {
+          "name": "claim Q8",
+          "ok": true
+        },
+        {
+          "name": "claim Q20",
+          "ok": true
+        },
+        {
+          "name": "claim Q19",
+          "ok": true
+        },
+        {
+          "name": "claim Q2",
+          "ok": true
+        },
+        {
+          "name": "claim Q6",
+          "ok": true
+        },
+        {
+          "name": "claim Q24",
+          "ok": true
+        },
+        {
+          "name": "claim Q15",
+          "ok": true
+        },
+        {
+          "name": "claim Q11",
+          "ok": true
+        },
+        {
+          "name": "claim X1",
+          "ok": true
+        },
+        {
+          "name": "claim Q7",
+          "ok": true
+        },
+        {
+          "name": "claim Q3",
+          "ok": true
+        },
+        {
+          "name": "claim Q18",
+          "ok": true
+        },
+        {
+          "name": "claim Q10",
+          "ok": true
+        },
+        {
+          "name": "claim Q21",
+          "ok": true
+        },
+        {
+          "name": "claim Q14",
+          "ok": true
+        },
+        {
+          "name": "claim Q5",
+          "ok": true
+        },
+        {
+          "name": "claim Q1",
+          "ok": true
+        },
+        {
+          "name": "claim Q12",
+          "ok": true
+        },
+        {
+          "name": "claim X2",
+          "ok": true
+        },
+        {
+          "name": "claim Q23",
+          "ok": true
+        },
+        {
+          "name": "claim Q9",
+          "ok": true
+        },
+        {
+          "name": "claim Q16",
+          "ok": true
+        },
+        {
+          "name": "submit Q4 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q8 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q13 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q22 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q17 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q10 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q18 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q21 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q3 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q7 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q14 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q5 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q24 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit X1 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q12 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q16 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q11 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q2 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q19 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q20 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q1 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q15 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q6 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit X2 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q9 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "submit Q23 (server-side diff, gates passed)",
+          "ok": true
+        },
+        {
+          "name": "all queue patches approved into the queue",
+          "ok": true
+        },
+        {
+          "name": "every disjoint patch merged",
+          "ok": true
+        },
+        {
+          "name": "exactly one of the conflicting pair merged, the other is a CONFLICT",
+          "ok": true
+        },
+        {
+          "name": "batching: fewer pushes than merged patches",
+          "ok": true
+        },
+        {
+          "name": "verification claim",
+          "ok": true
+        },
+        {
+          "name": "main contains every merged file with the submitted content",
+          "ok": true
+        },
+        {
+          "name": "shared file holds the winner of the conflict",
+          "ok": true
+        },
+        {
+          "name": "pre-existing files are untouched",
+          "ok": true
+        }
+      ],
+      "steps": [
+        {
+          "call": "GET /api/health",
+          "status": 200,
+          "ms": 160
+        },
+        {
+          "call": "POST /api/repos/<repo>/init",
+          "status": 200,
+          "ms": 1297
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3981
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 2834
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 574,
+          "serverMs": {
+            "provisioning": 370
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) T1",
+          "ms": 1744
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 711,
+          "serverMs": {
+            "diffAndGates": 483
+          }
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 57
+        },
+        {
+          "call": "GET /api/repos/<repo>/patches/p2_ac31dfc09440/diff",
+          "status": 200,
+          "ms": 30
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 81
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 160
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 107
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 55
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 54
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 69
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 52
+        },
+        {
+          "call": "approval → merged (client-observed, includes polling)",
+          "ms": 2342
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3299
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3321
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3326
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3336
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 91,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 92,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 409,
+          "ms": 92,
+          "error": "ALREADY_CLAIMED"
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 318,
+          "serverMs": {
+            "provisioning": 153
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 2468
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 2477
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 2475
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 2474
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 2461
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 2489
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3087
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3089
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3105
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3099
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3080
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3079
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3164
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3177
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3562
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3561
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3564
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3543
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3574
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3552
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3556
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3595
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3570
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3901
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 1911
+        },
+        {
+          "call": "POST /api/repos/<repo>/join",
+          "status": 200,
+          "ms": 3099
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 305,
+          "serverMs": {
+            "provisioning": 102
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q4",
+          "ms": 1180
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 1495,
+          "serverMs": {
+            "provisioning": 104
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q13",
+          "ms": 2391
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 3896,
+          "serverMs": {
+            "provisioning": 111
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q17",
+          "ms": 1502
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 5417,
+          "serverMs": {
+            "provisioning": 71
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q22",
+          "ms": 1255
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 6700,
+          "serverMs": {
+            "provisioning": 85
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q8",
+          "ms": 1075
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 7787,
+          "serverMs": {
+            "provisioning": 120
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q20",
+          "ms": 1854
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 9665,
+          "serverMs": {
+            "provisioning": 160
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q19",
+          "ms": 1229
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 10922,
+          "serverMs": {
+            "provisioning": 163
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q2",
+          "ms": 1293
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 12230,
+          "serverMs": {
+            "provisioning": 160
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q6",
+          "ms": 1453
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 13688,
+          "serverMs": {
+            "provisioning": 107
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q24",
+          "ms": 1229
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 14939,
+          "serverMs": {
+            "provisioning": 144
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q15",
+          "ms": 1294
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 16258,
+          "serverMs": {
+            "provisioning": 120
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q11",
+          "ms": 1162
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 17427,
+          "serverMs": {
+            "provisioning": 176
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) X1",
+          "ms": 1245
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 18697,
+          "serverMs": {
+            "provisioning": 434
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q7",
+          "ms": 1151
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 19864,
+          "serverMs": {
+            "provisioning": 455
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q3",
+          "ms": 1638
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 21514,
+          "serverMs": {
+            "provisioning": 421
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q18",
+          "ms": 1172
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 22707,
+          "serverMs": {
+            "provisioning": 455
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q10",
+          "ms": 1130
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 23848,
+          "serverMs": {
+            "provisioning": 455
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q21",
+          "ms": 1252
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 25118,
+          "serverMs": {
+            "provisioning": 455
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q14",
+          "ms": 1134
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 26267,
+          "serverMs": {
+            "provisioning": 383
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q5",
+          "ms": 1102
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 27384,
+          "serverMs": {
+            "provisioning": 370
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q1",
+          "ms": 1524
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 28920,
+          "serverMs": {
+            "provisioning": 391
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q12",
+          "ms": 1089
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 30021,
+          "serverMs": {
+            "provisioning": 643
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) X2",
+          "ms": 1356
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 31392,
+          "serverMs": {
+            "provisioning": 511
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q23",
+          "ms": 1391
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 32810,
+          "serverMs": {
+            "provisioning": 627
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q9",
+          "ms": 1114
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 33938,
+          "serverMs": {
+            "provisioning": 687
+          }
+        },
+        {
+          "call": "git clone(main) + commit + push(fork) Q16",
+          "ms": 4763
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 37233,
+          "serverMs": {
+            "diffAndGates": 328
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 31550,
+          "serverMs": {
+            "diffAndGates": 231
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 35533,
+          "serverMs": {
+            "diffAndGates": 291
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 32807,
+          "serverMs": {
+            "diffAndGates": 352
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 34103,
+          "serverMs": {
+            "diffAndGates": 362
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 15746,
+          "serverMs": {
+            "diffAndGates": 350
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 16891,
+          "serverMs": {
+            "diffAndGates": 355
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 14509,
+          "serverMs": {
+            "diffAndGates": 332
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 18111,
+          "serverMs": {
+            "diffAndGates": 279
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 19766,
+          "serverMs": {
+            "diffAndGates": 355
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 13442,
+          "serverMs": {
+            "diffAndGates": 414
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 12490,
+          "serverMs": {
+            "diffAndGates": 562
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 24939,
+          "serverMs": {
+            "diffAndGates": 482
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 21326,
+          "serverMs": {
+            "diffAndGates": 600
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 10011,
+          "serverMs": {
+            "diffAndGates": 562
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 1314,
+          "serverMs": {
+            "diffAndGates": 562
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 22624,
+          "serverMs": {
+            "diffAndGates": 601
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 27867,
+          "serverMs": {
+            "diffAndGates": 641
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 29178,
+          "serverMs": {
+            "diffAndGates": 641
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 30429,
+          "serverMs": {
+            "diffAndGates": 600
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 11204,
+          "serverMs": {
+            "diffAndGates": 563
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 23876,
+          "serverMs": {
+            "diffAndGates": 482
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 26442,
+          "serverMs": {
+            "diffAndGates": 529
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 9078,
+          "serverMs": {
+            "diffAndGates": 1058
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 6568,
+          "serverMs": {
+            "diffAndGates": 1072
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/submit",
+          "status": 200,
+          "ms": 7758,
+          "serverMs": {
+            "diffAndGates": 1139
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 122
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 123
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 123
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 123
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 123
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 123
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 124
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 132
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 132
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 132
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 134
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 133
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 135
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 134
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 134
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 135
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 134
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 136
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 135
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 135
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 139
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 142
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 143
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 144
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 146
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 177
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 136
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 136
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 136
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 136
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 148
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 156
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 156
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 156
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 157
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 156
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 157
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 158
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 159
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 158
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 158
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 158
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 158
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 159
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 158
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 199
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 199
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 200
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 199
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 202
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 201
+        },
+        {
+          "call": "POST /api/repos/<repo>/attest",
+          "status": 200,
+          "ms": 202
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 43
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 57
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 45
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 58
+        },
+        {
+          "call": "GET /api/repos/<repo>/status",
+          "status": 200,
+          "ms": 93
+        },
+        {
+          "call": "queue: 26 approvals → all settled (client-observed)",
+          "ms": 2499
+        },
+        {
+          "call": "POST /api/repos/<repo>/claim",
+          "status": 200,
+          "ms": 397,
+          "serverMs": {
+            "provisioning": 309
+          }
+        },
+        {
+          "call": "POST /api/repos/<repo>/release",
+          "status": 200,
+          "ms": 143
+        }
+      ]
+    }
+  },
+  "notes": [
+    "queue phase: K disjoint patches + 1 conflicting pair, all built on the same old main, approved concurrently",
+    "native_queue6: composed commit verified with git clone + git fsck --strict (exit 0)"
+  ]
+}

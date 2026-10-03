@@ -1,0 +1,17 @@
+{
+  "name": "aimp_wasm",
+  "type": "module",
+  "description": "256-bit SimHash for git-flare, compiled to WebAssembly for Cloudflare Workers",
+  "version": "0.1.0",
+  "license": "MIT",
+  "files": [
+    "aimp_wasm_bg.wasm",
+    "aimp_wasm.js",
+    "aimp_wasm.d.ts"
+  ],
+  "main": "aimp_wasm.js",
+  "types": "aimp_wasm.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

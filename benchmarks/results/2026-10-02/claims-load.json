@@ -1,0 +1,109 @@
+{
+  "date": "2026-10-02",
+  "what": "claim throughput on real Artifacts (staging Worker, namespace gf-staging), before and after removing per-claim Artifacts calls. Client: scripts/bench-claims.mjs from one machine in Italy (200 requests in flight).",
+  "before": {
+    "code": "the earlier claim path (claim = head(main) + read token on main + write token on the fork, revoked at submit/release)",
+    "run": {
+      "date": "2026-10-02T15:56:57.807Z",
+      "base": "https://git-flare-staging.freetekno.workers.dev",
+      "repo": "old-6579",
+      "tasks": 2000,
+      "shards": 16,
+      "agents": 20,
+      "concurrency": 200,
+      "join": {
+        "ms": 12569,
+        "errors": {}
+      },
+      "claims": {
+        "attempted": 2000,
+        "granted": 2000,
+        "errors": {},
+        "wallMs": 16475,
+        "perSec": 121,
+        "clientLatencyMs": {
+          "p50": 790,
+          "p95": 5097,
+          "p99": 6298
+        },
+        "serverProvisioningMs": {
+          "p50": 555,
+          "p95": 2926,
+          "p99": 4828,
+          "max": 4848
+        },
+        "distinctMainReadTokens": 2000
+      }
+    },
+    "note": "A 4000-claim run of the same code was aborted by the client: at least one claim waited more than 300 s for response headers."
+  },
+  "after": {
+    "code": "this commit (head cached 1 s per shard, one shared read token per shard, fork write token from /join)",
+    "runs": [
+      {
+        "date": "2026-10-02T15:55:32.961Z",
+        "base": "https://git-flare-staging.freetekno.workers.dev",
+        "repo": "new-6507",
+        "tasks": 2000,
+        "shards": 16,
+        "agents": 20,
+        "concurrency": 200,
+        "join": {
+          "ms": 12803,
+          "errors": {}
+        },
+        "claims": {
+          "attempted": 2000,
+          "granted": 2000,
+          "errors": {},
+          "wallMs": 2909,
+          "perSec": 687,
+          "clientLatencyMs": {
+            "p50": 68,
+            "p95": 1354,
+            "p99": 1669
+          },
+          "serverProvisioningMs": {
+            "p50": 0,
+            "p95": 571,
+            "p99": 1175,
+            "max": 1680
+          },
+          "distinctMainReadTokens": 16
+        }
+      },
+      {
+        "date": "2026-10-02T15:48:04.155Z",
+        "base": "https://git-flare-staging.freetekno.workers.dev",
+        "repo": "load-6061",
+        "tasks": 4000,
+        "shards": 16,
+        "agents": 20,
+        "concurrency": 200,
+        "join": {
+          "ms": 8493,
+          "errors": {}
+        },
+        "claims": {
+          "attempted": 4000,
+          "granted": 4000,
+          "errors": {},
+          "wallMs": 3668,
+          "perSec": 1091,
+          "clientLatencyMs": {
+            "p50": 110,
+            "p95": 619,
+            "p99": 1444
+          },
+          "serverProvisioningMs": {
+            "p50": 0,
+            "p95": 145,
+            "p99": 395,
+            "max": 809
+          },
+          "distinctMainReadTokens": 16
+        }
+      }
+    ]
+  }
+}
