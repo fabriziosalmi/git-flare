@@ -1,5 +1,9 @@
 # git-flare
 
+
+https://github.com/user-attachments/assets/25127db1-3c67-4440-9ab2-684a7f111ec9
+
+
 <!-- Inline player: in GitHub's web editor, drag git-flare-demo.mp4 onto the first empty line below this comment. -->
 
 
