@@ -545,7 +545,10 @@ export class RepoCoordinator extends DurableObject<CoordinatorEnv> {
     } else {
       patch.status = 'stale';
       patch.mergeError = `${o.status === 'conflict' ? 'CONFLICT' : 'MERGE_FAILED'}: ${o.detail ?? ''}`;
-      if (o.status === 'conflict') this.stats.staleMerges++;
+      if (o.status === 'conflict') {
+        this.stats.staleMerges++;
+        if (task) task.conflicts = (task.conflicts ?? 0) + 1; // persisted with the patch below; redelivery returns early above
+      }
       if (owns && task.status === 'submitted') this.reclaim(task, false);
     }
     patch.closedAt = o.at;
@@ -586,7 +589,7 @@ export class RepoCoordinator extends DurableObject<CoordinatorEnv> {
 
   async status(): Promise<{
     shard: number | null;
-    tasks: Array<Pick<Task, 'id' | 'title' | 'description' | 'status' | 'leaseEpoch' | 'holder' | 'leaseExpiresAt' | 'patchId' | 'mergedCommit'>>;
+    tasks: Array<Pick<Task, 'id' | 'title' | 'description' | 'status' | 'leaseEpoch' | 'holder' | 'leaseExpiresAt' | 'patchId' | 'mergedCommit' | 'conflicts'>>;
     patches: Array<Record<string, unknown> & { submittedAt: number }>;
     stats: RepoStats;
   }> {
@@ -600,6 +603,7 @@ export class RepoCoordinator extends DurableObject<CoordinatorEnv> {
       leaseExpiresAt: t.leaseExpiresAt,
       patchId: t.patchId,
       mergedCommit: t.mergedCommit,
+      conflicts: t.conflicts ?? 0,
     }));
     let sybil = 0;
     let collusion = 0;

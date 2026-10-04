@@ -23,6 +23,8 @@ export interface Task {
   patchId?: string;
   mergedCommit?: string;
   mergedAt?: number;
+  /** Times a patch of this task was rejected by the merge queue as a conflict (never reset: it counts the redo cost). */
+  conflicts?: number;
 }
 
 export interface Review {

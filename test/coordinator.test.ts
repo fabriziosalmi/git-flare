@@ -560,6 +560,8 @@ describe('merge queue', () => {
     expect(patchB.status).toBe('stale');
     expect(patchB.mergeError).toMatch(/^CONFLICT: shared\.ts/);
     expect(s.tasks.find((t: { id: string }) => t.id === 'T2').status).toBe('available');
+    expect(s.tasks.find((t: { id: string }) => t.id === 'T2').conflicts).toBe(1); // the redo is counted on the task
+    expect(s.tasks.find((t: { id: string }) => t.id === 'T1').conflicts).toBe(0);
     expect((await registry(repo).devMainFiles())!['shared.ts']).toBe('version A\n');
     expect((await registry(repo).devMainFiles())!['only-b.ts']).toBeUndefined();
   });
@@ -602,6 +604,7 @@ describe('merge queue', () => {
     const s = await status(repo);
     const byTask = Object.fromEntries(s.patches.map((p: { taskId: string; status: string }) => [p.taskId, p.status]));
     expect(byTask).toEqual({ C1: 'merged', C2: 'stale', C3: 'merged' });
+    expect(Object.fromEntries(s.tasks.map((t: { id: string; conflicts: number }) => [t.id, t.conflicts]))).toEqual({ C1: 0, C2: 1, C3: 0 });
     expect(s.queue.pushes).toBe(1);
   });
 
@@ -625,6 +628,7 @@ describe('merge queue', () => {
     await drainQueue(repo);
     const s = await status(repo);
     expect(s.tasks.find((t: { id: string }) => t.id === 'T2').status).toBe('merged');
+    expect(s.tasks.find((t: { id: string }) => t.id === 'T2').conflicts).toBe(1); // the count survives the merge
     expect((await registry(repo).devMainFiles())!['conf.ts']).toBe('A\nB\n');
   });
 
@@ -639,7 +643,9 @@ describe('merge queue', () => {
     await drainQueue(repo);
     const replay = await shardFor(repo, 'T1').onMergeResult({ patchId: pid, shard: shardOf('T1', SHARDS), status: 'conflict', detail: 'replayed', at: Date.now() });
     expect(replay.applied).toBe(false);
-    expect((await status(repo)).tasks.find((t: { id: string }) => t.id === 'T1').status).toBe('merged');
+    const t1 = (await status(repo)).tasks.find((t: { id: string }) => t.id === 'T1');
+    expect(t1.status).toBe('merged');
+    expect(t1.conflicts).toBe(0); // a replayed conflict outcome does not count
   });
 });
 
