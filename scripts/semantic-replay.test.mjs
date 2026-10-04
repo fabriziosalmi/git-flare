@@ -6,9 +6,10 @@ import os from 'node:os';
 import path from 'node:path';
 import { test } from 'node:test';
 import { wilson } from './lib/replay.mjs';
+import { tmpdir } from './lib/tmp.mjs';
 
 const SCRIPT = path.join(path.dirname(new URL(import.meta.url).pathname), 'semantic-replay.mjs');
-const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), 'semantic-test-'));
+const tmp = () => tmpdir('semantic-test-');
 const lines = (n, prefix = 'l') => Array.from({ length: n }, (_, i) => `${prefix}${i + 1}`);
 
 /**
@@ -39,7 +40,7 @@ function scenario({ limit = 13, a, b, base = { 'A.txt': lines(12).join('\n') + '
 const TEST_CMD = '[ "$(wc -l < A.txt)" -le "$(cat limit.txt)" ]';
 const run = (repo, extra = []) => {
   const out = path.join(tmp(), 'out.json');
-  const stdout = execFileSync('node', [SCRIPT, '--repo', repo, '--test', TEST_CMD, '--timeout', '20', '--out', out, ...extra], { encoding: 'utf8' });
+  const stdout = execFileSync('node', [SCRIPT, '--min-free-gib', '0.01', '--repo', repo, '--test', TEST_CMD, '--timeout', '20', '--out', out, ...extra], { encoding: 'utf8' });
   return { result: JSON.parse(fs.readFileSync(out, 'utf8')), stdout };
 };
 const top = (n) => lines(n, 'x').join('\n') + '\n'; // n new lines
@@ -107,7 +108,7 @@ test('a real textual conflict is neither group', () => {
 test('a test that never ends is a timeout, and its process group is killed', () => {
   const repo = scenario({ limit: 20, a: { 'A.txt': 'top\n' + A12 }, b: { 'A.txt': A12 + 'bottom\n' } });
   const out = path.join(tmp(), 'out.json');
-  execFileSync('node', [SCRIPT, '--repo', repo, '--test', 'sleep 30', '--timeout', '1', '--out', out], { encoding: 'utf8' });
+  execFileSync('node', [SCRIPT, '--min-free-gib', '0.01', '--repo', repo, '--test', 'sleep 30', '--timeout', '1', '--out', out], { encoding: 'utf8' });
   const g = JSON.parse(fs.readFileSync(out, 'utf8')).groups.clean;
   assert.deepEqual([g.pairs, g.timeout], [1, 1]);
 });
@@ -123,14 +124,14 @@ test('--cache: a second run runs no test again, and --since filters the pairs', 
   assert.equal(second.groups.clean.semantic, 1);
   assert.equal(run(repo, ['--since', '2030-01-01']).result.groups.clean.pairs, 0);
   for (const bad of ['1970-01-01', '2999-01-01', 'yesterday', '2024-1-1']) {
-    assert.throws(() => execFileSync('node', [SCRIPT, '--repo', repo, '--test', 'true', '--since', bad], { encoding: 'utf8', stdio: 'pipe' }), /--since must be a date/, bad);
+    assert.throws(() => execFileSync('node', [SCRIPT, '--min-free-gib', '0.01', '--repo', repo, '--test', 'true', '--since', bad], { encoding: 'utf8', stdio: 'pipe' }), /--since must be a date/, bad);
   }
 });
 
 test('the test runs with a minimal environment: no variable of the caller reaches it', () => {
   const repo = scenario({ limit: 20, a: { 'A.txt': 'top\n' + A12 }, b: { 'A.txt': A12 + 'bottom\n' } });
   const out = path.join(tmp(), 'out.json');
-  execFileSync('node', [SCRIPT, '--repo', repo, '--test', '[ -z "$SEMANTIC_TEST_SECRET" ]', '--out', out], { encoding: 'utf8', env: { ...process.env, SEMANTIC_TEST_SECRET: 'leak' } });
+  execFileSync('node', [SCRIPT, '--min-free-gib', '0.01', '--repo', repo, '--test', '[ -z "$SEMANTIC_TEST_SECRET" ]', '--out', out], { encoding: 'utf8', env: { ...process.env, SEMANTIC_TEST_SECRET: 'leak' } });
   assert.equal(JSON.parse(fs.readFileSync(out, 'utf8')).groups.clean.ok, 1);
 });
 
@@ -139,7 +140,7 @@ test('flaky: the merged tree fails once and passes on the rerun, so it is not a 
   const flag = path.join(tmp(), 'flag');
   const out = path.join(tmp(), 'out.json');
   // the first run (the merged tree) creates the flag and fails; every later run passes
-  execFileSync('node', [SCRIPT, '--repo', repo, '--test', `[ -f ${flag} ] || { touch ${flag}; exit 1; }`, '--out', out], { encoding: 'utf8' });
+  execFileSync('node', [SCRIPT, '--min-free-gib', '0.01', '--repo', repo, '--test', `[ -f ${flag} ] || { touch ${flag}; exit 1; }`, '--out', out], { encoding: 'utf8' });
   const g = JSON.parse(fs.readFileSync(out, 'utf8')).groups.clean;
   assert.deepEqual([g.pairs, g.flaky, g.semantic, g.ok], [1, 1, 0, 0]);
   assert.equal(g.judged, 0);
@@ -149,7 +150,7 @@ test('a timeout kills the whole process group: a background child does not outli
   const repo = scenario({ limit: 20, a: { 'A.txt': 'top\n' + A12 }, b: { 'A.txt': A12 + 'bottom\n' } });
   const marker = path.join(tmp(), 'marker');
   const out = path.join(tmp(), 'out.json');
-  execFileSync('node', [SCRIPT, '--repo', repo, '--test', `(sleep 3; touch ${marker}) & sleep 30`, '--timeout', '1', '--out', out], { encoding: 'utf8' });
+  execFileSync('node', [SCRIPT, '--min-free-gib', '0.01', '--repo', repo, '--test', `(sleep 3; touch ${marker}) & sleep 30`, '--timeout', '1', '--out', out], { encoding: 'utf8' });
   await new Promise((r) => setTimeout(r, 4000));
   assert.equal(fs.existsSync(marker), false);
 });
@@ -159,6 +160,19 @@ test('--workdir may be a directory that does not exist yet', () => {
   const workdir = path.join(tmp(), 'new', 'nested');
   assert.equal(run(repo, ['--workdir', workdir]).result.groups.clean.ok, 1);
   assert.deepEqual(fs.readdirSync(workdir), []); // the worktrees are removed after each test
+});
+
+test('--min-free-gib: the run stops, with a message, when less disk is free than required', () => {
+  const repo = scenario({ limit: 20, a: { 'A.txt': 'top\n' + A12 }, b: { 'A.txt': A12 + 'bottom\n' } });
+  assert.throws(() => execFileSync('node', [SCRIPT, '--repo', repo, '--test', 'true', '--min-free-gib', '100000'], { encoding: 'utf8', stdio: 'pipe' }), /of disk free: stopping/);
+});
+
+test('a work directory the run made itself is removed when it ends', () => {
+  const repo = scenario({ limit: 20, a: { 'A.txt': 'top\n' + A12 }, b: { 'A.txt': A12 + 'bottom\n' } });
+  const before = new Set(fs.readdirSync(os.tmpdir()).filter((d) => d.startsWith('semantic-replay-')));
+  run(repo);
+  const after = fs.readdirSync(os.tmpdir()).filter((d) => d.startsWith('semantic-replay-') && !before.has(d));
+  assert.deepEqual(after, []);
 });
 
 test('wilson: interval around the observed rate, [0, 1] with no trials', () => {

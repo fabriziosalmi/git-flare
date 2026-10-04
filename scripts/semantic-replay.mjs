@@ -15,12 +15,12 @@
 // semantic rate of clean-but-overlapping merges can be read against the baseline of merges any rule accepts.
 //
 //   node scripts/semantic-replay.mjs --repo <clone> --test "PYTHONPATH=src python -m pytest -q" --path-prepend <venv/bin>
-//       [--since 2024-01-01] [--max 200] [--control 200] [--timeout 300] [--workdir dir] [--cache f.json] [--out f.json]
+//       [--since 2024-01-01] [--max 200] [--control 200] [--timeout 300] [--workdir dir] [--min-free-gib 1.5] [--cache f.json] [--out f.json]
 //
 // The test command runs with `sh -c` in a detached worktree of each commit, with a minimal environment (HOME,
 // PATH = --path-prepend + /usr/bin:/bin, LANG): no credentials of the caller reach the repository's code. It
-// executes code of the repository under test: use it on repositories you trust. It stops when less than 1.5 GiB
-// of disk is free.
+// executes code of the repository under test: use it on repositories you trust. It stops when less than
+// --min-free-gib (default 1.5) of disk is free.
 import { spawn } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -32,7 +32,7 @@ const arg = (n, d) => (args.includes(`--${n}`) ? args[args.indexOf(`--${n}`) + 1
 const REPO = arg('repo');
 const TEST = arg('test');
 if (!REPO || !TEST) {
-  console.error('usage: node scripts/semantic-replay.mjs --repo <clone> --test "<command>" [--path-prepend dir] [--since date] [--max N] [--control N] [--timeout s] [--workdir dir] [--cache f.json] [--out f.json]');
+  console.error('usage: node scripts/semantic-replay.mjs --repo <clone> --test "<command>" [--path-prepend dir] [--since date] [--max N] [--control N] [--timeout s] [--workdir dir] [--min-free-gib G] [--cache f.json] [--out f.json]');
   process.exit(2);
 }
 const SINCE = arg('since'); // a date; without it every merge of the history (git reads `--since=1970-01-01` as no commits at all)
@@ -46,9 +46,11 @@ const TIMEOUT_MS = Number(arg('timeout', '300')) * 1000;
 const PATH_PREPEND = arg('path-prepend');
 const OUT = arg('out');
 const CACHE = arg('cache');
+const AUTO_WORKDIR = arg('workdir') === undefined;
 const WORKDIR = arg('workdir', fs.mkdtempSync(path.join(os.tmpdir(), 'semantic-replay-')));
 fs.mkdirSync(WORKDIR, { recursive: true });
-const MIN_FREE = 1.5 * 2 ** 30;
+if (AUTO_WORKDIR) process.on('exit', () => fs.rmSync(WORKDIR, { recursive: true, force: true })); // a directory this run made itself
+const MIN_FREE = Number(arg('min-free-gib', '1.5')) * 2 ** 30;
 
 const cache = CACHE && fs.existsSync(CACHE) ? JSON.parse(fs.readFileSync(CACHE, 'utf8')) : {};
 let testRuns = 0;
