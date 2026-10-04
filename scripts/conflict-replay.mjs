@@ -22,7 +22,7 @@
 // syncs and vendoring merges are not what an agent patch looks like).
 import fs from 'node:fs';
 import path from 'node:path';
-import { HOT, git, lines, pairVerdict, sharedPathPairs } from './lib/replay.mjs';
+import { DIVERGENCE_BUCKETS, HOT, divergenceBucket, git, lines, pairVerdict, sharedPathPairs } from './lib/replay.mjs';
 
 const args = process.argv.slice(2);
 const all = (n) => args.flatMap((a, i) => (a === `--${n}` ? [args[i + 1]] : []));
@@ -81,6 +81,8 @@ function humanBaseline() {
 const pairsOut = PAIRS ? fs.createWriteStream(PAIRS) : null;
 const perRepo = {};
 const conflictPaths = new Map();
+// Rejections by how far the two sides had diverged: a patch of an agent lives minutes, a human branch days.
+const byDivergence = Object.fromEntries(DIVERGENCE_BUCKETS.map((b) => [b, { pairs: 0, overlap: 0, overlapConflict: 0 }]));
 const total = { all: emptyCounts(), excludingBig: emptyCounts() };
 
 for (const repo of REPOS) {
@@ -105,6 +107,11 @@ for (const repo of REPOS) {
         }
       }
     }
+    const commitsOf = (x) => Number(git(repo, ['rev-list', '--count', `${v.base}..${x}`]).out.trim());
+    const bucket = byDivergence[divergenceBucket(Math.max(commitsOf(meta.a), commitsOf(meta.b)))];
+    bucket.pairs++;
+    if (v.verdict !== 'disjoint') bucket.overlap++;
+    if (v.verdict === 'conflict') bucket.overlapConflict++;
     for (const f of v.conflicted) conflictPaths.set(f, (conflictPaths.get(f) ?? 0) + 1);
     pairsOut?.write(`${JSON.stringify({ repo: name, ...meta, base: v.base, sidePaths: v.sidePaths, commonPaths: v.common.length, verdict: v.verdict, conflicted: v.conflicted, big })}\n`);
   }
@@ -121,6 +128,7 @@ const result = {
   git: git(REPOS[0], ['--version']).out.trim(),
   bigThreshold: BIG,
   total: { all: summarize(total.all), excludingBig: summarize(total.excludingBig) },
+  byDivergence: Object.fromEntries(Object.entries(byDivergence).map(([k, b]) => [k, { ...b, fileLevelRejectPct: pct(b.overlap, b.pairs), hunkLevelRejectPct: pct(b.overlapConflict, b.pairs) }])),
   ...(MANIFEST ? { humanBaseline: humanBaseline() } : {}),
   topConflictPaths: [...conflictPaths].sort((x, y) => y[1] - x[1]).slice(0, 15).map(([file, pairs]) => ({ file, pairs })),
   repos: perRepo,
@@ -138,4 +146,5 @@ if (result.humanBaseline) {
   const h = result.humanBaseline;
   console.log(`human PRs, same tasks: ${h.allTasks.pairsSharingFile}/${h.allTasks.pairs} pairs share a file (${h.allTasks.pairsSharingFileExcludingHotFiles} without hot files), median ${h.allTasks.medianFilesPerPatch} files per PR | for the committed agent patches only: ${h.sameTasksAsCommittedAgentPatches.pairsSharingFile}/${h.sameTasksAsCommittedAgentPatches.pairs} (${h.sameTasksAsCommittedAgentPatches.pairsSharingFileExcludingHotFiles} without hot files)`);
 }
+console.log(`by commits on the longer side: ${Object.entries(result.byDivergence).map(([k, b]) => `${k}: ${b.pairs} pairs, file ${b.fileLevelRejectPct}% / hunk ${b.hunkLevelRejectPct}%`).join(' | ')}`);
 console.log('most conflicted paths:', result.topConflictPaths.slice(0, 6).map((t) => `${t.file} (${t.pairs})`).join(', '));

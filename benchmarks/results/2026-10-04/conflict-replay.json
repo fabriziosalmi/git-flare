@@ -29,6 +29,36 @@
       "hunkLevelRejectExcludingHotFilesPct": 11.9
     }
   },
+  "byDivergence": {
+    "1": {
+      "pairs": 80,
+      "overlap": 22,
+      "overlapConflict": 4,
+      "fileLevelRejectPct": 27.5,
+      "hunkLevelRejectPct": 5
+    },
+    "2-3": {
+      "pairs": 508,
+      "overlap": 109,
+      "overlapConflict": 19,
+      "fileLevelRejectPct": 21.5,
+      "hunkLevelRejectPct": 3.7
+    },
+    "4-10": {
+      "pairs": 667,
+      "overlap": 280,
+      "overlapConflict": 65,
+      "fileLevelRejectPct": 42,
+      "hunkLevelRejectPct": 9.7
+    },
+    ">10": {
+      "pairs": 954,
+      "overlap": 682,
+      "overlapConflict": 311,
+      "fileLevelRejectPct": 71.5,
+      "hunkLevelRejectPct": 32.6
+    }
+  },
   "topConflictPaths": [
     {
       "file": "package.json",

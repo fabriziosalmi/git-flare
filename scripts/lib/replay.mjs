@@ -157,6 +157,32 @@ export function sharedPathPairs(sets, ignore) {
   return [sharing, pairs];
 }
 
+/** Bucket of the number of commits on the longer side of a pair since the fork. */
+export function divergenceBucket(n) {
+  return n <= 1 ? '1' : n <= 3 ? '2-3' : n <= 10 ? '4-10' : '>10';
+}
+export const DIVERGENCE_BUCKETS = ['1', '2-3', '4-10', '>10'];
+
+/**
+ * A patch is rejected by the file-level rule when a file it touches was touched by one of the `k` patches that
+ * landed just before it. `fileSets` is the stream of patches (arrays of paths) in landing order. `hot` removes
+ * matching paths from every set first; a patch with no path left, or with more than `big` paths before that
+ * filter, is not counted as a patch (it still counts as a landing). Returns {rejected, n}.
+ */
+export function streamRejects(fileSets, k, { hot, big = Infinity } = {}) {
+  const sets = fileSets.map((s) => new Set(hot ? s.filter((p) => !hot.test(p)) : s));
+  let rejected = 0;
+  let n = 0;
+  for (let i = k; i < sets.length; i++) {
+    if (sets[i].size === 0 || fileSets[i].length > big) continue;
+    n++;
+    let hit = false;
+    for (let j = i - k; j < i && !hit; j++) for (const p of sets[i]) if (sets[j].has(p)) { hit = true; break; }
+    if (hit) rejected++;
+  }
+  return { rejected, n };
+}
+
 // ─── Reading large files by ranges ──────────────────────────────────────────
 
 const DEF_LINE = /^\s*(?:export\s+)?(?:async\s+)?(?:def|class|function|const|let|var|type|interface|enum|struct|fn|func|impl|pub)\b/;
