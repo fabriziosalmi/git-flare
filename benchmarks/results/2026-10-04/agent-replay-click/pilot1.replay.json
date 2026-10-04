@@ -1,0 +1,78 @@
+{
+  "date": "2026-10-04",
+  "what": "File-level conflict rule (current merge queue) vs hunk-level (git merge-tree) on the branches of an agent-replay run, all from one base commit",
+  "git": "git version 2.50.1 (Apple Git-155)",
+  "bigThreshold": 200,
+  "total": {
+    "all": {
+      "pairs": 15,
+      "disjoint": 15,
+      "overlap": 0,
+      "overlapClean": 0,
+      "overlapConflict": 0,
+      "conflictOnlyHotFiles": 0,
+      "fileLevelRejectPct": 0,
+      "hunkLevelRejectPct": 0,
+      "overlapMergingCleanPct": null,
+      "hunkLevelRejectExcludingHotFilesPct": 0
+    },
+    "excludingBig": {
+      "pairs": 15,
+      "disjoint": 15,
+      "overlap": 0,
+      "overlapClean": 0,
+      "overlapConflict": 0,
+      "conflictOnlyHotFiles": 0,
+      "fileLevelRejectPct": 0,
+      "hunkLevelRejectPct": 0,
+      "overlapMergingCleanPct": null,
+      "hunkLevelRejectExcludingHotFilesPct": 0
+    }
+  },
+  "humanBaseline": {
+    "allTasks": {
+      "patches": 12,
+      "pairs": 66,
+      "pairsSharingFile": 55,
+      "pairsSharingFileExcludingHotFiles": 23,
+      "medianFilesPerPatch": 4
+    },
+    "sameTasksAsCommittedAgentPatches": {
+      "patches": 6,
+      "pairs": 15,
+      "pairsSharingFile": 10,
+      "pairsSharingFileExcludingHotFiles": 3,
+      "medianFilesPerPatch": 3
+    }
+  },
+  "topConflictPaths": [],
+  "repos": {
+    "click": {
+      "remote": "https://github.com/pallets/click.git",
+      "all": {
+        "pairs": 15,
+        "disjoint": 15,
+        "overlap": 0,
+        "overlapClean": 0,
+        "overlapConflict": 0,
+        "conflictOnlyHotFiles": 0,
+        "fileLevelRejectPct": 0,
+        "hunkLevelRejectPct": 0,
+        "overlapMergingCleanPct": null,
+        "hunkLevelRejectExcludingHotFilesPct": 0
+      },
+      "excludingBig": {
+        "pairs": 15,
+        "disjoint": 15,
+        "overlap": 0,
+        "overlapClean": 0,
+        "overlapConflict": 0,
+        "conflictOnlyHotFiles": 0,
+        "fileLevelRejectPct": 0,
+        "hunkLevelRejectPct": 0,
+        "overlapMergingCleanPct": null,
+        "hunkLevelRejectExcludingHotFilesPct": 0
+      }
+    }
+  }
+}

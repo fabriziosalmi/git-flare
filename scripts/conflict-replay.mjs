@@ -22,7 +22,7 @@
 // syncs and vendoring merges are not what an agent patch looks like).
 import fs from 'node:fs';
 import path from 'node:path';
-import { HOT, git, lines, pairVerdict } from './lib/replay.mjs';
+import { HOT, git, lines, pairVerdict, sharedPathPairs } from './lib/replay.mjs';
 
 const args = process.argv.slice(2);
 const all = (n) => args.flatMap((a, i) => (a === `--${n}` ? [args[i + 1]] : []));
@@ -64,6 +64,18 @@ function* pairsOf(repo) {
     if (!a || !b || rest.length > 0) continue; // two-parent merges only
     yield { meta: { merge, a, b }, v: pairVerdict(repo, a, b) };
   }
+}
+
+/** The human pull requests that closed the same tasks: how often do their pairs share a file? (the footprint the agents are compared with) */
+function humanBaseline() {
+  const m = JSON.parse(fs.readFileSync(MANIFEST, 'utf8'));
+  const withHuman = (ts) => ts.filter((t) => Array.isArray(t.humanFiles)).map((t) => t.humanFiles);
+  const row = (sets) => {
+    const [all, pairs] = sharedPathPairs(sets);
+    const [noHot] = sharedPathPairs(sets, HOT);
+    return { patches: sets.length, pairs, pairsSharingFile: all, pairsSharingFileExcludingHotFiles: noHot, medianFilesPerPatch: sets.length ? [...sets].map((x) => x.length).sort((x, y) => x - y)[Math.floor(sets.length / 2)] : null };
+  };
+  return { allTasks: row(withHuman(m.tasks)), sameTasksAsCommittedAgentPatches: row(withHuman(m.tasks.filter((t) => t.status === 'committed'))) };
 }
 
 const pairsOut = PAIRS ? fs.createWriteStream(PAIRS) : null;
@@ -109,6 +121,7 @@ const result = {
   git: git(REPOS[0], ['--version']).out.trim(),
   bigThreshold: BIG,
   total: { all: summarize(total.all), excludingBig: summarize(total.excludingBig) },
+  ...(MANIFEST ? { humanBaseline: humanBaseline() } : {}),
   topConflictPaths: [...conflictPaths].sort((x, y) => y[1] - x[1]).slice(0, 15).map(([file, pairs]) => ({ file, pairs })),
   repos: perRepo,
 };
@@ -120,5 +133,9 @@ for (const [n, r] of Object.entries(perRepo)) {
 for (const k of ['all', 'excludingBig']) {
   const c = result.total[k];
   console.log(`${`TOTAL ${k}`.padEnd(22)} pairs=${c.pairs} file-level rejects ${c.fileLevelRejectPct}% | hunk-level rejects ${c.hunkLevelRejectPct}% (${c.hunkLevelRejectExcludingHotFilesPct}% if conflicts confined to hot files are set aside) | overlap merging clean ${c.overlapMergingCleanPct}%`);
+}
+if (result.humanBaseline) {
+  const h = result.humanBaseline;
+  console.log(`human PRs, same tasks: ${h.allTasks.pairsSharingFile}/${h.allTasks.pairs} pairs share a file (${h.allTasks.pairsSharingFileExcludingHotFiles} without hot files), median ${h.allTasks.medianFilesPerPatch} files per PR | for the committed agent patches only: ${h.sameTasksAsCommittedAgentPatches.pairsSharingFile}/${h.sameTasksAsCommittedAgentPatches.pairs} (${h.sameTasksAsCommittedAgentPatches.pairsSharingFileExcludingHotFiles} without hot files)`);
 }
 console.log('most conflicted paths:', result.topConflictPaths.slice(0, 6).map((t) => `${t.file} (${t.pairs})`).join(', '));

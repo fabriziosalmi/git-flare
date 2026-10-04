@@ -49,6 +49,33 @@ export function safeRelPath(p) {
   return typeof p === 'string' && SAFE_PATH.test(p) && !p.startsWith('/') && !p.split('/').some((s) => s === '..' || s === '.git' || s === '') && !p.startsWith('.gitflare/');
 }
 
+const squash = (x) => x.replace(/\s+/g, ' ').trim();
+const tokens = (x) => new Set(x.toLowerCase().match(/[a-z_][a-z0-9_]{2,}/g) ?? []);
+
+/**
+ * Why a `search` text is not in a file: 'whitespace' (equal once whitespace is collapsed), 'lines-not-contiguous'
+ * (every line exists, not as one block), 'partial' (its first line exists, the rest does not) or 'absent' (not even
+ * its first line). `nearest` is the file line sharing the most identifiers with the first line of the search.
+ */
+export function diagnoseMiss(text, search) {
+  const fileLines = text.split('\n');
+  const trimmed = new Set(fileLines.map((l) => l.trim()));
+  const sLines = search.split('\n').map((l) => l.trim()).filter(Boolean);
+  let kind = 'absent';
+  if (squash(text).includes(squash(search))) kind = 'whitespace';
+  else if (sLines.length > 0 && sLines.every((l) => trimmed.has(l))) kind = 'lines-not-contiguous';
+  else if (sLines.length > 0 && trimmed.has(sLines[0])) kind = 'partial';
+  const want = tokens(sLines[0] ?? '');
+  let best = { score: 0, line: '' };
+  for (const l of fileLines) {
+    const t = tokens(l);
+    let score = 0;
+    for (const w of want) if (t.has(w)) score++;
+    if (score > best.score) best = { score, line: l.trim() };
+  }
+  return { kind, searchHead: sLines[0]?.slice(0, 160) ?? '', ...(best.score > 0 ? { nearest: best.line.slice(0, 160) } : {}) };
+}
+
 /**
  * Apply [{path, search, replace}] to the files under `dir`. `search` must occur exactly once in the file (an
  * empty `search` creates a file that does not exist yet). An edit that cannot be applied is reported and
@@ -79,7 +106,7 @@ export function applyEdits(dir, edits) {
     }
     const text = fs.readFileSync(file, 'utf8');
     const first = text.indexOf(e.search);
-    if (first === -1) failed.push({ path: e.path, reason: 'search text not found' });
+    if (first === -1) failed.push({ path: e.path, reason: 'search text not found', ...diagnoseMiss(text, e.search) });
     else if (text.indexOf(e.search, first + 1) !== -1) failed.push({ path: e.path, reason: 'search text not unique' });
     else {
       fs.writeFileSync(file, text.slice(0, first) + e.replace + text.slice(first + e.search.length));
@@ -114,6 +141,20 @@ export function extractJson(x) {
     }
   }
   return null;
+}
+
+/** Pairs of path sets that share a path, ignoring paths matching `ignore`: [sharing, pairs]. */
+export function sharedPathPairs(sets, ignore) {
+  let sharing = 0;
+  let pairs = 0;
+  for (let i = 0; i < sets.length; i++) {
+    for (let j = i + 1; j < sets.length; j++) {
+      pairs++;
+      const b = new Set(sets[j]);
+      if (sets[i].some((p) => !(ignore && ignore.test(p)) && b.has(p))) sharing++;
+    }
+  }
+  return [sharing, pairs];
 }
 
 // ─── Reading large files by ranges ──────────────────────────────────────────
