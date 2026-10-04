@@ -259,7 +259,8 @@ token and push; after the restore main's head was the queue's last head (`guard-
 Errors are `{ok: false, error, detail?}` with 400 (validation; unknown fields rejected), 401, 403, 404, 409,
 413, 429, 502, 503. Bodies ≤ 64 KB (512 KB for dev routes). Repository names `^[a-z0-9][a-z0-9-]{0,47}$`, ids
 `^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$`. `/status` is public, never contains credentials, and includes the
-merge queue (length, counters, recent rounds). Dev-only routes (`dev-commit`, `dev-advance-main`,
+merge queue (length, counters, recent rounds) and, per task, `conflicts`: how many of its patches the queue
+rejected as a conflict (never reset; it counts the redo cost). Dev-only routes (`dev-commit`, `dev-advance-main`,
 `dev-main-files`) exist only when `ARTIFACTS_MODE=mock`. The dashboard renders values with `textContent`.
 
 ## 10. Environments

@@ -184,6 +184,7 @@ function tasksView(d) {
     const head = el('div'); head.append(el('span', 'mono', t.id + ' '), pill(t.status)); row.append(head, el('div', '', t.title));
     if (t.holder) row.append(el('div', 'muted mono', t.holder + (t.leaseExpiresAt ? ' · ' + Math.max(0, Math.round((t.leaseExpiresAt - Date.now()) / 1000)) + 's left' : '')));
     if (t.mergedCommit) row.append(el('div', 'muted mono', 'merged ' + t.mergedCommit.slice(0, 12)));
+    if (t.conflicts) row.append(el('div', 'muted', t.conflicts + (t.conflicts === 1 ? ' conflict' : ' conflicts')));
     box.append(row);
   }
 }

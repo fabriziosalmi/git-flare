@@ -325,7 +325,7 @@ const commands = {
     const lines = [
       `${s.repo} — ${s.shards} shard(s), ${s.forks} fork(s), artifacts: ${s.mode}`,
       '',
-      table(s.tasks.map((t) => ({ task: t.id, status: t.status, holder: t.holder ?? '', epoch: t.leaseEpoch, merged: t.mergedCommit ? t.mergedCommit.slice(0, 12) : '' })), ['task', 'status', 'holder', 'epoch', 'merged']),
+      table(s.tasks.map((t) => ({ task: t.id, status: t.status, holder: t.holder ?? '', epoch: t.leaseEpoch, conflicts: t.conflicts ?? 0, merged: t.mergedCommit ? t.mergedCommit.slice(0, 12) : '' })), ['task', 'status', 'holder', 'epoch', 'conflicts', 'merged']),
       '',
       table(s.patches.slice(0, 20).map((x) => ({ patch: x.patchId, task: x.taskId, author: x.author, status: x.status, reviews: x.reviews.length, note: x.mergeError ? x.mergeError.split('\n')[0].slice(0, 60) : x.mergedVia ?? '' })), ['patch', 'task', 'author', 'status', 'reviews', 'note']),
       '',
