@@ -80,3 +80,33 @@ blob from the patch's base commit, main blob, patch blob). Accept if it merges c
 1. Conflict counter per task, exposed in `/status` (small, makes the problem visible).
 2. Agent-patch measurement (#3), to see whether agents are closer to the 49%/18% or to something worse.
 3. Hunk-level merge behind a per-repository flag, then hot-file rules if #3 shows `package.json`-like files dominate.
+
+## 7. Harness for the agent-patch measurement (issue #3)
+
+`scripts/agent-replay.mjs` produces patches with coding agents from one base commit, and
+`scripts/conflict-replay.mjs --manifest` runs the file-level vs hunk-level comparison on their branches.
+
+```bash
+node scripts/agent-replay.mjs tasks --repo <clone> --slug owner/name --since 2026-02-01 --until 2026-08-01 --limit 12 --out tasks.json
+node scripts/agent-replay.mjs run   --repo <clone> --tasks tasks.json --out manifest.json   # --agent mock: no network
+node scripts/conflict-replay.mjs --repo <clone> --manifest manifest.json --out replay.json
+```
+
+- **Tasks** are real issues that existed at the base commit and were closed by a merged pull request in the
+  window, whose PR changes code (not only docs). The issue text is the task; the human PR's files are recorded
+  for comparison only.
+- **Agent** (`llm`): Workers AI through the account REST API. Single-shot, not an agent loop: one call picks up
+  to 4 files from the tree and the issue; a file too large for the context (e.g. `src/click/core.py`) is read
+  through its outline of definitions and up to 3 line ranges; one call returns search/replace edits. No tool
+  use, no tests, no iteration, so its patches are probably smaller and less complete than a full agent's.
+  Search/replace edits are used instead of `/code`'s whole-file output (capped at 2,500 tokens) because real
+  repositories have files far larger than that.
+- **Budget**: every call is counted from the API's token usage, using the per-model neuron rates of the pricing
+  page, into a per-UTC-day ledger (`~/.cache/git-flare-neurons.json`) shared by all runs. The run stops before a
+  call that could pass `--max-neurons` (default 8,000 of the 10,000 free neurons a day).
+- **`mock`** edits one unique line per chosen file, deterministically, and exists to test the plumbing. Its
+  numbers measure nothing and must not be reported.
+- Not measured here: whether a clean textual merge passes the repository's tests (the risk of hunk-level
+  merging). That needs a second step that runs the tests on the composed tree.
+- `npm run test:scripts` covers the pair verdict on a temporary repository, edit application, range handling
+  and neuron accounting.
