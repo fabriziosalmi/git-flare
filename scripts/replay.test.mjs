@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { test } from 'node:test';
-import { applyEdits, cleanRanges, extractJson, git, ledgerAdd, ledgerRead, neuronsFor, NEURON_RATES, outlineOf, pairVerdict, safeRelPath } from './lib/replay.mjs';
+import { applyEdits, cleanRanges, diagnoseMiss, extractJson, git, ledgerAdd, ledgerRead, neuronsFor, NEURON_RATES, outlineOf, pairVerdict, safeRelPath, sharedPathPairs } from './lib/replay.mjs';
 
 const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), 'replay-test-'));
 
@@ -164,4 +164,31 @@ test('cleanRanges: clamps, sorts, merges, caps at 3 and falls back to the head o
   for (const bad of [undefined, [], [{ start: 'a', end: 2 }], [{ start: 5, end: 2 }], [{ start: 0, end: 4 }], [{ start: 500, end: 600 }]]) {
     assert.deepEqual(cleanRanges(bad, 100, 160), [{ start: 1, end: 100 }], JSON.stringify(bad));
   }
+});
+
+test('diagnoseMiss: whitespace, lines-not-contiguous, partial and absent, with the nearest line', () => {
+  const text = 'def f(x):\n    y = x + 1\n    return y\n\ndef g():\n    pass\n';
+  assert.equal(diagnoseMiss(text, 'def f(x):\n  y = x + 1\n  return y').kind, 'whitespace'); // indentation differs
+  assert.equal(diagnoseMiss(text, 'return y\ny = x + 1').kind, 'lines-not-contiguous'); // reordered
+  assert.equal(diagnoseMiss(text, 'def g():\n    return 42').kind, 'partial'); // first line exists, the rest invented
+  const a = diagnoseMiss(text, 'def compute(value):\n    return y');
+  assert.equal(a.kind, 'absent');
+  assert.equal(a.searchHead, 'def compute(value):');
+  assert.equal(diagnoseMiss(text, 'def h(x):').nearest, 'def f(x):'); // nearest = first line sharing an identifier of 3+ characters (here `def`)
+});
+
+test('applyEdits: a search that is not found carries its diagnosis', () => {
+  const dir = tmp();
+  fs.writeFileSync(path.join(dir, 'f.py'), 'def f(x):\n    return x\n');
+  const r = applyEdits(dir, [{ path: 'f.py', search: 'def f(x):\n  return x', replace: 'z' }]);
+  assert.equal(r.failed[0].reason, 'search text not found');
+  assert.equal(r.failed[0].kind, 'whitespace');
+});
+
+test('sharedPathPairs: pairs sharing a path, optionally ignoring some paths', () => {
+  const sets = [['a', 'CHANGES.rst'], ['b', 'CHANGES.rst'], ['a'], []];
+  assert.deepEqual(sharedPathPairs(sets), [2, 6]); // 0-1 share CHANGES.rst, 0-2 share `a`; the other four pairs share nothing
+  assert.deepEqual(sharedPathPairs(sets, /CHANGES/), [1, 6]); // only 0-2 shares `a` once CHANGES.rst is ignored
+  assert.deepEqual(sharedPathPairs([]), [0, 0]);
+  assert.deepEqual(sharedPathPairs([['x']]), [0, 0]);
 });

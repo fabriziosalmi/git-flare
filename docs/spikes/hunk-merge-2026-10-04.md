@@ -110,3 +110,50 @@ node scripts/conflict-replay.mjs --repo <clone> --manifest manifest.json --out r
   merging). That needs a second step that runs the tests on the composed tree.
 - `npm run test:scripts` covers the pair verdict on a temporary repository, edit application, range handling
   and neuron accounting.
+
+## 8. Pilot on `pallets/click` (2026-10-04): a lower bound, not a measurement
+
+12 real tasks (issues that existed at base `5590ef46e3c8`, closed by a merged PR between 2026-02-01 and
+2026-08-01), `llm` agent of §7: file selection with Llama 3.1 8B, edits with Qwen2.5-Coder 32B. Results in
+`benchmarks/results/2026-10-04/agent-replay-click/` (`pilot1`, `diag1`; the SHAs are of local branches that are
+not in the public repository).
+
+| | |
+|---|---|
+| Patches produced | 6 of 12 (5,987 neurons, all measured from the API's token usage) |
+| Why not | 5 × "search text not found", 1 × a file that does not exist |
+| Pairs of the 6 patches that share a file | 0 of 15 (so 0% with either rule) |
+| Human PRs for the same 12 tasks | 55 of 66 pairs share a file (23 once changelog, version and dependency files are set aside); median 4 files per PR |
+| Human PRs for the 6 tasks the agent finished | 10 of 15 (3 without those files) |
+
+**The 0% says nothing about agents in general.** Every agent patch touches exactly one file, with 1 to 10 lines
+changed; patches of one file rarely meet by construction. The agent also does not know the project's convention
+of a changelog entry and tests in every change, which the human PRs follow. The collision rate depends on the
+patch footprint (how many files, which ones), not only on the merge rule, and this agent's footprint is a floor.
+
+### Why half of the edits fail (`diag1`: the 4 "not found" tasks re-run with the failure recorded)
+
+The re-run is not deterministic (temperature 0.1): it produced 1 patch and 3 failures. The 3 failures:
+
+| Task | Kind | What happened |
+|---|---|---|
+| #3121 | `whitespace` | the search text equals the file's once whitespace is collapsed: indentation differs |
+| #2836 | `absent` | an edit to `src/click/core.py`, a file that was not among the four shown; the search text is invented |
+| #2879 | `absent` | an edit to `parser.py` of a class that lives in another file; invented |
+
+So one failure in three is fixable with whitespace-tolerant matching, and two in three are the model editing
+code it was not shown, which comes from the file selection: against the source files the human PRs changed, the
+8B selector found 4 of 13 (31%), and the right file in 4 of 11 tasks. `core.py`, the hot file, is chosen often
+(6 of 12 tasks) but not in the tasks that need it.
+
+### Not done, in order of cost-effectiveness
+
+1. A stronger selector. Its prompt is about 2,000 tokens: with Llama 3.3 70B that is on the order of 50
+   neurons per call (rates in `NEURON_RATES`), against 8 for the 8B model.
+2. Whitespace-tolerant matching of the search text.
+3. One retry that shows the model the real excerpt when a search text is not found, which is what an agent
+   with tools gets for free.
+4. An agent with tools (reads the repository, runs the tests, iterates), which is what the footprint question
+   actually needs; its cost is not known and has to be measured on a few tasks first.
+
+None of these changes the harness's accounting or the measurement script.
