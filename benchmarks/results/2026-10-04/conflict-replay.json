@@ -1,0 +1,285 @@
+{
+  "date": "2026-10-04",
+  "what": "File-level conflict rule (current merge queue) vs hunk-level (git merge-tree) on concurrent branches taken from two-parent merge commits",
+  "git": "git version 2.50.1 (Apple Git-155)",
+  "bigThreshold": 200,
+  "total": {
+    "all": {
+      "pairs": 2209,
+      "disjoint": 1116,
+      "overlap": 1093,
+      "overlapClean": 694,
+      "overlapConflict": 399,
+      "conflictOnlyHotFiles": 128,
+      "fileLevelRejectPct": 49.5,
+      "hunkLevelRejectPct": 18.1,
+      "overlapMergingCleanPct": 63.5,
+      "hunkLevelRejectExcludingHotFilesPct": 12.3
+    },
+    "excludingBig": {
+      "pairs": 2194,
+      "disjoint": 1115,
+      "overlap": 1079,
+      "overlapClean": 691,
+      "overlapConflict": 388,
+      "conflictOnlyHotFiles": 126,
+      "fileLevelRejectPct": 49.2,
+      "hunkLevelRejectPct": 17.7,
+      "overlapMergingCleanPct": 64,
+      "hunkLevelRejectExcludingHotFilesPct": 11.9
+    }
+  },
+  "topConflictPaths": [
+    {
+      "file": "package.json",
+      "pairs": 138
+    },
+    {
+      "file": "History.md",
+      "pairs": 75
+    },
+    {
+      "file": "fastify.js",
+      "pairs": 27
+    },
+    {
+      "file": "CHANGES.rst",
+      "pairs": 25
+    },
+    {
+      "file": "lib/response.js",
+      "pairs": 22
+    },
+    {
+      "file": "src/flask/__init__.py",
+      "pairs": 20
+    },
+    {
+      "file": "CHANGES",
+      "pairs": 19
+    },
+    {
+      "file": "flask/__init__.py",
+      "pairs": 16
+    },
+    {
+      "file": "lib/utils.js",
+      "pairs": 14
+    },
+    {
+      "file": "requests/models.py",
+      "pairs": 13
+    },
+    {
+      "file": "setup.py",
+      "pairs": 12
+    },
+    {
+      "file": "lib/router/index.js",
+      "pairs": 11
+    },
+    {
+      "file": "AUTHORS.rst",
+      "pairs": 11
+    },
+    {
+      "file": "index.js",
+      "pairs": 11
+    },
+    {
+      "file": "test/res.sendFile.js",
+      "pairs": 10
+    }
+  ],
+  "repos": {
+    "express": {
+      "remote": "https://github.com/expressjs/express.git",
+      "all": {
+        "pairs": 238,
+        "disjoint": 100,
+        "overlap": 138,
+        "overlapClean": 43,
+        "overlapConflict": 95,
+        "conflictOnlyHotFiles": 37,
+        "fileLevelRejectPct": 58,
+        "hunkLevelRejectPct": 39.9,
+        "overlapMergingCleanPct": 31.2,
+        "hunkLevelRejectExcludingHotFilesPct": 24.4
+      },
+      "excludingBig": {
+        "pairs": 238,
+        "disjoint": 100,
+        "overlap": 138,
+        "overlapClean": 43,
+        "overlapConflict": 95,
+        "conflictOnlyHotFiles": 37,
+        "fileLevelRejectPct": 58,
+        "hunkLevelRejectPct": 39.9,
+        "overlapMergingCleanPct": 31.2,
+        "hunkLevelRejectExcludingHotFilesPct": 24.4
+      }
+    },
+    "flask": {
+      "remote": "https://github.com/pallets/flask.git",
+      "all": {
+        "pairs": 777,
+        "disjoint": 421,
+        "overlap": 356,
+        "overlapClean": 227,
+        "overlapConflict": 129,
+        "conflictOnlyHotFiles": 50,
+        "fileLevelRejectPct": 45.8,
+        "hunkLevelRejectPct": 16.6,
+        "overlapMergingCleanPct": 63.8,
+        "hunkLevelRejectExcludingHotFilesPct": 10.2
+      },
+      "excludingBig": {
+        "pairs": 766,
+        "disjoint": 420,
+        "overlap": 346,
+        "overlapClean": 224,
+        "overlapConflict": 122,
+        "conflictOnlyHotFiles": 48,
+        "fileLevelRejectPct": 45.2,
+        "hunkLevelRejectPct": 15.9,
+        "overlapMergingCleanPct": 64.7,
+        "hunkLevelRejectExcludingHotFilesPct": 9.7
+      }
+    },
+    "caddy": {
+      "remote": "https://github.com/caddyserver/caddy.git",
+      "all": {
+        "pairs": 13,
+        "disjoint": 9,
+        "overlap": 4,
+        "overlapClean": 2,
+        "overlapConflict": 2,
+        "conflictOnlyHotFiles": 0,
+        "fileLevelRejectPct": 30.8,
+        "hunkLevelRejectPct": 15.4,
+        "overlapMergingCleanPct": 50,
+        "hunkLevelRejectExcludingHotFilesPct": 15.4
+      },
+      "excludingBig": {
+        "pairs": 13,
+        "disjoint": 9,
+        "overlap": 4,
+        "overlapClean": 2,
+        "overlapConflict": 2,
+        "conflictOnlyHotFiles": 0,
+        "fileLevelRejectPct": 30.8,
+        "hunkLevelRejectPct": 15.4,
+        "overlapMergingCleanPct": 50,
+        "hunkLevelRejectExcludingHotFilesPct": 15.4
+      }
+    },
+    "requests": {
+      "remote": "https://github.com/psf/requests.git",
+      "all": {
+        "pairs": 744,
+        "disjoint": 437,
+        "overlap": 307,
+        "overlapClean": 255,
+        "overlapConflict": 52,
+        "conflictOnlyHotFiles": 13,
+        "fileLevelRejectPct": 41.3,
+        "hunkLevelRejectPct": 7,
+        "overlapMergingCleanPct": 83.1,
+        "hunkLevelRejectExcludingHotFilesPct": 5.2
+      },
+      "excludingBig": {
+        "pairs": 744,
+        "disjoint": 437,
+        "overlap": 307,
+        "overlapClean": 255,
+        "overlapConflict": 52,
+        "conflictOnlyHotFiles": 13,
+        "fileLevelRejectPct": 41.3,
+        "hunkLevelRejectPct": 7,
+        "overlapMergingCleanPct": 83.1,
+        "hunkLevelRejectExcludingHotFilesPct": 5.2
+      }
+    },
+    "fastify": {
+      "remote": "https://github.com/fastify/fastify.git",
+      "all": {
+        "pairs": 243,
+        "disjoint": 96,
+        "overlap": 147,
+        "overlapClean": 88,
+        "overlapConflict": 59,
+        "conflictOnlyHotFiles": 7,
+        "fileLevelRejectPct": 60.5,
+        "hunkLevelRejectPct": 24.3,
+        "overlapMergingCleanPct": 59.9,
+        "hunkLevelRejectExcludingHotFilesPct": 21.4
+      },
+      "excludingBig": {
+        "pairs": 242,
+        "disjoint": 96,
+        "overlap": 146,
+        "overlapClean": 88,
+        "overlapConflict": 58,
+        "conflictOnlyHotFiles": 7,
+        "fileLevelRejectPct": 60.3,
+        "hunkLevelRejectPct": 24,
+        "overlapMergingCleanPct": 60.3,
+        "hunkLevelRejectExcludingHotFilesPct": 21.1
+      }
+    },
+    "hono": {
+      "remote": "https://github.com/honojs/hono.git",
+      "all": {
+        "pairs": 60,
+        "disjoint": 9,
+        "overlap": 51,
+        "overlapClean": 21,
+        "overlapConflict": 30,
+        "conflictOnlyHotFiles": 13,
+        "fileLevelRejectPct": 85,
+        "hunkLevelRejectPct": 50,
+        "overlapMergingCleanPct": 41.2,
+        "hunkLevelRejectExcludingHotFilesPct": 28.3
+      },
+      "excludingBig": {
+        "pairs": 58,
+        "disjoint": 9,
+        "overlap": 49,
+        "overlapClean": 21,
+        "overlapConflict": 28,
+        "conflictOnlyHotFiles": 13,
+        "fileLevelRejectPct": 84.5,
+        "hunkLevelRejectPct": 48.3,
+        "overlapMergingCleanPct": 42.9,
+        "hunkLevelRejectExcludingHotFilesPct": 25.9
+      }
+    },
+    "commander.js": {
+      "remote": "https://github.com/tj/commander.js.git",
+      "all": {
+        "pairs": 134,
+        "disjoint": 44,
+        "overlap": 90,
+        "overlapClean": 58,
+        "overlapConflict": 32,
+        "conflictOnlyHotFiles": 8,
+        "fileLevelRejectPct": 67.2,
+        "hunkLevelRejectPct": 23.9,
+        "overlapMergingCleanPct": 64.4,
+        "hunkLevelRejectExcludingHotFilesPct": 17.9
+      },
+      "excludingBig": {
+        "pairs": 133,
+        "disjoint": 44,
+        "overlap": 89,
+        "overlapClean": 58,
+        "overlapConflict": 31,
+        "conflictOnlyHotFiles": 8,
+        "fileLevelRejectPct": 66.9,
+        "hunkLevelRejectPct": 23.3,
+        "overlapMergingCleanPct": 65.2,
+        "hunkLevelRejectExcludingHotFilesPct": 17.3
+      }
+    }
+  }
+}
