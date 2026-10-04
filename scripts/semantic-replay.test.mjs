@@ -154,6 +154,13 @@ test('a timeout kills the whole process group: a background child does not outli
   assert.equal(fs.existsSync(marker), false);
 });
 
+test('--workdir may be a directory that does not exist yet', () => {
+  const repo = scenario({ limit: 20, a: { 'A.txt': 'top\n' + A12 }, b: { 'A.txt': A12 + 'bottom\n' } });
+  const workdir = path.join(tmp(), 'new', 'nested');
+  assert.equal(run(repo, ['--workdir', workdir]).result.groups.clean.ok, 1);
+  assert.deepEqual(fs.readdirSync(workdir), []); // the worktrees are removed after each test
+});
+
 test('wilson: interval around the observed rate, [0, 1] with no trials', () => {
   assert.deepEqual(wilson(0, 0), [0, 1]);
   const [lo, hi] = wilson(5, 100);

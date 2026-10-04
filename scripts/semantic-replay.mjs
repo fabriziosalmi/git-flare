@@ -47,6 +47,7 @@ const PATH_PREPEND = arg('path-prepend');
 const OUT = arg('out');
 const CACHE = arg('cache');
 const WORKDIR = arg('workdir', fs.mkdtempSync(path.join(os.tmpdir(), 'semantic-replay-')));
+fs.mkdirSync(WORKDIR, { recursive: true });
 const MIN_FREE = 1.5 * 2 ** 30;
 
 const cache = CACHE && fs.existsSync(CACHE) ? JSON.parse(fs.readFileSync(CACHE, 'utf8')) : {};
