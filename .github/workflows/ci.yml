@@ -43,6 +43,9 @@ jobs:
       - name: Tests (inside workerd)
         run: npm test
 
+      - name: Tests of the measurement scripts
+        run: npm run test:scripts
+
       - name: Deploy dry-run for every environment
         run: |
           npx wrangler deploy --dry-run --outdir /tmp/dry-prod

@@ -12,8 +12,9 @@
     "typecheck": "tsc --noEmit",
     "dev": "wrangler dev --env dev",
     "test": "vitest run",
+    "test:scripts": "node --test scripts/replay.test.mjs",
     "test:rust": "cargo test --manifest-path crates/aimp-wasm/Cargo.toml",
-    "check": "node scripts/gen-logodds.mjs --check && npm run typecheck && npm test",
+    "check": "node scripts/gen-logodds.mjs --check && npm run typecheck && npm test && npm run test:scripts",
     "e2e": "node scripts/e2e.mjs",
     "deploy:staging": "wrangler deploy --env staging",
     "e2e:cli": "node scripts/e2e-cli.mjs"
