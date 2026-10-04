@@ -5,9 +5,10 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { test } from 'node:test';
+import { tmpdir } from './lib/tmp.mjs';
 
 const SCRIPT = path.join(path.dirname(new URL(import.meta.url).pathname), 'conflict-replay.mjs');
-const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), 'conflict-test-'));
+const tmp = () => tmpdir('conflict-test-');
 const body = Array.from({ length: 14 }, (_, i) => `line ${i + 1}`).join('\n') + '\n';
 
 /** main with two merges: a clean overlap of two 1-commit sides, then a real conflict against a 5-commit side. */

@@ -6,8 +6,9 @@ import os from 'node:os';
 import path from 'node:path';
 import { test } from 'node:test';
 import { applyEdits, cleanRanges, diagnoseMiss, divergenceBucket, extractJson, git, ledgerAdd, ledgerRead, neuronsFor, NEURON_RATES, outlineOf, pairVerdict, safeRelPath, sharedPathPairs, streamRejects } from './lib/replay.mjs';
+import { tmpdir } from './lib/tmp.mjs';
 
-const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), 'replay-test-'));
+const tmp = () => tmpdir('replay-test-');
 
 /** A repository with one commit holding `files`; returns {dir, base} and a helper that commits a branch change. */
 function repoWith(files) {

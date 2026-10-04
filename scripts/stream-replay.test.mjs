@@ -5,9 +5,10 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { test } from 'node:test';
+import { tmpdir } from './lib/tmp.mjs';
 
 const SCRIPT = path.join(path.dirname(new URL(import.meta.url).pathname), 'stream-replay.mjs');
-const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), 'stream-test-'));
+const tmp = () => tmpdir('stream-test-');
 
 test('stream-replay reads the commits of a history in order and reports the rates per window and per variant', () => {
   const dir = tmp();
