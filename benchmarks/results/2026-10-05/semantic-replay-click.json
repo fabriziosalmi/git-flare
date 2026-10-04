@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-04",
+  "what": "Tests on the merged tree of concurrent pairs from two-parent merge commits: clean-but-overlapping pairs vs disjoint control",
+  "since": null,
+  "testCommand": "PYTHONPATH=src python -m pytest -q -x -p no:cacheprovider -p no:warnings",
+  "timeoutSec": 300,
+  "groups": {
+    "clean": {
+      "pairs": 161,
+      "ok": 78,
+      "semantic": 0,
+      "preexisting": 83,
+      "flaky": 0,
+      "timeout": 0,
+      "skipped": 0,
+      "judged": 78,
+      "semanticRatePct": 0,
+      "semanticRate95CiPct": [
+        0,
+        4.7
+      ],
+      "semanticCases": []
+    },
+    "disjoint": {
+      "pairs": 0,
+      "ok": 0,
+      "semantic": 0,
+      "preexisting": 0,
+      "flaky": 0,
+      "timeout": 0,
+      "skipped": 0,
+      "judged": 0,
+      "semanticRatePct": null,
+      "semanticRate95CiPct": null,
+      "semanticCases": []
+    }
+  },
+  "testRuns": 0
+}

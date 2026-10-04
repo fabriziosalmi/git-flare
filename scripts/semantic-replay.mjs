@@ -162,4 +162,4 @@ for (const [name, pairs] of Object.entries(groups)) {
 }
 result.testRuns = testRuns;
 if (OUT) fs.writeFileSync(OUT, `${JSON.stringify(result, null, 2)}\n`);
-for (const [name, g] of Object.entries(result.groups)) console.log(`${name.padEnd(9)} pairs=${g.pairs} ok=${g.ok} semantic=${g.semantic} preexisting=${g.preexisting} flaky=${g.flaky} timeout=${g.timeout} → semantic rate ${g.semanticRatePct}% of ${g.judged} judged (95% CI ${g.semanticRate95CiPct?.join('–')}%)`);
+for (const [name, g] of Object.entries(result.groups)) console.log(`${name.padEnd(9)} pairs=${g.pairs} ok=${g.ok} semantic=${g.semantic} preexisting=${g.preexisting} flaky=${g.flaky} timeout=${g.timeout} → semantic rate ${g.semanticRatePct ?? 'n/a'}% of ${g.judged} judged (95% CI ${g.semanticRate95CiPct ? `${g.semanticRate95CiPct.join('–')}%` : 'n/a'})`);

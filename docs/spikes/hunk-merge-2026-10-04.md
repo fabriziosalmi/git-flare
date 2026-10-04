@@ -216,3 +216,33 @@ Levers besides a hunk-level merge, none measured:
   already), the approvals could carry over, which removes the re-review, the part of §3 that is a model call.
   The composed-tree tests stay as the guard.
 - **Structured rules for hot files** (§5): `package.json`, changelogs.
+
+## 10. Do textually clean merges pass the tests? (`pallets/click`, 2026-10-05)
+
+`scripts/semantic-replay.mjs` takes every two-parent merge commit of a repository whose two sides share a path
+and merge cleanly with `git merge-tree` (the pairs a file-level rule rejects and a hunk-level rule would accept),
+builds the merged tree and runs the repository's tests on it. `pallets/click`, whole history, Python 3.12 with
+current dependencies, `PYTHONPATH=src python -m pytest -q -x -p no:cacheprovider -p no:warnings` (4 s per run):
+`benchmarks/results/2026-10-05/semantic-replay-click.json`.
+
+| Outcome | Pairs |
+|---|---|
+| ok (the merged tree passes) | 78 |
+| semantic (both parents pass, the merged tree fails twice) | 0 |
+| preexisting (a parent already fails) | 83 |
+| flaky, timeout | 0 |
+
+0 semantic conflicts among the 78 pairs that could be judged: with a 95% Wilson interval, **0 to 4.7%**. Half of
+the pairs are `preexisting` because commits as old as 2014 do not pass the suite in a modern environment; with
+pytest's default handling of warnings 144 of the 161 were, and `-p no:warnings` recovered most of them.
+
+**What this does not show.** One repository, whose suite runs in 4 seconds. Survivorship: a history only holds
+merges that were accepted, and a semantic conflict caught by continuous integration before the merge was fixed
+on the branch, so it does not appear. Tests catch only what they cover. The merged tree is the one `git
+merge-tree` produces, not the one the person committed. Dropping `preexisting` pairs leans the sample towards
+recent history.
+
+**What is missing.** The control group (pairs with no common path, accepted by both rules) was interrupted at 100
+of 200 pairs by the script's disk guard, because the machine was nearly full: 76 ok, 24 preexisting, 0 semantic in
+that half. It has to be completed to read the clean-but-overlapping group against the baseline, and more
+repositories with fast suites (flask) would narrow the bound.
