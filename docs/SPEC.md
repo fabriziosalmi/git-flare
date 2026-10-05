@@ -260,7 +260,10 @@ Errors are `{ok: false, error, detail?}` with 400 (validation; unknown fields re
 413, 429, 502, 503. Bodies ≤ 64 KB (512 KB for dev routes). Repository names `^[a-z0-9][a-z0-9-]{0,47}$`, ids
 `^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$`. `/status` is public, never contains credentials, and includes the
 merge queue (length, counters, recent rounds) and, per task, `conflicts`: how many of its patches the queue
-rejected as a conflict (never reset; it counts the redo cost). Dev-only routes (`dev-commit`, `dev-advance-main`,
+rejected as a conflict (never reset; it counts the redo cost). Each patch carries the times of its window:
+`claimedAt` (the claim that produced it), `submittedAt`, `queuedAt` (when it entered the merge queue) and `closedAt`,
+so the time from claim to merge round and its parts (work, review, queue and tests) can be read from `/status`.
+Dev-only routes (`dev-commit`, `dev-advance-main`,
 `dev-main-files`) exist only when `ARTIFACTS_MODE=mock`. The dashboard renders values with `textContent`.
 
 ## 10. Environments
