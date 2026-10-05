@@ -5,9 +5,10 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { test } from 'node:test';
-import { applyEdits, cleanRanges, diagnoseMiss, extractJson, git, ledgerAdd, ledgerRead, neuronsFor, NEURON_RATES, outlineOf, pairVerdict, safeRelPath, sharedPathPairs } from './lib/replay.mjs';
+import { applyEdits, cleanRanges, diagnoseMiss, divergenceBucket, extractJson, git, ledgerAdd, ledgerRead, neuronsFor, NEURON_RATES, outlineOf, pairVerdict, safeRelPath, sharedPathPairs, streamRejects } from './lib/replay.mjs';
+import { tmpdir } from './lib/tmp.mjs';
 
-const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), 'replay-test-'));
+const tmp = () => tmpdir('replay-test-');
 
 /** A repository with one commit holding `files`; returns {dir, base} and a helper that commits a branch change. */
 function repoWith(files) {
@@ -191,4 +192,26 @@ test('sharedPathPairs: pairs sharing a path, optionally ignoring some paths', ()
   assert.deepEqual(sharedPathPairs(sets, /CHANGES/), [1, 6]); // only 0-2 shares `a` once CHANGES.rst is ignored
   assert.deepEqual(sharedPathPairs([]), [0, 0]);
   assert.deepEqual(sharedPathPairs([['x']]), [0, 0]);
+});
+
+test('divergenceBucket: commits on the longer side of a pair', () => {
+  assert.deepEqual([0, 1, 2, 3, 4, 10, 11, 500].map(divergenceBucket), ['1', '1', '2-3', '2-3', '4-10', '4-10', '>10', '>10']);
+});
+
+test('streamRejects: a patch is rejected when one of the k patches before it touched its files', () => {
+  const s = [['a'], ['a'], ['b'], ['a', 'b'], ['c']];
+  // k=1: #1 shares a with #0 (rejected); #2 (b) vs #1 (a) no; #3 shares b with #2 (rejected); #4 (c) vs #3 no
+  assert.deepEqual(streamRejects(s, 1), { rejected: 2, n: 4 });
+  // k=2: #2 (b) vs {#0,#1}=a no; #3 (a,b) vs {#1,#2} yes; #4 (c) no
+  assert.deepEqual(streamRejects(s, 2), { rejected: 1, n: 3 });
+  assert.deepEqual(streamRejects(s, 10), { rejected: 0, n: 0 }); // no patch has k predecessors
+});
+
+test('streamRejects: hot files are set aside, big patches are landings but not patches', () => {
+  const s = [['a'], ['a'], ['b'], ['a', 'b'], ['c']];
+  // without `a`: sets are [], [], [b], [b], [c]; patches #0 and #1 are empty, so only #2..#4 count, with k=1: #3 shares b
+  assert.deepEqual(streamRejects(s, 1, { hot: /^a$/ }), { rejected: 1, n: 3 });
+  // #3 has 2 paths: with big=1 it is not a patch (n drops by one, and its rejection with it) but it is still a landing for #4
+  assert.deepEqual(streamRejects(s, 1, { big: 1 }), { rejected: 1, n: 3 });
+  assert.deepEqual(streamRejects([['x'], ['y', 'z'], ['z']], 1, { big: 1 }), { rejected: 1, n: 1 }); // #2 (z) vs the big #1 (y, z)
 });

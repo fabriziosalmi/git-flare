@@ -1,0 +1,470 @@
+{
+  "date": "2026-10-04",
+  "what": "File-level rejection of a patch vs the number k of patches that landed during its window, on the non-merge commits of each repository taken as a stream",
+  "commitsPerRepo": 2500,
+  "bigThreshold": 50,
+  "windows": [
+    1,
+    2,
+    4,
+    8,
+    16
+  ],
+  "total": {
+    "allFiles": {
+      "1": {
+        "rejected": 4865,
+        "n": 15843,
+        "rejectPct": 30.7
+      },
+      "2": {
+        "rejected": 6415,
+        "n": 15836,
+        "rejectPct": 40.5
+      },
+      "4": {
+        "rejected": 8102,
+        "n": 15822,
+        "rejectPct": 51.2
+      },
+      "8": {
+        "rejected": 9834,
+        "n": 15795,
+        "rejectPct": 62.3
+      },
+      "16": {
+        "rejected": 11277,
+        "n": 15739,
+        "rejectPct": 71.7
+      }
+    },
+    "withoutHotFiles": {
+      "1": {
+        "rejected": 3073,
+        "n": 13239,
+        "rejectPct": 23.2
+      },
+      "2": {
+        "rejected": 4167,
+        "n": 13232,
+        "rejectPct": 31.5
+      },
+      "4": {
+        "rejected": 5417,
+        "n": 13221,
+        "rejectPct": 41
+      },
+      "8": {
+        "rejected": 6923,
+        "n": 13196,
+        "rejectPct": 52.5
+      },
+      "16": {
+        "rejected": 8388,
+        "n": 13147,
+        "rejectPct": 63.8
+      }
+    }
+  },
+  "repos": {
+    "express": {
+      "commits": 2500,
+      "allFiles": {
+        "1": {
+          "rejected": 1239,
+          "n": 2495,
+          "rejectPct": 49.7
+        },
+        "2": {
+          "rejected": 1464,
+          "n": 2494,
+          "rejectPct": 58.7
+        },
+        "4": {
+          "rejected": 1672,
+          "n": 2492,
+          "rejectPct": 67.1
+        },
+        "8": {
+          "rejected": 1854,
+          "n": 2488,
+          "rejectPct": 74.5
+        },
+        "16": {
+          "rejected": 1981,
+          "n": 2480,
+          "rejectPct": 79.9
+        }
+      },
+      "withoutHotFiles": {
+        "1": {
+          "rejected": 358,
+          "n": 1572,
+          "rejectPct": 22.8
+        },
+        "2": {
+          "rejected": 477,
+          "n": 1571,
+          "rejectPct": 30.4
+        },
+        "4": {
+          "rejected": 617,
+          "n": 1571,
+          "rejectPct": 39.3
+        },
+        "8": {
+          "rejected": 788,
+          "n": 1567,
+          "rejectPct": 50.3
+        },
+        "16": {
+          "rejected": 947,
+          "n": 1559,
+          "rejectPct": 60.7
+        }
+      }
+    },
+    "flask": {
+      "commits": 2499,
+      "allFiles": {
+        "1": {
+          "rejected": 727,
+          "n": 2491,
+          "rejectPct": 29.2
+        },
+        "2": {
+          "rejected": 927,
+          "n": 2490,
+          "rejectPct": 37.2
+        },
+        "4": {
+          "rejected": 1141,
+          "n": 2488,
+          "rejectPct": 45.9
+        },
+        "8": {
+          "rejected": 1402,
+          "n": 2484,
+          "rejectPct": 56.4
+        },
+        "16": {
+          "rejected": 1636,
+          "n": 2476,
+          "rejectPct": 66.1
+        }
+      },
+      "withoutHotFiles": {
+        "1": {
+          "rejected": 562,
+          "n": 2268,
+          "rejectPct": 24.8
+        },
+        "2": {
+          "rejected": 721,
+          "n": 2267,
+          "rejectPct": 31.8
+        },
+        "4": {
+          "rejected": 913,
+          "n": 2265,
+          "rejectPct": 40.3
+        },
+        "8": {
+          "rejected": 1151,
+          "n": 2261,
+          "rejectPct": 50.9
+        },
+        "16": {
+          "rejected": 1391,
+          "n": 2254,
+          "rejectPct": 61.7
+        }
+      }
+    },
+    "requests": {
+      "commits": 2480,
+      "allFiles": {
+        "1": {
+          "rejected": 795,
+          "n": 2478,
+          "rejectPct": 32.1
+        },
+        "2": {
+          "rejected": 1026,
+          "n": 2477,
+          "rejectPct": 41.4
+        },
+        "4": {
+          "rejected": 1267,
+          "n": 2475,
+          "rejectPct": 51.2
+        },
+        "8": {
+          "rejected": 1542,
+          "n": 2471,
+          "rejectPct": 62.4
+        },
+        "16": {
+          "rejected": 1757,
+          "n": 2463,
+          "rejectPct": 71.3
+        }
+      },
+      "withoutHotFiles": {
+        "1": {
+          "rejected": 763,
+          "n": 2317,
+          "rejectPct": 32.9
+        },
+        "2": {
+          "rejected": 976,
+          "n": 2316,
+          "rejectPct": 42.1
+        },
+        "4": {
+          "rejected": 1199,
+          "n": 2314,
+          "rejectPct": 51.8
+        },
+        "8": {
+          "rejected": 1453,
+          "n": 2311,
+          "rejectPct": 62.9
+        },
+        "16": {
+          "rejected": 1648,
+          "n": 2304,
+          "rejectPct": 71.5
+        }
+      }
+    },
+    "fastify": {
+      "commits": 2500,
+      "allFiles": {
+        "1": {
+          "rejected": 328,
+          "n": 2495,
+          "rejectPct": 13.1
+        },
+        "2": {
+          "rejected": 542,
+          "n": 2494,
+          "rejectPct": 21.7
+        },
+        "4": {
+          "rejected": 844,
+          "n": 2492,
+          "rejectPct": 33.9
+        },
+        "8": {
+          "rejected": 1161,
+          "n": 2488,
+          "rejectPct": 46.7
+        },
+        "16": {
+          "rejected": 1524,
+          "n": 2480,
+          "rejectPct": 61.5
+        }
+      },
+      "withoutHotFiles": {
+        "1": {
+          "rejected": 209,
+          "n": 2256,
+          "rejectPct": 9.3
+        },
+        "2": {
+          "rejected": 369,
+          "n": 2255,
+          "rejectPct": 16.4
+        },
+        "4": {
+          "rejected": 589,
+          "n": 2254,
+          "rejectPct": 26.1
+        },
+        "8": {
+          "rejected": 871,
+          "n": 2250,
+          "rejectPct": 38.7
+        },
+        "16": {
+          "rejected": 1235,
+          "n": 2245,
+          "rejectPct": 55
+        }
+      }
+    },
+    "hono": {
+      "commits": 2500,
+      "allFiles": {
+        "1": {
+          "rejected": 365,
+          "n": 2490,
+          "rejectPct": 14.7
+        },
+        "2": {
+          "rejected": 648,
+          "n": 2489,
+          "rejectPct": 26
+        },
+        "4": {
+          "rejected": 986,
+          "n": 2487,
+          "rejectPct": 39.6
+        },
+        "8": {
+          "rejected": 1341,
+          "n": 2484,
+          "rejectPct": 54
+        },
+        "16": {
+          "rejected": 1600,
+          "n": 2476,
+          "rejectPct": 64.6
+        }
+      },
+      "withoutHotFiles": {
+        "1": {
+          "rejected": 258,
+          "n": 2039,
+          "rejectPct": 12.7
+        },
+        "2": {
+          "rejected": 416,
+          "n": 2038,
+          "rejectPct": 20.4
+        },
+        "4": {
+          "rejected": 598,
+          "n": 2036,
+          "rejectPct": 29.4
+        },
+        "8": {
+          "rejected": 836,
+          "n": 2034,
+          "rejectPct": 41.1
+        },
+        "16": {
+          "rejected": 1085,
+          "n": 2028,
+          "rejectPct": 53.5
+        }
+      }
+    },
+    "commander.js": {
+      "commits": 1232,
+      "allFiles": {
+        "1": {
+          "rejected": 503,
+          "n": 1226,
+          "rejectPct": 41
+        },
+        "2": {
+          "rejected": 678,
+          "n": 1225,
+          "rejectPct": 55.3
+        },
+        "4": {
+          "rejected": 842,
+          "n": 1223,
+          "rejectPct": 68.8
+        },
+        "8": {
+          "rejected": 993,
+          "n": 1219,
+          "rejectPct": 81.5
+        },
+        "16": {
+          "rejected": 1078,
+          "n": 1211,
+          "rejectPct": 89
+        }
+      },
+      "withoutHotFiles": {
+        "1": {
+          "rejected": 310,
+          "n": 845,
+          "rejectPct": 36.7
+        },
+        "2": {
+          "rejected": 422,
+          "n": 844,
+          "rejectPct": 50
+        },
+        "4": {
+          "rejected": 526,
+          "n": 842,
+          "rejectPct": 62.5
+        },
+        "8": {
+          "rejected": 628,
+          "n": 838,
+          "rejectPct": 74.9
+        },
+        "16": {
+          "rejected": 692,
+          "n": 830,
+          "rejectPct": 83.4
+        }
+      }
+    },
+    "click": {
+      "commits": 2170,
+      "allFiles": {
+        "1": {
+          "rejected": 908,
+          "n": 2168,
+          "rejectPct": 41.9
+        },
+        "2": {
+          "rejected": 1130,
+          "n": 2167,
+          "rejectPct": 52.1
+        },
+        "4": {
+          "rejected": 1350,
+          "n": 2165,
+          "rejectPct": 62.4
+        },
+        "8": {
+          "rejected": 1541,
+          "n": 2161,
+          "rejectPct": 71.3
+        },
+        "16": {
+          "rejected": 1701,
+          "n": 2153,
+          "rejectPct": 79
+        }
+      },
+      "withoutHotFiles": {
+        "1": {
+          "rejected": 613,
+          "n": 1942,
+          "rejectPct": 31.6
+        },
+        "2": {
+          "rejected": 786,
+          "n": 1941,
+          "rejectPct": 40.5
+        },
+        "4": {
+          "rejected": 975,
+          "n": 1939,
+          "rejectPct": 50.3
+        },
+        "8": {
+          "rejected": 1196,
+          "n": 1935,
+          "rejectPct": 61.8
+        },
+        "16": {
+          "rejected": 1390,
+          "n": 1927,
+          "rejectPct": 72.1
+        }
+      }
+    }
+  }
+}
