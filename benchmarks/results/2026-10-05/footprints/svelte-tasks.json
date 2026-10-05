@@ -1,0 +1,231 @@
+{
+  "slug": "sveltejs/svelte",
+  "base": "92e6721c035d336458ebbe6cb23236ac8e7fd50c",
+  "since": "2026-02-01",
+  "until": "2026-08-01",
+  "tasks": [
+    {
+      "id": "i17751",
+      "issue": {
+        "number": 17751,
+        "title": "Layout shift when using `{:else}` with `await` on remote functions during SSR"
+      },
+      "pr": {
+        "number": 17784,
+        "files": [
+          ".changeset/long-readers-shine.md",
+          "packages/svelte/src/internal/client/dom/blocks/if.js",
+          "packages/svelte/tests/runtime-runes/samples/async-if-else/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-if-else/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "i1404",
+      "issue": {
+        "number": 1404,
+        "title": "tests aren't running on windows?"
+      },
+      "pr": {
+        "number": 17789,
+        "files": [
+          "documentation/docs/98-reference/.generated/compile-errors.md",
+          "packages/svelte/messages/compile-errors/template.md",
+          "packages/svelte/src/compiler/errors.js",
+          "packages/svelte/tests/compiler-errors/samples/attribute-sequence-expression-2/_config.js",
+          "packages/svelte/tests/compiler-errors/samples/attribute-sequence-expression/_config.js"
+        ]
+      }
+    },
+    {
+      "id": "i16993",
+      "issue": {
+        "number": 16993,
+        "title": "Editable content duplicated on blur"
+      },
+      "pr": {
+        "number": 17853,
+        "files": [
+          ".changeset/html-contenteditable-fix.md",
+          "packages/svelte/src/compiler/phases/3-transform/client/visitors/HtmlTag.js",
+          "packages/svelte/src/compiler/phases/3-transform/client/visitors/shared/fragment.js",
+          "packages/svelte/src/compiler/types/template.d.ts",
+          "packages/svelte/src/internal/client/dom/blocks/html.js",
+          "packages/svelte/tests/runtime-runes/samples/html-tag-contenteditable/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/html-tag-contenteditable/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "i17514",
+      "issue": {
+        "number": 17514,
+        "title": "Using `$inspect` rune with remote functions causes internal error in the build"
+      },
+      "pr": {
+        "number": 17943,
+        "files": [
+          ".changeset/clear-birds-invite.md",
+          "packages/svelte/src/compiler/phases/3-transform/shared/transform-async.js",
+          "packages/svelte/tests/runtime-runes/samples/async-inspect-build/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-inspect-build/main.svelte",
+          "packages/svelte/tests/snapshot/samples/async-top-level-inspect-server/_expected/client/index.svelte.js",
+          "packages/svelte/tests/snapshot/samples/async-top-level-inspect-server/_expected/server/index.svelte.js"
+        ]
+      }
+    },
+    {
+      "id": "i17404",
+      "issue": {
+        "number": 17404,
+        "title": "async svelte bug with remote function"
+      },
+      "pr": {
+        "number": 17938,
+        "files": [
+          ".changeset/lemon-geese-post.md",
+          "packages/svelte/src/compiler/phases/3-transform/client/visitors/shared/utils.js",
+          "packages/svelte/src/compiler/utils/builders.js",
+          "packages/svelte/tests/runtime-runes/samples/async-late-value-init/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-late-value-init/main.svelte",
+          "packages/svelte/tests/snapshot/samples/dynamic-attributes-casing/_expected/client/main.svelte.js",
+          "packages/svelte/tests/snapshot/samples/text-nodes-deriveds/_expected/client/index.svelte.js"
+        ]
+      }
+    },
+    {
+      "id": "i16610",
+      "issue": {
+        "number": 16610,
+        "title": "Fix in 5.38.0 breaks async iterators"
+      },
+      "pr": {
+        "number": 17966,
+        "files": [
+          ".changeset/tasty-carrots-tie.md",
+          "packages/svelte/src/internal/client/reactivity/async.js",
+          "packages/svelte/tests/runtime-runes/samples/async-reactivity-loss-for-await-break-return/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-reactivity-loss-for-await-break-return/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "i16151",
+      "issue": {
+        "number": 16151,
+        "title": "`TweenedOptions` not exported from `svelte/motion`"
+      },
+      "pr": {
+        "number": 17967,
+        "files": [
+          ".changeset/angry-knives-bow.md",
+          "packages/svelte/src/motion/private.d.ts",
+          "packages/svelte/src/motion/public.d.ts",
+          "packages/svelte/src/motion/spring.js",
+          "packages/svelte/src/motion/tweened.js",
+          "packages/svelte/tests/types/motion.ts",
+          "packages/svelte/types/index.d.ts"
+        ]
+      }
+    },
+    {
+      "id": "i17099",
+      "issue": {
+        "number": 17099,
+        "title": "Async: Values can get out of sync"
+      },
+      "pr": {
+        "number": 18021,
+        "files": [
+          ".changeset/yellow-hairs-laugh.md",
+          "packages/svelte/src/internal/client/reactivity/batch.js",
+          "packages/svelte/src/internal/client/reactivity/effects.js",
+          "packages/svelte/tests/runtime-runes/samples/async-state-new-branch-1/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-state-new-branch-2/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-state-new-branch-3/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-state-new-branch-3/main.svelte",
+          "packages/svelte/tests/runtime-runes/samples/async-state-new-branch-fork-2/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-state-new-branch-fork-5/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-state-new-branch/_config.js"
+        ]
+      }
+    },
+    {
+      "id": "i15061",
+      "issue": {
+        "number": 15061,
+        "title": "Can't disable hydration warning"
+      },
+      "pr": {
+        "number": 18054,
+        "files": [
+          ".changeset/silent-rings-yell.md",
+          "packages/svelte/src/internal/client/runtime.js",
+          "packages/svelte/tests/runtime-runes/samples/async-fork-if-derived/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-fork-if-derived/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "i17571",
+      "issue": {
+        "number": 17571,
+        "title": "General reactivity issues"
+      },
+      "pr": {
+        "number": 18048,
+        "files": [
+          ".changeset/petite-signs-flash.md",
+          "packages/svelte/src/internal/client/reactivity/batch.js",
+          "packages/svelte/tests/runtime-runes/samples/async-if-block-unskip/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-if-block-unskip/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "i17211",
+      "issue": {
+        "number": 17211,
+        "title": "Async: HMR Broken after navigate"
+      },
+      "pr": {
+        "number": 18079,
+        "files": [
+          ".changeset/all-masks-dig.md",
+          "packages/svelte/src/internal/client/constants.js",
+          "packages/svelte/src/internal/client/dev/hmr.js",
+          "packages/svelte/src/internal/client/dom/blocks/branches.js",
+          "packages/svelte/tests/runtime-runes/samples/hmr-dynamic-component/Component.svelte",
+          "packages/svelte/tests/runtime-runes/samples/hmr-dynamic-component/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/hmr-dynamic-component/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "i15654",
+      "issue": {
+        "number": 15654,
+        "title": "Incorrect a11y invalid href attribute warning"
+      },
+      "pr": {
+        "number": 18088,
+        "files": [
+          ".changeset/twenty-snakes-design.md",
+          "packages/svelte/src/internal/client/reactivity/async.js",
+          "packages/svelte/src/internal/client/reactivity/deriveds.js",
+          "packages/svelte/src/internal/client/runtime.js",
+          "packages/svelte/tests/runtime-runes/samples/async-reactivity-loss-async-after-sync/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-reactivity-loss-async-after-sync/main.svelte",
+          "packages/svelte/tests/runtime-runes/samples/async-reactivity-loss-for-await-break-return/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-reactivity-loss-for-await/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-reactivity-loss-no-false-positive-1/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-reactivity-loss-no-false-positive-1/main.svelte",
+          "packages/svelte/tests/runtime-runes/samples/async-reactivity-loss-no-false-positive-2/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-reactivity-loss-no-false-positive-2/main.svelte",
+          "packages/svelte/tests/runtime-runes/samples/async-reactivity-loss-no-false-positive-3/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-reactivity-loss-no-false-positive-3/main.svelte"
+        ]
+      }
+    }
+  ]
+}
