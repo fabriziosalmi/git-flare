@@ -1,0 +1,181 @@
+{
+  "slug": "honojs/hono",
+  "base": "f7d272abe1644e50ab5fe9cb53f5965c35d77226",
+  "since": "2026-02-01",
+  "until": "2026-08-01",
+  "tasks": [
+    {
+      "id": "i4582",
+      "issue": {
+        "number": 4582,
+        "title": "`useRequestContext` not working when using `await` and the `html` helper together"
+      },
+      "pr": {
+        "number": 4662,
+        "files": [
+          "src/jsx/context.ts",
+          "src/jsx/index.test.tsx"
+        ]
+      }
+    },
+    {
+      "id": "i4440",
+      "issue": {
+        "number": 4440,
+        "title": "Fragment identifiers cause incorrect route parameter parsing in Service Worker"
+      },
+      "pr": {
+        "number": 4627,
+        "files": [
+          "src/utils/url.test.ts",
+          "src/utils/url.ts"
+        ]
+      }
+    },
+    {
+      "id": "i4388",
+      "issue": {
+        "number": 4388,
+        "title": "Type inference drops routes declared before use() when using method chaining"
+      },
+      "pr": {
+        "number": 4722,
+        "files": [
+          "src/types.test.ts"
+        ]
+      }
+    },
+    {
+      "id": "i4389",
+      "issue": {
+        "number": 4389,
+        "title": "SSG: Support redirects"
+      },
+      "pr": {
+        "number": 4599,
+        "files": [
+          "src/helper/ssg/index.ts",
+          "src/helper/ssg/plugins.test.tsx",
+          "src/helper/ssg/plugins.ts",
+          "src/helper/ssg/ssg.test.tsx",
+          "src/helper/ssg/ssg.ts"
+        ]
+      }
+    },
+    {
+      "id": "i4186",
+      "issue": {
+        "number": 4186,
+        "title": "Support for Relative Path in Hono Client"
+      },
+      "pr": {
+        "number": 4636,
+        "files": [
+          "src/client/client.test.ts",
+          "src/client/client.ts",
+          "src/client/types.test.ts",
+          "src/client/types.ts"
+        ]
+      }
+    },
+    {
+      "id": "i4192",
+      "issue": {
+        "number": 4192,
+        "title": "Pass username to context from basicAuth"
+      },
+      "pr": {
+        "number": 4645,
+        "files": [
+          "src/middleware/basic-auth/index.test.ts",
+          "src/middleware/basic-auth/index.ts"
+        ]
+      }
+    },
+    {
+      "id": "i3407",
+      "issue": {
+        "number": 3407,
+        "title": "`trimTrailingSlash` doesn't work on paths with `*`"
+      },
+      "pr": {
+        "number": 4658,
+        "files": [
+          "src/middleware/trailing-slash/index.test.ts",
+          "src/middleware/trailing-slash/index.ts"
+        ]
+      }
+    },
+    {
+      "id": "i4294",
+      "issue": {
+        "number": 4294,
+        "title": "LanguageDetector middleware does not parse locale code into language code"
+      },
+      "pr": {
+        "number": 4717,
+        "files": [
+          "src/middleware/language/index.test.ts",
+          "src/middleware/language/language.ts"
+        ]
+      }
+    },
+    {
+      "id": "i4493",
+      "issue": {
+        "number": 4493,
+        "title": "ExecutionContext is missing exports filed available in Cloudflare Workers"
+      },
+      "pr": {
+        "number": 4719,
+        "files": [
+          "src/context.ts"
+        ]
+      }
+    },
+    {
+      "id": "i3750",
+      "issue": {
+        "number": 3750,
+        "title": "Type 'ClientResponse<T, U, F>' is not assignable to type 'void | Response'."
+      },
+      "pr": {
+        "number": 4768,
+        "files": [
+          "src/client/types.ts",
+          "src/hono-base.ts"
+        ]
+      }
+    },
+    {
+      "id": "i3198",
+      "issue": {
+        "number": 3198,
+        "title": "With `UpgradeWebSocket`, any path parameters become non-optional in TS type system"
+      },
+      "pr": {
+        "number": 4723,
+        "files": [
+          "src/request.test.ts",
+          "src/request.ts",
+          "src/types.test.ts"
+        ]
+      }
+    },
+    {
+      "id": "i4590",
+      "issue": {
+        "number": 4590,
+        "title": "Since PR #4393, success response types can no longer be resolved without explicit status/ok checks"
+      },
+      "pr": {
+        "number": 4791,
+        "files": [
+          "src/client/client.test.ts",
+          "src/client/index.ts",
+          "src/client/types.ts"
+        ]
+      }
+    }
+  ]
+}

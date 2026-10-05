@@ -90,3 +90,27 @@ test('no worktree is left registered in the repository after a run', () => {
   const list = execFileSync('git', ['-C', fx.dir, 'worktree', 'list'], { encoding: 'utf8' }).trim().split('\n');
   assert.equal(list.length, 1);
 });
+
+test('the manifest records how long each task took the agent, and the median and 90th percentile of the committed ones', () => {
+  const fx = fixture();
+  // Each task also pays a fixed cost (a worktree, a commit: about 100 ms, and now and then seconds on a cold machine),
+  // so the delays are large against that noise.
+  const m = run(fx, ['--mock-delay-ms', '400']); // issue 1 takes 400 ms, issue 2 takes 800 ms
+  const [e1, e2] = m.tasks.map((t) => t.elapsedMs);
+  assert.ok(e1 >= 400 && e1 < 8000, `${e1}`);
+  assert.ok(e2 >= 800 && e2 < 8000, `${e2}`);
+  assert.ok(e2 - e1 >= 250, `${e2} - ${e1}`);
+  assert.ok(Math.abs(m.taskMs.p50 - (e1 + e2) / 2) < 1e-9); // two values: the median is their mean
+  assert.ok(Math.abs(m.taskMs.p90 - (e1 + 0.9 * (e2 - e1))) < 1e-9);
+  assert.ok(m.taskMs.p90 > m.taskMs.p50 + 100); // 0.4 of the gap between the two
+});
+
+test('a task that did not commit is not in the timing percentiles', () => {
+  const fx = fixture();
+  const spec = JSON.parse(fs.readFileSync(fx.tasksFile, 'utf8'));
+  spec.tasks[0].pr.files = ['src/a.py'];
+  fs.writeFileSync(fx.tasksFile, JSON.stringify(spec));
+  const m = run(fx, ['--mock-flaw', 'ghost']); // edits to a file that does not exist: the other edit still commits
+  assert.deepEqual(m.tasks.map((t) => t.status), ['committed', 'committed']);
+  assert.equal(typeof m.taskMs.p50, 'number');
+});

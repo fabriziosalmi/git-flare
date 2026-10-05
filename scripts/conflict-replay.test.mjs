@@ -141,3 +141,20 @@ test('several manifests of one base are combined; a task stopped in one and comm
   fs.writeFileSync(other, JSON.stringify({ base: 'deadbeef', tasks: [] }));
   assert.throws(() => execFileSync('node', [SCRIPT, '--repo', dir, '--manifest', first, '--manifest', other], { encoding: 'utf8', stdio: 'pipe' }), /do not share one base commit/);
 });
+
+test('--human-only: the footprint of the pull requests of a tasks file, with no repository', () => {
+  const f = path.join(tmp(), 'tasks.json');
+  fs.writeFileSync(f, JSON.stringify({ base: 'x', tasks: [
+    { id: 'i1', pr: { files: ['a.py', 'CHANGES.rst'] } },
+    { id: 'i2', pr: { files: ['a.py', 'CHANGES.rst', 'b.py'] } },
+    { id: 'i3', pr: { files: ['c.py'] } },
+    { id: 'i4', humanFiles: ['b.py'], pr: { files: ['ignored.py'] } },
+  ] }));
+  const out = path.join(tmp(), 'h.json');
+  const stdout = execFileSync('node', [SCRIPT, '--human-only', '--manifest', f, '--out', out], { encoding: 'utf8' });
+  const h = JSON.parse(fs.readFileSync(out, 'utf8')).humanBaseline.allTasks;
+  // pairs: i1-i2 share a.py and CHANGES.rst, i2-i4 share b.py, i1-i3 i1-i4 i2-i3 i3-i4 share nothing: 2 of 6; without hot files: a.py and b.py still do
+  assert.deepEqual([h.patches, h.pairs, h.pairsSharingFile, h.pairsSharingFileExcludingHotFiles, h.medianFilesPerPatch], [4, 6, 2, 2, 2]);
+  assert.match(stdout, /2\/6 pairs share a file/);
+  assert.throws(() => execFileSync('node', [SCRIPT, '--human-only'], { encoding: 'utf8', stdio: 'pipe' }), /usage/); // it needs a manifest
+});

@@ -332,3 +332,79 @@ concurrency and not the rate of a queue (that is phase 3, #13). The agent cannot
 of the patches is known to be correct, and a textually clean merge is not a correct one (§10 measures that on
 history). The whitespace-tolerant edit did not trigger in this run: it is covered by unit tests and kept, but this
 pilot gives no evidence that it matters.
+
+## 13. Phase 3 protocol (fixed before the grid is run)
+
+`scripts/queue-sim.mjs` drives the real queue code of a local `npm run dev` (registry, claims, reviews, rounds, the
+run of the tests on the composed tree) over HTTP, with mock Artifacts and a mock test runner whose duration is set
+(`dev-configure`). Agents and reviewers are scripted: an agent claims a task, works, commits the files of the task's
+footprint, submits, waits for two scripted reviews and for the queue's outcome; a patch sent back as a conflict is
+made again after a shorter rebase time until it merges or 10 attempts are used. The metrics come from the times
+the server records on every patch (`claimedAt`, `submittedAt`, `queuedAt`, `closedAt`). It runs in minutes and costs
+nothing; staging is used to calibrate the times and to spot-check cells.
+
+**Validity checks, before any grid result is read.** (1) `--selftest`: twelve tasks on one file must produce
+conflicts and all merge, twelve tasks on 500 distinct files must produce none (also run in CI). (2) The reference cell
+at `--scale 1` and at `--scale 0.25`: if the per-submission rejection differs by more than 5 points the grid runs at
+scale 1, because the queue's own latencies do not scale. (3) The simulated curve is compared with the one measured on
+history (§9), and a gap is explained.
+
+**Validity check (2), done 2026-10-05.** Reference-like cell (10 agents, 3 tasks each, `click` human footprints,
+work 60 s, review 15 s, rebase 30 s, tests 30 s; provisional times, so the figures are not a result), two seeds each,
+`benchmarks/results/2026-10-05/queue-sim/scale-check/`:
+
+| Scale | Rejection per submission | First attempts | Window W p50 | Queue and tests | Wall time per cell |
+|---|---|---|---|---|---|
+| 1 | 86.1% (85.2, 86.9) | 88.3% | 60 s and 59 s | 30.2 s | about 23 min |
+| 0.25 | 85.2% (83.9, 86.4) | 91.7% | 62 s and 60 s (as simulated) | 7.7 s (= 30.8 s) | about 6 min |
+
+The difference is under one point, far below the 5 points fixed beforehand: **the grid runs at scale 0.25**. The
+queue's own latency is about 0.2 s per round, so it is 0.3% of W at scale 1 and 1.3% at scale 0.25.
+Three defects of the simulator were found and fixed on the way (cells started together shared a repository; the
+claim's lease expired during long work, so the agent now sends heartbeats; the process kept running for an hour
+after the cell), each covered by the self-test or a unit test.
+
+**Parameters.** Agents N ∈ {2, 5, 10, 20, 40} × test duration ∈ {none, 5, 30, 120 s}, three repetitions with seeds
+1 to 3, 6 tasks per agent, 4 shards, 10 attempts at most. Work, review and rebase times are the medians measured in
+phase 2 (issue #12), committed before the grid is run; the reference cell is also run with the work time ×0.5 and ×2.
+
+**Footprints and repositories (fixed 2026-10-05, before any grid result).** The reference uses the files of the real
+pull requests that closed the tasks (`human`). The unit of analysis is the repository, because a hunk-level merge
+would be opt-in per repository. The sample is fixed here, not chosen afterwards: `pallets/click`, `honojs/hono`,
+`axios/axios`, `prettier/prettier`, `eslint/eslint`, `vitejs/vite`, `sveltejs/svelte` and `cli/cli`: the repositories
+with the most merged pull requests linked to an issue between 2026-02-01 and 2026-08-01 in a survey made before any
+filter, in several languages. Their tasks are selected with the same procedure and window as for `click` (issues that
+existed at the base commit and were closed by a merged pull request that changes code; the first 12); a repository that
+yields fewer than 12 after the filters is kept with the tasks it has and the number is reported (the survey counted
+linked pull requests, so some yield fewer: see the table). Sensitivity runs: `human-nohot` (without
+changelog, version and dependency files, what a structured rule for those would take out) and `agent`.
+The footprint set is part of the result: on `click`, 10 of 12 pull requests touch `CHANGES.rst` and 7 of 12 touch
+`src/click/core.py`; on `hono`, 4 of 66 pairs share a file.
+
+**Footprints of the eight repositories** (inputs, not results; `benchmarks/results/2026-10-05/footprints/`): pairs of
+pull requests that share a file, and the median number of files per pull request.
+
+| Repository | Tasks | Pairs sharing a file | Without changelog, version, dependency files | Median files per PR |
+|---|---|---|---|---|
+| `pallets/click` | 12 | 55 of 66 (83%) | 23 | 4 |
+| `eslint/eslint` | 7 | 4 of 21 (19%) | 1 | 3 |
+| `axios/axios` | 12 | 12 of 66 (18%) | 12 | 3 |
+| `vitejs/vite` | 11 | 5 of 55 (9%) | 5 | 3 |
+| `prettier/prettier` | 9 | 3 of 36 (8%) | 3 | 6 |
+| `honojs/hono` | 12 | 4 of 66 (6%) | 4 | 2 |
+| `sveltejs/svelte` | 12 | 3 of 66 (5%) | 3 | 7 |
+| `cli/cli` | 7 | 1 of 21 (5%) | 1 | 4 |
+
+`click` stands apart (a changelog edited by almost every pull request, and one file that most of them touch); the other
+seven sit between 5% and 19%. This is why the median and not the mean is read.
+
+**The number G1 reads.** At the reference scenario (10 agents, tests of 30 s) the rejection per submission,
+stale / (merged + stale), averaged over three repetitions per repository, for the `human` footprints. The share for
+first attempts only (a freshly made patch, the figure comparable with §9) is reported next to it. G1 reads the
+**median over the eight repositories** of those per-repository rates, with the thresholds of §11; each rate is
+reported as well. The median is used because the mean of repositories at opposite ends (`click` and `hono` are 83%
+and 6% of pairs sharing a file) says nothing about any of them. **One clause against a median that hides a
+minority:** if the median is under 10% but at least 3 of the 8 repositories are at 20% or more, G1 does not close the
+project: it takes the middle branch (cheap levers, and the decision record of phase 4 settles an opt-in hunk-level
+merge with the costs measured in phase 2). The reference cell runs for all eight repositories; the full grid
+(agents × test duration) for `click`, `hono` and one more.
