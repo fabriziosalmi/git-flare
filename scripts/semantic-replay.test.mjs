@@ -175,6 +175,18 @@ test('a work directory the run made itself is removed when it ends', () => {
   assert.deepEqual(after, []);
 });
 
+test('the result records the repository head, git version, test command and the environment note', () => {
+  const repo = scenario({ limit: 20, a: { 'A.txt': 'top\n' + A12 }, b: { 'A.txt': A12 + 'bottom\n' } });
+  const head = execFileSync('git', ['-C', repo, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
+  const { result } = run(repo, ['--env-note', 'python 3.12, pytest 9']);
+  assert.equal(result.repo.head, head);
+  assert.equal(result.repo.remote, null); // a repository without a remote
+  assert.match(result.git, /^git version /);
+  assert.equal(result.envNote, 'python 3.12, pytest 9');
+  assert.equal(result.testCommand, TEST_CMD);
+  assert.equal(run(repo).result.envNote, null);
+});
+
 test('wilson: interval around the observed rate, [0, 1] with no trials', () => {
   assert.deepEqual(wilson(0, 0), [0, 1]);
   const [lo, hi] = wilson(5, 100);

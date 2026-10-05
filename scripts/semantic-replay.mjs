@@ -15,7 +15,10 @@
 // semantic rate of clean-but-overlapping merges can be read against the baseline of merges any rule accepts.
 //
 //   node scripts/semantic-replay.mjs --repo <clone> --test "PYTHONPATH=src python -m pytest -q" --path-prepend <venv/bin>
-//       [--since 2024-01-01] [--max 200] [--control 200] [--timeout 300] [--workdir dir] [--min-free-gib 1.5] [--cache f.json] [--out f.json]
+//       [--since 2024-01-01] [--max 200] [--control 200] [--timeout 300] [--workdir dir] [--min-free-gib 1.5] [--env-note text] [--cache f.json] [--out f.json]
+//
+// The result records the repository's remote and HEAD, the git version, the test command and --env-note, so a run can be
+// repeated and compared; pairs depend on the history cloned.
 //
 // The test command runs with `sh -c` in a detached worktree of each commit, with a minimal environment (HOME,
 // PATH = --path-prepend + /usr/bin:/bin, LANG): no credentials of the caller reach the repository's code. It
@@ -32,7 +35,7 @@ const arg = (n, d) => (args.includes(`--${n}`) ? args[args.indexOf(`--${n}`) + 1
 const REPO = arg('repo');
 const TEST = arg('test');
 if (!REPO || !TEST) {
-  console.error('usage: node scripts/semantic-replay.mjs --repo <clone> --test "<command>" [--path-prepend dir] [--since date] [--max N] [--control N] [--timeout s] [--workdir dir] [--min-free-gib G] [--cache f.json] [--out f.json]');
+  console.error('usage: node scripts/semantic-replay.mjs --repo <clone> --test "<command>" [--path-prepend dir] [--since date] [--max N] [--control N] [--timeout s] [--workdir dir] [--min-free-gib G] [--env-note text] [--cache f.json] [--out f.json]');
   process.exit(2);
 }
 const SINCE = arg('since'); // a date; without it every merge of the history (git reads `--since=1970-01-01` as no commits at all)
@@ -44,6 +47,7 @@ const MAX = Number(arg('max', '200'));
 const CONTROL = Number(arg('control', '200'));
 const TIMEOUT_MS = Number(arg('timeout', '300')) * 1000;
 const PATH_PREPEND = arg('path-prepend');
+const ENV_NOTE = arg('env-note'); // free text kept in the result: interpreter, dependency versions, how the repository was installed
 const OUT = arg('out');
 const CACHE = arg('cache');
 const AUTO_WORKDIR = arg('workdir') === undefined;
@@ -145,7 +149,7 @@ const evenly = (xs, n) => (xs.length <= n ? xs : Array.from({ length: n }, (_, i
 const groups = { clean: evenly(candidates, MAX), disjoint: evenly(controls, CONTROL) };
 console.log(`pairs${SINCE ? ` since ${SINCE}` : ''}: ${candidates.length} clean-but-overlapping (testing ${groups.clean.length}), ${controls.length} disjoint (control, testing ${groups.disjoint.length})`);
 
-const result = { date: new Date().toISOString().slice(0, 10), what: 'Tests on the merged tree of concurrent pairs from two-parent merge commits: clean-but-overlapping pairs vs disjoint control', since: SINCE ?? null, testCommand: TEST, timeoutSec: TIMEOUT_MS / 1000, groups: {} };
+const result = { date: new Date().toISOString().slice(0, 10), repo: { remote: git(REPO, ['config', '--get', 'remote.origin.url'], [0, 1]).out.trim() || null, head: git(REPO, ['rev-parse', 'HEAD']).out.trim() }, git: git(REPO, ['--version']).out.trim(), envNote: ENV_NOTE ?? null, what: 'Tests on the merged tree of concurrent pairs from two-parent merge commits: clean-but-overlapping pairs vs disjoint control', since: SINCE ?? null, testCommand: TEST, timeoutSec: TIMEOUT_MS / 1000, groups: {} };
 for (const [name, pairs] of Object.entries(groups)) {
   const counts = { pairs: 0, ok: 0, semantic: 0, preexisting: 0, flaky: 0, timeout: 0, skipped: 0 };
   const semantic = [];
