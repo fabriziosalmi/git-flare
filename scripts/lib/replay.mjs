@@ -55,7 +55,8 @@ const tokens = (x) => new Set(x.toLowerCase().match(/[a-z_][a-z0-9_]{2,}/g) ?? [
 /**
  * Why a `search` text is not in a file: 'whitespace' (equal once whitespace is collapsed), 'lines-not-contiguous'
  * (every line exists, not as one block), 'partial' (its first line exists, the rest does not) or 'absent' (not even
- * its first line). `nearest` is the file line sharing the most identifiers with the first line of the search.
+ * its first line). `nearest` is the file line sharing the most identifiers with the first line of the search and
+ * `nearestLine` its 1-based number.
  */
 export function diagnoseMiss(text, search) {
   const fileLines = text.split('\n');
@@ -66,33 +67,65 @@ export function diagnoseMiss(text, search) {
   else if (sLines.length > 0 && sLines.every((l) => trimmed.has(l))) kind = 'lines-not-contiguous';
   else if (sLines.length > 0 && trimmed.has(sLines[0])) kind = 'partial';
   const want = tokens(sLines[0] ?? '');
-  let best = { score: 0, line: '' };
-  for (const l of fileLines) {
+  let best = { score: 0, line: '', at: 0 };
+  fileLines.forEach((l, i) => {
     const t = tokens(l);
     let score = 0;
     for (const w of want) if (t.has(w)) score++;
-    if (score > best.score) best = { score, line: l.trim() };
+    if (score > best.score) best = { score, line: l.trim(), at: i + 1 };
+  });
+  return { kind, searchHead: sLines[0]?.slice(0, 160) ?? '', ...(best.score > 0 ? { nearest: best.line.slice(0, 160), nearestLine: best.at } : {}) };
+}
+
+const indentOf = (l) => l.match(/^[ \t]*/)[0];
+
+/**
+ * The places of a file that hold `search` once the whitespace at both ends of every line is ignored (the usual way a
+ * model gets a block wrong: the right lines at another indentation). Blank lines at the edges of `search` are
+ * ignored. Returns [{start, end}] as 0-based line indexes, end exclusive.
+ */
+export function findTrimmedBlock(fileLines, search) {
+  const want = search.split('\n').map((l) => l.trim());
+  while (want.length && want[0] === '') want.shift();
+  while (want.length && want[want.length - 1] === '') want.pop();
+  if (want.length === 0) return [];
+  const found = [];
+  for (let i = 0; i + want.length <= fileLines.length; i++) {
+    let same = true;
+    for (let j = 0; j < want.length && same; j++) same = fileLines[i + j].trim() === want[j];
+    if (same) found.push({ start: i, end: i + want.length });
   }
-  return { kind, searchHead: sLines[0]?.slice(0, 160) ?? '', ...(best.score > 0 ? { nearest: best.line.slice(0, 160) } : {}) };
+  return found;
+}
+
+/** `n` lines on each side of the 1-based line `center`: {start, end, text} with 1-based inclusive line numbers. */
+export function excerptAround(text, center, n = 12) {
+  const ls = text.split('\n');
+  const start = Math.max(1, center - n);
+  const end = Math.min(ls.length, center + n);
+  return { start, end, text: ls.slice(start - 1, end).join('\n') };
 }
 
 /**
  * Apply [{path, search, replace}] to the files under `dir`. `search` must occur exactly once in the file (an
- * empty `search` creates a file that does not exist yet). An edit that cannot be applied is reported and
- * skipped; the others still apply. Returns {applied: [paths], failed: [{path, reason}]}.
+ * empty `search` creates a file that does not exist yet). When it does not occur verbatim but one place holds the
+ * same lines ignoring the whitespace at their ends, that place is used and the replacement is moved to its
+ * indentation (reported in `fuzzy`). An edit that cannot be applied is reported with its `index` in `edits` and
+ * skipped; the others still apply. Returns {applied: [paths], fuzzy: [paths], failed: [{index, path, reason}]}.
  */
 export function applyEdits(dir, edits) {
   const applied = [];
+  const fuzzy = [];
   const failed = [];
-  for (const e of Array.isArray(edits) ? edits : []) {
+  for (const [index, e] of (Array.isArray(edits) ? edits : []).entries()) {
     if (!e || !safeRelPath(e.path) || typeof e.search !== 'string' || typeof e.replace !== 'string') {
-      failed.push({ path: String(e?.path ?? ''), reason: 'malformed edit' });
+      failed.push({ index, path: String(e?.path ?? ''), reason: 'malformed edit' });
       continue;
     }
     const file = path.join(dir, e.path);
     const exists = fs.existsSync(file);
     if (e.search === '') {
-      if (exists) failed.push({ path: e.path, reason: 'file exists, empty search' });
+      if (exists) failed.push({ index, path: e.path, reason: 'file exists, empty search' });
       else {
         fs.mkdirSync(path.dirname(file), { recursive: true });
         fs.writeFileSync(file, e.replace);
@@ -101,19 +134,33 @@ export function applyEdits(dir, edits) {
       continue;
     }
     if (!exists) {
-      failed.push({ path: e.path, reason: 'no such file' });
+      failed.push({ index, path: e.path, reason: 'no such file' });
       continue;
     }
     const text = fs.readFileSync(file, 'utf8');
     const first = text.indexOf(e.search);
-    if (first === -1) failed.push({ path: e.path, reason: 'search text not found', ...diagnoseMiss(text, e.search) });
-    else if (text.indexOf(e.search, first + 1) !== -1) failed.push({ path: e.path, reason: 'search text not unique' });
+    if (first === -1) {
+      const fileLines = text.split('\n');
+      const places = findTrimmedBlock(fileLines, e.search);
+      if (places.length === 1) {
+        const { start, end } = places[0];
+        const searchLines = e.search.split('\n');
+        const searchIndent = indentOf(searchLines.find((l) => l.trim() !== '') ?? '');
+        const fileIndent = indentOf(fileLines[start]);
+        const moved = e.replace.replace(/\n+$/, '').split('\n').map((l) => (l.trim() === '' ? l : l.startsWith(searchIndent) ? fileIndent + l.slice(searchIndent.length) : l));
+        fileLines.splice(start, end - start, ...moved);
+        fs.writeFileSync(file, fileLines.join('\n'));
+        applied.push(e.path);
+        fuzzy.push(e.path);
+      } else if (places.length > 1) failed.push({ index, path: e.path, reason: 'search text not unique (ignoring whitespace)' });
+      else failed.push({ index, path: e.path, reason: 'search text not found', ...diagnoseMiss(text, e.search) });
+    } else if (text.indexOf(e.search, first + 1) !== -1) failed.push({ index, path: e.path, reason: 'search text not unique' });
     else {
       fs.writeFileSync(file, text.slice(0, first) + e.replace + text.slice(first + e.search.length));
       applied.push(e.path);
     }
   }
-  return { applied: [...new Set(applied)], failed };
+  return { applied: [...new Set(applied)], fuzzy: [...new Set(fuzzy)], failed };
 }
 
 /** First JSON object in model output (string or already parsed), as agents/src/index.ts extractJson. */
@@ -192,6 +239,43 @@ export function wilson(k, n) {
   const c = p + (z * z) / (2 * n);
   const w = z * Math.sqrt((p * (1 - p)) / n + (z * z) / (4 * n * n));
   return [Math.max(0, (c - w) / d), Math.min(1, (c + w) / d)];
+}
+
+const NOT_SOURCE = /\.(md|rst|txt|ya?ml|toml|cfg|ini)$|^docs?\/|^tests?\//i;
+const median = (xs) => (xs.length === 0 ? null : [...xs].sort((a, b) => a - b)[Math.floor(xs.length / 2)]);
+
+/**
+ * What an agent's patches look like next to the pull requests that closed the same tasks. `tasks` are agent-replay
+ * manifest tasks. Source files are the human files that are not documentation, configuration or tests.
+ * selection: of the source files the human PRs changed, how many the agent chose to read (tasks with at least one
+ * source file only); the files the agent edited are counted per file.
+ */
+export function footprintSummary(tasks) {
+  const committed = tasks.filter((t) => t.status === 'committed');
+  const perFile = {};
+  for (const t of committed) for (const f of t.editedFiles ?? []) perFile[f] = (perFile[f] ?? 0) + 1;
+  let humanSource = 0;
+  let hit = 0;
+  let tasksWithSource = 0;
+  let tasksWithHit = 0;
+  for (const t of tasks) {
+    const src = (t.humanFiles ?? []).filter((f) => !NOT_SOURCE.test(f) && !HOT.test(f));
+    if (src.length === 0) continue;
+    const chosen = new Set(t.selected ?? []);
+    const h = src.filter((f) => chosen.has(f)).length;
+    humanSource += src.length;
+    hit += h;
+    tasksWithSource++;
+    if (h > 0) tasksWithHit++;
+  }
+  return {
+    tasks: tasks.length,
+    committed: committed.length,
+    medianFilesPerAgentPatch: median(committed.map((t) => (t.editedFiles ?? []).length)),
+    medianFilesPerHumanPr: median(tasks.map((t) => (t.humanFiles ?? []).length)),
+    editedFiles: Object.fromEntries(Object.entries(perFile).sort((a, b) => b[1] - a[1])),
+    selection: { humanSourceFiles: humanSource, readByAgent: hit, tasksWithHumanSource: tasksWithSource, tasksWhereAgentReadOne: tasksWithHit },
+  };
 }
 
 // ─── Reading large files by ranges ──────────────────────────────────────────

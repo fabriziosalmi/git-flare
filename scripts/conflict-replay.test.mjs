@@ -100,3 +100,44 @@ test('manifest mode: every pair of committed tasks from one base, and the human 
   assert.deepEqual([h.allTasks.patches, h.allTasks.pairs, h.allTasks.pairsSharingFile, h.allTasks.pairsSharingFileExcludingHotFiles], [4, 6, 5, 3]); // by hand: t1-t2 (A, CHANGES), t1-t3 (CHANGES), t1-t4 (A), t2-t3 (CHANGES), t2-t4 (A) share a file, t3-t4 do not; without CHANGES.rst only the three that share A.txt
   assert.deepEqual([h.sameTasksAsCommittedAgentPatches.patches, h.sameTasksAsCommittedAgentPatches.pairs, h.sameTasksAsCommittedAgentPatches.pairsSharingFile, h.sameTasksAsCommittedAgentPatches.pairsSharingFileExcludingHotFiles], [3, 3, 3, 1]);
 });
+
+test('several manifests of one base are combined; a task stopped in one and committed in the next counts once', () => {
+  const dir = tmp();
+  const g = (...x) => execFileSync('git', ['-C', dir, '-c', 'user.name=t', '-c', 'user.email=t@t', '-c', 'commit.gpgsign=false', ...x], { encoding: 'utf8' });
+  g('init', '-q', '-b', 'main');
+  fs.writeFileSync(path.join(dir, 'A.txt'), body);
+  fs.writeFileSync(path.join(dir, 'B.txt'), body);
+  g('add', '-A');
+  g('commit', '-q', '-m', 'base');
+  const base = g('rev-parse', 'HEAD').trim();
+  const tip = (name, file, change) => {
+    g('checkout', '-q', '-b', name, base);
+    fs.writeFileSync(path.join(dir, file), change);
+    g('commit', '-q', '-am', name);
+    return g('rev-parse', 'HEAD').trim();
+  };
+  const t1 = tip('t1', 'A.txt', 'top\n' + body);
+  const t2 = tip('t2', 'A.txt', body + 'bottom\n');
+  const t3 = tip('t3', 'B.txt', 'x\n' + body);
+  const w = (tasks) => {
+    const f = path.join(tmp(), 'm.json');
+    fs.writeFileSync(f, JSON.stringify({ base, tasks }));
+    return f;
+  };
+  const first = w([{ id: 't1', status: 'committed', sha: t1, humanFiles: ['A.txt'] }, { id: 't2', status: 'budget-stop', humanFiles: ['A.txt'] }, { id: 't3', status: 'committed', sha: t3, humanFiles: ['B.txt'] }]);
+  const second = w([{ id: 't2', status: 'committed', sha: t2, humanFiles: ['A.txt'] }, { id: 't3', status: 'committed', sha: t3, humanFiles: ['B.txt'] }]);
+  const out = path.join(tmp(), 'r.json');
+  execFileSync('node', [SCRIPT, '--repo', dir, '--manifest', first, '--manifest', second, '--out', out], { encoding: 'utf8' });
+  const r = JSON.parse(fs.readFileSync(out, 'utf8'));
+  // three committed tasks, once each: 3 pairs; t1-t2 share A.txt (clean), t3 is disjoint
+  assert.deepEqual([r.total.all.pairs, r.total.all.overlap, r.total.all.overlapClean, r.total.all.disjoint], [3, 1, 1, 2]);
+  assert.equal(r.humanBaseline.allTasks.patches, 3); // the human files are counted once per task as well
+  // alone, the first manifest has only two committed tasks
+  const alone = path.join(tmp(), 'a.json');
+  execFileSync('node', [SCRIPT, '--repo', dir, '--manifest', first, '--out', alone], { encoding: 'utf8' });
+  assert.equal(JSON.parse(fs.readFileSync(alone, 'utf8')).total.all.pairs, 1);
+  // manifests of different bases are refused
+  const other = path.join(tmp(), 'o.json');
+  fs.writeFileSync(other, JSON.stringify({ base: 'deadbeef', tasks: [] }));
+  assert.throws(() => execFileSync('node', [SCRIPT, '--repo', dir, '--manifest', first, '--manifest', other], { encoding: 'utf8', stdio: 'pipe' }), /do not share one base commit/);
+});

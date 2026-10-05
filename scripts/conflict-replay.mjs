@@ -22,7 +22,7 @@
 // syncs and vendoring merges are not what an agent patch looks like).
 import fs from 'node:fs';
 import path from 'node:path';
-import { DIVERGENCE_BUCKETS, HOT, divergenceBucket, git, lines, pairVerdict, sharedPathPairs } from './lib/replay.mjs';
+import { DIVERGENCE_BUCKETS, HOT, divergenceBucket, footprintSummary, git, lines, pairVerdict, sharedPathPairs } from './lib/replay.mjs';
 
 const args = process.argv.slice(2);
 const all = (n) => args.flatMap((a, i) => (a === `--${n}` ? [args[i + 1]] : []));
@@ -31,7 +31,8 @@ const REPOS = all('repo');
 const BIG = Number(arg('big', '200'));
 const OUT = arg('out');
 const PAIRS = arg('pairs');
-const MANIFEST = arg('manifest');
+const MANIFESTS = all('manifest'); // one or more agent-replay manifests of the same base (a run split over several days by the neuron budget)
+const MANIFEST = MANIFESTS.length > 0;
 if (REPOS.length === 0 || (MANIFEST && REPOS.length !== 1)) {
   console.error('usage: node scripts/conflict-replay.mjs --repo <clone> [--repo ...] [--big N] [--out f.json] [--pairs f.jsonl]\n       node scripts/conflict-replay.mjs --repo <clone> --manifest <manifest.json> [--out f.json] [--pairs f.jsonl]');
   process.exit(2);
@@ -47,10 +48,28 @@ const summarize = (c) => ({
   hunkLevelRejectExcludingHotFilesPct: pct(c.overlapConflict - c.conflictOnlyHotFiles, c.pairs),
 });
 
+/** The tasks of every manifest, which must share one base commit. */
+function loadManifests() {
+  const ms = MANIFESTS.map((f) => JSON.parse(fs.readFileSync(f, 'utf8')));
+  const bases = new Set(ms.map((m) => m.base));
+  if (bases.size !== 1) {
+    console.error(`the manifests do not share one base commit: ${[...bases].join(', ')}`);
+    process.exit(2);
+  }
+  // A task may appear in several manifests (stopped by the budget in one, done in the next): the committed one wins.
+  const byId = new Map();
+  for (const t of ms.flatMap((m) => m.tasks)) {
+    const prev = byId.get(t.id);
+    if (!prev || (prev.status !== 'committed' && t.status === 'committed')) byId.set(t.id, t);
+  }
+  const tasks = [...byId.values()];
+  return { base: ms[0].base, tasks };
+}
+
 /** Yield {meta, verdict} for every concurrent pair of a repository. */
 function* pairsOf(repo) {
   if (MANIFEST) {
-    const m = JSON.parse(fs.readFileSync(MANIFEST, 'utf8'));
+    const m = loadManifests();
     const done = m.tasks.filter((t) => t.status === 'committed' && t.sha);
     for (let i = 0; i < done.length; i++) {
       for (let j = i + 1; j < done.length; j++) {
@@ -68,14 +87,14 @@ function* pairsOf(repo) {
 
 /** The human pull requests that closed the same tasks: how often do their pairs share a file? (the footprint the agents are compared with) */
 function humanBaseline() {
-  const m = JSON.parse(fs.readFileSync(MANIFEST, 'utf8'));
+  const m = loadManifests();
   const withHuman = (ts) => ts.filter((t) => Array.isArray(t.humanFiles)).map((t) => t.humanFiles);
   const row = (sets) => {
     const [all, pairs] = sharedPathPairs(sets);
     const [noHot] = sharedPathPairs(sets, HOT);
     return { patches: sets.length, pairs, pairsSharingFile: all, pairsSharingFileExcludingHotFiles: noHot, medianFilesPerPatch: sets.length ? [...sets].map((x) => x.length).sort((x, y) => x - y)[Math.floor(sets.length / 2)] : null };
   };
-  return { allTasks: row(withHuman(m.tasks)), sameTasksAsCommittedAgentPatches: row(withHuman(m.tasks.filter((t) => t.status === 'committed'))) };
+  return { agentFootprint: footprintSummary(m.tasks), allTasks: row(withHuman(m.tasks)), sameTasksAsCommittedAgentPatches: row(withHuman(m.tasks.filter((t) => t.status === 'committed'))) };
 }
 
 const pairsOut = PAIRS ? fs.createWriteStream(PAIRS) : null;
@@ -144,6 +163,8 @@ for (const k of ['all', 'excludingBig']) {
 }
 if (result.humanBaseline) {
   const h = result.humanBaseline;
+  const f = h.agentFootprint;
+  console.log(`agent: ${f.committed}/${f.tasks} patches, median ${f.medianFilesPerAgentPatch} file(s) per patch (human PRs: ${f.medianFilesPerHumanPr}); read ${f.selection.readByAgent}/${f.selection.humanSourceFiles} of the human source files; edited files: ${Object.entries(f.editedFiles).slice(0, 4).map(([k, v]) => `${k} (${v})`).join(', ')}`);
   console.log(`human PRs, same tasks: ${h.allTasks.pairsSharingFile}/${h.allTasks.pairs} pairs share a file (${h.allTasks.pairsSharingFileExcludingHotFiles} without hot files), median ${h.allTasks.medianFilesPerPatch} files per PR | for the committed agent patches only: ${h.sameTasksAsCommittedAgentPatches.pairsSharingFile}/${h.sameTasksAsCommittedAgentPatches.pairs} (${h.sameTasksAsCommittedAgentPatches.pairsSharingFileExcludingHotFiles} without hot files)`);
 }
 console.log(`by commits on the longer side: ${Object.entries(result.byDivergence).map(([k, b]) => `${k}: ${b.pairs} pairs, file ${b.fileLevelRejectPct}% / hunk ${b.hunkLevelRejectPct}%`).join(' | ')}`);
