@@ -35,7 +35,7 @@ export function lognormalMs(rand, mean, cv) {
 }
 
 /**
- * The footprints (lists of paths) of agent-replay manifests. kind: 'human' (the files of the pull requests that closed
+ * The footprints (lists of paths) of agent-replay manifests or tasks files. kind: 'human' (the files of the pull requests that closed
  * the tasks) or 'agent' (the files the agent edited, committed patches only); either with '-nohot' to leave out
  * changelog, version and dependency files (what a rule that merges those structurally would take out of the conflicts).
  * Paths that the API would refuse are dropped, and so are footprints left empty.
@@ -46,7 +46,7 @@ export function footprintsOf(manifests, kind) {
   const out = [];
   for (const manifest of manifests) {
     for (const t of manifest.tasks) {
-      let files = m[1] === 'agent' ? (t.status === 'committed' ? t.editedFiles : []) : t.humanFiles;
+      let files = m[1] === 'agent' ? (t.status === 'committed' ? t.editedFiles : []) : (t.humanFiles ?? t.pr?.files); // a manifest, or the tasks file of agent-replay
       files = (files ?? []).filter((f) => /^[A-Za-z0-9._/-]{1,200}$/.test(f));
       if (m[2]) files = files.filter((f) => !HOT.test(f));
       if (files.length > 0) out.push(files);

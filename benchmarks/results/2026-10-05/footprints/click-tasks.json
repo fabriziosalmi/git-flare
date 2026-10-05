@@ -1,0 +1,196 @@
+{
+  "slug": "pallets/click",
+  "base": "5590ef46e3c88261a76937836b1b0dd2822c27a2",
+  "since": "2026-02-01",
+  "until": "2026-08-01",
+  "tasks": [
+    {
+      "id": "i3145",
+      "issue": {
+        "number": 3145,
+        "title": "`lookup_default` returns `Sentinel.UNSET` instead of `None`"
+      },
+      "pr": {
+        "number": 3224,
+        "files": [
+          "CHANGES.rst",
+          "src/click/core.py",
+          "tests/test_defaults.py"
+        ]
+      }
+    },
+    {
+      "id": "i3121",
+      "issue": {
+        "number": 3121,
+        "title": "Using a class as a `flag_value` causes the default to be instantiated in click 8.3.0"
+      },
+      "pr": {
+        "number": 3225,
+        "files": [
+          "CHANGES.rst",
+          "src/click/core.py",
+          "tests/test_defaults.py",
+          "tests/test_options.py"
+        ]
+      }
+    },
+    {
+      "id": "i843",
+      "issue": {
+        "number": 843,
+        "title": "`click.testing.CliRunner.invoke` prevents use of `pdb`"
+      },
+      "pr": {
+        "number": 3235,
+        "files": [
+          ".pre-commit-config.yaml",
+          "CHANGES.rst",
+          "src/click/testing.py",
+          "tests/test_testing.py"
+        ]
+      }
+    },
+    {
+      "id": "i2412",
+      "issue": {
+        "number": 2412,
+        "title": "`CliRunner` causes `subprocess.run(..., stdout=sys.stderr)` to raise `UnsupportedOperation`"
+      },
+      "pr": {
+        "number": 3244,
+        "files": [
+          "CHANGES.rst",
+          "docs/testing.md",
+          "src/click/testing.py",
+          "tests/test_testing.py"
+        ]
+      }
+    },
+    {
+      "id": "i3111",
+      "issue": {
+        "number": 3111,
+        "title": "New \"default\" behaviour in Click 8.3.x is broken for negative boolean flags"
+      },
+      "pr": {
+        "number": 3239,
+        "files": [
+          "CHANGES.rst",
+          "docs/options.md",
+          "src/click/core.py",
+          "tests/test_options.py",
+          "tests/test_termui.py"
+        ]
+      }
+    },
+    {
+      "id": "i2836",
+      "issue": {
+        "number": 2836,
+        "title": "`show_default` as a string isn't used in prompts as the default shown"
+      },
+      "pr": {
+        "number": 3328,
+        "files": [
+          "CHANGES.rst",
+          "src/click/core.py",
+          "src/click/termui.py",
+          "tests/test_options.py",
+          "tests/test_termui.py"
+        ]
+      }
+    },
+    {
+      "id": "i2879",
+      "issue": {
+        "number": 2879,
+        "title": "Reorder ParameterSource"
+      },
+      "pr": {
+        "number": 3248,
+        "files": [
+          "CHANGES.rst",
+          "docs/commands-and-groups.md",
+          "src/click/__init__.py",
+          "src/click/core.py"
+        ]
+      }
+    },
+    {
+      "id": "i2745",
+      "issue": {
+        "number": 2745,
+        "title": "Modifying `default_map` in callback behaves differently between click 7.1.2 and 8.0.0"
+      },
+      "pr": {
+        "number": 3364,
+        "files": [
+          "CHANGES.rst",
+          "docs/commands.md",
+          "docs/conf.py",
+          "src/click/core.py",
+          "tests/test_defaults.py"
+        ]
+      }
+    },
+    {
+      "id": "i2012",
+      "issue": {
+        "number": 2012,
+        "title": "`flag_value` is passed through `ParamType.convert`"
+      },
+      "pr": {
+        "number": 3363,
+        "files": [
+          "CHANGES.rst",
+          "src/click/core.py",
+          "tests/test_options.py"
+        ]
+      }
+    },
+    {
+      "id": "i2790",
+      "issue": {
+        "number": 2790,
+        "title": "Nested command option shadowing `-h` prints wrong suggestion"
+      },
+      "pr": {
+        "number": 3208,
+        "files": [
+          "CHANGES.rst",
+          "src/click/exceptions.py",
+          "tests/test_formatting.py"
+        ]
+      }
+    },
+    {
+      "id": "i2606",
+      "issue": {
+        "number": 2606,
+        "title": "click.echo does not force colors on Windows with color=True"
+      },
+      "pr": {
+        "number": 2731,
+        "files": [
+          "tests/test_compat.py"
+        ]
+      }
+    },
+    {
+      "id": "i2968",
+      "issue": {
+        "number": 2968,
+        "title": "backspace and line-wrapping acting strange on Linux"
+      },
+      "pr": {
+        "number": 2969,
+        "files": [
+          "CHANGES.rst",
+          "src/click/termui.py",
+          "tests/test_utils.py"
+        ]
+      }
+    }
+  ]
+}

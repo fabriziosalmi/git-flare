@@ -134,6 +134,8 @@ test('footprintsOf: human or agent files, with or without changelog/version/depe
   assert.deepEqual(footprintsOf([m], 'agent'), [['a.py'], ['b.py']]); // committed patches only, 'x y.py' refused
   assert.deepEqual(footprintsOf([m], 'agent-nohot'), [['a.py'], ['b.py']]);
   assert.deepEqual(footprintsOf([m, m], 'agent').length, 4); // several manifests are concatenated
+  // the tasks file of agent-replay (before any run) holds the human files under pr.files
+  assert.deepEqual(footprintsOf([{ tasks: [{ id: 'i1', pr: { files: ['x.ts', 'y.ts'] } }, { id: 'i2', humanFiles: ['z.ts'], pr: { files: ['ignored.ts'] } }] }], 'human'), [['x.ts', 'y.ts'], ['z.ts']]);
   assert.throws(() => footprintsOf([m], 'humans'), /unknown footprint kind/);
   assert.throws(() => footprintsOf([m], 'human-hot'), /unknown footprint kind/);
 });
