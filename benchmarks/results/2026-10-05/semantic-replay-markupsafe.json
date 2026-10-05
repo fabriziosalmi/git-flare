@@ -1,48 +1,48 @@
 {
   "date": "2026-10-05",
   "repo": {
-    "remote": "https://github.com/pallets/click.git",
-    "head": "2247b35ea1c47c727d7a06e51fa280e12a863ff6"
+    "remote": "https://github.com/pallets/markupsafe.git",
+    "head": "4e111271b1494995708a9e878a10829b5e10c7ba"
   },
   "git": "git version 2.50.1 (Apple Git-155)",
-  "envNote": "python 3.12.12; iniconfig==2.3.0 packaging==26.3 pluggy==1.6.0 pytest==9.1.1 ; click installed editable from the clone, tests run with PYTHONPATH=src and -p no:warnings",
+  "envNote": "python 3.12.12; iniconfig==2.3.0 markupsafe==3.0.4 pluggy==1.6.0 pytest==9.1.1 trio==0.34.0 ; run from the clone with PYTHONPATH=src, only the tests/ directory, and -p no:warnings; merges since 2022-01-01",
   "what": "Tests on the merged tree of concurrent pairs from two-parent merge commits: clean-but-overlapping pairs vs disjoint control",
-  "since": null,
-  "testCommand": "PYTHONPATH=src python -m pytest -q -x -p no:cacheprovider -p no:warnings",
+  "since": "2022-01-01",
+  "testCommand": "PYTHONPATH=src python -m pytest tests -q -x -p no:cacheprovider -p no:warnings",
   "timeoutSec": 180,
   "groups": {
     "clean": {
-      "pairs": 161,
-      "ok": 78,
+      "pairs": 28,
+      "ok": 28,
       "semantic": 0,
-      "preexisting": 83,
+      "preexisting": 0,
       "flaky": 0,
       "timeout": 0,
       "skipped": 0,
-      "judged": 78,
+      "judged": 28,
       "semanticRatePct": 0,
       "semanticRate95CiPct": [
         0,
-        4.7
+        12.1
       ],
       "semanticCases": []
     },
     "disjoint": {
-      "pairs": 200,
-      "ok": 129,
+      "pairs": 26,
+      "ok": 26,
       "semantic": 0,
-      "preexisting": 71,
+      "preexisting": 0,
       "flaky": 0,
       "timeout": 0,
       "skipped": 0,
-      "judged": 129,
+      "judged": 26,
       "semanticRatePct": 0,
       "semanticRate95CiPct": [
         0,
-        2.9
+        12.9
       ],
       "semanticCases": []
     }
   },
-  "testRuns": 668
+  "testRuns": 54
 }
