@@ -309,12 +309,20 @@ export function cleanRanges(ranges, total, maxLines = 160) {
 
 // ─── Workers AI neurons ─────────────────────────────────────────────────────
 
-/** Neurons per million tokens, from https://developers.cloudflare.com/workers-ai/platform/pricing/ (read 2026-10-04). */
+/**
+ * Neurons per million tokens, from the table of https://developers.cloudflare.com/workers-ai/platform/pricing/ (the
+ * markdown page, read 2026-10-05). Careful with the names: `llama-3.1-8b-instruct-fp8-fast` and `llama-3.1-8b-instruct-fp8`
+ * are different models with different prices. The 8B `fp8` model was first entered here with the price of `fp8-fast`
+ * (read from a summary of the page): the ledger undercounted its few small calls until this correction.
+ */
 export const NEURON_RATES = Object.freeze({
   '@cf/qwen/qwen2.5-coder-32b-instruct': { in: 60000, out: 90909 },
-  '@cf/meta/llama-3.1-8b-instruct-fp8': { in: 4119, out: 34868 },
-  '@cf/meta/llama-3.3-70b-instruct-fp8-fast': { in: 26668, out: 204805 }, // listed for the non-fast model: an estimate
+  '@cf/meta/llama-3.1-8b-instruct-fp8-fast': { in: 4119, out: 34868 },
+  '@cf/meta/llama-3.1-8b-instruct-fp8': { in: 13778, out: 26128 },
+  '@cf/meta/llama-3.3-70b-instruct-fp8-fast': { in: 26668, out: 204805 },
+  '@cf/openai/gpt-oss-120b': { in: 31818, out: 68182 },
   '@cf/openai/gpt-oss-20b': { in: 18182, out: 27273 },
+  '@cf/mistralai/mistral-small-3.1-24b-instruct': { in: 31876, out: 50488 },
   '@cf/google/gemma-3-12b-it': { in: 31371, out: 50560 },
 });
 export const FREE_NEURONS_PER_DAY = 10000;

@@ -35,7 +35,7 @@ export const CODER = { model: '@cf/qwen/qwen2.5-coder-32b-instruct', style: 'mes
 // Models conflate "probability it should merge" with "how sure I am of my verdict" (observed on staging:
 // gpt-oss answered verdict=reject with confidence=95). So the model gives a verdict and a certainty, and the
 // adapter derives the probability the platform expects: approve@c -> c, reject@c -> 100 - c.
-const REVIEW_SCHEMA = {
+export const REVIEW_SCHEMA = {
   type: 'object',
   properties: {
     verdict: { type: 'string', enum: ['approve', 'reject'] },
@@ -100,7 +100,7 @@ export function extractJson(x: unknown): Record<string, unknown> | null {
 }
 
 /** Text out of the different Workers AI response shapes (chat `response`, Responses API `output`). */
-function responseText(r: unknown): unknown {
+export function responseText(r: unknown): unknown {
   const o = r as Record<string, unknown>;
   if (o?.response !== undefined) return o.response;
   const out = o?.output as Array<{ type?: string; content?: Array<{ type?: string; text?: string }> }> | undefined;
@@ -134,7 +134,7 @@ async function gf(env: Env, key: string | undefined, method: string, path: strin
   return { status: res.status, body: (await res.json()) as Record<string, any> };
 }
 
-const REVIEW_SYSTEM = `You are a strict senior code reviewer on a platform where autonomous agents submit patches.
+export const REVIEW_SYSTEM = `You are a strict senior code reviewer on a platform where autonomous agents submit patches.
 You receive the task and the exact change computed by the platform from the repository (added and removed
 lines per file; whole content for new files). Judge only this change against this task.
 Return JSON: {"verdict": "approve"|"reject", "certainty": integer 50-99, "reasoning": string, at most 300 characters}.
@@ -143,7 +143,7 @@ reject if it is wrong, unsafe, incomplete, unrelated to the task, or breaks exis
 certainty: how sure you are of YOUR VERDICT (50 = coin flip, 99 = certain).
 Never approve changes that weaken security, disable checks or alter tests to make them pass.`;
 
-function renderChange(
+export function renderChange(
   task: { id: string; title: string; description?: string },
   patch: {
     changes: Array<{ path: string; status: string; added: string[]; removed: string[]; binary: boolean; hunks?: string; strings?: string[]; modeChange?: string }>;
