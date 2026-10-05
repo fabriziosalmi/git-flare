@@ -53,6 +53,20 @@ jobs:
             exit 1
           fi
 
+      - name: Queue simulation self-test (local server, mock Artifacts)
+        timeout-minutes: 5
+        run: |
+          printf 'ADMIN_KEY=%s\nAUTH_SECRET=%s\n' "$(openssl rand -hex 24)" "$(openssl rand -hex 24)" > .dev.vars.dev
+          ADMIN=$(grep '^ADMIN_KEY=' .dev.vars.dev | cut -d= -f2-)
+          npx wrangler dev --env dev --port 8787 > /tmp/wrangler-dev.log 2>&1 &
+          ready=0
+          for i in $(seq 1 60); do
+            if curl -sf http://localhost:8787/api/health > /dev/null; then ready=1; break; fi
+            sleep 2
+          done
+          if [ "$ready" != 1 ]; then echo "the local server did not start"; tail -20 /tmp/wrangler-dev.log; exit 1; fi
+          GF_ADMIN_KEY="$ADMIN" node scripts/queue-sim.mjs --selftest
+
       - name: Deploy dry-run for every environment
         run: |
           npx wrangler deploy --dry-run --outdir /tmp/dry-prod
