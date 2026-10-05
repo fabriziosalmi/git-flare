@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { test } from 'node:test';
-import { applyEdits, cleanRanges, diagnoseMiss, divergenceBucket, extractJson, git, ledgerAdd, ledgerRead, neuronsFor, NEURON_RATES, outlineOf, pairVerdict, safeRelPath, sharedPathPairs, streamRejects } from './lib/replay.mjs';
+import { applyEdits, cleanRanges, diagnoseMiss, divergenceBucket, excerptAround, extractJson, findTrimmedBlock, git, ledgerAdd, ledgerRead, neuronsFor, NEURON_RATES, outlineOf, pairVerdict, safeRelPath, sharedPathPairs, streamRejects } from './lib/replay.mjs';
 import { tmpdir } from './lib/tmp.mjs';
 
 const tmp = () => tmpdir('replay-test-');
@@ -178,12 +178,51 @@ test('diagnoseMiss: whitespace, lines-not-contiguous, partial and absent, with t
   assert.equal(diagnoseMiss(text, 'def h(x):').nearest, 'def f(x):'); // nearest = first line sharing an identifier of 3+ characters (here `def`)
 });
 
-test('applyEdits: a search that is not found carries its diagnosis', () => {
+test('applyEdits: a search that is not found carries its diagnosis, the index of the edit and the nearest line', () => {
   const dir = tmp();
-  fs.writeFileSync(path.join(dir, 'f.py'), 'def f(x):\n    return x\n');
-  const r = applyEdits(dir, [{ path: 'f.py', search: 'def f(x):\n  return x', replace: 'z' }]);
-  assert.equal(r.failed[0].reason, 'search text not found');
-  assert.equal(r.failed[0].kind, 'whitespace');
+  fs.writeFileSync(path.join(dir, 'f.py'), 'import os\ndef f(x):\n    return x\n');
+  const r = applyEdits(dir, [{ path: 'f.py', search: 'import os', replace: 'import sys' }, { path: 'f.py', search: 'def f(x):\n    return y', replace: 'z' }]);
+  assert.deepEqual(r.applied, ['f.py']);
+  assert.equal(r.failed.length, 1);
+  assert.deepEqual([r.failed[0].index, r.failed[0].reason, r.failed[0].kind, r.failed[0].nearestLine], [1, 'search text not found', 'partial', 2]);
+});
+
+test('applyEdits: the right lines at another indentation are found and the replacement is moved to the file indentation', () => {
+  const dir = tmp();
+  const file = path.join(dir, 'f.py');
+  fs.writeFileSync(file, 'class A:\n    def f(self, x):\n        if x:\n            return 1\n        return 2\n');
+  // the model dedented the block: no verbatim match, one place ignoring whitespace
+  const r = applyEdits(dir, [{ path: 'f.py', search: 'if x:\n    return 1', replace: 'if x:\n    return 10\n' }]);
+  assert.deepEqual([r.applied, r.fuzzy, r.failed], [['f.py'], ['f.py'], []]);
+  assert.equal(fs.readFileSync(file, 'utf8'), 'class A:\n    def f(self, x):\n        if x:\n            return 10\n        return 2\n');
+});
+
+test('applyEdits: a whitespace-insensitive match that is not unique, or a real difference, is not applied', () => {
+  const dir = tmp();
+  const file = path.join(dir, 'f.py');
+  const text = 'def a():\n    x = 1\n\ndef b():\n    x = 1\n';
+  fs.writeFileSync(file, text);
+  // trailing spaces make it a non-verbatim search; two places hold the same trimmed line
+  const twice = applyEdits(dir, [{ path: 'f.py', search: 'x = 1  ', replace: 'x = 2' }]);
+  assert.equal(twice.failed[0].reason, 'search text not unique (ignoring whitespace)');
+  const different = applyEdits(dir, [{ path: 'f.py', search: 'def a():\n   x = 2', replace: 'y' }]);
+  assert.equal(different.failed[0].reason, 'search text not found');
+  assert.equal(fs.readFileSync(file, 'utf8'), text); // nothing changed
+});
+
+test('findTrimmedBlock: every place whose lines equal the search once the whitespace at their ends is ignored', () => {
+  const ls = ['  a', '  b', 'x', 'a ', ' b', ''];
+  assert.deepEqual(findTrimmedBlock(ls, 'a\nb'), [{ start: 0, end: 2 }, { start: 3, end: 5 }]);
+  assert.deepEqual(findTrimmedBlock(ls, '\n\na\nb\n'), [{ start: 0, end: 2 }, { start: 3, end: 5 }]); // blank edges ignored
+  assert.deepEqual(findTrimmedBlock(ls, 'a\nc'), []);
+  assert.deepEqual(findTrimmedBlock(ls, '   \n'), []);
+});
+
+test('excerptAround: lines around a 1-based line, clamped to the file', () => {
+  const text = Array.from({ length: 10 }, (_, i) => `l${i + 1}`).join('\n');
+  assert.deepEqual(excerptAround(text, 5, 2), { start: 3, end: 7, text: 'l3\nl4\nl5\nl6\nl7' });
+  assert.deepEqual(excerptAround(text, 1, 2), { start: 1, end: 3, text: 'l1\nl2\nl3' });
+  assert.deepEqual(excerptAround(text, 10, 3).end, 10);
 });
 
 test('sharedPathPairs: pairs sharing a path, optionally ignoring some paths', () => {

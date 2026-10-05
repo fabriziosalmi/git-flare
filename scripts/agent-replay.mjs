@@ -19,6 +19,8 @@
 //
 // Workers AI free allocation is 10,000 neurons a day: every call is counted from the API's token usage,
 // added to a per-day ledger shared by all runs, and the run stops before a call that would pass --max-neurons.
+// An edit whose search text is not in the file but whose lines are, ignoring the whitespace at their ends, is applied at
+// the file's indentation; for the others the agent gets one retry with the real text around the most similar place.
 // `mock` needs no network: it edits one unique line per chosen file (a trailing space), deterministically, to
 // test the plumbing.
 import { execFileSync } from 'node:child_process';
@@ -27,7 +29,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { cfApi } from './cf-api.mjs';
-import { applyEdits, cleanRanges, extractJson, git, ledgerAdd, ledgerRead, lines, neuronsFor, outlineOf } from './lib/replay.mjs';
+import { applyEdits, cleanRanges, excerptAround, extractJson, git, ledgerAdd, ledgerRead, lines, neuronsFor, outlineOf } from './lib/replay.mjs';
 
 const argv = process.argv.slice(2);
 const cmd = argv[0];
@@ -42,7 +44,8 @@ const must = (n) => {
 };
 
 const CODER = arg('model', '@cf/qwen/qwen2.5-coder-32b-instruct');
-const SELECTOR = arg('select-model', '@cf/meta/llama-3.1-8b-instruct-fp8');
+const SELECTOR = arg('select-model', '@cf/meta/llama-3.3-70b-instruct-fp8-fast');
+const MOCK_FLAWS = new Set(arg('mock-flaw', 'none').split(',')); // mock only: 'typo' makes the first edit's search text wrong (to exercise the retry), 'ghost' adds an edit to a file that does not exist (a failure that cannot be retried)
 const MAX_FILES = 4;
 const MAX_FILE_CHARS = 30_000;
 const MAX_CONTEXT_CHARS = 48_000;
@@ -118,6 +121,11 @@ definitions with their line numbers. Return JSON {"ranges": [{"start": line, "en
 most ${MAX_RANGE_LINES} lines each that contain the code to read and change (a whole function or class body, not just its first line).`;
 const VIEW_SCHEMA = { type: 'object', properties: { ranges: { type: 'array', items: { type: 'object', properties: { start: { type: 'integer' }, end: { type: 'integer' } }, required: ['start', 'end'] } } }, required: ['ranges'] };
 
+const RETRY_SYSTEM = `Some of the edits you proposed could not be applied: the text in "search" does not occur in the file. For each of
+them you get what you proposed and the real text of the file around the most similar place. Return JSON {"message":
+commit message, "edits": [{"path", "search", "replace"}]} with a corrected edit for each one: "search" must be copied
+exactly from the excerpt shown, and "replace" is what it should become. Skip an edit that does not fit the excerpt.`;
+
 const budget = { max: Number(arg('max-neurons', '8000')), spentThisRun: 0, calls: 0, stopped: false };
 
 class BudgetStop extends Error {}
@@ -185,7 +193,21 @@ const agents = {
           }
         }
       }
+      if (MOCK_FLAWS.has('ghost')) edits.push({ path: 'ghost.py', search: 'x', replace: 'y' });
+      if (MOCK_FLAWS.has('typo') && edits.length > 0) {
+        const e = edits[0];
+        const i = Math.floor(e.search.length / 2);
+        edits[0] = { ...e, search: `${e.search.slice(0, i)}~${e.search.slice(i + 1)}`, replace: e.replace }; // one character wrong in the middle
+      }
       return { message: `mock edit for ${task.id}`, edits, calls: [] };
+    },
+    async retry(task, items) {
+      // the corrected edit copies the line the excerpt is centred on
+      const edits = items.map((it) => {
+        const real = it.excerpt.text.split('\n')[it.nearestLine - it.excerpt.start];
+        return { path: it.path, search: real, replace: `${real} ` };
+      });
+      return { message: `mock retry for ${task.id}`, edits, calls: [] };
     },
   },
   llm: {
@@ -200,6 +222,14 @@ const agents = {
       const user = `ISSUE #${task.issue.number}: ${task.issue.title}\n${task.issue.body}\n\nOUTLINE OF ${p} (${total} lines):\n${outline.map((o) => `${o.line}: ${o.text}`).join('\n')}`.slice(0, 40_000);
       const r = await ai(SELECTOR, VIEW_SYSTEM, user, VIEW_SCHEMA, 200);
       return { ranges: Array.isArray(r.out?.ranges) ? r.out.ranges : [], calls: [{ step: 'view', model: SELECTOR, tin: r.tin, tout: r.tout, neurons: r.neurons, estimated: r.estimated }] };
+    },
+    async retry(task, items) {
+      let user = `ISSUE #${task.issue.number}: ${task.issue.title}\n`;
+      items.forEach((it, n) => {
+        user += `\nEDIT ${n + 1} (${it.path}): you proposed to replace\n<<<\n${it.original.search.slice(0, 1500)}\n>>>\nwith\n<<<\n${it.original.replace.slice(0, 1500)}\n>>>\nReal text of ${it.path}, lines ${it.excerpt.start}-${it.excerpt.end}:\n${it.excerpt.text}\n`;
+      });
+      const r = await ai(CODER, RETRY_SYSTEM, user, CODE_SCHEMA, CODE_TOKENS);
+      return { message: String(r.out?.message ?? '').slice(0, 200), edits: Array.isArray(r.out?.edits) ? r.out.edits : [], calls: [{ step: 'retry', model: CODER, tin: r.tin, tout: r.tout, neurons: r.neurons, estimated: r.estimated }] };
     },
     async edit(task, segments) {
       let user = `ISSUE #${task.issue.number}: ${task.issue.title}\n${task.issue.body}\n\nFILES YOU MAY EDIT (a header says when only part of a file is shown):\n`;
@@ -251,8 +281,21 @@ async function runOne(repo, base, task, agent, runId, workdir) {
     rec.excerpted = [...new Set(segments.filter((g) => g.total).map((g) => g.path))];
     const ed = await agent.edit(task, segments, whole);
     rec.calls.push(...ed.calls);
-    const { applied, failed } = applyEdits(wt, ed.edits);
+    let result = applyEdits(wt, ed.edits);
+    // One retry for the edits whose search text is not in the file: the agent sees the real text around the most similar place.
+    const retryable = result.failed.filter((f) => f.reason === 'search text not found' && f.nearestLine).slice(0, 3);
+    if (retryable.length > 0) {
+      const items = retryable.map((f) => ({ ...f, original: ed.edits[f.index], excerpt: excerptAround(fs.readFileSync(path.join(wt, f.path), 'utf8'), f.nearestLine) }));
+      const rr = await agent.retry(task, items);
+      rec.calls.push(...rr.calls);
+      const second = applyEdits(wt, rr.edits);
+      rec.retried = items.length;
+      rec.retryApplied = second.applied.length;
+      result = { applied: [...new Set([...result.applied, ...second.applied])], fuzzy: [...new Set([...result.fuzzy, ...second.fuzzy])], failed: [...result.failed.filter((f) => !retryable.includes(f)), ...second.failed.map((f) => ({ ...f, afterRetry: true }))] };
+    }
+    const { applied, failed } = result;
     rec.failedEdits.push(...failed);
+    rec.fuzzyEdits = result.fuzzy;
     rec.editedFiles = applied;
     if (applied.length === 0) return Object.assign(rec, { status: 'no-patch' });
     const ident = ['-c', 'user.name=agent-replay', '-c', 'user.email=agent-replay@invalid'];
@@ -305,7 +348,7 @@ async function runCommand() {
     slug: spec.slug,
     base: spec.base,
     agent: kind,
-    ...(kind === 'llm' ? { coder: CODER, selector: SELECTOR, note: 'single-shot: file selection + search/replace edits, no tool use' } : {}),
+    ...(kind === 'llm' ? { coder: CODER, selector: SELECTOR, note: 'single-shot: file selection, search/replace edits (whitespace-tolerant), one retry with the real excerpt; no tool use' } : {}),
     neuronsThisRun: Math.round(budget.spentThisRun),
     neuronsToday: Math.round(ledgerRead().spent),
     tasks: rows,
