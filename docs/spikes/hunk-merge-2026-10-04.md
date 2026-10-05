@@ -332,3 +332,34 @@ concurrency and not the rate of a queue (that is phase 3, #13). The agent cannot
 of the patches is known to be correct, and a textually clean merge is not a correct one (§10 measures that on
 history). The whitespace-tolerant edit did not trigger in this run: it is covered by unit tests and kept, but this
 pilot gives no evidence that it matters.
+
+## 13. Phase 3 protocol (fixed before the grid is run)
+
+`scripts/queue-sim.mjs` drives the real queue code of a local `npm run dev` (registry, claims, reviews, rounds, the
+run of the tests on the composed tree) over HTTP, with mock Artifacts and a mock test runner whose duration is set
+(`dev-configure`). Agents and reviewers are scripted: an agent claims a task, works, commits the files of the task's
+footprint, submits, waits for two scripted reviews and for the queue's outcome; a patch sent back as a conflict is
+made again after a shorter rebase time until it merges or 10 attempts are used. The metrics come from the times
+the server records on every patch (`claimedAt`, `submittedAt`, `queuedAt`, `closedAt`). It runs in minutes and costs
+nothing; staging is used to calibrate the times and to spot-check cells.
+
+**Validity checks, before any grid result is read.** (1) `--selftest`: twelve tasks on one file must produce
+conflicts and all merge, twelve tasks on 500 distinct files must produce none (also run in CI). (2) The reference cell
+at `--scale 1` and at `--scale 0.25`: if the per-submission rejection differs by more than 5 points the grid runs at
+scale 1, because the queue's own latencies do not scale. (3) The simulated curve is compared with the one measured on
+history (§9), and a gap is explained.
+
+**Parameters.** Agents N ∈ {2, 5, 10, 20, 40} × test duration ∈ {none, 5, 30, 120 s}, three repetitions with seeds
+1 to 3, 6 tasks per agent, 4 shards, 10 attempts at most. Work, review and rebase times are the medians measured in
+phase 2 (issue #12), committed before the grid is run; the reference cell is also run with the work time ×0.5 and ×2.
+
+**Footprints.** The reference uses the files of the real pull requests that closed the tasks (`human`), per
+repository (`click`, `hono`). Sensitivity: the same without changelog, version and dependency files (`human-nohot`,
+what a structured rule for those files would take out) and the files an agent edited (`agent`). The footprint set is
+part of the result: on `click`, 10 of 12 pull requests touch `CHANGES.rst` and 7 of 12 touch `src/click/core.py`.
+
+**The number G1 reads.** At the reference scenario (10 agents, tests of 30 s) the rejection per submission,
+stale / (merged + stale), averaged over the three repetitions, for the `human` footprints; the share for first
+attempts only (a freshly made patch, the figure comparable with §9) is reported next to it. With more than one
+repository, G1 reads the mean of the per-repository rates with equal weight, and each rate is reported as well.
+Thresholds as in §11.
