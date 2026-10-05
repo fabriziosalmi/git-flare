@@ -90,3 +90,25 @@ test('no worktree is left registered in the repository after a run', () => {
   const list = execFileSync('git', ['-C', fx.dir, 'worktree', 'list'], { encoding: 'utf8' }).trim().split('\n');
   assert.equal(list.length, 1);
 });
+
+test('the manifest records how long each task took the agent, and the median and 90th percentile of the committed ones', () => {
+  const fx = fixture();
+  const m = run(fx);
+  for (const t of m.tasks) {
+    assert.equal(typeof t.elapsedMs, 'number');
+    assert.ok(t.elapsedMs >= 0 && t.elapsedMs < 60_000);
+  }
+  const sorted = m.tasks.map((t) => t.elapsedMs).sort((a, b) => a - b);
+  assert.equal(m.taskMs.p50, (sorted[0] + sorted[1]) / 2); // two tasks: the median is their mean
+  assert.ok(m.taskMs.p90 >= m.taskMs.p50 && m.taskMs.p90 <= sorted[1]);
+});
+
+test('a task that did not commit is not in the timing percentiles', () => {
+  const fx = fixture();
+  const spec = JSON.parse(fs.readFileSync(fx.tasksFile, 'utf8'));
+  spec.tasks[0].pr.files = ['src/a.py'];
+  fs.writeFileSync(fx.tasksFile, JSON.stringify(spec));
+  const m = run(fx, ['--mock-flaw', 'ghost']); // edits to a file that does not exist: the other edit still commits
+  assert.deepEqual(m.tasks.map((t) => t.status), ['committed', 'committed']);
+  assert.equal(typeof m.taskMs.p50, 'number');
+});
