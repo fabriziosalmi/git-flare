@@ -293,3 +293,42 @@ Decisions of 2026-10-05: staging may be used for phases 2, 3 and 6 (the cost of 
 price list first, and confirmation is asked above 5 USD); the second repository for footprints is `honojs/hono`;
 validation of the semantic risk on a non-Python repository is postponed; nothing public about these findings until
 that is decided.
+
+## 12. Pilot v2 on `pallets/click` (2026-10-05): the agent now finds the hot file
+
+Same 12 tasks and base commit as §8. Agent v2: Llama 3.3 70B as selector, edits whose search text is not verbatim
+but whose lines are, ignoring the whitespace at their ends, applied at the file's indentation, and one retry with
+the real text around the most similar place when a search text is not found. The run stopped at the budget cap
+after 10 tasks and the 2 left ran afterwards; `conflict-replay` combines the two manifests (same base).
+`benchmarks/results/2026-10-05/agent-replay-click/` (`pilot2`, `pilot2b`, `pilot2.replay.json`; the SHAs are of
+local branches that are not in the public repository).
+
+| | v1 (§8) | v2 |
+|---|---|---|
+| Patches | 6 of 12 | **11 of 12** |
+| Human source files read by the agent¹ | 4 of 12 | **11 of 12** |
+| Files per patch (median; human PRs: 4) | 1 | 1 |
+| Patches on `src/click/core.py` | 1 | **6** |
+| Pairs of patches sharing a file | 0 of 15 | **16 of 55 (29.1%)** |
+| Pairs a hunk-level rule rejects (`git merge-tree` conflicts) | 0 | **1 of 55 (1.8%)**: `termui.py` |
+| Neurons | 5,987 (+1,877 for the diagnosis) | 8,601: select 570, view 1,500, edit 6,310, retry 96 |
+| Retries, whitespace-tolerant edits used | – | 2 (both applied), 0 |
+| Failures | 6 | 1: a file that does not exist |
+
+¹ Source files the human pull requests changed, without tests, documentation, configuration, changelog, version and
+dependency files, recomputed with the same script definition for both runs (so v1 reads 4 of 12 here, not 4 of 13 as
+in §8, where `__init__.py` counted).
+
+**What it says.** A selector that can read finds the file the human pull requests changed, and six of eleven
+patches land on `src/click/core.py`, the hot file. That is where the collisions come from: 15 of the 16 pairs that
+share a file are pairs of those six patches. In this sample the file-level rule rejects 16 pairs where a hunk-level
+rule rejects 1: 15 of 16 overlapping pairs (93.8%) merge cleanly, because each patch is a few lines at its own
+place of a file of 3,418 lines. Even with an agent that finds the hot file, a patch touches one file
+where a human pull request touches four, so footprints are still a floor.
+
+**What it does not say.** One repository, eleven patches, and the pairs are not independent (they are all combinations
+of the same six patches). All eleven patches are made on the same base at the same time, the worst case of
+concurrency and not the rate of a queue (that is phase 3, #13). The agent cannot run the project's tests, so none
+of the patches is known to be correct, and a textually clean merge is not a correct one (§10 measures that on
+history). The whitespace-tolerant edit did not trigger in this run: it is covered by unit tests and kept, but this
+pilot gives no evidence that it matters.

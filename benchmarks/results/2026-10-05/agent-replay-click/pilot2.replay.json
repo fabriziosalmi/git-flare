@@ -1,0 +1,132 @@
+{
+  "date": "2026-10-05",
+  "what": "File-level conflict rule (current merge queue) vs hunk-level (git merge-tree) on the branches of an agent-replay run, all from one base commit",
+  "git": "git version 2.50.1 (Apple Git-155)",
+  "bigThreshold": 200,
+  "total": {
+    "all": {
+      "pairs": 55,
+      "disjoint": 39,
+      "overlap": 16,
+      "overlapClean": 15,
+      "overlapConflict": 1,
+      "conflictOnlyHotFiles": 0,
+      "fileLevelRejectPct": 29.1,
+      "hunkLevelRejectPct": 1.8,
+      "overlapMergingCleanPct": 93.8,
+      "hunkLevelRejectExcludingHotFilesPct": 1.8
+    },
+    "excludingBig": {
+      "pairs": 55,
+      "disjoint": 39,
+      "overlap": 16,
+      "overlapClean": 15,
+      "overlapConflict": 1,
+      "conflictOnlyHotFiles": 0,
+      "fileLevelRejectPct": 29.1,
+      "hunkLevelRejectPct": 1.8,
+      "overlapMergingCleanPct": 93.8,
+      "hunkLevelRejectExcludingHotFilesPct": 1.8
+    }
+  },
+  "byDivergence": {
+    "1": {
+      "pairs": 55,
+      "overlap": 16,
+      "overlapConflict": 1,
+      "fileLevelRejectPct": 29.1,
+      "hunkLevelRejectPct": 1.8
+    },
+    "2-3": {
+      "pairs": 0,
+      "overlap": 0,
+      "overlapConflict": 0,
+      "fileLevelRejectPct": null,
+      "hunkLevelRejectPct": null
+    },
+    "4-10": {
+      "pairs": 0,
+      "overlap": 0,
+      "overlapConflict": 0,
+      "fileLevelRejectPct": null,
+      "hunkLevelRejectPct": null
+    },
+    ">10": {
+      "pairs": 0,
+      "overlap": 0,
+      "overlapConflict": 0,
+      "fileLevelRejectPct": null,
+      "hunkLevelRejectPct": null
+    }
+  },
+  "humanBaseline": {
+    "agentFootprint": {
+      "tasks": 12,
+      "committed": 11,
+      "medianFilesPerAgentPatch": 1,
+      "medianFilesPerHumanPr": 4,
+      "editedFiles": {
+        "src/click/core.py": 6,
+        "src/click/termui.py": 2,
+        "src/click/testing.py": 1,
+        "src/click/parser.py": 1,
+        "src/click/_winconsole.py": 1
+      },
+      "selection": {
+        "humanSourceFiles": 12,
+        "readByAgent": 11,
+        "tasksWithHumanSource": 11,
+        "tasksWhereAgentReadOne": 10
+      }
+    },
+    "allTasks": {
+      "patches": 12,
+      "pairs": 66,
+      "pairsSharingFile": 55,
+      "pairsSharingFileExcludingHotFiles": 23,
+      "medianFilesPerPatch": 4
+    },
+    "sameTasksAsCommittedAgentPatches": {
+      "patches": 11,
+      "pairs": 55,
+      "pairsSharingFile": 45,
+      "pairsSharingFileExcludingHotFiles": 22,
+      "medianFilesPerPatch": 4
+    }
+  },
+  "topConflictPaths": [
+    {
+      "file": "src/click/termui.py",
+      "pairs": 1
+    }
+  ],
+  "repos": {
+    "click": {
+      "remote": "https://github.com/pallets/click.git",
+      "all": {
+        "pairs": 55,
+        "disjoint": 39,
+        "overlap": 16,
+        "overlapClean": 15,
+        "overlapConflict": 1,
+        "conflictOnlyHotFiles": 0,
+        "fileLevelRejectPct": 29.1,
+        "hunkLevelRejectPct": 1.8,
+        "overlapMergingCleanPct": 93.8,
+        "hunkLevelRejectExcludingHotFilesPct": 1.8
+      },
+      "excludingBig": {
+        "pairs": 55,
+        "disjoint": 39,
+        "overlap": 16,
+        "overlapClean": 15,
+        "overlapConflict": 1,
+        "conflictOnlyHotFiles": 0,
+        "fileLevelRejectPct": 29.1,
+        "hunkLevelRejectPct": 1.8,
+        "overlapMergingCleanPct": 93.8,
+        "hunkLevelRejectExcludingHotFilesPct": 1.8
+      }
+    }
+  }
+}

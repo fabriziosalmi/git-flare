@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { test } from 'node:test';
-import { applyEdits, cleanRanges, diagnoseMiss, divergenceBucket, excerptAround, extractJson, findTrimmedBlock, git, ledgerAdd, ledgerRead, neuronsFor, NEURON_RATES, outlineOf, pairVerdict, safeRelPath, sharedPathPairs, streamRejects } from './lib/replay.mjs';
+import { applyEdits, cleanRanges, diagnoseMiss, divergenceBucket, excerptAround, extractJson, findTrimmedBlock, footprintSummary, git, ledgerAdd, ledgerRead, neuronsFor, NEURON_RATES, outlineOf, pairVerdict, safeRelPath, sharedPathPairs, streamRejects } from './lib/replay.mjs';
 import { tmpdir } from './lib/tmp.mjs';
 
 const tmp = () => tmpdir('replay-test-');
@@ -253,4 +253,20 @@ test('streamRejects: hot files are set aside, big patches are landings but not p
   // #3 has 2 paths: with big=1 it is not a patch (n drops by one, and its rejection with it) but it is still a landing for #4
   assert.deepEqual(streamRejects(s, 1, { big: 1 }), { rejected: 1, n: 3 });
   assert.deepEqual(streamRejects([['x'], ['y', 'z'], ['z']], 1, { big: 1 }), { rejected: 1, n: 1 }); // #2 (z) vs the big #1 (y, z)
+});
+
+test('footprintSummary: files per patch, edited files and how many human source files the agent read', () => {
+  const tasks = [
+    { id: 'a', status: 'committed', editedFiles: ['src/x.py'], selected: ['src/x.py', 'src/y.py'], humanFiles: ['src/x.py', 'tests/test_x.py', 'CHANGES.rst', 'docs/x.md', 'package.json', 'src/pkg/__init__.py'] }, // package.json and __init__.py: dependency and version files, not source
+    { id: 'b', status: 'committed', editedFiles: ['src/x.py', 'src/z.py'], selected: ['src/z.py'], humanFiles: ['src/x.py', 'src/z.py', 'src/w.py'] },
+    { id: 'c', status: 'no-patch', selected: ['src/q.py'], humanFiles: ['src/q.py'] },
+    { id: 'd', status: 'committed', editedFiles: ['src/x.py'], selected: [], humanFiles: ['tests/test_d.py', 'CHANGES.rst'] },
+  ];
+  const f = footprintSummary(tasks);
+  assert.deepEqual([f.tasks, f.committed, f.medianFilesPerAgentPatch, f.medianFilesPerHumanPr], [4, 3, 1, 3]);
+  assert.deepEqual(f.editedFiles, { 'src/x.py': 3, 'src/z.py': 1 });
+  // human source files: a -> x.py; b -> x.py, z.py, w.py; c -> q.py; d has none (tests and changelog only)
+  assert.deepEqual(f.selection, { humanSourceFiles: 5, readByAgent: 3, tasksWithHumanSource: 3, tasksWhereAgentReadOne: 3 });
+  assert.deepEqual(footprintSummary([]).selection, { humanSourceFiles: 0, readByAgent: 0, tasksWithHumanSource: 0, tasksWhereAgentReadOne: 0 });
+  assert.equal(footprintSummary([]).medianFilesPerAgentPatch, null);
 });

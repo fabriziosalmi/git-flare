@@ -241,6 +241,43 @@ export function wilson(k, n) {
   return [Math.max(0, (c - w) / d), Math.min(1, (c + w) / d)];
 }
 
+const NOT_SOURCE = /\.(md|rst|txt|ya?ml|toml|cfg|ini)$|^docs?\/|^tests?\//i;
+const median = (xs) => (xs.length === 0 ? null : [...xs].sort((a, b) => a - b)[Math.floor(xs.length / 2)]);
+
+/**
+ * What an agent's patches look like next to the pull requests that closed the same tasks. `tasks` are agent-replay
+ * manifest tasks. Source files are the human files that are not documentation, configuration or tests.
+ * selection: of the source files the human PRs changed, how many the agent chose to read (tasks with at least one
+ * source file only); the files the agent edited are counted per file.
+ */
+export function footprintSummary(tasks) {
+  const committed = tasks.filter((t) => t.status === 'committed');
+  const perFile = {};
+  for (const t of committed) for (const f of t.editedFiles ?? []) perFile[f] = (perFile[f] ?? 0) + 1;
+  let humanSource = 0;
+  let hit = 0;
+  let tasksWithSource = 0;
+  let tasksWithHit = 0;
+  for (const t of tasks) {
+    const src = (t.humanFiles ?? []).filter((f) => !NOT_SOURCE.test(f) && !HOT.test(f));
+    if (src.length === 0) continue;
+    const chosen = new Set(t.selected ?? []);
+    const h = src.filter((f) => chosen.has(f)).length;
+    humanSource += src.length;
+    hit += h;
+    tasksWithSource++;
+    if (h > 0) tasksWithHit++;
+  }
+  return {
+    tasks: tasks.length,
+    committed: committed.length,
+    medianFilesPerAgentPatch: median(committed.map((t) => (t.editedFiles ?? []).length)),
+    medianFilesPerHumanPr: median(tasks.map((t) => (t.humanFiles ?? []).length)),
+    editedFiles: Object.fromEntries(Object.entries(perFile).sort((a, b) => b[1] - a[1])),
+    selection: { humanSourceFiles: humanSource, readByAgent: hit, tasksWithHumanSource: tasksWithSource, tasksWhereAgentReadOne: tasksWithHit },
+  };
+}
+
 // ─── Reading large files by ranges ──────────────────────────────────────────
 
 const DEF_LINE = /^\s*(?:export\s+)?(?:async\s+)?(?:def|class|function|const|let|var|type|interface|enum|struct|fn|func|impl|pub)\b/;
