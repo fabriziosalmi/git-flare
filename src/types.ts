@@ -56,7 +56,11 @@ export interface Patch {
   commitSha: string;
   baseCommit: string;
   leaseEpoch: number;
+  /** When the claim that produced this patch was made (the window W of a patch starts here). */
+  claimedAt?: number;
   submittedAt: number;
+  /** When the patch entered the merge queue (approved by the reviewers). */
+  queuedAt?: number;
   status: PatchStatus;
   /** Per-file summary kept in memory; the full change (lines) is stored under `pchg:<patchId>` only. */
   files: PatchFile[];

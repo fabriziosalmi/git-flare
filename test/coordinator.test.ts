@@ -566,6 +566,40 @@ describe('merge queue', () => {
     expect((await registry(repo).devMainFiles())!['only-b.ts']).toBeUndefined();
   });
 
+  it('each patch carries the times that make up its window: claim, submit, entry in the queue, close', async () => {
+    const repo = await setupRepo(['T1', 'T2', 'T3']);
+    const wa = await agent('w-ts-a', 'worker', 'claude');
+    const wb = await agent('w-ts-b', 'worker', 'gemini');
+    const wc = await agent('w-ts-c', 'worker', 'mistral');
+    const r1 = await agent('r-ts-1', 'reviewer', 'gpt-4o');
+    const r2 = await agent('r-ts-2', 'reviewer', 'mistral');
+    const t0 = Date.now();
+    const a = await claimAndCommit(repo, wa, 'T1', { 'shared.ts': 'version A\n' });
+    const b = await claimAndCommit(repo, wb, 'T2', { 'shared.ts': 'version B\n' });
+    const c = await claimAndCommit(repo, wc, 'T3', { 'c.ts': 'c\n' });
+    const pa = (await submit(repo, wa, 'T1', a)).patchId;
+    const pb = (await submit(repo, wb, 'T2', b)).patchId;
+    const pc = (await submit(repo, wc, 'T3', c)).patchId; // never reviewed: still being evaluated
+    // not reviewed yet: it has a claim and a submit time and no entry in the queue, no close
+    const pending = (await status(repo)).patches.find((p: { patchId: string }) => p.patchId === pc);
+    expect(typeof pending.claimedAt).toBe('number');
+    expect(pending.queuedAt).toBeUndefined();
+    expect(pending.closedAt).toBeUndefined();
+    await approve(repo, pa, [r1, r2]);
+    await drainQueue(repo);
+    await approve(repo, pb, [r1, r2]);
+    await drainQueue(repo);
+    const t1 = Date.now();
+    const s = await status(repo);
+    for (const [id, expected] of [[pa, 'merged'], [pb, 'stale']] as const) {
+      const p = s.patches.find((q: { patchId: string }) => q.patchId === id);
+      expect(p.status).toBe(expected);
+      for (const k of ['claimedAt', 'submittedAt', 'queuedAt', 'closedAt']) expect(typeof p[k], `${id} ${k}`).toBe('number');
+      // in this order, all within the test
+      expect(t0 <= p.claimedAt && p.claimedAt <= p.submittedAt && p.submittedAt <= p.queuedAt && p.queuedAt <= p.closedAt && p.closedAt <= t1).toBe(true);
+    }
+  });
+
   it('batching: N approved disjoint patches become ONE commit pushed once', async () => {
     const tasks = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6'];
     const repo = await setupRepo(tasks);

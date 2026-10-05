@@ -426,6 +426,7 @@ export class RepoCoordinator extends DurableObject<CoordinatorEnv> {
       commitSha,
       baseCommit: computed.base,
       leaseEpoch: epoch,
+      claimedAt: task.claimedAt,
       submittedAt: Date.now(),
       status: gatesFailed ? 'rejected' : duplicateOf ? 'duplicate' : 'evaluating',
       files: summarizeChanges(computed.changes),
@@ -499,6 +500,8 @@ export class RepoCoordinator extends DurableObject<CoordinatorEnv> {
       if (task && task.status === 'submitted' && task.patchId === patchId) this.reclaim(task, false);
     } else if (evaluation.decision === 'merge') {
       patch.status = 'queued';
+      const queuedAt = Date.now();
+      patch.queuedAt = queuedAt;
       await this.persistPatch(patch);
       try {
         const q = await this.registry().enqueue({
@@ -510,12 +513,13 @@ export class RepoCoordinator extends DurableObject<CoordinatorEnv> {
           commitSha: patch.commitSha,
           baseCommit: patch.baseCommit,
           files: patch.files.map((f) => ({ path: f.path, blob: f.blob ?? null })),
-          enqueuedAt: Date.now(),
+          enqueuedAt: queuedAt,
         });
         if (!q.ok) throw new Error(q.error);
       } catch (e) {
         if (patch.status === 'queued') {
           patch.status = 'evaluating';
+          patch.queuedAt = undefined; // it did not enter the queue
           patch.mergeError = `ENQUEUE_FAILED: ${String((e as Error).message)}`;
         }
       }
@@ -622,7 +626,10 @@ export class RepoCoordinator extends DurableObject<CoordinatorEnv> {
         status: p.status,
         commitSha: p.commitSha,
         baseCommit: p.baseCommit,
+        claimedAt: p.claimedAt,
         submittedAt: p.submittedAt,
+        queuedAt: p.queuedAt,
+        closedAt: p.closedAt,
         changedFiles: p.files.map((f) => ({ path: f.path, status: f.status, added: f.added, removed: f.removed })),
         gates: p.gates,
         simHash: p.simHash,
