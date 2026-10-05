@@ -1,0 +1,197 @@
+{
+  "slug": "axios/axios",
+  "base": "569f028a5878faaec8d7d138ba686aac407bda4c",
+  "since": "2026-02-01",
+  "until": "2026-08-01",
+  "tasks": [
+    {
+      "id": "i6366",
+      "issue": {
+        "number": 6366,
+        "title": "Formidable arbitrary file upload vulnerability"
+      },
+      "pr": {
+        "number": 7533,
+        "files": [
+          "package-lock.json",
+          "package.json",
+          "tests/setup/server.js",
+          "tests/unit/adapters/http.test.js"
+        ]
+      }
+    },
+    {
+      "id": "i7055",
+      "issue": {
+        "number": 7055,
+        "title": "Consider adopting npm trusted publishing"
+      },
+      "pr": {
+        "number": 10619,
+        "files": [
+          ".github/workflows/publish.yml"
+        ]
+      }
+    },
+    {
+      "id": "i6677",
+      "issue": {
+        "number": 6677,
+        "title": "Response headers are lowercased, types are not"
+      },
+      "pr": {
+        "number": 10677,
+        "files": [
+          "index.d.cts",
+          "index.d.ts"
+        ]
+      }
+    },
+    {
+      "id": "i6485",
+      "issue": {
+        "number": 6485,
+        "title": "Add ECONNREFUSED error code to AxiosError typings"
+      },
+      "pr": {
+        "number": 10680,
+        "files": [
+          "index.d.cts",
+          "index.d.ts",
+          "lib/core/AxiosError.js"
+        ]
+      }
+    },
+    {
+      "id": "i7190",
+      "issue": {
+        "number": 7190,
+        "title": "Axios fetch adapter throws TypeError on timeout in Safari"
+      },
+      "pr": {
+        "number": 10806,
+        "files": [
+          "lib/adapters/fetch.js",
+          "tests/smoke/bun/tests/timeout.smoke.test.ts",
+          "tests/unit/adapters/fetch.test.js"
+        ]
+      }
+    },
+    {
+      "id": "i5465",
+      "issue": {
+        "number": 5465,
+        "title": "Add the QUERY HTTP method"
+      },
+      "pr": {
+        "number": 10802,
+        "files": [
+          "docs/es/pages/advanced/request-method-aliases.md",
+          "docs/fr/pages/advanced/request-method-aliases.md",
+          "docs/pages/advanced/request-method-aliases.md",
+          "docs/zh/pages/advanced/request-method-aliases.md",
+          "index.d.cts",
+          "index.d.ts",
+          "lib/core/Axios.js",
+          "lib/defaults/index.js",
+          "tests/module/cjs/tests/helpers/cjs-typing.ts",
+          "tests/module/esm/tests/helpers/esm-index.ts",
+          "tests/unit/adapters/fetch.test.js",
+          "tests/unit/api.test.js",
+          "tests/unit/query.test.js"
+        ]
+      }
+    },
+    {
+      "id": "i6935",
+      "issue": {
+        "number": 6935,
+        "title": "AxiosError.response is undefined when HTTP stream is aborted after headers are received (Node.js)"
+      },
+      "pr": {
+        "number": 10708,
+        "files": [
+          "lib/adapters/http.js",
+          "tests/unit/adapters/http.test.js"
+        ]
+      }
+    },
+    {
+      "id": "i5158",
+      "issue": {
+        "number": 5158,
+        "title": "Basic authentication gets (double?) escaped"
+      },
+      "pr": {
+        "number": 10825,
+        "files": [
+          "lib/adapters/http.js",
+          "tests/unit/adapters/http.test.js"
+        ]
+      }
+    },
+    {
+      "id": "i6320",
+      "issue": {
+        "number": 6320,
+        "title": "Security: Axios sends HTTPS data in cleartext to a proxy (regression)"
+      },
+      "pr": {
+        "number": 10858,
+        "files": [
+          "README.md",
+          "THREATMODEL.md",
+          "lib/adapters/http.js",
+          "package-lock.json",
+          "package.json",
+          "tests/unit/adapters/http.test.js"
+        ]
+      }
+    },
+    {
+      "id": "i6928",
+      "issue": {
+        "number": 6928,
+        "title": "Axios onUploadProgress error - Cannot read property 'loaded' of undefined"
+      },
+      "pr": {
+        "number": 10868,
+        "files": [
+          "lib/helpers/progressEventReducer.js",
+          "tests/unit/helpers/progressEventReducer.test.js"
+        ]
+      }
+    },
+    {
+      "id": "i6392",
+      "issue": {
+        "number": 6392,
+        "title": "Symbol keys are not preserved when data is being passed to transformRequest"
+      },
+      "pr": {
+        "number": 10812,
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "lib/utils.js",
+          "tests/unit/api.test.js",
+          "tests/unit/utils/merge.test.js"
+        ]
+      }
+    },
+    {
+      "id": "i6959",
+      "issue": {
+        "number": 6959,
+        "title": "[React Native 0.80.1] `Header name must be a non-empty string` on Android"
+      },
+      "pr": {
+        "number": 10875,
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "lib/core/AxiosHeaders.js",
+          "tests/unit/axiosHeaders.test.js"
+        ]
+      }
+    }
+  ]
+}

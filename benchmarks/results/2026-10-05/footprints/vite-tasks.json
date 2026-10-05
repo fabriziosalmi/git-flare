@@ -1,0 +1,186 @@
+{
+  "slug": "vitejs/vite",
+  "base": "c47015eba4f0de255218c35769628d87152216ca",
+  "since": "2026-02-01",
+  "until": "2026-08-01",
+  "tasks": [
+    {
+      "id": "i123",
+      "issue": {
+        "number": 123,
+        "title": "Use `defineComponent()` and a single root template element in App.vue, as Vetur complains"
+      },
+      "pr": {
+        "number": 22273,
+        "files": [
+          "packages/vite/src/node/optimizer/index.ts"
+        ]
+      }
+    },
+    {
+      "id": "i18964",
+      "issue": {
+        "number": 18964,
+        "title": "SSR dev server \"Pre-transform error: Failed to load url\" for relative path"
+      },
+      "pr": {
+        "number": 22480,
+        "files": [
+          "packages/vite/src/node/server/middlewares/indexHtml.ts",
+          "playground/ssr-html/__tests__/serve.ts",
+          "playground/ssr-html/__tests__/ssr-html.spec.ts",
+          "playground/ssr-html/server.js",
+          "playground/ssr-html/trailing-slash/dir/filename.js",
+          "playground/ssr-html/trailing-slash/dir/index.html",
+          "playground/ssr-html/trailing-slash/other.js"
+        ]
+      }
+    },
+    {
+      "id": "i9414",
+      "issue": {
+        "number": 9414,
+        "title": "vite V3.0.0 vite.config.ts \u5f15\u5165\u63d2\u4ef6\u62a5\u9519(***** is not a function)"
+      },
+      "pr": {
+        "number": 22509,
+        "files": [
+          "packages/vite/src/node/idResolver.ts",
+          "packages/vite/src/node/plugins/resolve.ts"
+        ]
+      }
+    },
+    {
+      "id": "i13560",
+      "issue": {
+        "number": 13560,
+        "title": "Sourcemap support when optimizing dependencies"
+      },
+      "pr": {
+        "number": 22428,
+        "files": [
+          "packages/vite/src/node/optimizer/index.ts",
+          "packages/vite/src/node/plugins/optimizedDeps.ts",
+          "playground/js-sourcemap/__tests__/js-sourcemap.spec.ts",
+          "playground/js-sourcemap/dep-class-field-sourcemap-babel/index.js",
+          "playground/js-sourcemap/dep-class-field-sourcemap-babel/package.json",
+          "playground/js-sourcemap/dep-class-field-sourcemap-oxc/index.js",
+          "playground/js-sourcemap/dep-class-field-sourcemap-oxc/package.json",
+          "playground/js-sourcemap/index.html",
+          "playground/js-sourcemap/optimized-class-field-import-babel.js",
+          "playground/js-sourcemap/optimized-class-field-import-oxc.js",
+          "playground/js-sourcemap/package.json",
+          "playground/js-sourcemap/vite.config.js",
+          "pnpm-lock.yaml"
+        ]
+      }
+    },
+    {
+      "id": "i19627",
+      "issue": {
+        "number": 19627,
+        "title": "Vite module runner stacktrace on first line is incorrect"
+      },
+      "pr": {
+        "number": 22828,
+        "files": [
+          "packages/vite/src/module-runner/esmEvaluator.ts",
+          "packages/vite/src/node/ssr/runtime/__tests__/server-source-maps.spec.ts",
+          "packages/vite/src/node/ssr/ssrStacktrace.ts"
+        ]
+      }
+    },
+    {
+      "id": "i19625",
+      "issue": {
+        "number": 19625,
+        "title": "Vite module runner call stack column is slightly different from Node"
+      },
+      "pr": {
+        "number": 22829,
+        "files": [
+          "packages/vite/src/node/ssr/__tests__/ssrTransform.spec.ts",
+          "packages/vite/src/node/ssr/runtime/__tests__/fixtures/has-error-toplevel-dep.js",
+          "packages/vite/src/node/ssr/runtime/__tests__/fixtures/has-error-toplevel.js",
+          "packages/vite/src/node/ssr/runtime/__tests__/server-source-maps.spec.ts",
+          "packages/vite/src/node/ssr/ssrTransform.ts"
+        ]
+      }
+    },
+    {
+      "id": "i21111",
+      "issue": {
+        "number": 21111,
+        "title": "Vite's CI not detecting error in Node 20"
+      },
+      "pr": {
+        "number": 22912,
+        "files": [
+          "packages/vite/src/node/__tests__/dev.spec.ts",
+          "packages/vite/src/node/__tests__/http.spec.ts",
+          "packages/vite/src/node/__tests__/resolve.spec.ts"
+        ]
+      }
+    },
+    {
+      "id": "i19109",
+      "issue": {
+        "number": 19109,
+        "title": "Re-export PostCSS config type from `postcss-load-config`"
+      },
+      "pr": {
+        "number": 22792,
+        "files": [
+          "packages/vite/rolldown.dts.config.ts",
+          "packages/vite/src/node/__tests_dts__/postcss.ts",
+          "packages/vite/src/node/index.ts",
+          "packages/vite/src/node/plugins/css.ts"
+        ]
+      }
+    },
+    {
+      "id": "i10136",
+      "issue": {
+        "number": 10136,
+        "title": "vite:css plugin output duplicate asset name"
+      },
+      "pr": {
+        "number": 23024,
+        "files": [
+          "packages/vite/src/node/server/bundledDev.ts",
+          "playground/hmr-full-bundle-mode/__tests__/hmr-full-bundle-mode.spec.ts"
+        ]
+      }
+    },
+    {
+      "id": "i798",
+      "issue": {
+        "number": 798,
+        "title": "index.html location"
+      },
+      "pr": {
+        "number": 23073,
+        "files": [
+          "packages/vite/src/module-runner/sourcemap/interceptor.ts",
+          "packages/vite/src/node/ssr/runtime/__tests__/server-source-maps.spec.ts"
+        ]
+      }
+    },
+    {
+      "id": "i19690",
+      "issue": {
+        "number": 19690,
+        "title": "HMR crashes in Vite 6.2.2"
+      },
+      "pr": {
+        "number": 22932,
+        "files": [
+          "packages/vite/src/node/server/middlewares/__tests__/fixtures/base-root/index.html",
+          "packages/vite/src/node/server/middlewares/__tests__/fixtures/base-root/src/main.ts",
+          "packages/vite/src/node/server/middlewares/__tests__/indexHtml.spec.ts",
+          "packages/vite/src/node/server/middlewares/indexHtml.ts"
+        ]
+      }
+    }
+  ]
+}

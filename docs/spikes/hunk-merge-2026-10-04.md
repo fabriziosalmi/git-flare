@@ -371,14 +371,32 @@ phase 2 (issue #12), committed before the grid is run; the reference cell is als
 **Footprints and repositories (fixed 2026-10-05, before any grid result).** The reference uses the files of the real
 pull requests that closed the tasks (`human`). The unit of analysis is the repository, because a hunk-level merge
 would be opt-in per repository. The sample is fixed here, not chosen afterwards: `pallets/click`, `honojs/hono`,
-`axios/axios`, `prettier/prettier`, `eslint/eslint`, `vitejs/vite`, `sveltejs/svelte` and `cli/cli`, the repositories
-that a survey of pull requests merged between 2026-02-01 and 2026-08-01 found with at least 12 closed-issue tasks,
-in several languages. Their tasks are selected with the same procedure and window as for `click` (issues that existed at
-the base commit and were closed by a merged pull request that changes code; the first 12); a repository that yields
-fewer than 12 is kept with the tasks it has and the number is reported. Sensitivity runs: `human-nohot` (without
+`axios/axios`, `prettier/prettier`, `eslint/eslint`, `vitejs/vite`, `sveltejs/svelte` and `cli/cli`: the repositories
+with the most merged pull requests linked to an issue between 2026-02-01 and 2026-08-01 in a survey made before any
+filter, in several languages. Their tasks are selected with the same procedure and window as for `click` (issues that
+existed at the base commit and were closed by a merged pull request that changes code; the first 12); a repository that
+yields fewer than 12 after the filters is kept with the tasks it has and the number is reported (the survey counted
+linked pull requests, so some yield fewer: see the table). Sensitivity runs: `human-nohot` (without
 changelog, version and dependency files, what a structured rule for those would take out) and `agent`.
 The footprint set is part of the result: on `click`, 10 of 12 pull requests touch `CHANGES.rst` and 7 of 12 touch
 `src/click/core.py`; on `hono`, 4 of 66 pairs share a file.
+
+**Footprints of the eight repositories** (inputs, not results; `benchmarks/results/2026-10-05/footprints/`): pairs of
+pull requests that share a file, and the median number of files per pull request.
+
+| Repository | Tasks | Pairs sharing a file | Without changelog, version, dependency files | Median files per PR |
+|---|---|---|---|---|
+| `pallets/click` | 12 | 55 of 66 (83%) | 23 | 4 |
+| `eslint/eslint` | 7 | 4 of 21 (19%) | 1 | 3 |
+| `axios/axios` | 12 | 12 of 66 (18%) | 12 | 3 |
+| `vitejs/vite` | 11 | 5 of 55 (9%) | 5 | 3 |
+| `prettier/prettier` | 9 | 3 of 36 (8%) | 3 | 6 |
+| `honojs/hono` | 12 | 4 of 66 (6%) | 4 | 2 |
+| `sveltejs/svelte` | 12 | 3 of 66 (5%) | 3 | 7 |
+| `cli/cli` | 7 | 1 of 21 (5%) | 1 | 4 |
+
+`click` stands apart (a changelog edited by almost every pull request, and one file that most of them touch); the other
+seven sit between 5% and 19%. This is why the median and not the mean is read.
 
 **The number G1 reads.** At the reference scenario (10 agents, tests of 30 s) the rejection per submission,
 stale / (merged + stale), averaged over three repetitions per repository, for the `human` footprints. The share for

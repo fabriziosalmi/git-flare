@@ -1,0 +1,153 @@
+{
+  "slug": "cli/cli",
+  "base": "a9a0486c7082c5898e2bd79a860e6b17d57f4d95",
+  "since": "2026-02-01",
+  "until": "2026-08-01",
+  "tasks": [
+    {
+      "id": "i10786",
+      "issue": {
+        "number": 10786,
+        "title": "`issue close` should support \"closing as duplicate\""
+      },
+      "pr": {
+        "number": 12811,
+        "files": [
+          "internal/featuredetection/feature_detection.go",
+          "internal/featuredetection/feature_detection_test.go",
+          "pkg/cmd/issue/close/close.go",
+          "pkg/cmd/issue/close/close_test.go"
+        ]
+      }
+    },
+    {
+      "id": "i10092",
+      "issue": {
+        "number": 10092,
+        "title": "Allow setting squash merge commit message and title in gh repo edit"
+      },
+      "pr": {
+        "number": 12846,
+        "files": [
+          "pkg/cmd/repo/edit/edit.go",
+          "pkg/cmd/repo/edit/edit_test.go"
+        ]
+      }
+    },
+    {
+      "id": "i9696",
+      "issue": {
+        "number": 9696,
+        "title": "Add support for issue types in gh cli"
+      },
+      "pr": {
+        "number": 13057,
+        "files": [
+          "acceptance/acceptance_test.go",
+          "acceptance/testdata/issues-2.0/issue-create-and-edit-issue-type.txtar",
+          "acceptance/testdata/issues-2.0/issue-create-and-edit-parent.txtar",
+          "acceptance/testdata/issues-2.0/issue-create-and-edit-relationships.txtar",
+          "acceptance/testdata/issues-2.0/issue-edit-sub-issues.txtar",
+          "acceptance/testdata/issues-2.0/issue-list-filter-by-type.txtar",
+          "acceptance/testdata/issues-2.0/issue-view-issues-2.0-fields.txtar",
+          "api/export_pr.go",
+          "api/export_pr_test.go",
+          "api/queries_issue.go",
+          "api/query_builder.go",
+          "internal/featuredetection/feature_detection.go",
+          "internal/featuredetection/feature_detection_test.go",
+          "pkg/cmd/issue/create/create.go",
+          "pkg/cmd/issue/create/create_test.go",
+          "pkg/cmd/issue/edit/edit.go",
+          "pkg/cmd/issue/edit/edit_test.go",
+          "pkg/cmd/issue/list/list.go",
+          "pkg/cmd/issue/list/list_test.go",
+          "pkg/cmd/issue/shared/lookup.go",
+          "pkg/cmd/issue/view/view.go",
+          "pkg/cmd/issue/view/view_test.go",
+          "pkg/cmd/pr/edit/edit.go",
+          "pkg/cmd/pr/shared/editable.go",
+          "pkg/cmd/pr/shared/params.go",
+          "pkg/cmd/pr/shared/params_test.go",
+          "pkg/cmd/pr/shared/survey_test.go",
+          "pkg/search/query.go",
+          "pkg/search/query_test.go"
+        ]
+      }
+    },
+    {
+      "id": "i9247",
+      "issue": {
+        "number": 9247,
+        "title": "Ensure the CLI handles GitHub database IDs correctly"
+      },
+      "pr": {
+        "number": 13403,
+        "files": [
+          "internal/codespaces/api/api.go",
+          "pkg/cmd/agent-task/capi/job.go",
+          "pkg/cmd/cache/delete/delete.go",
+          "pkg/cmd/cache/shared/shared.go",
+          "pkg/cmd/codespace/common.go",
+          "pkg/cmd/codespace/create.go",
+          "pkg/cmd/codespace/create_test.go",
+          "pkg/cmd/codespace/mock_api.go",
+          "pkg/cmd/gpg-key/delete/delete.go",
+          "pkg/cmd/gpg-key/delete/http.go",
+          "pkg/cmd/repo/autolink/shared/autolink.go",
+          "pkg/cmd/repo/deploy-key/list/http.go",
+          "pkg/cmd/repo/deploy-key/list/list.go",
+          "pkg/cmd/ruleset/list/list.go",
+          "pkg/cmd/ruleset/shared/shared.go",
+          "pkg/cmd/ruleset/view/view.go",
+          "pkg/cmd/skills/publish/publish.go",
+          "pkg/cmd/ssh-key/list/list.go",
+          "pkg/cmd/ssh-key/shared/user_keys.go"
+        ]
+      }
+    },
+    {
+      "id": "i2680",
+      "issue": {
+        "number": 2680,
+        "title": "Allow certain requests to be unauthenticated."
+      },
+      "pr": {
+        "number": 13723,
+        "files": [
+          "pkg/cmd/release/download/download.go",
+          "pkg/cmd/release/download/download_test.go",
+          "pkg/cmd/release/shared/fetch.go",
+          "pkg/cmdutil/repo_override.go",
+          "pkg/cmdutil/repo_override_test.go"
+        ]
+      }
+    },
+    {
+      "id": "i5925",
+      "issue": {
+        "number": 5925,
+        "title": "Clarify `--clone` behaviour in `gh repo fork`"
+      },
+      "pr": {
+        "number": 13786,
+        "files": [
+          "pkg/cmd/repo/fork/fork.go"
+        ]
+      }
+    },
+    {
+      "id": "i11005",
+      "issue": {
+        "number": 11005,
+        "title": "Implement proper waiting for kwallet authentication"
+      },
+      "pr": {
+        "number": 13787,
+        "files": [
+          "internal/keyring/keyring.go"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-05",
+  "what": "Footprint of the pull requests that closed the tasks: how often do two of them share a file",
+  "humanBaseline": {
+    "allTasks": {
+      "patches": 7,
+      "pairs": 21,
+      "pairsSharingFile": 4,
+      "pairsSharingFileExcludingHotFiles": 1,
+      "medianFilesPerPatch": 3
+    }
+  }
+}

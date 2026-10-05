@@ -1,0 +1,184 @@
+{
+  "slug": "prettier/prettier",
+  "base": "cc38e7430dc43925b88c5a63225484db423a5c7a",
+  "since": "2026-02-01",
+  "until": "2026-08-01",
+  "tasks": [
+    {
+      "id": "i4032",
+      "issue": {
+        "number": 4032,
+        "title": "Comment is moved in a strange way when using double negation"
+      },
+      "pr": {
+        "number": 19296,
+        "files": [
+          "tests/format/js/comments/__snapshots__/format.test.js.snap",
+          "tests/format/js/comments/return-statement-2.js"
+        ]
+      }
+    },
+    {
+      "id": "i11307",
+      "issue": {
+        "number": 11307,
+        "title": "Typescript comment before record type is moved as field / property comment"
+      },
+      "pr": {
+        "number": 19309,
+        "files": [
+          "tests/format/typescript/object-type/comments/11307.ts",
+          "tests/format/typescript/object-type/comments/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/object-type/comments/format.test.js",
+          "tests/format/typescript/object-type/object-multiline/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/object-type/object-multiline/format.test.js",
+          "tests/format/typescript/object-type/object-multiline/multiline.ts"
+        ]
+      }
+    },
+    {
+      "id": "i11308",
+      "issue": {
+        "number": 11308,
+        "title": "Typescript record opening, comment, newline and property results in comment and property without newline"
+      },
+      "pr": {
+        "number": 19310,
+        "files": [
+          "changelog_unreleased/javascript/19310.md",
+          "src/language-js/print/object.js",
+          "tests/format/js/comments/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/object-type/comments/11308.ts",
+          "tests/format/typescript/object-type/comments/__snapshots__/format.test.js.snap"
+        ]
+      }
+    },
+    {
+      "id": "i5974",
+      "issue": {
+        "number": 5974,
+        "title": "inline html comment formats weirdly"
+      },
+      "pr": {
+        "number": 19304,
+        "files": [
+          "changelog_unreleased/html/19304.md",
+          "src/language-html/print/children.js",
+          "tests/format/angular/angular/__snapshots__/format.test.js.snap",
+          "tests/format/html/comments/__snapshots__/format.test.js.snap",
+          "tests/format/html/comments/comment-after-element.html",
+          "tests/format/html/prettier_ignore/__snapshots__/format.test.js.snap",
+          "tests/format/vue/interpolation/__snapshots__/format.test.js.snap",
+          "tests/format/vue/interpolation/comment-after-interpolation.vue"
+        ]
+      }
+    },
+    {
+      "id": "i3837",
+      "issue": {
+        "number": 3837,
+        "title": "Excessive escaping of asterisk"
+      },
+      "pr": {
+        "number": 19335,
+        "files": [
+          "tests/format/markdown/emphasis/__snapshots__/format.test.js.snap",
+          "tests/format/markdown/emphasis/issue-15032.md",
+          "tests/format/markdown/emphasis/issue-16160.md",
+          "tests/format/markdown/emphasis/issue-17286.md",
+          "tests/format/markdown/emphasis/issue-3837.md",
+          "tests/format/markdown/emphasis/issue-6112.md",
+          "tests/format/markdown/fenced-code-block/__snapshots__/format.test.js.snap",
+          "tests/format/markdown/fenced-code-block/issue-17300.md",
+          "tests/format/markdown/link/parser-regression/__snapshots__/format.test.js.snap",
+          "tests/format/markdown/link/parser-regression/format.test.js",
+          "tests/format/markdown/link/parser-regression/issue-6078.md",
+          "tests/format/markdown/list/parser-regression/__snapshots__/format.test.js.snap",
+          "tests/format/markdown/list/parser-regression/format.test.js",
+          "tests/format/markdown/list/parser-regression/issue-10063.md",
+          "tests/format/markdown/list/parser-regression/issue-11202.md",
+          "tests/format/markdown/list/parser-regression/issue-12677.md",
+          "tests/format/markdown/list/parser-regression/issue-19146.md",
+          "tests/format/markdown/list/parser-regression/issue-19152.md",
+          "tests/format/markdown/list/parser-regression/issue-7474.md",
+          "tests/format/markdown/math/__snapshots__/format.test.js.snap",
+          "tests/format/markdown/math/issue-12793.md",
+          "tests/format/markdown/math/issue-16664.md"
+        ]
+      }
+    },
+    {
+      "id": "i9314",
+      "issue": {
+        "number": 9314,
+        "title": "Prettier makes unintended changes"
+      },
+      "pr": {
+        "number": 19354,
+        "files": [
+          "tests/format/markdown/blockquote/__snapshots__/format.test.js.snap",
+          "tests/format/markdown/blockquote/issue-14228.md",
+          "tests/format/markdown/link/parser-regression/__snapshots__/format.test.js.snap",
+          "tests/format/markdown/link/parser-regression/isssue-17682.md",
+          "tests/format/markdown/list/parser-regression/__snapshots__/format.test.js.snap",
+          "tests/format/markdown/list/parser-regression/issue-17778.md",
+          "tests/format/markdown/list/parser-regression/issue-9314.md"
+        ]
+      }
+    },
+    {
+      "id": "i18180",
+      "issue": {
+        "number": 18180,
+        "title": "typescript import defer error"
+      },
+      "pr": {
+        "number": 19623,
+        "files": [
+          "package.json",
+          "tests/format/js/deferred-import-evaluation/__snapshots__/format.test.js.snap",
+          "tests/format/js/deferred-import-evaluation/format.test.js",
+          "tests/format/typescript/_errors_/invalid-define/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/_errors_/invalid-define/format.test.js",
+          "tests/format/typescript/typescript-only/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/typescript-only/decorator-auto-accessors-abstract-class.ts",
+          "yarn.lock"
+        ]
+      }
+    },
+    {
+      "id": "i5738",
+      "issue": {
+        "number": 5738,
+        "title": "Unnecessary line breaks after == in SCSS conditions with booleans"
+      },
+      "pr": {
+        "number": 19687,
+        "files": [
+          "changelog_unreleased/scss/19687.md",
+          "src/language-css/print/comma-separated-value-group.js",
+          "tests/format/scss/atrule/__snapshots__/format.test.js.snap",
+          "tests/format/scss/atrule/if-else.scss"
+        ]
+      }
+    },
+    {
+      "id": "i13934",
+      "issue": {
+        "number": 13934,
+        "title": "Prettier should format JS functions in MDX correctly"
+      },
+      "pr": {
+        "number": 19696,
+        "files": [
+          "src/language-markdown/acorn/dummy-parser.js",
+          "tests/format/mdx/import-export/__snapshots__/format.test.js.snap",
+          "tests/format/mdx/import-export/issue-13934.mdx",
+          "tests/format/mdx/import-export/issue-16241.mdx",
+          "tests/format/mdx/import-export/issue-17906.mdx",
+          "tests/format/mdx/import-export/unterminated-comment.mdx"
+        ]
+      }
+    }
+  ]
+}

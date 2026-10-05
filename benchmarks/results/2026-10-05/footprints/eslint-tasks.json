@@ -1,0 +1,144 @@
+{
+  "slug": "eslint/eslint",
+  "base": "f2962e46a0e8ee8e04d76e9d899f6a7c73a646f1",
+  "since": "2026-02-01",
+  "until": "2026-08-01",
+  "tasks": [
+    {
+      "id": "i19920",
+      "issue": {
+        "number": 19920,
+        "title": "Change Request: Set minimum supported TypeScript version to v5.3"
+      },
+      "pr": {
+        "number": 20547,
+        "files": [
+          ".github/workflows/ci.yml",
+          "README.md",
+          "docs/src/use/getting-started.md"
+        ]
+      }
+    },
+    {
+      "id": "i19603",
+      "issue": {
+        "number": 19603,
+        "title": "Change Request: Support bulk suppression in Node.js API"
+      },
+      "pr": {
+        "number": 20565,
+        "files": [
+          "docs/src/integrate/nodejs-api.md",
+          "docs/src/use/suppressions.md",
+          "lib/cli.js",
+          "lib/eslint/eslint-helpers.js",
+          "lib/eslint/eslint.js",
+          "lib/services/suppressions-service.js",
+          "lib/shared/message-counts.js",
+          "lib/types/index.d.ts",
+          "tests/fixtures/suppressions/eslint-suppressions.json",
+          "tests/fixtures/suppressions/partial-suppressions.json",
+          "tests/lib/eslint/eslint.js",
+          "tests/lib/types/types.test.ts"
+        ]
+      }
+    },
+    {
+      "id": "i20470",
+      "issue": {
+        "number": 20470,
+        "title": "Change Request: Remove Trunk"
+      },
+      "pr": {
+        "number": 20478,
+        "files": [
+          ".github/renovate.json5",
+          ".github/workflows/annotate_pr.yaml",
+          ".github/workflows/ci.yml",
+          ".github/workflows/types-integration.yml",
+          ".trunk/.gitignore",
+          ".trunk/configs/.shellcheckrc",
+          ".trunk/configs/svgo.config.js",
+          ".trunk/trunk.yaml",
+          "Makefile.js",
+          "docs/package.json",
+          "docs/src/assets/scss/forms.scss",
+          "docs/src/assets/scss/syntax-highlighter.scss",
+          "docs/src/assets/scss/tokens/spacing.scss",
+          "docs/src/assets/scss/tokens/typography.scss",
+          "docs/src/assets/scss/tokens/ui.scss",
+          "docs/src/extend/custom-rule-tutorial.md",
+          "docs/src/extend/custom-rules.md",
+          "docs/src/integrate/integration-tutorial.md",
+          "docs/src/static/manifest.webmanifest",
+          "knip.jsonc",
+          "package.json",
+          "tests/tests.htm"
+        ]
+      }
+    },
+    {
+      "id": "i20410",
+      "issue": {
+        "number": 20410,
+        "title": "Bug: [for-direction] Error inconsistency without entering the loop"
+      },
+      "pr": {
+        "number": 20723,
+        "files": [
+          "docs/src/rules/for-direction.md",
+          "tests/lib/rules/for-direction.js"
+        ]
+      }
+    },
+    {
+      "id": "i19961",
+      "issue": {
+        "number": 19961,
+        "title": "Bug: eslint-fuzzer Error: did not recognize object of type \"PropertyDefinition\""
+      },
+      "pr": {
+        "number": 20682,
+        "files": [
+          "package.json",
+          "tests/tools/code-sample-minimizer.js",
+          "tools/code-sample-minimizer.js"
+        ]
+      }
+    },
+    {
+      "id": "i20428",
+      "issue": {
+        "number": 20428,
+        "title": "Rule Change: Allow `preserve-caught-error` rule to apply to custom error classes"
+      },
+      "pr": {
+        "number": 21032,
+        "files": [
+          "docs/src/rules/preserve-caught-error.md",
+          "lib/rules/preserve-caught-error.js",
+          "lib/types/rules.d.ts",
+          "tests/fixtures/config-rule/schemas.js",
+          "tests/lib/rules/preserve-caught-error.js",
+          "tests/tools/config-rule.js",
+          "tools/config-rule.js"
+        ]
+      }
+    },
+    {
+      "id": "i478",
+      "issue": {
+        "number": 478,
+        "title": "Automate site generation"
+      },
+      "pr": {
+        "number": 21082,
+        "files": [
+          "lib/types/config-api.d.ts",
+          "package.json",
+          "tests/lib/types/types.test.mts"
+        ]
+      }
+    }
+  ]
+}
