@@ -143,15 +143,18 @@ export async function materialize(
 export class MockTestRunner implements TestRunnerGateway {
   readonly mode = 'mock' as const;
   runs = 0;
+  /** How long a run takes (dev only: a load simulation needs the composed-tree tests to last). */
+  delayMs = 0;
   async run(files: TarEntry[], config: TestConfig): Promise<TestRun> {
     this.runs++;
+    if (this.delayMs > 0) await new Promise((resolve) => setTimeout(resolve, this.delayMs));
     const text = files.map((f) => ({ path: f.path, body: dec.decode(f.content) }));
     const failing = text.filter((f) => f.body.includes('@gf-test-fail')).map((f) => f.path);
     const pairs = text.filter((f) => f.body.includes('@gf-test-pair')).map((f) => f.path);
     const passed = failing.length === 0 && pairs.length < 2;
     const why = failing.length ? `failing marker in ${failing.join(', ')}` : pairs.length >= 2 ? `incompatible pair: ${pairs.join(' + ')}` : 'ok';
     const install = config.install.map((command) => ({ command, exitCode: 0, ms: 0, phase: 'install' as const }));
-    return { passed, results: [...install, ...config.commands.map((command) => ({ command, exitCode: passed ? 0 : 1, ms: 0 }))], logTail: `[mock runner] ${files.length} files: ${why}`, ms: 0 };
+    return { passed, results: [...install, ...config.commands.map((command) => ({ command, exitCode: passed ? 0 : 1, ms: 0 }))], logTail: `[mock runner] ${files.length} files: ${why}`, ms: this.delayMs };
   }
 }
 

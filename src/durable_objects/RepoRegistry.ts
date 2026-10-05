@@ -882,9 +882,10 @@ export class RepoRegistry extends DurableObject<RegistryEnv> {
     return await m[op](...args);
   }
 
-  devConfigureMock(cfg: { latencyMs?: number; failNext?: MockArtifacts['failNext'] }): Result<{ activeTokens: Record<string, number> }> {
+  devConfigureMock(cfg: { latencyMs?: number; testMs?: number; failNext?: MockArtifacts['failNext'] }): Result<{ activeTokens: Record<string, number> }> {
     if (!(this.artifacts instanceof MockArtifacts)) return fail(404, 'NOT_AVAILABLE_IN_NATIVE_MODE');
     if (cfg.latencyMs !== undefined) this.artifacts.latencyMs = cfg.latencyMs;
+    if (cfg.testMs !== undefined) this.mockRunner.delayMs = cfg.testMs;
     if (cfg.failNext) this.artifacts.failNext = { ...cfg.failNext };
     const activeTokens: Record<string, number> = {};
     if (this.config) {

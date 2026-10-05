@@ -371,6 +371,19 @@ async function route(request: Request, env: Env): Promise<Response> {
     );
   }
 
+  if (method === 'POST' && action === 'dev-configure' && !sub) {
+    if (env.ARTIFACTS_MODE !== 'mock') throw new HttpError(404, 'NOT_FOUND');
+    await requireAdmin(request, env);
+    const b = await readJson(request, MAX_BODY);
+    rejectUnknown(b, ['latencyMs', 'testMs']);
+    return fromResult(
+      await registryOf(env, repo).devConfigureMock({
+        ...(b.latencyMs !== undefined ? { latencyMs: int(b, 'latencyMs', { min: 0, max: 60_000 }) } : {}),
+        ...(b.testMs !== undefined ? { testMs: int(b, 'testMs', { min: 0, max: 600_000 }) } : {}),
+      })
+    );
+  }
+
   if (method === 'GET' && action === 'dev-main-files' && !sub) {
     if (env.ARTIFACTS_MODE !== 'mock') throw new HttpError(404, 'NOT_FOUND');
     await requireAdmin(request, env);

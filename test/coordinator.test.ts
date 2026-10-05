@@ -701,6 +701,25 @@ describe('project tests on the composed tree (mock runner)', () => {
     return ids;
   }
 
+  it('dev-configure sets how long the composed-tree tests last: admin only, validated, and the round takes that long', async () => {
+    const repo = await setupRepo(['L1', 'L2']);
+    await enableTests(repo);
+    const agentKey = await agent(`w-cfg-${repo}`, 'worker', 'claude');
+    expect((await call('POST', `/api/repos/${repo}/dev-configure`, agentKey, { testMs: 50 })).status).toBeGreaterThanOrEqual(401); // an agent is not an admin
+    expect((await call('POST', `/api/repos/${repo}/dev-configure`, ADMIN, { testMs: -1 })).status).toBe(400);
+    expect((await call('POST', `/api/repos/${repo}/dev-configure`, ADMIN, { testMs: 50, bogus: 1 })).status).toBe(400);
+    expect((await call('POST', `/api/repos/${repo}/dev-configure`, ADMIN, { testMs: 150 })).status).toBe(200);
+    await queuePatches(repo, { L1: { 'src/l1.ts': 'export const l1 = 1;\n' }, L2: { 'src/l2.ts': 'export const l2 = 2;\n' } });
+    const t0 = Date.now();
+    await drainQueue(repo);
+    expect(Date.now() - t0).toBeGreaterThanOrEqual(140); // the one composed-tree run of the round lasted its 150 ms
+    const s = await status(repo);
+    expect(s.queue.testRuns).toBe(1);
+    expect(s.patches.every((p: { status: string }) => p.status === 'merged')).toBe(true);
+    // set back to zero: the next run is instant again
+    expect((await call('POST', `/api/repos/${repo}/dev-configure`, ADMIN, { testMs: 0 })).status).toBe(200);
+  });
+
   it('a failing patch is isolated by bisection and rejected with TESTS_FAILED; the rest merges', async () => {
     const tasks = ['K1', 'K2', 'K3', 'K4'];
     const repo = await setupRepo(tasks);

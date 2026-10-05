@@ -264,7 +264,8 @@ rejected as a conflict (never reset; it counts the redo cost). Each patch carrie
 `claimedAt` (the claim that produced it), `submittedAt`, `queuedAt` (when it entered the merge queue) and `closedAt`,
 so the time from claim to merge round and its parts (work, review, queue and tests) can be read from `/status`.
 Dev-only routes (`dev-commit`, `dev-advance-main`,
-`dev-main-files`) exist only when `ARTIFACTS_MODE=mock`. The dashboard renders values with `textContent`.
+`dev-main-files`, and `dev-configure`, which sets the latency of the mock Artifacts and how long the mock test runner takes,
+for load simulations) exist only when `ARTIFACTS_MODE=mock`. The dashboard renders values with `textContent`.
 
 ## 10. Environments
 
