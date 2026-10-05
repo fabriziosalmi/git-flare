@@ -93,14 +93,16 @@ test('no worktree is left registered in the repository after a run', () => {
 
 test('the manifest records how long each task took the agent, and the median and 90th percentile of the committed ones', () => {
   const fx = fixture();
-  const m = run(fx);
-  for (const t of m.tasks) {
-    assert.equal(typeof t.elapsedMs, 'number');
-    assert.ok(t.elapsedMs >= 0 && t.elapsedMs < 60_000);
-  }
-  const sorted = m.tasks.map((t) => t.elapsedMs).sort((a, b) => a - b);
-  assert.equal(m.taskMs.p50, (sorted[0] + sorted[1]) / 2); // two tasks: the median is their mean
-  assert.ok(m.taskMs.p90 >= m.taskMs.p50 && m.taskMs.p90 <= sorted[1]);
+  // Each task also pays a fixed cost (a worktree, a commit: about 100 ms, and now and then seconds on a cold machine),
+  // so the delays are large against that noise.
+  const m = run(fx, ['--mock-delay-ms', '400']); // issue 1 takes 400 ms, issue 2 takes 800 ms
+  const [e1, e2] = m.tasks.map((t) => t.elapsedMs);
+  assert.ok(e1 >= 400 && e1 < 8000, `${e1}`);
+  assert.ok(e2 >= 800 && e2 < 8000, `${e2}`);
+  assert.ok(e2 - e1 >= 250, `${e2} - ${e1}`);
+  assert.ok(Math.abs(m.taskMs.p50 - (e1 + e2) / 2) < 1e-9); // two values: the median is their mean
+  assert.ok(Math.abs(m.taskMs.p90 - (e1 + 0.9 * (e2 - e1))) < 1e-9);
+  assert.ok(m.taskMs.p90 > m.taskMs.p50 + 100); // 0.4 of the gap between the two
 });
 
 test('a task that did not commit is not in the timing percentiles', () => {

@@ -35,6 +35,7 @@ import { quantile } from './lib/sim.mjs';
 const argv = process.argv.slice(2);
 const cmd = argv[0];
 const arg = (n, d) => (argv.includes(`--${n}`) ? argv[argv.indexOf(`--${n}`) + 1] : d);
+const num = (n, d) => Number(arg(n, String(d)));
 const must = (n) => {
   const v = arg(n);
   if (!v) {
@@ -46,6 +47,7 @@ const must = (n) => {
 
 const CODER = arg('model', '@cf/qwen/qwen2.5-coder-32b-instruct');
 const SELECTOR = arg('select-model', '@cf/meta/llama-3.3-70b-instruct-fp8-fast');
+const MOCK_DELAY_MS = num('mock-delay-ms', 0); // mock only: each task takes this long times its issue number, so that timings can be tested
 const MOCK_FLAWS = new Set(arg('mock-flaw', 'none').split(',')); // mock only: 'typo' makes the first edit's search text wrong (to exercise the retry), 'ghost' adds an edit to a file that does not exist (a failure that cannot be retried)
 const MAX_FILES = 4;
 const MAX_FILE_CHARS = 30_000;
@@ -171,6 +173,7 @@ const hash = (s) => parseInt(createHash('sha256').update(s).digest('hex').slice(
 const agents = {
   mock: {
     async select(task, tree) {
+      if (MOCK_DELAY_MS > 0) await new Promise((resolve) => setTimeout(resolve, MOCK_DELAY_MS * task.issue.number));
       const inTree = new Set(tree);
       const files = task.pr.files.filter((f) => inTree.has(f)).slice(0, MAX_FILES);
       return { files: files.length ? files : tree.slice(0, 1), calls: [] };
