@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import aimpWasm from '../crates/aimp-wasm/pkg/aimp_wasm_bg.wasm';
 import { isoExpiry, MockArtifacts } from '../src/artifacts/client';
 import { REGISTRY_HOST, registryUpstream } from '../src/testing/registry-proxy';
-import { parseTestConfig } from '../src/testing/runner';
+import { MockTestRunner, parseTestConfig } from '../src/testing/runner';
 import { applyEvent, baseRepoOf, emptyGuard, parseArtifactsEvent, recordLanded, recordOwnToken } from '../src/guard';
 import { issueAgentKey, secretEquals, verifyAgentKey } from '../src/auth';
 import { AimpEngine } from '../src/epistemic/aimp';
@@ -403,5 +403,23 @@ describe('npm registry proxy for the test container', () => {
     // Dot segments are resolved by the URL parser before the policy sees them: the request stays on the registry.
     expect((registryUpstream(req(`http://${REGISTRY_HOST}/a/%2e%2e/%2e%2e/etc`)) as Request).url).toBe('https://registry.npmjs.org/etc');
     expect((registryUpstream(req(`http://user:pw@${REGISTRY_HOST}/ms`)) as Response).status).toBe(400);
+  });
+});
+
+describe('MockTestRunner', () => {
+  const cfg = { install: [], commands: ['node --test'], timeoutMs: 1000 };
+  it('a run lasts delayMs and reports it; with no delay it is instant and reports 0', async () => {
+    const r = new MockTestRunner();
+    r.delayMs = 40;
+    const t0 = Date.now();
+    const slow = await r.run([], cfg);
+    expect(Date.now() - t0).toBeGreaterThanOrEqual(35);
+    expect(slow.ms).toBe(40);
+    r.delayMs = 0;
+    const t1 = Date.now();
+    const fast = await r.run([], cfg);
+    expect(Date.now() - t1).toBeLessThan(35);
+    expect(fast.ms).toBe(0);
+    expect(r.runs).toBe(2);
   });
 });
