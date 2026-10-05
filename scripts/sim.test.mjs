@@ -1,7 +1,7 @@
 // node --test scripts/sim.test.mjs
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { empiricalSampler, footprintsOf, lognormalMs, quantile, rng, summarizeRun, zipfSampler } from './lib/sim.mjs';
+import { empiricalSampler, footprintsOf, lognormalMs, quantile, rng, summarizeRun, uniqueName, zipfSampler } from './lib/sim.mjs';
 
 test('rng: the same seed gives the same sequence, another seed another, all in [0, 1)', () => {
   const a = rng(7);
@@ -136,4 +136,14 @@ test('footprintsOf: human or agent files, with or without changelog/version/depe
   assert.deepEqual(footprintsOf([m, m], 'agent').length, 4); // several manifests are concatenated
   assert.throws(() => footprintsOf([m], 'humans'), /unknown footprint kind/);
   assert.throws(() => footprintsOf([m], 'human-hot'), /unknown footprint kind/);
+});
+
+test('uniqueName: two cells started in the same millisecond differ by process or by chance, and the name is valid for a repository', () => {
+  const r = rng(1);
+  assert.notEqual(uniqueName(1000, 11, r), uniqueName(1000, 12, r)); // same millisecond, other process
+  assert.notEqual(uniqueName(1000, 11, () => 0.1), uniqueName(1000, 11, () => 0.2)); // same process, other random part
+  const names = new Set(Array.from({ length: 5000 }, () => uniqueName(1000, 11, r)));
+  assert.ok(names.size > 4900, `${names.size} distinct in 5000 draws`); // 36^4 draws collide rarely, not never
+  for (const n of names) assert.match(`sim-${n}`, /^[a-z0-9][a-z0-9-]{0,47}$/);
+  assert.equal(uniqueName(0, 0, () => 0).length, 6); // '0' + '0' + '0000'
 });

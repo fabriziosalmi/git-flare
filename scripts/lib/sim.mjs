@@ -3,6 +3,14 @@ import { HOT } from './replay.mjs';
 // Pure parts of the queue simulation (scripts/queue-sim.mjs): seeded randomness, footprints, and the metrics computed
 // from what the run recorded. Unit-tested in scripts/sim.test.mjs.
 
+/**
+ * A name for a cell's repository and agents that two cells started in the same millisecond, in one process or in
+ * several, cannot share (they would claim each other's tasks): time, process id and a random part.
+ */
+export function uniqueName(now = Date.now(), pid = process.pid, rand = Math.random) {
+  return `${now.toString(36)}${pid.toString(36)}${Math.floor(rand() * 36 ** 4).toString(36).padStart(4, '0')}`;
+}
+
 /** mulberry32: a small seeded generator returning floats in [0, 1): the same seed gives the same run. */
 export function rng(seed) {
   let a = seed >>> 0;

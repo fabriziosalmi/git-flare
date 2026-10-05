@@ -24,7 +24,7 @@
 // dependency files); or --zipf files=40,s=1,sizes=1,2,4 for synthetic ones.
 import fs from 'node:fs';
 import path from 'node:path';
-import { empiricalSampler, footprintsOf, lognormalMs, rng, summarizeRun, zipfSampler } from './lib/sim.mjs';
+import { empiricalSampler, footprintsOf, lognormalMs, rng, summarizeRun, uniqueName, zipfSampler } from './lib/sim.mjs';
 
 const TERMINAL = new Set(['merged', 'rejected', 'stale', 'duplicate', 'expired']);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -218,7 +218,7 @@ async function gridMode() {
       for (let rep = 0; rep < num('reps', 3); rep++) cells.push({ ...base, agents, testMs: t === 'none' ? null : Number(t), seed: base.seed + rep, rep });
     }
   }
-  const run = Date.now().toString(36);
+  const run = uniqueName();
   const rows = await pool(cells, num('parallel', 2), async (c, i) => {
     const id = `n${c.agents}-t${c.testMs ?? 'none'}-r${c.rep}`;
     const file = path.join(dir, `${id}.json`);
@@ -234,8 +234,8 @@ async function gridMode() {
 /** A positive and a negative control: every task on one file must conflict, tasks on distinct files must not. */
 async function selftest() {
   const common = { ...baseParams(), agents: 4, tasksPerAgent: 3, workMs: 200, workCv: 0, reviewMs: 100, rebaseMs: 100, testMs: null, scale: 1, maxAttempts: 100, timeoutMs: 120_000 }; // a task may lose many times in a row on one file: do not let the control depend on luck
-  const same = await runCell({ ...common, footprintsFrom: [], zipf: 'files=1,s=0,sizes=1' }, `st-same-${Date.now().toString(36)}`);
-  const apart = await runCell({ ...common, footprintsFrom: [], zipf: 'files=500,s=0,sizes=1' }, `st-apart-${Date.now().toString(36)}`);
+  const same = await runCell({ ...common, footprintsFrom: [], zipf: 'files=1,s=0,sizes=1' }, `st-same-${uniqueName()}`);
+  const apart = await runCell({ ...common, footprintsFrom: [], zipf: 'files=500,s=0,sizes=1' }, `st-apart-${uniqueName()}`);
   const timed = [same, apart].every((r) => r.summary.windowMs.p50 > 0 && r.summary.partsMs.work > 0 && r.summary.landingsPerWindow.mean !== null); // the server's times arrived
   const ok = same.summary.stale > 0 && same.summary.merged === 12 && apart.summary.stale === 0 && apart.summary.merged === 12 && timed && same.summary.maxAttempts > 1 && apart.summary.maxAttempts === 1;
   console.log(`positive control (12 tasks, one file): ${same.summary.merged} merged, ${same.summary.stale} stale, max attempts ${same.summary.maxAttempts}`);
@@ -260,7 +260,7 @@ if (process.argv[1] && import.meta.url === new URL(`file://${process.argv[1]}`).
       console.error('give --footprints-from <manifest.json> or --zipf files=40,s=1,sizes=1');
       process.exit(2);
     }
-    const r = await runCell(p, Date.now().toString(36));
+    const r = await runCell(p, uniqueName());
     if (arg('out')) fs.writeFileSync(arg('out'), `${JSON.stringify(r, null, 2)}\n`);
     console.log(JSON.stringify(r.summary, null, 2));
   }
