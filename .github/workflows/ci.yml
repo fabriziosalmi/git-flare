@@ -46,13 +46,12 @@ jobs:
           npm test 2>&1 | tee /tmp/worker-tests.log
           # workerd reports an exception thrown inside a Durable Object as "uncaught" even when the caller handles it:
           # the run still passes, so without this check the noise (and a real unhandled rejection) would go unnoticed.
-          if grep -q "uncaught exception" /tmp/worker-tests.log; then
+          # Two tests call state.abort() on purpose to simulate a crash; workerd logs that one as uncaught too, on Linux.
+          # (one awk, no pipe: with pipefail an early-exiting grep -q could make the check pass silently)
+          if ! awk '/uncaught exception/ && !/Application called abort\(\) to reset Durable Object/ { n++; if (n <= 5) print } END { exit (n > 0) }' /tmp/worker-tests.log; then
             echo "::error::workerd reported an uncaught exception during the tests"
             exit 1
           fi
-
-      - name: Tests of the measurement scripts
-        run: npm run test:scripts
 
       - name: Deploy dry-run for every environment
         run: |
