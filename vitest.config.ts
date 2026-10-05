@@ -1,11 +1,11 @@
-import { cloudflareTest } from '@cloudflare/vitest-pool-workers';
+import { cloudflareTest } from '@cloudflare/vitest-plugin';
 import { defineConfig } from 'vitest/config';
 
 // Tests run inside workerd with the `dev` environment (mock Artifacts). Secrets below are test-only.
 export default defineConfig({
   plugins: [
     cloudflareTest({
-      wrangler: { configPath: './wrangler.test.jsonc' },
+      wrangler: { configPath: './wrangler.jsonc', environment: 'dev' },
       miniflare: {
         bindings: {
           ADMIN_KEY: 'test-admin-key-0123456789abcdef0123456789abcdef',
