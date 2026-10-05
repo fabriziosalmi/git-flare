@@ -17,6 +17,7 @@
 //
 //   node scripts/conflict-replay.mjs --repo <clone> [--repo <clone> ...] [--big 200] [--out file.json] [--pairs file.jsonl]
 //   node scripts/conflict-replay.mjs --repo <clone> --manifest <agent-replay manifest.json> [--out file.json] [--pairs file.jsonl]
+//   node scripts/conflict-replay.mjs --human-only --manifest <manifest or tasks.json> [--out file.json]   (no repository)
 //
 // --big N: also report the figures without pairs where either side changes more than N paths (release
 // syncs and vendoring merges are not what an agent patch looks like).
@@ -26,6 +27,7 @@ import { DIVERGENCE_BUCKETS, HOT, divergenceBucket, footprintSummary, git, lines
 
 const args = process.argv.slice(2);
 const all = (n) => args.flatMap((a, i) => (a === `--${n}` ? [args[i + 1]] : []));
+const flag = (n) => args.includes(`--${n}`);
 const arg = (n, d) => (args.includes(`--${n}`) ? args[args.indexOf(`--${n}`) + 1] : d);
 const REPOS = all('repo');
 const BIG = Number(arg('big', '200'));
@@ -33,7 +35,8 @@ const OUT = arg('out');
 const PAIRS = arg('pairs');
 const MANIFESTS = all('manifest'); // one or more agent-replay manifests of the same base (a run split over several days by the neuron budget)
 const MANIFEST = MANIFESTS.length > 0;
-if (REPOS.length === 0 || (MANIFEST && REPOS.length !== 1)) {
+const HUMAN_ONLY = flag('human-only'); // only the footprint of the human pull requests of a manifest or a tasks file: no repository, no branches
+if ((REPOS.length === 0 && !HUMAN_ONLY) || (HUMAN_ONLY && !MANIFEST) || (MANIFEST && REPOS.length > 1)) {
   console.error('usage: node scripts/conflict-replay.mjs --repo <clone> [--repo ...] [--big N] [--out f.json] [--pairs f.jsonl]\n       node scripts/conflict-replay.mjs --repo <clone> --manifest <manifest.json> [--out f.json] [--pairs f.jsonl]');
   process.exit(2);
 }
@@ -88,13 +91,23 @@ function* pairsOf(repo) {
 /** The human pull requests that closed the same tasks: how often do their pairs share a file? (the footprint the agents are compared with) */
 function humanBaseline() {
   const m = loadManifests();
-  const withHuman = (ts) => ts.filter((t) => Array.isArray(t.humanFiles)).map((t) => t.humanFiles);
+  const humanOf = (t) => t.humanFiles ?? t.pr?.files; // a manifest, or the tasks file of agent-replay
+  const withHuman = (ts) => ts.filter((t) => Array.isArray(humanOf(t))).map(humanOf);
   const row = (sets) => {
     const [all, pairs] = sharedPathPairs(sets);
     const [noHot] = sharedPathPairs(sets, HOT);
     return { patches: sets.length, pairs, pairsSharingFile: all, pairsSharingFileExcludingHotFiles: noHot, medianFilesPerPatch: sets.length ? [...sets].map((x) => x.length).sort((x, y) => x - y)[Math.floor(sets.length / 2)] : null };
   };
   return { agentFootprint: footprintSummary(m.tasks), allTasks: row(withHuman(m.tasks)), sameTasksAsCommittedAgentPatches: row(withHuman(m.tasks.filter((t) => t.status === 'committed'))) };
+}
+
+if (HUMAN_ONLY) {
+  const h = humanBaseline();
+  const result = { date: new Date().toISOString().slice(0, 10), what: 'Footprint of the pull requests that closed the tasks: how often do two of them share a file', humanBaseline: { allTasks: h.allTasks } };
+  if (arg('out')) fs.writeFileSync(arg('out'), `${JSON.stringify(result, null, 2)}\n`);
+  const a = h.allTasks;
+  console.log(`human PRs: ${a.pairsSharingFile}/${a.pairs} pairs share a file (${a.pairsSharingFileExcludingHotFiles} without hot files), median ${a.medianFilesPerPatch} files per PR, ${a.patches} PRs`);
+  process.exit(0);
 }
 
 const pairsOut = PAIRS ? fs.createWriteStream(PAIRS) : null;
