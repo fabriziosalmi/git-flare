@@ -257,3 +257,39 @@ dependency reasons: the history needs old Werkzeug and Jinja (`Markup` from `jin
 `werkzeug.urls`) and old pytest internals; with pytest 8 only the latest of ten sampled commits passed. Its
 history cannot be judged with one environment. `itsdangerous` did not run in a first sample (0 of 10) and was not
 pursued. A fair measurement of such repositories needs an environment per era, which this script does not do.
+
+## 11. Plan to completion and decision gates (fixed 2026-10-05, before the phase-3 data)
+
+The plan is tracked in the milestone *Hunk-level merge (exploration)*. The gates are written **before** the
+queue-level data exist so that the decision does not follow the result; they are not to be moved after it.
+
+| Phase | Output | Issue |
+|---|---|---|
+| 0 | Pending work closed, issues opened | #12–#15 |
+| 1 | Workers AI agent v2 (stronger selector, whitespace-tolerant search, one retry with the real excerpt) and a table of **footprints** (files per patch, share of hot files) of human pull requests and agent patches on `pallets/click` and `honojs/hono` | #3 |
+| 2 | Cost of a rejection (rebase, re-review, latency) and the distribution of the claim-to-merge window W | #12 |
+| 3 | Queue-level simulation on staging: rejection vs number of agents and test duration | #13 |
+| **G1** | Is anything worth building? | |
+| 4 | Choice of lever, with a decision record | #14 |
+| **G2** | Which lever (owner decides) | |
+| 5 | Implementation: pure 3-way merge tested differentially against git, registry integration, per-repository opt-in only with declared tests, bench of the round | #2 |
+| 6 | A/B on staging, same load as phase 3 with the lever on and off | #13 |
+| **G3** | Stay available (opt-in) or withdraw | |
+| 7 | Closure: README, final note, issues and milestone closed | |
+
+**G1.** Reference scenario: 10 agents, tests of 30 seconds, footprints from real pull requests. Rejection per patch
+with the file-level rule: under 10% → build nothing, close #2, #3 and #4 with the data; from 10% to 20% → cheap
+levers only (conflict policy #4, review reuse), no hunk-level merge; 20% or more → go on to phase 4.
+
+**G2.** The lever that removes the most expensive part of a rejection (as measured in phase 2) at the lowest
+complexity; more than one lever may be chosen, each as its own pull request.
+
+**G3.** At the reference scenario, lever on against lever off, **all** of: rejection per patch down by at least 40%
+relative; **zero** patches that pass the composed-tree tests and still break `main`; round latency up by at most
+50%; CI green. If one fails, the lever stays off or is withdrawn. Whatever the outcome it stays opt-in per
+repository and only for repositories with declared tests.
+
+Decisions of 2026-10-05: staging may be used for phases 2, 3 and 6 (the cost of each series is estimated from the
+price list first, and confirmation is asked above 5 USD); the second repository for footprints is `honojs/hono`;
+validation of the semantic risk on a non-Python repository is postponed; nothing public about these findings until
+that is decided.
