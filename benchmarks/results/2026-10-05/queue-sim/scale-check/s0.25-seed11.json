@@ -1,0 +1,2137 @@
+{
+  "params": {
+    "agents": 10,
+    "tasksPerAgent": 3,
+    "workMs": 60000,
+    "workCv": 0.5,
+    "reviewMs": 15000,
+    "rebaseMs": 30000,
+    "testMs": 30000,
+    "scale": 0.25,
+    "seed": 11,
+    "maxAttempts": 10,
+    "shards": 4,
+    "pollMs": 250,
+    "footprintsFrom": [
+      "benchmarks/results/2026-10-05/agent-replay-click/pilot2.manifest.json"
+    ],
+    "footprintKind": "human",
+    "zipf": "",
+    "timeoutMs": 3600000
+  },
+  "name": "muv243ha12egwrpw",
+  "summary": {
+    "submissions": 161,
+    "merged": 26,
+    "stale": 135,
+    "other": 0,
+    "rejectionPerSubmissionPct": 83.9,
+    "firstAttemptRejectionPct": 90,
+    "tasks": 30,
+    "attemptsPerTask": {
+      "1": 3,
+      "2": 4,
+      "3": 3,
+      "4": 4,
+      "5": 3,
+      "6": 2,
+      "7": 2,
+      "8": 2,
+      "9": 2,
+      "10": 5
+    },
+    "maxAttempts": 10,
+    "windowMs": {
+      "p50": 15501,
+      "p90": 24126,
+      "p99": 42456.4
+    },
+    "partsMs": {
+      "work": 6592,
+      "review": 3759,
+      "queueAndTests": 7655
+    },
+    "landingsPerWindow": {
+      "mean": 1.1,
+      "p50": 1,
+      "p90": 2
+    },
+    "throughputPerMin": 4.3,
+    "wallMs": 363760,
+    "tasksGivenUp": 4
+  },
+  "queue": {
+    "length": 0,
+    "pending": [],
+    "rounds": 71,
+    "pushes": 26,
+    "fastForwards": 0,
+    "batchCommits": 26,
+    "mergedPatches": 26,
+    "largestBatch": 1,
+    "conflicts": 135,
+    "failures": 0,
+    "casRetries": 0,
+    "testRuns": 26,
+    "testFailures": 0,
+    "testRejections": 0,
+    "testMs": 195000,
+    "testConfigErrors": 0,
+    "testInfraErrors": 0,
+    "mirrorSyncs": 0,
+    "lastMirrorSyncMs": 0,
+    "recent": [
+      {
+        "at": 1791193445374,
+        "via": "batch",
+        "patches": [
+          "p0_d980b9372bd1"
+        ],
+        "commit": "cc30b725d0b2310592ade1e82ba128be6032b14d",
+        "conflicts": [],
+        "ms": 7506,
+        "test": {
+          "passed": true,
+          "ms": 7500,
+          "results": [
+            {
+              "command": "node --test",
+              "exitCode": 0,
+              "ms": 0
+            }
+          ],
+          "logTail": "[mock runner] 21 files: ok"
+        }
+      },
+      {
+        "at": 1791193427231,
+        "via": "conflicts-only",
+        "patches": [],
+        "conflicts": [
+          "p0_f69346206406"
+        ],
+        "ms": 1
+      },
+      {
+        "at": 1791193427074,
+        "via": "batch",
+        "patches": [
+          "p2_0cd6a8654a50"
+        ],
+        "commit": "7732de282198a730f02cffae2ab13f36502d617a",
+        "conflicts": [],
+        "ms": 7502,
+        "test": {
+          "passed": true,
+          "ms": 7500,
+          "results": [
+            {
+              "command": "node --test",
+              "exitCode": 0,
+              "ms": 0
+            }
+          ],
+          "logTail": "[mock runner] 21 files: ok"
+        }
+      },
+      {
+        "at": 1791193408014,
+        "via": "conflicts-only",
+        "patches": [],
+        "conflicts": [
+          "p0_4b601e46154f",
+          "p2_4a91f51ece6f"
+        ],
+        "ms": 0
+      },
+      {
+        "at": 1791193407857,
+        "via": "batch",
+        "patches": [
+          "p1_437f007bb64b"
+        ],
+        "commit": "75c8d3e430d2fde5ffb4b9f990ab035ba34471e1",
+        "conflicts": [],
+        "ms": 7557,
+        "test": {
+          "passed": true,
+          "ms": 7500,
+          "results": [
+            {
+              "command": "node --test",
+              "exitCode": 0,
+              "ms": 0
+            }
+          ],
+          "logTail": "[mock runner] 21 files: ok"
+        }
+      },
+      {
+        "at": 1791193392843,
+        "via": "conflicts-only",
+        "patches": [],
+        "conflicts": [
+          "p1_cf8a1ea5ce4a",
+          "p2_8a9b2b9dbff2",
+          "p0_749ba5591729"
+        ],
+        "ms": 1
+      },
+      {
+        "at": 1791193392687,
+        "via": "batch",
+        "patches": [
+          "p2_c2adf97b12e8"
+        ],
+        "commit": "7db9ffc2a48134ca7964ed78f6fea74218ed70b9",
+        "conflicts": [],
+        "ms": 7502,
+        "test": {
+          "passed": true,
+          "ms": 7500,
+          "results": [
+            {
+              "command": "node --test",
+              "exitCode": 0,
+              "ms": 0
+            }
+          ],
+          "logTail": "[mock runner] 21 files: ok"
+        }
+      },
+      {
+        "at": 1791193375680,
+        "via": "conflicts-only",
+        "patches": [],
+        "conflicts": [
+          "p0_ca31f53ea990",
+          "p1_b0dfc007e4df",
+          "p2_31d8e8e4b343",
+          "p2_bc19037443b3"
+        ],
+        "ms": 1
+      },
+      {
+        "at": 1791193375527,
+        "via": "batch",
+        "patches": [
+          "p0_db13ac1b398e"
+        ],
+        "commit": "43f124c138bf723c30b7a3cd81214aca50c106f9",
+        "conflicts": [],
+        "ms": 7502,
+        "test": {
+          "passed": true,
+          "ms": 7500,
+          "results": [
+            {
+              "command": "node --test",
+              "exitCode": 0,
+              "ms": 0
+            }
+          ],
+          "logTail": "[mock runner] 21 files: ok"
+        }
+      },
+      {
+        "at": 1791193359691,
+        "via": "conflicts-only",
+        "patches": [],
+        "conflicts": [
+          "p2_9d8bdd9bf33e",
+          "p0_5f3c0a5105f9",
+          "p1_628eea9eebfa",
+          "p0_35977edad290",
+          "p2_43ef7ad20572"
+        ],
+        "ms": 12
+      },
+      {
+        "at": 1791193359522,
+        "via": "batch",
+        "patches": [
+          "p3_a6f74e04cc54"
+        ],
+        "commit": "7648f528e68e06767d38b9e9406ce9acba92fe5e",
+        "conflicts": [],
+        "ms": 7504,
+        "test": {
+          "passed": true,
+          "ms": 7500,
+          "results": [
+            {
+              "command": "node --test",
+              "exitCode": 0,
+              "ms": 0
+            }
+          ],
+          "logTail": "[mock runner] 21 files: ok"
+        }
+      },
+      {
+        "at": 1791193347448,
+        "via": "conflicts-only",
+        "patches": [],
+        "conflicts": [
+          "p1_696300e1a956"
+        ],
+        "ms": 1
+      },
+      {
+        "at": 1791193344020,
+        "via": "conflicts-only",
+        "patches": [],
+        "conflicts": [
+          "p0_c26a955c6294",
+          "p0_9d99c3e3e2c6",
+          "p2_b0c41bdd47c0",
+          "p2_7e902ec0d7c3",
+          "p3_03d9f45ff092"
+        ],
+        "ms": 1
+      },
+      {
+        "at": 1791193343867,
+        "via": "batch",
+        "patches": [
+          "p1_dfa9c8bc886a"
+        ],
+        "commit": "5da01a11190f0dc984bc8603cf666081ddf5f132",
+        "conflicts": [],
+        "ms": 7522,
+        "test": {
+          "passed": true,
+          "ms": 7500,
+          "results": [
+            {
+              "command": "node --test",
+              "exitCode": 0,
+              "ms": 0
+            }
+          ],
+          "logTail": "[mock runner] 21 files: ok"
+        }
+      },
+      {
+        "at": 1791193333735,
+        "via": "conflicts-only",
+        "patches": [],
+        "conflicts": [
+          "p2_f7a6560e01ca"
+        ],
+        "ms": 1
+      },
+      {
+        "at": 1791193330290,
+        "via": "conflicts-only",
+        "patches": [],
+        "conflicts": [
+          "p1_c5f5ecbdc598",
+          "p3_5934881edf51",
+          "p0_4460c44501e8",
+          "p2_e5bbbb1c710a"
+        ],
+        "ms": 3
+      },
+      {
+        "at": 1791193330135,
+        "via": "batch",
+        "patches": [
+          "p0_247c9ba4040f"
+        ],
+        "commit": "c00148179b520df6d9f0ca134f5edbb128ca065e",
+        "conflicts": [],
+        "ms": 7502,
+        "test": {
+          "passed": true,
+          "ms": 7500,
+          "results": [
+            {
+              "command": "node --test",
+              "exitCode": 0,
+              "ms": 0
+            }
+          ],
+          "logTail": "[mock runner] 21 files: ok"
+        }
+      },
+      {
+        "at": 1791193320207,
+        "via": "conflicts-only",
+        "patches": [],
+        "conflicts": [
+          "p2_d0a548def866"
+        ],
+        "ms": 1
+      },
+      {
+        "at": 1791193315930,
+        "via": "conflicts-only",
+        "patches": [],
+        "conflicts": [
+          "p0_049a05d2b955"
+        ],
+        "ms": 2
+      },
+      {
+        "at": 1791193313800,
+        "via": "conflicts-only",
+        "patches": [],
+        "conflicts": [
+          "p0_cc3efe50bfc3"
+        ],
+        "ms": 0
+      }
+    ],
+    "bisecting": null,
+    "lastError": null,
+    "testRunner": "mock"
+  },
+  "patches": [
+    {
+      "patchId": "p0_f805cd4e4e4e",
+      "taskId": "T3",
+      "attempt": 1,
+      "status": "merged",
+      "claimedAt": 1791193082120,
+      "submittedAt": 1791193089054,
+      "queuedAt": 1791193092818,
+      "closedAt": 1791193100472
+    },
+    {
+      "patchId": "p0_d4b59afe4fd4",
+      "taskId": "T7",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193082127,
+      "submittedAt": 1791193089926,
+      "queuedAt": 1791193093689,
+      "closedAt": 1791193100627,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 7584503b1853 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_57f6cae98121",
+      "taskId": "T6",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193082127,
+      "submittedAt": 1791193093422,
+      "queuedAt": 1791193097182,
+      "closedAt": 1791193100627,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 7584503b1853 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_e978b74b1a6a",
+      "taskId": "T1",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193082120,
+      "submittedAt": 1791193095176,
+      "queuedAt": 1791193098934,
+      "closedAt": 1791193100627,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 7584503b1853 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_433b9b5787e0",
+      "taskId": "T9",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193082127,
+      "submittedAt": 1791193096328,
+      "queuedAt": 1791193100108,
+      "closedAt": 1791193100627,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 7584503b1853 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_43f1df7b35e0",
+      "taskId": "T2",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193082120,
+      "submittedAt": 1791193096632,
+      "queuedAt": 1791193100391,
+      "closedAt": 1791193100627,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 7584503b1853 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_d6dc975496c6",
+      "taskId": "T10",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193082127,
+      "submittedAt": 1791193097371,
+      "queuedAt": 1791193101127,
+      "closedAt": 1791193101279,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 7584503b1853 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_fc8f2a1dc598",
+      "taskId": "T8",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193082127,
+      "submittedAt": 1791193097711,
+      "queuedAt": 1791193101473,
+      "closedAt": 1791193101626,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 7584503b1853 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_aad3fb747277",
+      "taskId": "T7",
+      "attempt": 2,
+      "status": "merged",
+      "claimedAt": 1791193100848,
+      "submittedAt": 1791193104531,
+      "queuedAt": 1791193108290,
+      "closedAt": 1791193115943
+    },
+    {
+      "patchId": "p2_7690dab5b741",
+      "taskId": "T10",
+      "attempt": 2,
+      "status": "stale",
+      "claimedAt": 1791193101353,
+      "submittedAt": 1791193107324,
+      "queuedAt": 1791193111081,
+      "closedAt": 1791193116097,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since da72f03b6398 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_4159db231599",
+      "taskId": "T6",
+      "attempt": 2,
+      "status": "stale",
+      "claimedAt": 1791193100848,
+      "submittedAt": 1791193107503,
+      "queuedAt": 1791193111261,
+      "closedAt": 1791193116097,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since da72f03b6398 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_bf9cf1af6ad4",
+      "taskId": "T8",
+      "attempt": 2,
+      "status": "stale",
+      "claimedAt": 1791193101863,
+      "submittedAt": 1791193109682,
+      "queuedAt": 1791193113441,
+      "closedAt": 1791193116097,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since da72f03b6398 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_bc0e563391f5",
+      "taskId": "T4",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193082120,
+      "submittedAt": 1791193111725,
+      "queuedAt": 1791193115484,
+      "closedAt": 1791193116097,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 7584503b1853 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_732022777cf6",
+      "taskId": "T2",
+      "attempt": 2,
+      "status": "stale",
+      "claimedAt": 1791193100844,
+      "submittedAt": 1791193112435,
+      "queuedAt": 1791193116193,
+      "closedAt": 1791193116345,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since da72f03b6398 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_93998b3324e4",
+      "taskId": "T9",
+      "attempt": 2,
+      "status": "stale",
+      "claimedAt": 1791193100846,
+      "submittedAt": 1791193113116,
+      "queuedAt": 1791193116873,
+      "closedAt": 1791193117025,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since da72f03b6398 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_476a4451f583",
+      "taskId": "T1",
+      "attempt": 2,
+      "status": "stale",
+      "claimedAt": 1791193100848,
+      "submittedAt": 1791193113182,
+      "queuedAt": 1791193116940,
+      "closedAt": 1791193117025,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since da72f03b6398 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_f3bc4a2e1f76",
+      "taskId": "T5",
+      "attempt": 1,
+      "status": "merged",
+      "claimedAt": 1791193082127,
+      "submittedAt": 1791193116529,
+      "queuedAt": 1791193120287,
+      "closedAt": 1791193127940
+    },
+    {
+      "patchId": "p3_2aace61d60a2",
+      "taskId": "T6",
+      "attempt": 3,
+      "status": "merged",
+      "claimedAt": 1791193116201,
+      "submittedAt": 1791193120603,
+      "queuedAt": 1791193124364,
+      "closedAt": 1791193135594
+    },
+    {
+      "patchId": "p1_a1b89fd65377",
+      "taskId": "T8",
+      "attempt": 3,
+      "status": "stale",
+      "claimedAt": 1791193116201,
+      "submittedAt": 1791193121235,
+      "queuedAt": 1791193125019,
+      "closedAt": 1791193128092,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since af8b176c12d8 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_9809757c0314",
+      "taskId": "T10",
+      "attempt": 3,
+      "status": "stale",
+      "claimedAt": 1791193116204,
+      "submittedAt": 1791193122899,
+      "queuedAt": 1791193126676,
+      "closedAt": 1791193128092,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since af8b176c12d8 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_041abca7de2b",
+      "taskId": "T1",
+      "attempt": 3,
+      "status": "stale",
+      "claimedAt": 1791193117218,
+      "submittedAt": 1791193124686,
+      "queuedAt": 1791193128447,
+      "closedAt": 1791193135748,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since af8b176c12d8 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_deb9717c46e3",
+      "taskId": "T4",
+      "attempt": 2,
+      "status": "stale",
+      "claimedAt": 1791193116199,
+      "submittedAt": 1791193124910,
+      "queuedAt": 1791193128673,
+      "closedAt": 1791193135748,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since af8b176c12d8 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_c0aaad85d7e9",
+      "taskId": "T2",
+      "attempt": 3,
+      "status": "stale",
+      "claimedAt": 1791193116452,
+      "submittedAt": 1791193124976,
+      "queuedAt": 1791193128741,
+      "closedAt": 1791193135748,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since af8b176c12d8 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_297ee915dd9e",
+      "taskId": "T9",
+      "attempt": 3,
+      "status": "stale",
+      "claimedAt": 1791193117221,
+      "submittedAt": 1791193125011,
+      "queuedAt": 1791193128771,
+      "closedAt": 1791193135748,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since af8b176c12d8 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_96f078f3c25e",
+      "taskId": "T12",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193116204,
+      "submittedAt": 1791193126720,
+      "queuedAt": 1791193130633,
+      "closedAt": 1791193135748,
+      "mergeError": "CONFLICT: tests/test_compat.py changed on main since af8b176c12d8 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_8a6eec8b3087",
+      "taskId": "T13",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193128008,
+      "submittedAt": 1791193134013,
+      "queuedAt": 1791193137774,
+      "closedAt": 1791193137926,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 87b655de1c10 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_424750717380",
+      "taskId": "T11",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193100588,
+      "submittedAt": 1791193135997,
+      "queuedAt": 1791193139756,
+      "closedAt": 1791193139908,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since da72f03b6398 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_a351d892853b",
+      "taskId": "T8",
+      "attempt": 4,
+      "status": "merged",
+      "claimedAt": 1791193135772,
+      "submittedAt": 1791193139749,
+      "queuedAt": 1791193143507,
+      "closedAt": 1791193151160
+    },
+    {
+      "patchId": "p3_7e1bc7f4027d",
+      "taskId": "T2",
+      "attempt": 4,
+      "status": "stale",
+      "claimedAt": 1791193135765,
+      "submittedAt": 1791193139881,
+      "queuedAt": 1791193143638,
+      "closedAt": 1791193143658,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since e615f343ef9a or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_c7836386cd70",
+      "taskId": "T10",
+      "attempt": 4,
+      "status": "stale",
+      "claimedAt": 1791193135772,
+      "submittedAt": 1791193142167,
+      "queuedAt": 1791193145927,
+      "closedAt": 1791193151318,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since e615f343ef9a or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_5d87feade955",
+      "taskId": "T12",
+      "attempt": 2,
+      "status": "merged",
+      "claimedAt": 1791193135765,
+      "submittedAt": 1791193142343,
+      "queuedAt": 1791193146146,
+      "closedAt": 1791193158821
+    },
+    {
+      "patchId": "p3_0e9ec94a9611",
+      "taskId": "T13",
+      "attempt": 2,
+      "status": "stale",
+      "claimedAt": 1791193138078,
+      "submittedAt": 1791193142862,
+      "queuedAt": 1791193146630,
+      "closedAt": 1791193151318,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since e615f343ef9a or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_c7601f0c6bb8",
+      "taskId": "T4",
+      "attempt": 3,
+      "status": "stale",
+      "claimedAt": 1791193135765,
+      "submittedAt": 1791193143297,
+      "queuedAt": 1791193147124,
+      "closedAt": 1791193151318,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since e615f343ef9a or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_58634a8f1bca",
+      "taskId": "T9",
+      "attempt": 4,
+      "status": "stale",
+      "claimedAt": 1791193135765,
+      "submittedAt": 1791193145395,
+      "queuedAt": 1791193149159,
+      "closedAt": 1791193151318,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since e615f343ef9a or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_2e02dc99e2c0",
+      "taskId": "T11",
+      "attempt": 2,
+      "status": "stale",
+      "claimedAt": 1791193140130,
+      "submittedAt": 1791193146143,
+      "queuedAt": 1791193149942,
+      "closedAt": 1791193151318,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since e615f343ef9a or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_95c8285f0843",
+      "taskId": "T1",
+      "attempt": 4,
+      "status": "merged",
+      "claimedAt": 1791193135772,
+      "submittedAt": 1791193152629,
+      "queuedAt": 1791193156387,
+      "closedAt": 1791193166480
+    },
+    {
+      "patchId": "p2_4f5c075fe121",
+      "taskId": "T14",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193135776,
+      "submittedAt": 1791193153984,
+      "queuedAt": 1791193157742,
+      "closedAt": 1791193158977,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since e615f343ef9a or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_a1c6b287e205",
+      "taskId": "T2",
+      "attempt": 5,
+      "status": "stale",
+      "claimedAt": 1791193151279,
+      "submittedAt": 1791193155933,
+      "queuedAt": 1791193159696,
+      "closedAt": 1791193166634,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 6ebddc8272d9 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_e802a5d642fd",
+      "taskId": "T15",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193151279,
+      "submittedAt": 1791193159803,
+      "queuedAt": 1791193163561,
+      "closedAt": 1791193166634,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 6ebddc8272d9 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_11eb67d13974",
+      "taskId": "T4",
+      "attempt": 4,
+      "status": "stale",
+      "claimedAt": 1791193159065,
+      "submittedAt": 1791193165371,
+      "queuedAt": 1791193169201,
+      "closedAt": 1791193169353,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 8eaac6e0a0e5 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_f1df6a7aba61",
+      "taskId": "T13",
+      "attempt": 3,
+      "status": "stale",
+      "claimedAt": 1791193159065,
+      "submittedAt": 1791193165442,
+      "queuedAt": 1791193169207,
+      "closedAt": 1791193169353,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 8eaac6e0a0e5 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_5a3d75fe828a",
+      "taskId": "T10",
+      "attempt": 5,
+      "status": "merged",
+      "claimedAt": 1791193159069,
+      "submittedAt": 1791193166882,
+      "queuedAt": 1791193170655,
+      "closedAt": 1791193178309
+    },
+    {
+      "patchId": "p2_733129fd5b0f",
+      "taskId": "T9",
+      "attempt": 5,
+      "status": "stale",
+      "claimedAt": 1791193159065,
+      "submittedAt": 1791193167672,
+      "queuedAt": 1791193171432,
+      "closedAt": 1791193178465,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since f223015ed671 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_cfeb2764c1f7",
+      "taskId": "T15",
+      "attempt": 2,
+      "status": "stale",
+      "claimedAt": 1791193166886,
+      "submittedAt": 1791193172228,
+      "queuedAt": 1791193176004,
+      "closedAt": 1791193178465,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since f223015ed671 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_cc5919b14402",
+      "taskId": "T11",
+      "attempt": 3,
+      "status": "stale",
+      "claimedAt": 1791193159062,
+      "submittedAt": 1791193172470,
+      "queuedAt": 1791193176235,
+      "closedAt": 1791193178465,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since f223015ed671 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_23e4fcfd19e5",
+      "taskId": "T14",
+      "attempt": 2,
+      "status": "stale",
+      "claimedAt": 1791193166530,
+      "submittedAt": 1791193173084,
+      "queuedAt": 1791193176858,
+      "closedAt": 1791193178465,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since f223015ed671 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_a058d57c8435",
+      "taskId": "T16",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193159069,
+      "submittedAt": 1791193173200,
+      "queuedAt": 1791193176961,
+      "closedAt": 1791193178466,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 8eaac6e0a0e5 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_fc9051a2f1ac",
+      "taskId": "T17",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193166532,
+      "submittedAt": 1791193178064,
+      "queuedAt": 1791193181823,
+      "closedAt": 1791193181976,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since f223015ed671 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_a3935f68c326",
+      "taskId": "T2",
+      "attempt": 6,
+      "status": "merged",
+      "claimedAt": 1791193166890,
+      "submittedAt": 1791193179600,
+      "queuedAt": 1791193183359,
+      "closedAt": 1791193191016
+    },
+    {
+      "patchId": "p1_8ca6fcf16c1c",
+      "taskId": "T4",
+      "attempt": 5,
+      "status": "stale",
+      "claimedAt": 1791193169460,
+      "submittedAt": 1791193181477,
+      "queuedAt": 1791193185238,
+      "closedAt": 1791193191171,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 866071df18eb or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_3a1c969a0687",
+      "taskId": "T13",
+      "attempt": 4,
+      "status": "stale",
+      "claimedAt": 1791193169458,
+      "submittedAt": 1791193181553,
+      "queuedAt": 1791193185312,
+      "closedAt": 1791193191171,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 866071df18eb or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_ea10d67cb119",
+      "taskId": "T9",
+      "attempt": 6,
+      "status": "stale",
+      "claimedAt": 1791193178641,
+      "submittedAt": 1791193182586,
+      "queuedAt": 1791193186347,
+      "closedAt": 1791193191171,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 866071df18eb or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_0f0229de3aa0",
+      "taskId": "T15",
+      "attempt": 3,
+      "status": "stale",
+      "claimedAt": 1791193178637,
+      "submittedAt": 1791193182820,
+      "queuedAt": 1791193186582,
+      "closedAt": 1791193191171,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 866071df18eb or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_78d57763640d",
+      "taskId": "T14",
+      "attempt": 3,
+      "status": "stale",
+      "claimedAt": 1791193178637,
+      "submittedAt": 1791193185026,
+      "queuedAt": 1791193188796,
+      "closedAt": 1791193191171,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 866071df18eb or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_92f2f34ba924",
+      "taskId": "T11",
+      "attempt": 4,
+      "status": "stale",
+      "claimedAt": 1791193178637,
+      "submittedAt": 1791193186725,
+      "queuedAt": 1791193190497,
+      "closedAt": 1791193191171,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 866071df18eb or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_919a5b83abcc",
+      "taskId": "T16",
+      "attempt": 2,
+      "status": "stale",
+      "claimedAt": 1791193178633,
+      "submittedAt": 1791193189376,
+      "queuedAt": 1791193193139,
+      "closedAt": 1791193193292,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 866071df18eb or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_0d2ff1c6a533",
+      "taskId": "T17",
+      "attempt": 2,
+      "status": "stale",
+      "claimedAt": 1791193181995,
+      "submittedAt": 1791193190133,
+      "queuedAt": 1791193193938,
+      "closedAt": 1791193194094,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 866071df18eb or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_d44ee9b2140c",
+      "taskId": "T18",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193178349,
+      "submittedAt": 1791193195222,
+      "queuedAt": 1791193198985,
+      "closedAt": 1791193199139,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 866071df18eb or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_9d6ac925c9e8",
+      "taskId": "T9",
+      "attempt": 7,
+      "status": "merged",
+      "claimedAt": 1791193191210,
+      "submittedAt": 1791193195914,
+      "queuedAt": 1791193199670,
+      "closedAt": 1791193207324
+    },
+    {
+      "patchId": "p1_f675d70c3287",
+      "taskId": "T4",
+      "attempt": 6,
+      "status": "stale",
+      "claimedAt": 1791193191197,
+      "submittedAt": 1791193195956,
+      "queuedAt": 1791193199722,
+      "closedAt": 1791193199822,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since a0dd5aa5c53d or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_cfa2c43a7955",
+      "taskId": "T14",
+      "attempt": 4,
+      "status": "stale",
+      "claimedAt": 1791193191197,
+      "submittedAt": 1791193196601,
+      "queuedAt": 1791193200366,
+      "closedAt": 1791193207485,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since a0dd5aa5c53d or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_b0cd076bebd2",
+      "taskId": "T16",
+      "attempt": 3,
+      "status": "stale",
+      "claimedAt": 1791193193534,
+      "submittedAt": 1791193197225,
+      "queuedAt": 1791193200986,
+      "closedAt": 1791193207485,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since a0dd5aa5c53d or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_4e9bee712b9b",
+      "taskId": "T15",
+      "attempt": 4,
+      "status": "stale",
+      "claimedAt": 1791193191210,
+      "submittedAt": 1791193197596,
+      "queuedAt": 1791193201357,
+      "closedAt": 1791193207485,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since a0dd5aa5c53d or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_d2a6b3a90f74",
+      "taskId": "T19",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193191212,
+      "submittedAt": 1791193197652,
+      "queuedAt": 1791193201409,
+      "closedAt": 1791193207485,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since a0dd5aa5c53d or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_512fe677ecb3",
+      "taskId": "T11",
+      "attempt": 5,
+      "status": "stale",
+      "claimedAt": 1791193191197,
+      "submittedAt": 1791193200462,
+      "queuedAt": 1791193204224,
+      "closedAt": 1791193207485,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since a0dd5aa5c53d or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_9aa3ac5e7070",
+      "taskId": "T13",
+      "attempt": 5,
+      "status": "stale",
+      "claimedAt": 1791193191210,
+      "submittedAt": 1791193203014,
+      "queuedAt": 1791193206789,
+      "closedAt": 1791193207485,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since a0dd5aa5c53d or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_8030eb1ae647",
+      "taskId": "T17",
+      "attempt": 3,
+      "status": "stale",
+      "claimedAt": 1791193194310,
+      "submittedAt": 1791193203917,
+      "queuedAt": 1791193207676,
+      "closedAt": 1791193207828,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since a0dd5aa5c53d or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_14cd255c2797",
+      "taskId": "T18",
+      "attempt": 2,
+      "status": "merged",
+      "claimedAt": 1791193199266,
+      "submittedAt": 1791193208016,
+      "queuedAt": 1791193211776,
+      "closedAt": 1791193219431
+    },
+    {
+      "patchId": "p3_fae4f16798c4",
+      "taskId": "T17",
+      "attempt": 4,
+      "status": "stale",
+      "claimedAt": 1791193208082,
+      "submittedAt": 1791193211229,
+      "queuedAt": 1791193214985,
+      "closedAt": 1791193219584,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since e3518eace362 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_fed8b4b37e4c",
+      "taskId": "T16",
+      "attempt": 4,
+      "status": "stale",
+      "claimedAt": 1791193207569,
+      "submittedAt": 1791193212304,
+      "queuedAt": 1791193216063,
+      "closedAt": 1791193219584,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since e3518eace362 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_19639ca46707",
+      "taskId": "T4",
+      "attempt": 7,
+      "status": "stale",
+      "claimedAt": 1791193207578,
+      "submittedAt": 1791193213119,
+      "queuedAt": 1791193216878,
+      "closedAt": 1791193219584,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since e3518eace362 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_8a214d162f34",
+      "taskId": "T15",
+      "attempt": 5,
+      "status": "stale",
+      "claimedAt": 1791193207578,
+      "submittedAt": 1791193213332,
+      "queuedAt": 1791193217088,
+      "closedAt": 1791193219584,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since e3518eace362 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_0d30b1f350ae",
+      "taskId": "T14",
+      "attempt": 5,
+      "status": "stale",
+      "claimedAt": 1791193207578,
+      "submittedAt": 1791193213574,
+      "queuedAt": 1791193217332,
+      "closedAt": 1791193219584,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since e3518eace362 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_f4d213e7a9b9",
+      "taskId": "T13",
+      "attempt": 6,
+      "status": "stale",
+      "claimedAt": 1791193207569,
+      "submittedAt": 1791193214016,
+      "queuedAt": 1791193217774,
+      "closedAt": 1791193219584,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since e3518eace362 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_a1a2f39b399f",
+      "taskId": "T20",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193207579,
+      "submittedAt": 1791193216741,
+      "queuedAt": 1791193220501,
+      "closedAt": 1791193220652,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since e3518eace362 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_67dafca6952a",
+      "taskId": "T11",
+      "attempt": 6,
+      "status": "merged",
+      "claimedAt": 1791193207569,
+      "submittedAt": 1791193221613,
+      "queuedAt": 1791193225373,
+      "closedAt": 1791193233028
+    },
+    {
+      "patchId": "p1_f6f5d9a31750",
+      "taskId": "T19",
+      "attempt": 2,
+      "status": "stale",
+      "claimedAt": 1791193207569,
+      "submittedAt": 1791193221709,
+      "queuedAt": 1791193225483,
+      "closedAt": 1791193225525,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 1ea19b85fe3a or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_2379f95fe92f",
+      "taskId": "T20",
+      "attempt": 2,
+      "status": "stale",
+      "claimedAt": 1791193220714,
+      "submittedAt": 1791193224297,
+      "queuedAt": 1791193228058,
+      "closedAt": 1791193233182,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 1ea19b85fe3a or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_8889b592066d",
+      "taskId": "T15",
+      "attempt": 6,
+      "status": "stale",
+      "claimedAt": 1791193219695,
+      "submittedAt": 1791193224341,
+      "queuedAt": 1791193228103,
+      "closedAt": 1791193233182,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 1ea19b85fe3a or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_5b853b169200",
+      "taskId": "T14",
+      "attempt": 6,
+      "status": "stale",
+      "claimedAt": 1791193219692,
+      "submittedAt": 1791193225493,
+      "queuedAt": 1791193229253,
+      "closedAt": 1791193233182,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 1ea19b85fe3a or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_b32987798da5",
+      "taskId": "T16",
+      "attempt": 5,
+      "status": "stale",
+      "claimedAt": 1791193219700,
+      "submittedAt": 1791193226343,
+      "queuedAt": 1791193230101,
+      "closedAt": 1791193233182,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 1ea19b85fe3a or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_57b5b9b05068",
+      "taskId": "T4",
+      "attempt": 8,
+      "status": "stale",
+      "claimedAt": 1791193219695,
+      "submittedAt": 1791193226592,
+      "queuedAt": 1791193230349,
+      "closedAt": 1791193233182,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 1ea19b85fe3a or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_f3813a1568b7",
+      "taskId": "T17",
+      "attempt": 5,
+      "status": "stale",
+      "claimedAt": 1791193219700,
+      "submittedAt": 1791193228722,
+      "queuedAt": 1791193232481,
+      "closedAt": 1791193233182,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 1ea19b85fe3a or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_79b2f13cd851",
+      "taskId": "T13",
+      "attempt": 7,
+      "status": "stale",
+      "claimedAt": 1791193219691,
+      "submittedAt": 1791193229935,
+      "queuedAt": 1791193233697,
+      "closedAt": 1791193233850,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 1ea19b85fe3a or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_eabc86c0bcd2",
+      "taskId": "T21",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193219700,
+      "submittedAt": 1791193233871,
+      "queuedAt": 1791193237629,
+      "closedAt": 1791193237782,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 1ea19b85fe3a or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_c3144c371f9e",
+      "taskId": "T4",
+      "attempt": 9,
+      "status": "merged",
+      "claimedAt": 1791193233354,
+      "submittedAt": 1791193237429,
+      "queuedAt": 1791193241187,
+      "closedAt": 1791193248846
+    },
+    {
+      "patchId": "p2_00da1b6372d8",
+      "taskId": "T14",
+      "attempt": 7,
+      "status": "stale",
+      "claimedAt": 1791193233358,
+      "submittedAt": 1791193237502,
+      "queuedAt": 1791193241267,
+      "closedAt": 1791193241345,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since a50d45ba3f3e or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_997ca52c8f41",
+      "taskId": "T17",
+      "attempt": 6,
+      "status": "stale",
+      "claimedAt": 1791193233351,
+      "submittedAt": 1791193239152,
+      "queuedAt": 1791193242911,
+      "closedAt": 1791193249000,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since a50d45ba3f3e or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_ed8679ea8320",
+      "taskId": "T16",
+      "attempt": 6,
+      "status": "stale",
+      "claimedAt": 1791193233358,
+      "submittedAt": 1791193239218,
+      "queuedAt": 1791193243006,
+      "closedAt": 1791193249000,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since a50d45ba3f3e or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_c63c453a8433",
+      "taskId": "T19",
+      "attempt": 3,
+      "status": "stale",
+      "claimedAt": 1791193233092,
+      "submittedAt": 1791193239404,
+      "queuedAt": 1791193243212,
+      "closedAt": 1791193249000,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since a50d45ba3f3e or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_03f5544bdcaa",
+      "taskId": "T20",
+      "attempt": 3,
+      "status": "stale",
+      "claimedAt": 1791193233358,
+      "submittedAt": 1791193244543,
+      "queuedAt": 1791193248304,
+      "closedAt": 1791193249000,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since a50d45ba3f3e or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_f346616c9a58",
+      "taskId": "T21",
+      "attempt": 2,
+      "status": "stale",
+      "claimedAt": 1791193237838,
+      "submittedAt": 1791193244955,
+      "queuedAt": 1791193248722,
+      "closedAt": 1791193249000,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since a50d45ba3f3e or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_80b5cd7c6173",
+      "taskId": "T13",
+      "attempt": 8,
+      "status": "stale",
+      "claimedAt": 1791193233885,
+      "submittedAt": 1791193245554,
+      "queuedAt": 1791193249317,
+      "closedAt": 1791193249470,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since a50d45ba3f3e or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_460b75c16c77",
+      "taskId": "T15",
+      "attempt": 7,
+      "status": "stale",
+      "claimedAt": 1791193233358,
+      "submittedAt": 1791193247135,
+      "queuedAt": 1791193250893,
+      "closedAt": 1791193251045,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since a50d45ba3f3e or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_2b483e579191",
+      "taskId": "T22",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193233096,
+      "submittedAt": 1791193248804,
+      "queuedAt": 1791193252565,
+      "closedAt": 1791193252717,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since a50d45ba3f3e or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_341866b0a833",
+      "taskId": "T19",
+      "attempt": 4,
+      "status": "merged",
+      "claimedAt": 1791193249220,
+      "submittedAt": 1791193252918,
+      "queuedAt": 1791193256689,
+      "closedAt": 1791193264346
+    },
+    {
+      "patchId": "p1_cefd5eafc5ec",
+      "taskId": "T20",
+      "attempt": 4,
+      "status": "stale",
+      "claimedAt": 1791193249220,
+      "submittedAt": 1791193254179,
+      "queuedAt": 1791193257937,
+      "closedAt": 1791193264500,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since eeac4bb3e7ae or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_6d831bae36d0",
+      "taskId": "T17",
+      "attempt": 7,
+      "status": "stale",
+      "claimedAt": 1791193249223,
+      "submittedAt": 1791193254826,
+      "queuedAt": 1791193258585,
+      "closedAt": 1791193264500,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since eeac4bb3e7ae or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_b5a27fbf5d0e",
+      "taskId": "T16",
+      "attempt": 7,
+      "status": "stale",
+      "claimedAt": 1791193249223,
+      "submittedAt": 1791193257558,
+      "queuedAt": 1791193261319,
+      "closedAt": 1791193264500,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since eeac4bb3e7ae or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_055536b5a645",
+      "taskId": "T14",
+      "attempt": 8,
+      "status": "stale",
+      "claimedAt": 1791193248958,
+      "submittedAt": 1791193259957,
+      "queuedAt": 1791193263723,
+      "closedAt": 1791193264500,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since eeac4bb3e7ae or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_6f3aedb6e21b",
+      "taskId": "T22",
+      "attempt": 2,
+      "status": "stale",
+      "claimedAt": 1791193252948,
+      "submittedAt": 1791193260134,
+      "queuedAt": 1791193263897,
+      "closedAt": 1791193264500,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since eeac4bb3e7ae or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_ae053639d9c7",
+      "taskId": "T21",
+      "attempt": 3,
+      "status": "merged",
+      "claimedAt": 1791193249217,
+      "submittedAt": 1791193264743,
+      "queuedAt": 1791193268501,
+      "closedAt": 1791193276156
+    },
+    {
+      "patchId": "p1_0e7bf2f9ad39",
+      "taskId": "T15",
+      "attempt": 8,
+      "status": "stale",
+      "claimedAt": 1791193251054,
+      "submittedAt": 1791193265862,
+      "queuedAt": 1791193269630,
+      "closedAt": 1791193276319,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 12bf87ae788a or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_16c73121eda1",
+      "taskId": "T14",
+      "attempt": 9,
+      "status": "stale",
+      "claimedAt": 1791193264597,
+      "submittedAt": 1791193266636,
+      "queuedAt": 1791193270399,
+      "closedAt": 1791193276319,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 12bf87ae788a or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_4c2d5fb092f1",
+      "taskId": "T22",
+      "attempt": 3,
+      "status": "stale",
+      "claimedAt": 1791193264593,
+      "submittedAt": 1791193269585,
+      "queuedAt": 1791193273347,
+      "closedAt": 1791193276319,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 12bf87ae788a or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_22ca158e1976",
+      "taskId": "T23",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193248960,
+      "submittedAt": 1791193270823,
+      "queuedAt": 1791193274579,
+      "closedAt": 1791193276320,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since eeac4bb3e7ae or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_6e7693c727ca",
+      "taskId": "T16",
+      "attempt": 8,
+      "status": "stale",
+      "claimedAt": 1791193264601,
+      "submittedAt": 1791193271000,
+      "queuedAt": 1791193274758,
+      "closedAt": 1791193276320,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 12bf87ae788a or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_d7b88b74cf0b",
+      "taskId": "T17",
+      "attempt": 8,
+      "status": "stale",
+      "claimedAt": 1791193264601,
+      "submittedAt": 1791193272925,
+      "queuedAt": 1791193276684,
+      "closedAt": 1791193276844,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 12bf87ae788a or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_718d7da3ab71",
+      "taskId": "T13",
+      "attempt": 9,
+      "status": "stale",
+      "claimedAt": 1791193249477,
+      "submittedAt": 1791193275387,
+      "queuedAt": 1791193279146,
+      "closedAt": 1791193279300,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 12bf87ae788a or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_acbbe1d1ee36",
+      "taskId": "T20",
+      "attempt": 5,
+      "status": "merged",
+      "claimedAt": 1791193264601,
+      "submittedAt": 1791193279551,
+      "queuedAt": 1791193283314,
+      "closedAt": 1791193290985
+    },
+    {
+      "patchId": "p1_b29cb598e79a",
+      "taskId": "T15",
+      "attempt": 9,
+      "status": "stale",
+      "claimedAt": 1791193276365,
+      "submittedAt": 1791193280346,
+      "queuedAt": 1791193284106,
+      "closedAt": 1791193291143,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since c5a786005500 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_51d07440c834",
+      "taskId": "T16",
+      "attempt": 9,
+      "status": "stale",
+      "claimedAt": 1791193276362,
+      "submittedAt": 1791193281529,
+      "queuedAt": 1791193285300,
+      "closedAt": 1791193291143,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since c5a786005500 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_8a2991af7593",
+      "taskId": "T22",
+      "attempt": 4,
+      "status": "stale",
+      "claimedAt": 1791193276365,
+      "submittedAt": 1791193281854,
+      "queuedAt": 1791193285614,
+      "closedAt": 1791193291143,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since c5a786005500 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_430e58ed32b4",
+      "taskId": "T14",
+      "attempt": 10,
+      "status": "stale",
+      "claimedAt": 1791193276365,
+      "submittedAt": 1791193281901,
+      "queuedAt": 1791193285659,
+      "closedAt": 1791193291143,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since c5a786005500 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_8436372519d4",
+      "taskId": "T17",
+      "attempt": 9,
+      "status": "stale",
+      "claimedAt": 1791193276887,
+      "submittedAt": 1791193283911,
+      "queuedAt": 1791193287667,
+      "closedAt": 1791193291143,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since c5a786005500 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_86aa1e5dbd1a",
+      "taskId": "T23",
+      "attempt": 2,
+      "status": "stale",
+      "claimedAt": 1791193276365,
+      "submittedAt": 1791193284498,
+      "queuedAt": 1791193288254,
+      "closedAt": 1791193291143,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since c5a786005500 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_cd78af8643f1",
+      "taskId": "T13",
+      "attempt": 10,
+      "status": "stale",
+      "claimedAt": 1791193279490,
+      "submittedAt": 1791193284820,
+      "queuedAt": 1791193288579,
+      "closedAt": 1791193291143,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since c5a786005500 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_0dc803152785",
+      "taskId": "T17",
+      "attempt": 10,
+      "status": "merged",
+      "claimedAt": 1791193291306,
+      "submittedAt": 1791193294571,
+      "queuedAt": 1791193298329,
+      "closedAt": 1791193305983
+    },
+    {
+      "patchId": "p1_08f26aab08c8",
+      "taskId": "T24",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193264602,
+      "submittedAt": 1791193295019,
+      "queuedAt": 1791193298778,
+      "closedAt": 1791193306138,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 12bf87ae788a or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_818370049910",
+      "taskId": "T22",
+      "attempt": 5,
+      "status": "stale",
+      "claimedAt": 1791193291306,
+      "submittedAt": 1791193297408,
+      "queuedAt": 1791193301173,
+      "closedAt": 1791193306139,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 58b66309ea44 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_17b8b2494b41",
+      "taskId": "T15",
+      "attempt": 10,
+      "status": "stale",
+      "claimedAt": 1791193291320,
+      "submittedAt": 1791193297856,
+      "queuedAt": 1791193301622,
+      "closedAt": 1791193306139,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 58b66309ea44 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_ad24e7c9edbe",
+      "taskId": "T28",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193291307,
+      "submittedAt": 1791193299192,
+      "queuedAt": 1791193302955,
+      "closedAt": 1791193306139,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 58b66309ea44 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_7f1ce3568f1a",
+      "taskId": "T26",
+      "attempt": 1,
+      "status": "merged",
+      "claimedAt": 1791193291023,
+      "submittedAt": 1791193300004,
+      "queuedAt": 1791193303762,
+      "closedAt": 1791193313641
+    },
+    {
+      "patchId": "p0_be8051cd72b4",
+      "taskId": "T16",
+      "attempt": 10,
+      "status": "stale",
+      "claimedAt": 1791193291320,
+      "submittedAt": 1791193300532,
+      "queuedAt": 1791193304292,
+      "closedAt": 1791193306139,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 58b66309ea44 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_cc3efe50bfc3",
+      "taskId": "T23",
+      "attempt": 3,
+      "status": "stale",
+      "claimedAt": 1791193291306,
+      "submittedAt": 1791193305482,
+      "queuedAt": 1791193309240,
+      "closedAt": 1791193313800,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 58b66309ea44 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_049a05d2b955",
+      "taskId": "T27",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193291282,
+      "submittedAt": 1791193312009,
+      "queuedAt": 1791193315773,
+      "closedAt": 1791193315930,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 58b66309ea44 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_d0a548def866",
+      "taskId": "T25",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193276370,
+      "submittedAt": 1791193316249,
+      "queuedAt": 1791193320052,
+      "closedAt": 1791193320207,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since c5a786005500 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_247c9ba4040f",
+      "taskId": "T23",
+      "attempt": 4,
+      "status": "merged",
+      "claimedAt": 1791193313867,
+      "submittedAt": 1791193318720,
+      "queuedAt": 1791193322479,
+      "closedAt": 1791193330135
+    },
+    {
+      "patchId": "p1_c5f5ecbdc598",
+      "taskId": "T28",
+      "attempt": 2,
+      "status": "stale",
+      "claimedAt": 1791193313874,
+      "submittedAt": 1791193319550,
+      "queuedAt": 1791193323309,
+      "closedAt": 1791193330290,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 92545dc4123f or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_5934881edf51",
+      "taskId": "T22",
+      "attempt": 6,
+      "status": "stale",
+      "claimedAt": 1791193313875,
+      "submittedAt": 1791193323742,
+      "queuedAt": 1791193327501,
+      "closedAt": 1791193330290,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 92545dc4123f or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_4460c44501e8",
+      "taskId": "T27",
+      "attempt": 2,
+      "status": "stale",
+      "claimedAt": 1791193316024,
+      "submittedAt": 1791193324923,
+      "queuedAt": 1791193328680,
+      "closedAt": 1791193330290,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 92545dc4123f or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_e5bbbb1c710a",
+      "taskId": "T25",
+      "attempt": 2,
+      "status": "stale",
+      "claimedAt": 1791193320345,
+      "submittedAt": 1791193325108,
+      "queuedAt": 1791193328871,
+      "closedAt": 1791193330290,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 92545dc4123f or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_f7a6560e01ca",
+      "taskId": "T29",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193306048,
+      "submittedAt": 1791193329823,
+      "queuedAt": 1791193333582,
+      "closedAt": 1791193333735,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 8c57bc474dbb or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_dfa9c8bc886a",
+      "taskId": "T24",
+      "attempt": 2,
+      "status": "merged",
+      "claimedAt": 1791193313881,
+      "submittedAt": 1791193332435,
+      "queuedAt": 1791193336192,
+      "closedAt": 1791193343867
+    },
+    {
+      "patchId": "p0_c26a955c6294",
+      "taskId": "T30",
+      "attempt": 1,
+      "status": "stale",
+      "claimedAt": 1791193313870,
+      "submittedAt": 1791193333710,
+      "queuedAt": 1791193337468,
+      "closedAt": 1791193344020,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 92545dc4123f or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_9d99c3e3e2c6",
+      "taskId": "T27",
+      "attempt": 3,
+      "status": "stale",
+      "claimedAt": 1791193330500,
+      "submittedAt": 1791193336140,
+      "queuedAt": 1791193339897,
+      "closedAt": 1791193344020,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since c00148179b52 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_b0c41bdd47c0",
+      "taskId": "T25",
+      "attempt": 3,
+      "status": "stale",
+      "claimedAt": 1791193330498,
+      "submittedAt": 1791193336435,
+      "queuedAt": 1791193340195,
+      "closedAt": 1791193344020,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since c00148179b52 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_7e902ec0d7c3",
+      "taskId": "T29",
+      "attempt": 2,
+      "status": "stale",
+      "claimedAt": 1791193333873,
+      "submittedAt": 1791193337069,
+      "queuedAt": 1791193340830,
+      "closedAt": 1791193344020,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since c00148179b52 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_03d9f45ff092",
+      "taskId": "T22",
+      "attempt": 7,
+      "status": "stale",
+      "claimedAt": 1791193330505,
+      "submittedAt": 1791193337341,
+      "queuedAt": 1791193341103,
+      "closedAt": 1791193344020,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since c00148179b52 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_696300e1a956",
+      "taskId": "T28",
+      "attempt": 3,
+      "status": "stale",
+      "claimedAt": 1791193330506,
+      "submittedAt": 1791193343528,
+      "queuedAt": 1791193347295,
+      "closedAt": 1791193347448,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since c00148179b52 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p3_a6f74e04cc54",
+      "taskId": "T22",
+      "attempt": 8,
+      "status": "merged",
+      "claimedAt": 1791193344230,
+      "submittedAt": 1791193348109,
+      "queuedAt": 1791193351867,
+      "closedAt": 1791193359522
+    },
+    {
+      "patchId": "p2_9d8bdd9bf33e",
+      "taskId": "T25",
+      "attempt": 4,
+      "status": "stale",
+      "claimedAt": 1791193344234,
+      "submittedAt": 1791193349274,
+      "queuedAt": 1791193353032,
+      "closedAt": 1791193359691,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 5da01a11190f or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_5f3c0a5105f9",
+      "taskId": "T30",
+      "attempt": 2,
+      "status": "stale",
+      "claimedAt": 1791193344234,
+      "submittedAt": 1791193349292,
+      "queuedAt": 1791193353048,
+      "closedAt": 1791193359691,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 5da01a11190f or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_628eea9eebfa",
+      "taskId": "T28",
+      "attempt": 4,
+      "status": "stale",
+      "claimedAt": 1791193347655,
+      "submittedAt": 1791193350643,
+      "queuedAt": 1791193354403,
+      "closedAt": 1791193359691,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 5da01a11190f or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_35977edad290",
+      "taskId": "T27",
+      "attempt": 4,
+      "status": "stale",
+      "claimedAt": 1791193344234,
+      "submittedAt": 1791193350840,
+      "queuedAt": 1791193354598,
+      "closedAt": 1791193359691,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 5da01a11190f or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_43ef7ad20572",
+      "taskId": "T29",
+      "attempt": 3,
+      "status": "stale",
+      "claimedAt": 1791193344230,
+      "submittedAt": 1791193351352,
+      "queuedAt": 1791193355207,
+      "closedAt": 1791193359691,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 5da01a11190f or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_db13ac1b398e",
+      "taskId": "T30",
+      "attempt": 3,
+      "status": "merged",
+      "claimedAt": 1791193359906,
+      "submittedAt": 1791193364082,
+      "queuedAt": 1791193367872,
+      "closedAt": 1791193375527
+    },
+    {
+      "patchId": "p0_ca31f53ea990",
+      "taskId": "T27",
+      "attempt": 5,
+      "status": "stale",
+      "claimedAt": 1791193359901,
+      "submittedAt": 1791193366431,
+      "queuedAt": 1791193370208,
+      "closedAt": 1791193375680,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 7648f528e68e or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_b0dfc007e4df",
+      "taskId": "T28",
+      "attempt": 5,
+      "status": "stale",
+      "claimedAt": 1791193359906,
+      "submittedAt": 1791193367627,
+      "queuedAt": 1791193371407,
+      "closedAt": 1791193375680,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 7648f528e68e or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_31d8e8e4b343",
+      "taskId": "T25",
+      "attempt": 5,
+      "status": "stale",
+      "claimedAt": 1791193359906,
+      "submittedAt": 1791193370203,
+      "queuedAt": 1791193373968,
+      "closedAt": 1791193375680,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 7648f528e68e or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_bc19037443b3",
+      "taskId": "T29",
+      "attempt": 4,
+      "status": "stale",
+      "claimedAt": 1791193359901,
+      "submittedAt": 1791193370294,
+      "queuedAt": 1791193374107,
+      "closedAt": 1791193375680,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 7648f528e68e or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_c2adf97b12e8",
+      "taskId": "T29",
+      "attempt": 5,
+      "status": "merged",
+      "claimedAt": 1791193375911,
+      "submittedAt": 1791193381273,
+      "queuedAt": 1791193385033,
+      "closedAt": 1791193392687
+    },
+    {
+      "patchId": "p1_cf8a1ea5ce4a",
+      "taskId": "T28",
+      "attempt": 6,
+      "status": "stale",
+      "claimedAt": 1791193375914,
+      "submittedAt": 1791193383152,
+      "queuedAt": 1791193386927,
+      "closedAt": 1791193392843,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 43f124c138bf or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_8a9b2b9dbff2",
+      "taskId": "T25",
+      "attempt": 6,
+      "status": "stale",
+      "claimedAt": 1791193375914,
+      "submittedAt": 1791193383887,
+      "queuedAt": 1791193387656,
+      "closedAt": 1791193392843,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 43f124c138bf or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_749ba5591729",
+      "taskId": "T27",
+      "attempt": 6,
+      "status": "stale",
+      "claimedAt": 1791193375919,
+      "submittedAt": 1791193386692,
+      "queuedAt": 1791193390452,
+      "closedAt": 1791193392843,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 43f124c138bf or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p1_437f007bb64b",
+      "taskId": "T28",
+      "attempt": 7,
+      "status": "merged",
+      "claimedAt": 1791193392954,
+      "submittedAt": 1791193396387,
+      "queuedAt": 1791193400147,
+      "closedAt": 1791193407857
+    },
+    {
+      "patchId": "p0_4b601e46154f",
+      "taskId": "T27",
+      "attempt": 7,
+      "status": "stale",
+      "claimedAt": 1791193392947,
+      "submittedAt": 1791193398719,
+      "queuedAt": 1791193402489,
+      "closedAt": 1791193408014,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 7db9ffc2a481 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_4a91f51ece6f",
+      "taskId": "T25",
+      "attempt": 7,
+      "status": "stale",
+      "claimedAt": 1791193392950,
+      "submittedAt": 1791193398769,
+      "queuedAt": 1791193402530,
+      "closedAt": 1791193408014,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 7db9ffc2a481 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p2_0cd6a8654a50",
+      "taskId": "T25",
+      "attempt": 8,
+      "status": "merged",
+      "claimedAt": 1791193408122,
+      "submittedAt": 1791193415636,
+      "queuedAt": 1791193419419,
+      "closedAt": 1791193427074
+    },
+    {
+      "patchId": "p0_f69346206406",
+      "taskId": "T27",
+      "attempt": 8,
+      "status": "stale",
+      "claimedAt": 1791193408125,
+      "submittedAt": 1791193420875,
+      "queuedAt": 1791193424635,
+      "closedAt": 1791193427231,
+      "mergeError": "CONFLICT: CHANGES.rst changed on main since 75c8d3e430d2 or by an earlier patch in the batch"
+    },
+    {
+      "patchId": "p0_d980b9372bd1",
+      "taskId": "T27",
+      "attempt": 9,
+      "status": "merged",
+      "claimedAt": 1791193427352,
+      "submittedAt": 1791193433958,
+      "queuedAt": 1791193437716,
+      "closedAt": 1791193445374
+    }
+  ]
+}
