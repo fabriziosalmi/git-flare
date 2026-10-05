@@ -217,32 +217,43 @@ Levers besides a hunk-level merge, none measured:
   The composed-tree tests stay as the guard.
 - **Structured rules for hot files** (§5): `package.json`, changelogs.
 
-## 10. Do textually clean merges pass the tests? (`pallets/click`, 2026-10-05)
+## 10. Do textually clean merges pass the tests? (`click`, `jinja`, `markupsafe`, 2026-10-05)
 
 `scripts/semantic-replay.mjs` takes every two-parent merge commit of a repository whose two sides share a path
 and merge cleanly with `git merge-tree` (the pairs a file-level rule rejects and a hunk-level rule would accept),
-builds the merged tree and runs the repository's tests on it. `pallets/click`, whole history, Python 3.12 with
-current dependencies, `PYTHONPATH=src python -m pytest -q -x -p no:cacheprovider -p no:warnings` (4 s per run):
-`benchmarks/results/2026-10-05/semantic-replay-click.json`.
+builds the merged tree and runs the repository's tests on it. A control group of pairs with no common path
+(accepted by both rules) goes through the same steps. Results, with the repository HEAD, versions and test
+command recorded: `benchmarks/results/2026-10-05/semantic-replay-{click,jinja,markupsafe}.json`.
 
-| Outcome | Pairs |
-|---|---|
-| ok (the merged tree passes) | 78 |
-| semantic (both parents pass, the merged tree fails twice) | 0 |
-| preexisting (a parent already fails) | 83 |
-| flaky, timeout | 0 |
+| Repository (history) | Clean-but-overlapping: ok / semantic / preexisting | 95% upper bound | Control: ok / semantic / preexisting |
+|---|---|---|---|
+| `pallets/click` (whole) | 78 / 0 / 83 | 4.7% | 129 / 0 / 71 |
+| `pallets/jinja` (since 2022) | 20 / 0 / 0 | 16.1% | 15 / 0 / 1 |
+| `pallets/markupsafe` (since 2022) | 28 / 0 / 0 | 12.1% | 26 / 0 / 0 |
+| **Pooled, pairs that could be judged** | **126 judged, 0 semantic** | **3.0%** | **170 judged, 0 semantic** (2.2%) |
 
-0 semantic conflicts among the 78 pairs that could be judged: with a 95% Wilson interval, **0 to 4.7%**. Half of
-the pairs are `preexisting` because commits as old as 2014 do not pass the suite in a modern environment; with
-pytest's default handling of warnings 144 of the 161 were, and `-p no:warnings` recovered most of them.
+`semantic` means both parents pass alone and the merged tree fails twice; `preexisting` means a parent already
+fails in this environment (old commits that need old dependencies). The pooled interval treats pairs as
+independent. Test command: `PYTHONPATH=src python -m pytest -q -x -p no:cacheprovider -p no:warnings` (with
+`tests` added for `jinja` and `markupsafe`; about 4 s per run for `click`), Python 3.12.12, pytest 9.1.1, current
+dependencies; each result file records the exact command and versions.
 
-**What this does not show.** One repository, whose suite runs in 4 seconds. Survivorship: a history only holds
-merges that were accepted, and a semantic conflict caught by continuous integration before the merge was fixed
-on the branch, so it does not appear. Tests catch only what they cover. The merged tree is the one `git
-merge-tree` produces, not the one the person committed. Dropping `preexisting` pairs leans the sample towards
-recent history.
+**What it says.** No textually clean merge broke the tests in 126 judged pairs, against a control that did not
+either: the semantic-conflict rate of a clean-but-overlapping pair is below about 3% in these repositories
+(95%). The cost of being wrong is also bounded by the design: git-flare runs the declared tests on the composed
+tree before `main` moves, so a semantic conflict would turn into a rejection after a test run (what a conflict
+costs today, plus the run), not into a broken `main`; that is why §5 makes the merge opt-in only for repositories
+with declared tests.
 
-**What is missing.** The control group (pairs with no common path, accepted by both rules) was interrupted at 100
-of 200 pairs by the script's disk guard, because the machine was nearly full: 76 ok, 24 preexisting, 0 semantic in
-that half. It has to be completed to read the clean-but-overlapping group against the baseline, and more
-repositories with fast suites (flask) would narrow the bound.
+**What it does not say.** The three repositories are small Python libraries of the same maintainers and workflow,
+with fast suites (`click`: 4 s): it says nothing about large or polyglot code bases, or about repositories whose
+tests are slow or thin. Survivorship: a history only holds merges that were accepted, and a semantic conflict
+caught by continuous integration before the merge was fixed on the branch, so it does not appear. Tests catch
+only what they cover. The merged tree is the one `git merge-tree` produces, not the one the person committed.
+Dropping `preexisting` pairs leans the sample towards recent history (for `click`, 83 of 161).
+
+**`flask` was tried and left out.** In one modern environment 1,274 of the 1,275 commits tested failed, for
+dependency reasons: the history needs old Werkzeug and Jinja (`Markup` from `jinja2`, `url_quote` from
+`werkzeug.urls`) and old pytest internals; with pytest 8 only the latest of ten sampled commits passed. Its
+history cannot be judged with one environment. `itsdangerous` did not run in a first sample (0 of 10) and was not
+pursued. A fair measurement of such repositories needs an environment per era, which this script does not do.
