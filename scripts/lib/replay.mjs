@@ -183,6 +183,17 @@ export function streamRejects(fileSets, k, { hot, big = Infinity } = {}) {
   return { rejected, n };
 }
 
+/** Wilson score interval (95%) for k successes in n trials: [low, high] as fractions; [0, 1] when n is 0. */
+export function wilson(k, n) {
+  if (n === 0) return [0, 1];
+  const z = 1.96;
+  const p = k / n;
+  const d = 1 + (z * z) / n;
+  const c = p + (z * z) / (2 * n);
+  const w = z * Math.sqrt((p * (1 - p)) / n + (z * z) / (4 * n * n));
+  return [Math.max(0, (c - w) / d), Math.min(1, (c + w) / d)];
+}
+
 // ─── Reading large files by ranges ──────────────────────────────────────────
 
 const DEF_LINE = /^\s*(?:export\s+)?(?:async\s+)?(?:def|class|function|const|let|var|type|interface|enum|struct|fn|func|impl|pub)\b/;
