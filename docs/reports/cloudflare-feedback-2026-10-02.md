@@ -20,9 +20,9 @@ Community forum); Artifacts is in open beta.
 | 7 | Queues event subscriptions | bug | `repo_name: "*"` accepted but matches nothing | draft |
 | 8 | Queues event subscriptions | docs | event type names differ between creation and delivery | draft |
 | 9 | Queues event subscriptions | behaviour/docs | a new subscription misses its first events | draft |
-| 10 | Wrangler | bug | `queues subscription create --source artifacts.repo` cannot pass namespace/repo_name | filed: cloudflare/workers-sdk#16043 |
+| 10 | Wrangler | bug | `queues subscription create --source artifacts.repo` cannot pass namespace/repo_name | filed: cloudflare/workers-sdk#16043 (open; a pull request by another contributor, #16051, adds `--namespace` and `--repo-name`) |
 | 11 | Containers | bug | `container.exec(..., { user })` throws "internal error" | draft |
-| 12 | vitest-pool-workers | bug | 0.22.0 pins vulnerable undici/sharp and an old wrangler | filed: cloudflare/workers-sdk#16044 (containers config), #16045 (undici/sharp) |
+| 12 | vitest-pool-workers | bug | 0.22.0 pins vulnerable undici/sharp and an old wrangler | filed: cloudflare/workers-sdk#16044 (containers config), #16045 (undici/sharp); **resolved 2026-10-05**: both closed, the integration is now `@cloudflare/vitest-plugin` (verified here) |
 
 ---
 
@@ -159,6 +159,13 @@ Durable Object-managed `containers` configuration that current wrangler accepts;
 compatibility dates only up to 2026-08-22. Workarounds: npm `overrides` for undici/sharp and a separate
 `wrangler.test.jsonc` without the containers section. Related, closed: cloudflare/workers-sdk#10408 ("Cloudflare containers don't
 work with vitest-pool-workers").
+
+**Resolved (2026-10-05).** A maintainer closed #16045 and #16044: the Vitest integration is now published as
+`@cloudflare/vitest-plugin`, to be used instead (a codemod and a migration guide exist; the messaging is to be made
+clearer). Checked in this repository: `@cloudflare/vitest-plugin@1.3.6` depends on `miniflare 5.20261001.0-alpha` and
+`wrangler 4.147.0`; with it `npm audit` reports no vulnerability **without** our `overrides` (undici 7.29.1, sharp
+0.35.4 come with it), and the 115 tests pass using `wrangler.jsonc` with `env.dev` directly, so the separate
+`wrangler.test.jsonc` is gone. The migration was a package and import rename (`cloudflareTest` was already the API).
 
 ---
 
