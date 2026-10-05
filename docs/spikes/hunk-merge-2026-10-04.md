@@ -349,6 +349,21 @@ at `--scale 1` and at `--scale 0.25`: if the per-submission rejection differs by
 scale 1, because the queue's own latencies do not scale. (3) The simulated curve is compared with the one measured on
 history (§9), and a gap is explained.
 
+**Validity check (2), done 2026-10-05.** Reference-like cell (10 agents, 3 tasks each, `click` human footprints,
+work 60 s, review 15 s, rebase 30 s, tests 30 s; provisional times, so the figures are not a result), two seeds each,
+`benchmarks/results/2026-10-05/queue-sim/scale-check/`:
+
+| Scale | Rejection per submission | First attempts | Window W p50 | Queue and tests | Wall time per cell |
+|---|---|---|---|---|---|
+| 1 | 86.1% (85.2, 86.9) | 88.3% | 60 s and 59 s | 30.2 s | about 23 min |
+| 0.25 | 85.2% (83.9, 86.4) | 91.7% | 62 s and 60 s (as simulated) | 7.7 s (= 30.8 s) | about 6 min |
+
+The difference is under one point, far below the 5 points fixed beforehand: **the grid runs at scale 0.25**. The
+queue's own latency is about 0.2 s per round, so it is 0.3% of W at scale 1 and 1.3% at scale 0.25.
+Three defects of the simulator were found and fixed on the way (cells started together shared a repository; the
+claim's lease expired during long work, so the agent now sends heartbeats; the process kept running for an hour
+after the cell), each covered by the self-test or a unit test.
+
 **Parameters.** Agents N ∈ {2, 5, 10, 20, 40} × test duration ∈ {none, 5, 30, 120 s}, three repetitions with seeds
 1 to 3, 6 tasks per agent, 4 shards, 10 attempts at most. Work, review and rebase times are the medians measured in
 phase 2 (issue #12), committed before the grid is run; the reference cell is also run with the work time ×0.5 and ×2.
