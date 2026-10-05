@@ -59,6 +59,7 @@ function baseParams() {
     footprintKind: arg('footprint-kind', 'human'),
     zipf: arg('zipf', ''),
     timeoutMs: num('timeout-ms', 3_600_000),
+    leaseMs: arg('lease-ms') === undefined ? null : num('lease-ms', 0), // the claim's lease; the server default is 120 s
   };
 }
 
@@ -149,9 +150,18 @@ export async function runCell(p, name) {
       const task = pool.shift();
       if (!task) return;
       for (let attempt = 1; ; attempt++) {
-        const c = must(await api('POST', `/api/repos/${repo}/claim`, key, { taskId: task.id }), `claim ${task.id}`);
-        await sleep(sc(lognormalMs(workRand, attempt === 1 ? p.workMs : p.rebaseMs, p.workCv)));
-        const files = Object.fromEntries(task.files.map((f) => [f, `// ${task.id} attempt ${attempt}\n${BODY}`]));
+        let files;
+        const c = must(await api('POST', `/api/repos/${repo}/claim`, key, { taskId: task.id, ...(p.leaseMs === null ? {} : { leaseMs: p.leaseMs }) }), `claim ${task.id}`);
+        // A real agent keeps its lease alive while it works; without it a long task is reclaimed under its feet.
+        const beat = setInterval(() => {
+          api('POST', `/api/repos/${repo}/heartbeat`, key, { taskId: task.id, leaseEpoch: c.leaseEpoch }).catch(() => {});
+        }, Math.min(40_000, (p.leaseMs ?? 120_000) / 3));
+        try {
+          await sleep(sc(lognormalMs(workRand, attempt === 1 ? p.workMs : p.rebaseMs, p.workCv)));
+          files = Object.fromEntries(task.files.map((f) => [f, `// ${task.id} attempt ${attempt}\n${BODY}`]));
+        } finally {
+          clearInterval(beat);
+        }
         const commit = must(await api('POST', `/api/repos/${repo}/dev-commit`, key, { taskId: task.id, leaseEpoch: c.leaseEpoch, files, message: `${task.id} attempt ${attempt}`, rebase: attempt > 1 }), `dev-commit ${task.id}`);
         const sub = must(await api('POST', `/api/repos/${repo}/submit`, key, { taskId: task.id, leaseEpoch: c.leaseEpoch, commitSha: commit.commitSha }), `submit ${task.id}`);
         submissions.push({ patchId: sub.patchId, taskId: task.id, attempt });
@@ -231,15 +241,26 @@ async function gridMode() {
   fs.writeFileSync(path.join(dir, 'grid.json'), `${JSON.stringify(rows.map((r) => ({ params: r.params, summary: r.summary })), null, 2)}\n`);
 }
 
-/** A positive and a negative control: every task on one file must conflict, tasks on distinct files must not. */
+/** Controls: every task on one file must conflict, tasks on distinct files must not, and a task that outlasts its lease must still merge. */
 async function selftest() {
   const common = { ...baseParams(), agents: 4, tasksPerAgent: 3, workMs: 200, workCv: 0, reviewMs: 100, rebaseMs: 100, testMs: null, scale: 1, maxAttempts: 100, timeoutMs: 120_000 }; // a task may lose many times in a row on one file: do not let the control depend on luck
   const same = await runCell({ ...common, footprintsFrom: [], zipf: 'files=1,s=0,sizes=1' }, `st-same-${uniqueName()}`);
   const apart = await runCell({ ...common, footprintsFrom: [], zipf: 'files=500,s=0,sizes=1' }, `st-apart-${uniqueName()}`);
   const timed = [same, apart].every((r) => r.summary.windowMs.p50 > 0 && r.summary.partsMs.work > 0 && r.summary.landingsPerWindow.mean !== null); // the server's times arrived
-  const ok = same.summary.stale > 0 && same.summary.merged === 12 && apart.summary.stale === 0 && apart.summary.merged === 12 && timed && same.summary.maxAttempts > 1 && apart.summary.maxAttempts === 1;
+  // a task of 25 s with a lease of 10 s: it merges only if the agent keeps the lease alive
+  let longNote = '';
+  let longOk = false;
+  try {
+    const long = await runCell({ ...common, agents: 1, tasksPerAgent: 1, workMs: 25_000, leaseMs: 10_000, footprintsFrom: [], zipf: 'files=3,s=0,sizes=1', timeoutMs: 90_000 }, `st-long-${uniqueName()}`);
+    longOk = long.summary.merged === 1 && long.summary.stale === 0;
+    longNote = `${long.summary.merged} merged, ${long.summary.stale} stale`;
+  } catch (e) {
+    longNote = String(e.message).slice(0, 140);
+  }
+  const ok = same.summary.stale > 0 && same.summary.merged === 12 && apart.summary.stale === 0 && apart.summary.merged === 12 && timed && same.summary.maxAttempts > 1 && apart.summary.maxAttempts === 1 && longOk;
   console.log(`positive control (12 tasks, one file): ${same.summary.merged} merged, ${same.summary.stale} stale, max attempts ${same.summary.maxAttempts}`);
   console.log(`negative control (12 tasks, 500 files): ${apart.summary.merged} merged, ${apart.summary.stale} stale`);
+  console.log(`lease control (25 s of work, 10 s lease): ${longNote}`);
   console.log(`server times present: ${timed}`);
   console.log(ok ? 'selftest: ok' : 'selftest: WRONG');
   process.exit(ok ? 0 : 1);
