@@ -30,6 +30,7 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { cfApi } from './cf-api.mjs';
 import { applyEdits, cleanRanges, excerptAround, extractJson, git, ledgerAdd, ledgerRead, lines, neuronsFor, outlineOf } from './lib/replay.mjs';
+import { quantile } from './lib/sim.mjs';
 
 const argv = process.argv.slice(2);
 const cmd = argv[0];
@@ -135,6 +136,7 @@ const TEXT_JSON_MODELS = new Set(['@cf/meta/llama-3.1-8b-instruct-fp8']);
 
 /** One Workers AI call: JSON mode, usage counted into the daily ledger. Throws BudgetStop before a call that could pass the cap. */
 async function ai(model, system, user, schema, maxTokens) {
+  const started = Date.now();
   const estIn = Math.ceil((system.length + user.length) / 3); // chars/3: deliberately pessimistic
   const worst = neuronsFor(model, estIn, maxTokens);
   const day = ledgerRead().spent;
@@ -158,7 +160,7 @@ async function ai(model, system, user, schema, maxTokens) {
   ledgerAdd(neurons);
   budget.spentThisRun += neurons;
   budget.calls++;
-  return { out: extractJson(r.response), tin, tout, neurons, estimated };
+  return { out: extractJson(r.response), tin, tout, neurons, estimated, ms: Date.now() - started };
 }
 
 const SKIP_EXT = /\.(png|jpe?g|gif|ico|svg|woff2?|ttf|eot|pdf|zip|gz|tgz|lock|map|min\.js|snap)$/i;
@@ -216,12 +218,12 @@ const agents = {
       const r = await ai(SELECTOR, SELECT_SYSTEM, user, SELECT_SCHEMA, 300);
       const inTree = new Set(tree);
       const files = [...new Set(Array.isArray(r.out?.files) ? r.out.files.filter((f) => typeof f === 'string' && inTree.has(f)) : [])].slice(0, MAX_FILES);
-      return { files, calls: [{ step: 'select', model: SELECTOR, tin: r.tin, tout: r.tout, neurons: r.neurons, estimated: r.estimated }] };
+      return { files, calls: [{ step: 'select', model: SELECTOR, tin: r.tin, tout: r.tout, neurons: r.neurons, estimated: r.estimated, ms: r.ms }] };
     },
     async view(task, p, outline, total) {
       const user = `ISSUE #${task.issue.number}: ${task.issue.title}\n${task.issue.body}\n\nOUTLINE OF ${p} (${total} lines):\n${outline.map((o) => `${o.line}: ${o.text}`).join('\n')}`.slice(0, 40_000);
       const r = await ai(SELECTOR, VIEW_SYSTEM, user, VIEW_SCHEMA, 200);
-      return { ranges: Array.isArray(r.out?.ranges) ? r.out.ranges : [], calls: [{ step: 'view', model: SELECTOR, tin: r.tin, tout: r.tout, neurons: r.neurons, estimated: r.estimated }] };
+      return { ranges: Array.isArray(r.out?.ranges) ? r.out.ranges : [], calls: [{ step: 'view', model: SELECTOR, tin: r.tin, tout: r.tout, neurons: r.neurons, estimated: r.estimated, ms: r.ms }] };
     },
     async retry(task, items) {
       let user = `ISSUE #${task.issue.number}: ${task.issue.title}\n`;
@@ -229,13 +231,13 @@ const agents = {
         user += `\nEDIT ${n + 1} (${it.path}): you proposed to replace\n<<<\n${it.original.search.slice(0, 1500)}\n>>>\nwith\n<<<\n${it.original.replace.slice(0, 1500)}\n>>>\nReal text of ${it.path}, lines ${it.excerpt.start}-${it.excerpt.end}:\n${it.excerpt.text}\n`;
       });
       const r = await ai(CODER, RETRY_SYSTEM, user, CODE_SCHEMA, CODE_TOKENS);
-      return { message: String(r.out?.message ?? '').slice(0, 200), edits: Array.isArray(r.out?.edits) ? r.out.edits : [], calls: [{ step: 'retry', model: CODER, tin: r.tin, tout: r.tout, neurons: r.neurons, estimated: r.estimated }] };
+      return { message: String(r.out?.message ?? '').slice(0, 200), edits: Array.isArray(r.out?.edits) ? r.out.edits : [], calls: [{ step: 'retry', model: CODER, tin: r.tin, tout: r.tout, neurons: r.neurons, estimated: r.estimated, ms: r.ms }] };
     },
     async edit(task, segments) {
       let user = `ISSUE #${task.issue.number}: ${task.issue.title}\n${task.issue.body}\n\nFILES YOU MAY EDIT (a header says when only part of a file is shown):\n`;
       for (const g of segments) user += `\n--- ${g.path}${g.total ? ` (excerpt: lines ${g.start}-${g.end} of ${g.total})` : ''}\n${g.text}\n`;
       const r = await ai(CODER, CODE_SYSTEM, user, CODE_SCHEMA, CODE_TOKENS);
-      return { message: String(r.out?.message ?? `resolve #${task.issue.number}`).slice(0, 200), edits: Array.isArray(r.out?.edits) ? r.out.edits : [], calls: [{ step: 'edit', model: CODER, tin: r.tin, tout: r.tout, neurons: r.neurons, estimated: r.estimated }] };
+      return { message: String(r.out?.message ?? `resolve #${task.issue.number}`).slice(0, 200), edits: Array.isArray(r.out?.edits) ? r.out.edits : [], calls: [{ step: 'edit', model: CODER, tin: r.tin, tout: r.tout, neurons: r.neurons, estimated: r.estimated, ms: r.ms }] };
     },
   },
 };
@@ -245,6 +247,7 @@ const agents = {
 async function runOne(repo, base, task, agent, runId, workdir) {
   const rec = { id: task.id, issue: task.issue.number, humanFiles: task.pr.files, selected: [], editedFiles: [], failedEdits: [], status: 'pending', calls: [] };
   const wt = path.join(workdir, task.id);
+  const startedAt = Date.now();
   git(repo, ['worktree', 'add', '--detach', '--force', wt, base]);
   try {
     const tree = treeOf(repo, base);
@@ -307,6 +310,7 @@ async function runOne(repo, base, task, agent, runId, workdir) {
     rec.shortstat = git(repo, ['diff', '--shortstat', base, sha]).out.trim();
     return Object.assign(rec, { status: 'committed', sha, branch });
   } finally {
+    rec.elapsedMs = Date.now() - startedAt; // the agent's time for the task: the work time of the queue simulation
     git(repo, ['worktree', 'remove', '--force', wt], [0, 128]);
   }
 }
@@ -349,6 +353,7 @@ async function runCommand() {
     base: spec.base,
     agent: kind,
     ...(kind === 'llm' ? { coder: CODER, selector: SELECTOR, note: 'single-shot: file selection, search/replace edits (whitespace-tolerant), one retry with the real excerpt; no tool use' } : {}),
+    taskMs: { p50: quantile(rows.filter((r) => r.status === 'committed').map((r) => r.elapsedMs).filter((x) => typeof x === 'number'), 0.5), p90: quantile(rows.filter((r) => r.status === 'committed').map((r) => r.elapsedMs).filter((x) => typeof x === 'number'), 0.9) },
     neuronsThisRun: Math.round(budget.spentThisRun),
     neuronsToday: Math.round(ledgerRead().spent),
     tasks: rows,
