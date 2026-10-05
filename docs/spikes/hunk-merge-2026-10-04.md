@@ -368,13 +368,25 @@ after the cell), each covered by the self-test or a unit test.
 1 to 3, 6 tasks per agent, 4 shards, 10 attempts at most. Work, review and rebase times are the medians measured in
 phase 2 (issue #12), committed before the grid is run; the reference cell is also run with the work time ×0.5 and ×2.
 
-**Footprints.** The reference uses the files of the real pull requests that closed the tasks (`human`), per
-repository (`click`, `hono`). Sensitivity: the same without changelog, version and dependency files (`human-nohot`,
-what a structured rule for those files would take out) and the files an agent edited (`agent`). The footprint set is
-part of the result: on `click`, 10 of 12 pull requests touch `CHANGES.rst` and 7 of 12 touch `src/click/core.py`.
+**Footprints and repositories (fixed 2026-10-05, before any grid result).** The reference uses the files of the real
+pull requests that closed the tasks (`human`). The unit of analysis is the repository, because a hunk-level merge
+would be opt-in per repository. The sample is fixed here, not chosen afterwards: `pallets/click`, `honojs/hono`,
+`axios/axios`, `prettier/prettier`, `eslint/eslint`, `vitejs/vite`, `sveltejs/svelte` and `cli/cli`, the repositories
+that a survey of pull requests merged between 2026-02-01 and 2026-08-01 found with at least 12 closed-issue tasks,
+in several languages. Their tasks are selected with the same procedure and window as for `click` (issues that existed at
+the base commit and were closed by a merged pull request that changes code; the first 12); a repository that yields
+fewer than 12 is kept with the tasks it has and the number is reported. Sensitivity runs: `human-nohot` (without
+changelog, version and dependency files, what a structured rule for those would take out) and `agent`.
+The footprint set is part of the result: on `click`, 10 of 12 pull requests touch `CHANGES.rst` and 7 of 12 touch
+`src/click/core.py`; on `hono`, 4 of 66 pairs share a file.
 
 **The number G1 reads.** At the reference scenario (10 agents, tests of 30 s) the rejection per submission,
-stale / (merged + stale), averaged over the three repetitions, for the `human` footprints; the share for first
-attempts only (a freshly made patch, the figure comparable with §9) is reported next to it. With more than one
-repository, G1 reads the mean of the per-repository rates with equal weight, and each rate is reported as well.
-Thresholds as in §11.
+stale / (merged + stale), averaged over three repetitions per repository, for the `human` footprints. The share for
+first attempts only (a freshly made patch, the figure comparable with §9) is reported next to it. G1 reads the
+**median over the eight repositories** of those per-repository rates, with the thresholds of §11; each rate is
+reported as well. The median is used because the mean of repositories at opposite ends (`click` and `hono` are 83%
+and 6% of pairs sharing a file) says nothing about any of them. **One clause against a median that hides a
+minority:** if the median is under 10% but at least 3 of the 8 repositories are at 20% or more, G1 does not close the
+project: it takes the middle branch (cheap levers, and the decision record of phase 4 settles an opt-in hunk-level
+merge with the costs measured in phase 2). The reference cell runs for all eight repositories; the full grid
+(agents × test duration) for `click`, `hono` and one more.
