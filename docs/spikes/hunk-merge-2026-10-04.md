@@ -311,13 +311,19 @@ local branches that are not in the public repository).
 | Patches on `src/click/core.py` | 1 | **6** |
 | Pairs of patches sharing a file | 0 of 15 | **16 of 55 (29.1%)** |
 | Pairs a hunk-level rule rejects (`git merge-tree` conflicts) | 0 | **1 of 55 (1.8%)**: `termui.py` |
-| Neurons | 5,987 (+1,877 for the diagnosis) | 8,601: select 570, view 1,500, edit 6,310, retry 96 |
+| Neurons | 5,987 (+1,877 for the diagnosis); 6,423 and 1,980 with the price corrected below² | 8,601: select 570, view 1,500, edit 6,310, retry 96 |
 | Retries, whitespace-tolerant edits used | – | 2 (both applied), 0 |
 | Failures | 6 | 1: a file that does not exist |
 
 ¹ Source files the human pull requests changed, without tests, documentation, configuration, changelog, version and
 dependency files, recomputed with the same script definition for both runs (so v1 reads 4 of 12 here, not 4 of 13 as
 in §8, where `__init__.py` counted).
+
+² The 8B model of v1 was entered in the cost table with the price of its `fp8-fast` sibling: `llama-3.1-8b-instruct-fp8`
+costs 13,778 / 26,128 neurons per million tokens (in / out) and `-fast` 4,119 / 34,868. Found on 2026-10-05 when the prices
+of the reviewer models were read from the pricing page itself instead of from a summary of it. It affects the 30 small
+calls of v1 only (+436 neurons for the pilot, +103 for the diagnosis re-run); v2 used the 70B and the coder, whose prices
+were right.
 
 **What it says.** A selector that can read finds the file the human pull requests changed, and six of eleven
 patches land on `src/click/core.py`, the hot file. That is where the collisions come from: 15 of the 16 pairs that
@@ -408,3 +414,21 @@ minority:** if the median is under 10% but at least 3 of the 8 repositories are 
 project: it takes the middle branch (cheap levers, and the decision record of phase 4 settles an opt-in hunk-level
 merge with the costs measured in phase 2). The reference cell runs for all eight repositories; the full grid
 (agents × test duration) for `click`, `hono` and one more.
+
+**Phase 2 times (fixed 2026-10-05, before they are measured).** The work, review and rebase times of the simulation
+are measured, not assumed, by these formulas (`buildPhase2Times` in `scripts/lib/sim.mjs`, tested):
+- `workMs`: the median time the agent takes for a committed task (`elapsedMs` of `scripts/agent-replay.mjs`: file
+  selection, reading, edit and commit), measured with the Workers AI agent on `honojs/hono`; `workCv` is the lognormal
+  fit of its median and 90th percentile (σ = ln(p90 / p50) / 1.2816, cv = √(e^σ² − 1), 0 if p90 does not exceed p50).
+- `rebaseMs`: the median latency of the agent's edit call (a rebase is the same single-shot edit).
+- `reviewMs`: the median, over the committed patches of that run (at least 5, patches longer than reviewers read are
+  skipped), of the **quorum latency**: the second smallest of the latencies of the three reviewer families of
+  `gf-agents` (Llama 3.3 70B, gpt-oss-120b, Mistral Small 3.1), because a patch enters the queue when two families have
+  attested. `scripts/review-latency.mjs` calls them with the platform's own prompt, schema and rendering of the change,
+  through the account REST API from a local machine, so each latency includes a round trip of some hundred ms on top
+  of seconds of model time.
+- The test duration of the reference scenario stays at 30 s (the sensitivity cells 5, 30 and 120 s as before).
+- Limits stated now: a single-shot Workers AI agent works for far less time than an agent that reads, runs tests and
+  iterates, so these times are a floor; the work-time sensitivity of the reference cell is therefore ×0.5, ×2 **and ×6**
+  (an agent that works for minutes). The times file (`scripts/phase2-times.mjs`) is committed and pushed before
+  `scripts/queue-sim-g1.mjs` runs, and the runner takes no time from the command line.

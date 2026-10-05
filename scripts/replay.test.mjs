@@ -122,6 +122,21 @@ test('extractJson: object, fenced, with prose around, broken', () => {
   assert.equal(extractJson([1]), null);
 });
 
+test('NEURON_RATES: the models the scripts use, with the prices of the pricing page (the 8B fp8 and fp8-fast models differ)', () => {
+  const want = {
+    '@cf/meta/llama-3.1-8b-instruct-fp8': [13778, 26128],
+    '@cf/meta/llama-3.1-8b-instruct-fp8-fast': [4119, 34868],
+    '@cf/meta/llama-3.3-70b-instruct-fp8-fast': [26668, 204805],
+    '@cf/qwen/qwen2.5-coder-32b-instruct': [60000, 90909],
+    '@cf/openai/gpt-oss-120b': [31818, 68182],
+    '@cf/mistralai/mistral-small-3.1-24b-instruct': [31876, 50488],
+  };
+  for (const [m, [i, o]] of Object.entries(want)) assert.deepEqual([NEURON_RATES[m]?.in, NEURON_RATES[m]?.out], [i, o], m);
+  assert.ok(Object.isFrozen(NEURON_RATES));
+  // a call of 10,000 tokens in and 1,000 out on the 8B fp8 model: 137.78 + 26.128 neurons
+  assert.ok(Math.abs(neuronsFor('@cf/meta/llama-3.1-8b-instruct-fp8', 10000, 1000) - 163.908) < 1e-9);
+});
+
 test('neuronsFor: rates from the pricing page, unknown models refused', () => {
   const m = '@cf/qwen/qwen2.5-coder-32b-instruct';
   assert.equal(NEURON_RATES[m].in, 60000);

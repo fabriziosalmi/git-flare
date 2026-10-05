@@ -1,7 +1,7 @@
 // node --test scripts/sim.test.mjs
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { empiricalSampler, footprintsOf, g1Decision, lognormalMs, quantile, rng, summarizeRun, uniqueName, zipfSampler } from './lib/sim.mjs';
+import { buildPhase2Times, changesFromDiff, reviewInput, empiricalSampler, footprintsOf, g1Decision, lognormalCv, lognormalMs, median, quorumLatency, quantile, rng, summarizeRun, uniqueName, zipfSampler } from './lib/sim.mjs';
 
 test('rng: the same seed gives the same sequence, another seed another, all in [0, 1)', () => {
   const a = rng(7);
@@ -177,4 +177,80 @@ test('g1Decision: it reports how many repositories there were and how many were 
   const g = g1Decision([25, 15, 5, 5, 5, 5, 5, 5]);
   assert.deepEqual([g.repositories, g.atLeast20, g.median], [8, 1, 5]);
   assert.throws(() => g1Decision([]), /at least one repository/);
+});
+
+test('lognormalCv: the coefficient of variation of a lognormal from its median and 90th percentile, 0 without a spread', () => {
+  assert.equal(lognormalCv(100, 100), 0);
+  assert.equal(lognormalCv(100, 80), 0); // the 90th percentile under the median: no spread to fit
+  assert.equal(lognormalCv(0, 5), 0);
+  // p90 = 2 x p50: sigma = ln 2 / 1.28155 = 0.5409, cv = sqrt(exp(0.2926) - 1) = 0.5831
+  assert.ok(Math.abs(lognormalCv(100, 200) - 0.5831) < 0.001, `${lognormalCv(100, 200)}`);
+  // the two directions agree: samples of a lognormal with cv 0.5 give back about 0.5
+  const r = rng(11);
+  const xs = Array.from({ length: 60000 }, () => lognormalMs(r, 1000, 0.5));
+  assert.ok(Math.abs(lognormalCv(quantile(xs, 0.5), quantile(xs, 0.9)) - 0.5) < 0.03);
+});
+
+test('quorumLatency: the second smallest successful latency, in any order, null with fewer than two', () => {
+  assert.equal(quorumLatency([300, 100, 200]), 200);
+  assert.equal(quorumLatency([null, 100, 200]), 200); // one family failed: the other two make the quorum
+  assert.equal(quorumLatency([null, null, 100]), null);
+  assert.equal(quorumLatency([100]), null);
+  assert.equal(quorumLatency([-5, 100, 50]), 100); // a negative latency is not a success
+  assert.equal(median([3, 1, 2]), 2);
+});
+
+test('buildPhase2Times: work, review and rebase times by the fixed formulas, and refusals when the measurement is missing or too thin', () => {
+  const ok = buildPhase2Times({ taskMs: { p50: 20000, p90: 40000 }, editMs: [3000, 5000, 4000], quorumMs: [8000, 9000, 7000, 12000, 10000] });
+  assert.deepEqual([ok.workMs, ok.workCv, ok.rebaseMs, ok.reviewMs], [20000, 0.58, 4000, 9000]);
+  assert.deepEqual(ok.derived, { taskP50Ms: 20000, taskP90Ms: 40000, editCalls: 3, reviewSamples: 5 });
+  assert.throws(() => buildPhase2Times({ taskMs: { p50: 0, p90: 0 }, editMs: [1], quorumMs: [1, 2, 3, 4, 5] }), /taskMs.p50/);
+  assert.throws(() => buildPhase2Times({ taskMs: { p50: 1, p90: 2 }, editMs: [], quorumMs: [1, 2, 3, 4, 5] }), /no edit call latency/);
+  assert.throws(() => buildPhase2Times({ taskMs: { p50: 1, p90: 2 }, editMs: [1], quorumMs: [1, 2, 3, 4] }), /at least 5 patches, got 4/);
+  assert.equal(buildPhase2Times({ taskMs: { p50: 1, p90: 2 }, editMs: [1], quorumMs: [1, 2, 3], minReviewSamples: 3 }).reviewMs, 2);
+});
+
+test('changesFromDiff: files of a git diff as a reviewer sees them: status, binary and the hunks', () => {
+  const diff = [
+    'diff --git a/src/a.py b/src/a.py',
+    'index 111..222 100644',
+    '--- a/src/a.py',
+    '+++ b/src/a.py',
+    '@@ -1,2 +1,2 @@',
+    '-old',
+    '+new',
+    ' same',
+    'diff --git a/src/new.py b/src/new.py',
+    'new file mode 100644',
+    'index 0000000..333',
+    '--- /dev/null',
+    '+++ b/src/new.py',
+    '@@ -0,0 +1 @@',
+    '+x',
+    'diff --git a/gone.py b/gone.py',
+    'deleted file mode 100644',
+    'index 444..0000000',
+    '--- a/gone.py',
+    '+++ /dev/null',
+    '@@ -1 +0,0 @@',
+    '-y',
+    'diff --git a/img.png b/img.png',
+    'index 1..2 100644',
+    'Binary files a/img.png and b/img.png differ',
+    '',
+  ].join('\n');
+  const c = changesFromDiff(diff);
+  assert.deepEqual(c.map((x) => [x.path, x.status, x.binary]), [['src/a.py', 'modified', false], ['src/new.py', 'added', false], ['gone.py', 'deleted', false], ['img.png', 'modified', true]]);
+  assert.equal(c[0].hunks, '@@ -1,2 +1,2 @@\n-old\n+new\n same');
+  assert.equal(c[3].hunks, undefined); // a binary file has no hunks
+  assert.deepEqual(changesFromDiff(''), []);
+});
+
+test('reviewInput: the body of a review call for each model style, as the platform builds it', () => {
+  const schema = { type: 'object' };
+  const m = [{ role: 'system', content: 'SYS' }, { role: 'user', content: 'CHANGE' }];
+  assert.deepEqual(reviewInput('messages-json', 'SYS', schema, 'CHANGE'), { messages: m, response_format: { type: 'json_schema', json_schema: schema }, max_tokens: 400, temperature: 0.1 });
+  assert.deepEqual(reviewInput('messages-guided', 'SYS', schema, 'CHANGE'), { messages: m, guided_json: schema, max_tokens: 400, temperature: 0.1 });
+  assert.deepEqual(reviewInput('responses', 'SYS', schema, 'CHANGE'), { input: m, reasoning: { effort: 'low' } });
+  assert.deepEqual(reviewInput('anything-else', 'SYS', schema, 'CHANGE').response_format.type, 'json_schema'); // the default is the JSON-schema chat style
 });

@@ -173,3 +173,79 @@ export function g1Decision(rates) {
   }
   return { median, repositories: rates.length, atLeast20, branch, reason };
 }
+
+// ─── Phase 2: the times of the simulation, measured (formulas fixed in the note, section 13, before the measurement) ───
+
+const Z90 = 1.2815515655446004; // the 90th percentile of the standard normal distribution
+
+/** The median of numbers (null for none). */
+export const median = (xs) => quantile(xs, 0.5);
+
+/**
+ * The coefficient of variation of the lognormal distribution with the given median and 90th percentile:
+ * sigma = ln(p90 / p50) / z90 and cv = sqrt(exp(sigma^2) - 1). 0 when the 90th percentile does not exceed the median.
+ */
+export function lognormalCv(p50, p90) {
+  if (!(p50 > 0) || !(p90 > p50)) return 0;
+  const sigma = Math.log(p90 / p50) / Z90;
+  return Math.sqrt(Math.exp(sigma * sigma) - 1);
+}
+
+/** When a patch is queued: the second smallest of the successful review latencies (two families have attested). null with fewer than two. */
+export function quorumLatency(latencies) {
+  const ok = latencies.filter((x) => typeof x === 'number' && x >= 0).sort((a, b) => a - b);
+  return ok.length >= 2 ? ok[1] : null;
+}
+
+/**
+ * The work, review and rebase times of the queue simulation, as fixed in the note:
+ *   workMs   = the median time the agent took for a task (taskMs.p50), workCv from the lognormal fit of its median and 90th percentile
+ *   rebaseMs = the median latency of the agent's edit call (a rebase is the same single-shot edit)
+ *   reviewMs = the median over sampled patches of the quorum latency of the three reviewer families
+ * `quorumMs` needs at least `minReviewSamples` patches.
+ */
+export function buildPhase2Times({ taskMs, editMs, quorumMs, minReviewSamples = 5 }) {
+  if (!taskMs || !(taskMs.p50 > 0)) throw new Error('taskMs.p50 is needed: run the agent pilot first');
+  if (!editMs || editMs.length === 0) throw new Error('no edit call latency: the pilot recorded no call times');
+  if (!quorumMs || quorumMs.length < minReviewSamples) throw new Error(`the reviewer latency needs at least ${minReviewSamples} patches, got ${quorumMs?.length ?? 0}`);
+  return {
+    workMs: Math.round(taskMs.p50),
+    workCv: Math.round(lognormalCv(taskMs.p50, taskMs.p90) * 100) / 100,
+    reviewMs: Math.round(median(quorumMs)),
+    rebaseMs: Math.round(median(editMs)),
+    derived: { taskP50Ms: Math.round(taskMs.p50), taskP90Ms: Math.round(taskMs.p90), editCalls: editMs.length, reviewSamples: quorumMs.length },
+  };
+}
+
+/**
+ * The files of a `git diff` as the platform presents a change to a reviewer: [{path, status, added: [], removed: [], binary,
+ * hunks}] with status 'added', 'deleted' or 'modified' and `hunks` the text from the first @@ line on.
+ */
+export function changesFromDiff(diff) {
+  const out = [];
+  for (const block of diff.split(/^diff --git /m).slice(1)) {
+    const head = /^a\/(.+?) b\/(.+)\n/.exec(block);
+    if (!head) continue;
+    const at = block.search(/^@@ /m);
+    out.push({
+      path: head[2],
+      status: /^new file mode/m.test(block) ? 'added' : /^deleted file mode/m.test(block) ? 'deleted' : 'modified',
+      added: [],
+      removed: [],
+      binary: /^Binary files /m.test(block) || /^GIT binary patch/m.test(block),
+      ...(at >= 0 ? { hunks: block.slice(at).trimEnd() } : {}),
+    });
+  }
+  return out;
+}
+
+/** The body of a review call for each model style, as agents/src/index.ts `ask` builds it. */
+export function reviewInput(style, system, schema, text) {
+  const messages = [
+    { role: 'system', content: system },
+    { role: 'user', content: text },
+  ];
+  if (style === 'responses') return { input: messages, reasoning: { effort: 'low' } };
+  if (style === 'messages-guided') return { messages, guided_json: schema, max_tokens: 400, temperature: 0.1 };
+  return { messages, response_format: { type: 'json_schema', json_schema: schema }, max_tokens: 400, temperature: 0.1 };
+}
