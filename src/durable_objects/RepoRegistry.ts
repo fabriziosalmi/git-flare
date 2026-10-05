@@ -8,7 +8,7 @@
 // even for a lone patch whose commit descends from main: main receives exactly the tree that was reviewed
 // and tested, never an agent's commit, whose tree and history may hold more than its diff shows.
 import { DurableObject } from 'cloudflare:workers';
-import { createArtifactsGateway, MockArtifacts, MOCK_OPS, type ArtifactsGateway, type FileUpdate, type MockOp } from '../artifacts/client.js';
+import { createArtifactsGateway, MockArtifacts, MOCK_OPS, type ArtifactsGateway, type FileUpdate, type MockOp, type MockOpResult } from '../artifacts/client.js';
 import type { AgentIdentity } from '../auth.js';
 import { collusionCluster } from '../epistemic/collusion.js';
 import { applyEvent, emptyGuard, recordLanded, recordOwnToken, type ArtifactsEvent, type GuardAlert, type MainGuard } from '../guard.js';
@@ -880,6 +880,18 @@ export class RepoRegistry extends DurableObject<RegistryEnv> {
     if (!(MOCK_OPS as readonly string[]).includes(op)) throw new Error(`unknown mock op ${op}`);
     const m = this.artifacts as unknown as Record<string, (...a: unknown[]) => unknown>;
     return await m[op](...args);
+  }
+
+  /** Like `mockOp`, but an operation that fails comes back as data (see MockHost): the shards call this one. */
+  async mockOpResult(op: MockOp, args: unknown[]): Promise<MockOpResult> {
+    if (!(this.artifacts instanceof MockArtifacts)) throw new Error('mock operations are only available in mock mode');
+    if (!(MOCK_OPS as readonly string[]).includes(op)) throw new Error(`unknown mock op ${op}`);
+    const m = this.artifacts as unknown as Record<string, (...a: unknown[]) => unknown>;
+    try {
+      return { ok: true, value: await m[op](...args) };
+    } catch (e) {
+      return { ok: false, message: String((e as Error).message) };
+    }
   }
 
   devConfigureMock(cfg: { latencyMs?: number; failNext?: MockArtifacts['failNext'] }): Result<{ activeTokens: Record<string, number> }> {

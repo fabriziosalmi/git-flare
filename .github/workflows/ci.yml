@@ -41,7 +41,15 @@ jobs:
       - run: npm run typecheck
 
       - name: Tests (inside workerd)
-        run: npm test
+        run: |
+          set -o pipefail
+          npm test 2>&1 | tee /tmp/worker-tests.log
+          # workerd reports an exception thrown inside a Durable Object as "uncaught" even when the caller handles it:
+          # the run still passes, so without this check the noise (and a real unhandled rejection) would go unnoticed.
+          if grep -q "uncaught exception" /tmp/worker-tests.log; then
+            echo "::error::workerd reported an uncaught exception during the tests"
+            exit 1
+          fi
 
       - name: Tests of the measurement scripts
         run: npm run test:scripts

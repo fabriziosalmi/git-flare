@@ -1057,6 +1057,27 @@ describe('resource cleanup', () => {
     expect(await forkRefs(repo, fork)).toEqual(['main']);
   });
 
+  it('a branch whose fork is gone is counted as missing, not as a failure, and is not retried', async () => {
+    const repo = await setupRepo(['A1'], 1);
+    const w = await agent(`w-gone-${repo}`, 'worker', 'claude');
+    const fork = (await call('POST', `/api/repos/${repo}/join`, w)).body.fork.name;
+    await submit(repo, w, 'A1', await claimAndCommit(repo, w, 'A1', { '.gitflare/x.json': '{}' })); // rejected at submit: closed, its branch is to clean
+    await registry(repo).mockOp('deleteRepo', [fork]); // the fork is gone before the cleanup runs
+    const r = await call('POST', `/api/repos/${repo}/cleanup`, ADMIN, {});
+    expect(r.status, r.raw).toBe(200);
+    expect(r.body.branches).toMatchObject({ deleted: 0, alreadyGone: 1, failed: 0, remaining: 0 });
+    expect((await call('POST', `/api/repos/${repo}/cleanup`, ADMIN, {})).body.branches).toMatchObject({ deleted: 0, alreadyGone: 0, failed: 0, remaining: 0 });
+  });
+
+  it('a mock operation that fails comes back to the shard as data, and succeeds as a value', async () => {
+    const repo = await setupRepo(['A1'], 1);
+    const reg = registry(repo);
+    const gone = await reg.mockOpResult('deleteRefs', [`${repo}--no-such-fork`, ['refs/heads/x']]);
+    expect(gone.ok).toBe(false);
+    expect(gone.ok === false && gone.message).toMatch(/Repository not found/);
+    expect(await reg.mockOpResult('activeTokens', [repo, 'write'])).toEqual({ ok: true, value: 0 });
+  });
+
   it('idle forks are deleted (dry run first), a fork a queued patch reads from is kept, shards forget deleted forks', async () => {
     const repo = await setupRepo(['I1', 'I2'], 1);
     const idle = await agent(`w-idle-${repo}`, 'worker', 'claude');

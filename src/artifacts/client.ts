@@ -269,7 +269,14 @@ async function sha1(s: string): Promise<string> {
 /** Operations the registry exposes so shards can share its in-memory mock. */
 export const MOCK_OPS = ['ensureRepo', 'ensureFork', 'head', 'mintToken', 'revokeToken', 'readCommitOf', 'readTreeOf', 'readBlobOf', 'fastForward', 'commitFiles', 'deleteRepo', 'forceRef', 'revokeTokens', 'deleteRefs', 'commit', 'setRef', 'activeTokens'] as const;
 export type MockOp = (typeof MOCK_OPS)[number];
-export type MockHost = { mockOp(op: MockOp, args: unknown[]): Promise<unknown> };
+/** The outcome of a mock operation as it crosses from the registry to a shard: an error is data here, not an exception. */
+export type MockOpResult = { ok: true; value: unknown } | { ok: false; message: string };
+/**
+ * `mockOpResult` is what the shards call. A mock operation that fails on purpose (a repository that is gone, an
+ * injected failure) used to throw inside the registry's RPC method and workerd logged each one as an uncaught
+ * exception there, although the shard caught it: pure noise in every test run. `mockOp` stays for direct callers.
+ */
+export type MockHost = { mockOp(op: MockOp, args: unknown[]): Promise<unknown>; mockOpResult(op: MockOp, args: unknown[]): Promise<MockOpResult> };
 
 /** In-memory Artifacts double: one instance per registry Durable Object; commits shared across its repos. */
 export class MockArtifacts implements ArtifactsGateway {
@@ -505,8 +512,10 @@ export class MockArtifacts implements ArtifactsGateway {
 export class RemoteMockArtifacts implements ArtifactsGateway {
   readonly mode = 'mock' as const;
   constructor(private readonly host: () => MockHost) {}
-  private call<T>(op: MockOp, ...args: unknown[]): Promise<T> {
-    return this.host().mockOp(op, args) as Promise<T>;
+  private async call<T>(op: MockOp, ...args: unknown[]): Promise<T> {
+    const r = await this.host().mockOpResult(op, args);
+    if (!r.ok) throw new Error(r.message); // thrown here, in the caller that handles it
+    return r.value as T;
   }
   ensureRepo(name: string) {
     return this.call<{ name: string; remote: string }>('ensureRepo', name);
