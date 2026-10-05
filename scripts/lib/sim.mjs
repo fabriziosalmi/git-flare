@@ -143,3 +143,33 @@ export function summarizeRun({ patches, wallMs }) {
     wallMs: Math.round(wallMs),
   };
 }
+
+/**
+ * G1 as written in the note (section 13) before any grid result: `rates` are the rejection per submission (percent) of
+ * the repositories at the reference scenario. The median (the mean of the two middle values for an even number) is read
+ * against the thresholds: 20% or more -> 'proceed'; from 10% (included) to 20% -> 'cheap-levers'; under 10% -> 'stop',
+ * unless at least 3 repositories are at 20% or more, which keeps the project open on the middle branch.
+ */
+export function g1Decision(rates) {
+  if (rates.length === 0) throw new Error('G1 needs at least one repository');
+  const s = [...rates].sort((a, b) => a - b);
+  const mid = s.length >> 1;
+  const median = s.length % 2 ? s[mid] : (s[mid - 1] + s[mid]) / 2;
+  const atLeast20 = rates.filter((r) => r >= 20).length;
+  let branch;
+  let reason;
+  if (median >= 20) {
+    branch = 'proceed';
+    reason = `median ${median}% is 20% or more`;
+  } else if (median >= 10) {
+    branch = 'cheap-levers';
+    reason = `median ${median}% is from 10% to under 20%`;
+  } else if (atLeast20 >= 3) {
+    branch = 'cheap-levers';
+    reason = `median ${median}% is under 10%, but ${atLeast20} repositories are at 20% or more: the project stays open`;
+  } else {
+    branch = 'stop';
+    reason = `median ${median}% is under 10% and only ${atLeast20} repositories are at 20% or more`;
+  }
+  return { median, repositories: rates.length, atLeast20, branch, reason };
+}

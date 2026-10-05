@@ -1,7 +1,7 @@
 // node --test scripts/sim.test.mjs
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { empiricalSampler, footprintsOf, lognormalMs, quantile, rng, summarizeRun, uniqueName, zipfSampler } from './lib/sim.mjs';
+import { empiricalSampler, footprintsOf, g1Decision, lognormalMs, quantile, rng, summarizeRun, uniqueName, zipfSampler } from './lib/sim.mjs';
 
 test('rng: the same seed gives the same sequence, another seed another, all in [0, 1)', () => {
   const a = rng(7);
@@ -148,4 +148,33 @@ test('uniqueName: two cells started in the same millisecond differ by process or
   assert.ok(names.size > 4900, `${names.size} distinct in 5000 draws`); // 36^4 draws collide rarely, not never
   for (const n of names) assert.match(`sim-${n}`, /^[a-z0-9][a-z0-9-]{0,47}$/);
   assert.equal(uniqueName(0, 0, () => 0).length, 6); // '0' + '0' + '0000'
+});
+
+test('g1Decision: the thresholds of the note, exactly at their edges, and the median of an even number is the mean of the middle two', () => {
+  const d = (rates) => g1Decision(rates).branch;
+  // eight repositories: the median is the mean of the 4th and 5th values
+  assert.equal(g1Decision([1, 2, 3, 4, 6, 7, 8, 9]).median, 5);
+  assert.equal(g1Decision([9, 1, 8, 2, 7, 3, 6, 4]).median, 5); // order does not matter
+  assert.equal(g1Decision([5, 6, 7]).median, 6); // odd: the middle one
+  assert.equal(d([20, 20, 20, 20, 20, 20, 20, 20]), 'proceed'); // 20% exactly goes on
+  assert.equal(d([19.9, 19.9, 19.9, 19.9, 19.9, 19.9, 19.9, 19.9]), 'cheap-levers');
+  assert.equal(d([10, 10, 10, 10, 10, 10, 10, 10]), 'cheap-levers'); // 10% exactly is the middle branch
+  assert.equal(d([9.9, 9.9, 9.9, 9.9, 9.9, 9.9, 9.9, 9.9]), 'stop');
+  assert.equal(d([30, 5]), 'cheap-levers'); // the median of two is 17.5
+  assert.equal(d([12]), 'cheap-levers');
+});
+
+test('g1Decision: the clause keeps the project open when a median under 10% hides at least 3 repositories at 20% or more', () => {
+  // median (4th and 5th of 8) is 4.5: under 10%
+  assert.equal(g1Decision([60, 40, 20, 4, 5, 2, 1, 1]).branch, 'cheap-levers'); // three at 20% or more
+  assert.match(g1Decision([60, 40, 20, 4, 5, 2, 1, 1]).reason, /stays open/);
+  assert.equal(g1Decision([60, 40, 19.9, 4, 5, 2, 1, 1]).branch, 'stop'); // only two: the project closes
+  // four at 60% and four at 1%: sorted [1, 1, 1, 1, 60, 60, 60, 60], the median is the mean of 1 and 60, 30.5: proceed (the rule as written)
+  assert.equal(g1Decision([60, 60, 60, 60, 1, 1, 1, 1]).branch, 'proceed');
+});
+
+test('g1Decision: it reports how many repositories there were and how many were at 20% or more, and refuses no data', () => {
+  const g = g1Decision([25, 15, 5, 5, 5, 5, 5, 5]);
+  assert.deepEqual([g.repositories, g.atLeast20, g.median], [8, 1, 5]);
+  assert.throws(() => g1Decision([]), /at least one repository/);
 });
