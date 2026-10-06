@@ -1,0 +1,618 @@
+{
+  "runId": "hono-pilot",
+  "date": "2026-10-06",
+  "slug": "honojs/hono",
+  "base": "f7d272abe1644e50ab5fe9cb53f5965c35d77226",
+  "agent": "llm",
+  "coder": "@cf/qwen/qwen2.5-coder-32b-instruct",
+  "selector": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+  "note": "single-shot: file selection, search/replace edits (whitespace-tolerant), one retry with the real excerpt; no tool use",
+  "taskMs": {
+    "p50": 12159.5,
+    "p90": 19881.5
+  },
+  "neuronsThisRun": 5652,
+  "neuronsToday": 5652,
+  "tasks": [
+    {
+      "id": "i4582",
+      "issue": 4582,
+      "humanFiles": [
+        "src/jsx/context.ts",
+        "src/jsx/index.test.tsx"
+      ],
+      "selected": [
+        "src/jsx/dom/hooks/index.ts",
+        "src/jsx/dom/context.ts",
+        "src/middleware/jsx-renderer/index.ts",
+        "src/jsx/utils.ts"
+      ],
+      "editedFiles": [
+        "src/middleware/jsx-renderer/index.ts"
+      ],
+      "failedEdits": [],
+      "status": "committed",
+      "calls": [
+        {
+          "step": "select",
+          "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "tin": 4748,
+          "tout": 39,
+          "neurons": 134.607059,
+          "estimated": false,
+          "ms": 7829
+        },
+        {
+          "step": "edit",
+          "model": "@cf/qwen/qwen2.5-coder-32b-instruct",
+          "tin": 3370,
+          "tout": 143,
+          "neurons": 215.199987,
+          "estimated": false,
+          "ms": 5193
+        }
+      ],
+      "excerpted": [],
+      "fuzzyEdits": [],
+      "shortstat": "1 file changed, 3 insertions(+), 3 deletions(-)",
+      "sha": "a94e4734993c3dcb7a73d3df944573910a781e7f",
+      "branch": "agent-replay/hono-pilot/i4582",
+      "elapsedMs": 13322
+    },
+    {
+      "id": "i4440",
+      "issue": 4440,
+      "humanFiles": [
+        "src/utils/url.test.ts",
+        "src/utils/url.ts"
+      ],
+      "selected": [
+        "src/router.ts",
+        "src/router/reg-exp-router/matcher.ts",
+        "src/router/reg-exp-router/router.ts",
+        "src/adapter/service-worker/handler.ts"
+      ],
+      "editedFiles": [
+        "src/router/reg-exp-router/matcher.ts"
+      ],
+      "failedEdits": [],
+      "status": "committed",
+      "calls": [
+        {
+          "step": "select",
+          "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "tin": 4296,
+          "tout": 38,
+          "neurons": 122.348318,
+          "estimated": false,
+          "ms": 2537
+        },
+        {
+          "step": "edit",
+          "model": "@cf/qwen/qwen2.5-coder-32b-instruct",
+          "tin": 3628,
+          "tout": 76,
+          "neurons": 224.589084,
+          "estimated": false,
+          "ms": 3012
+        }
+      ],
+      "excerpted": [],
+      "fuzzyEdits": [],
+      "shortstat": "1 file changed, 2 insertions(+)",
+      "sha": "2c7071b7a7038766f656a03daa323537ade6075a",
+      "branch": "agent-replay/hono-pilot/i4440",
+      "elapsedMs": 5757
+    },
+    {
+      "id": "i4388",
+      "issue": 4388,
+      "humanFiles": [
+        "src/types.test.ts"
+      ],
+      "selected": [
+        "src/hono.ts",
+        "src/router.ts",
+        "src/types.ts",
+        "src/utils/types.ts"
+      ],
+      "editedFiles": [],
+      "failedEdits": [],
+      "status": "no-patch",
+      "calls": [
+        {
+          "step": "select",
+          "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "tin": 4262,
+          "tout": 26,
+          "neurons": 118.983946,
+          "estimated": false,
+          "ms": 1824
+        },
+        {
+          "step": "view",
+          "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "tin": 1144,
+          "tout": 19,
+          "neurons": 34.399487,
+          "estimated": false,
+          "ms": 977
+        },
+        {
+          "step": "edit",
+          "model": "@cf/qwen/qwen2.5-coder-32b-instruct",
+          "tin": 3636,
+          "tout": 91,
+          "neurons": 226.432719,
+          "estimated": false,
+          "ms": 3774
+        },
+        {
+          "step": "retry",
+          "model": "@cf/qwen/qwen2.5-coder-32b-instruct",
+          "tin": 448,
+          "tout": 35,
+          "neurons": 30.061815,
+          "estimated": false,
+          "ms": 1650
+        }
+      ],
+      "excerpted": [
+        "src/types.ts"
+      ],
+      "retried": 1,
+      "retryApplied": 0,
+      "fuzzyEdits": [],
+      "elapsedMs": 8319
+    },
+    {
+      "id": "i4389",
+      "issue": 4389,
+      "humanFiles": [
+        "src/helper/ssg/index.ts",
+        "src/helper/ssg/plugins.test.tsx",
+        "src/helper/ssg/plugins.ts",
+        "src/helper/ssg/ssg.test.tsx",
+        "src/helper/ssg/ssg.ts"
+      ],
+      "selected": [
+        "src/helper/ssg/index.ts",
+        "src/helper/ssg/ssg.ts",
+        "src/helper/ssg/middleware.ts",
+        "src/helper/ssg/utils.ts"
+      ],
+      "editedFiles": [
+        "src/helper/ssg/ssg.ts"
+      ],
+      "failedEdits": [],
+      "status": "committed",
+      "calls": [
+        {
+          "step": "select",
+          "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "tin": 4428,
+          "tout": 38,
+          "neurons": 125.868494,
+          "estimated": false,
+          "ms": 2656
+        },
+        {
+          "step": "edit",
+          "model": "@cf/qwen/qwen2.5-coder-32b-instruct",
+          "tin": 5038,
+          "tout": 357,
+          "neurons": 334.734513,
+          "estimated": false,
+          "ms": 12503
+        }
+      ],
+      "excerpted": [],
+      "fuzzyEdits": [],
+      "shortstat": "1 file changed, 1 insertion(+)",
+      "sha": "0c1800d56471b5df3e823e899724411c96370499",
+      "branch": "agent-replay/hono-pilot/i4389",
+      "elapsedMs": 15486
+    },
+    {
+      "id": "i4186",
+      "issue": 4186,
+      "humanFiles": [
+        "src/client/client.test.ts",
+        "src/client/client.ts",
+        "src/client/types.test.ts",
+        "src/client/types.ts"
+      ],
+      "selected": [
+        "src/client/client.ts",
+        "src/client/client.test.ts",
+        "src/utils/url.ts",
+        "src/utils/url.test.ts"
+      ],
+      "editedFiles": [
+        "src/client/client.ts"
+      ],
+      "failedEdits": [],
+      "status": "committed",
+      "calls": [
+        {
+          "step": "select",
+          "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "tin": 4223,
+          "tout": 30,
+          "neurons": 118.763114,
+          "estimated": false,
+          "ms": 2195
+        },
+        {
+          "step": "view",
+          "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "tin": 5017,
+          "tout": 41,
+          "neurons": 142.190361,
+          "estimated": false,
+          "ms": 6644
+        },
+        {
+          "step": "edit",
+          "model": "@cf/qwen/qwen2.5-coder-32b-instruct",
+          "tin": 7713,
+          "tout": 293,
+          "neurons": 489.416337,
+          "estimated": false,
+          "ms": 10665
+        }
+      ],
+      "excerpted": [
+        "src/client/client.test.ts"
+      ],
+      "fuzzyEdits": [],
+      "shortstat": "1 file changed, 3 insertions(+)",
+      "sha": "474f390b54dcfe2e0457543e8737d7bfd6ef41f8",
+      "branch": "agent-replay/hono-pilot/i4186",
+      "elapsedMs": 19850
+    },
+    {
+      "id": "i4192",
+      "issue": 4192,
+      "humanFiles": [
+        "src/middleware/basic-auth/index.test.ts",
+        "src/middleware/basic-auth/index.ts"
+      ],
+      "selected": [
+        "src/middleware/basic-auth/index.ts",
+        "src/middleware/basic-auth/index.test.ts",
+        "src/context.ts",
+        "src/context.test.ts"
+      ],
+      "editedFiles": [
+        "src/middleware/basic-auth/index.ts"
+      ],
+      "failedEdits": [],
+      "status": "committed",
+      "calls": [
+        {
+          "step": "select",
+          "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "tin": 4329,
+          "tout": 34,
+          "neurons": 122.409142,
+          "estimated": false,
+          "ms": 2186
+        },
+        {
+          "step": "view",
+          "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "tin": 1554,
+          "tout": 41,
+          "neurons": 49.839077,
+          "estimated": false,
+          "ms": 1709
+        },
+        {
+          "step": "edit",
+          "model": "@cf/qwen/qwen2.5-coder-32b-instruct",
+          "tin": 11242,
+          "tout": 157,
+          "neurons": 688.792713,
+          "estimated": false,
+          "ms": 6844
+        }
+      ],
+      "excerpted": [
+        "src/context.test.ts"
+      ],
+      "fuzzyEdits": [],
+      "shortstat": "1 file changed, 4 insertions(+)",
+      "sha": "a65f2f92f2f9e7d159b371713f74e8cb2f55c37f",
+      "branch": "agent-replay/hono-pilot/i4192",
+      "elapsedMs": 11059
+    },
+    {
+      "id": "i3407",
+      "issue": 3407,
+      "humanFiles": [
+        "src/middleware/trailing-slash/index.test.ts",
+        "src/middleware/trailing-slash/index.ts"
+      ],
+      "selected": [
+        "src/middleware/trailing-slash/index.ts",
+        "src/middleware/trailing-slash/index.test.ts",
+        "src/index.ts",
+        "src/hono.ts"
+      ],
+      "editedFiles": [],
+      "failedEdits": [
+        {
+          "index": 0,
+          "path": "src/middleware/trailing-slash/index.ts",
+          "reason": "search text not found",
+          "kind": "partial",
+          "searchHead": "if ("
+        }
+      ],
+      "status": "no-patch",
+      "calls": [
+        {
+          "step": "select",
+          "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "tin": 4305,
+          "tout": 38,
+          "neurons": 122.58833,
+          "estimated": false,
+          "ms": 2128
+        },
+        {
+          "step": "edit",
+          "model": "@cf/qwen/qwen2.5-coder-32b-instruct",
+          "tin": 3088,
+          "tout": 233,
+          "neurons": 206.461797,
+          "estimated": false,
+          "ms": 8286
+        }
+      ],
+      "excerpted": [],
+      "fuzzyEdits": [],
+      "elapsedMs": 10520
+    },
+    {
+      "id": "i4294",
+      "issue": 4294,
+      "humanFiles": [
+        "src/middleware/language/index.test.ts",
+        "src/middleware/language/language.ts"
+      ],
+      "selected": [
+        "src/middleware/language/index.ts",
+        "src/middleware/language/language.ts",
+        "src/utils/accept.ts",
+        "src/utils/accept.test.ts"
+      ],
+      "editedFiles": [
+        "src/middleware/language/language.ts"
+      ],
+      "failedEdits": [],
+      "status": "committed",
+      "calls": [
+        {
+          "step": "select",
+          "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "tin": 4575,
+          "tout": 35,
+          "neurons": 129.174275,
+          "estimated": false,
+          "ms": 2209
+        },
+        {
+          "step": "edit",
+          "model": "@cf/qwen/qwen2.5-coder-32b-instruct",
+          "tin": 4641,
+          "tout": 93,
+          "neurons": 286.914537,
+          "estimated": false,
+          "ms": 3912
+        }
+      ],
+      "excerpted": [],
+      "fuzzyEdits": [],
+      "shortstat": "1 file changed, 1 insertion(+), 1 deletion(-)",
+      "sha": "ddaa6ae6398bf1ae2bef1b8733c4034a2e05a019",
+      "branch": "agent-replay/hono-pilot/i4294",
+      "elapsedMs": 6396
+    },
+    {
+      "id": "i4493",
+      "issue": 4493,
+      "humanFiles": [
+        "src/context.ts"
+      ],
+      "selected": [
+        "src/context.ts",
+        "src/adapter/cloudflare-workers/index.ts",
+        "src/adapter/cloudflare-workers/conninfo.ts",
+        "src/hono.ts"
+      ],
+      "editedFiles": [
+        "src/context.ts"
+      ],
+      "failedEdits": [],
+      "status": "committed",
+      "calls": [
+        {
+          "step": "select",
+          "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "tin": 4258,
+          "tout": 37,
+          "neurons": 121.130129,
+          "estimated": false,
+          "ms": 2210
+        },
+        {
+          "step": "edit",
+          "model": "@cf/qwen/qwen2.5-coder-32b-instruct",
+          "tin": 6364,
+          "tout": 183,
+          "neurons": 398.476347,
+          "estimated": false,
+          "ms": 7478
+        }
+      ],
+      "excerpted": [],
+      "fuzzyEdits": [],
+      "shortstat": "1 file changed, 1 insertion(+), 17 deletions(-)",
+      "sha": "cf636a0da52ed380a5403ddeb3bf528a93e5d86d",
+      "branch": "agent-replay/hono-pilot/i4493",
+      "elapsedMs": 10041
+    },
+    {
+      "id": "i3750",
+      "issue": 3750,
+      "humanFiles": [
+        "src/client/types.ts",
+        "src/hono-base.ts"
+      ],
+      "selected": [
+        "src/client/client.ts",
+        "src/client/types.ts",
+        "src/hono.ts",
+        "src/types.ts"
+      ],
+      "editedFiles": [
+        "src/client/types.ts"
+      ],
+      "failedEdits": [],
+      "status": "committed",
+      "calls": [
+        {
+          "step": "select",
+          "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "tin": 4534,
+          "tout": 27,
+          "neurons": 126.442447,
+          "estimated": false,
+          "ms": 1951
+        },
+        {
+          "step": "view",
+          "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "tin": 1416,
+          "tout": 47,
+          "neurons": 47.387723,
+          "estimated": false,
+          "ms": 1560
+        },
+        {
+          "step": "edit",
+          "model": "@cf/qwen/qwen2.5-coder-32b-instruct",
+          "tin": 5261,
+          "tout": 470,
+          "neurons": 358.38723,
+          "estimated": false,
+          "ms": 16394
+        }
+      ],
+      "excerpted": [
+        "src/types.ts"
+      ],
+      "fuzzyEdits": [
+        "src/client/types.ts"
+      ],
+      "shortstat": "1 file changed, 4 insertions(+), 2 deletions(-)",
+      "sha": "c094ae563766c29a57423339d933c770e02a086f",
+      "branch": "agent-replay/hono-pilot/i3750",
+      "elapsedMs": 20165
+    },
+    {
+      "id": "i3198",
+      "issue": 3198,
+      "humanFiles": [
+        "src/request.test.ts",
+        "src/request.ts",
+        "src/types.test.ts"
+      ],
+      "selected": [
+        "src/adapter/bun/websocket.ts",
+        "src/adapter/cloudflare-workers/websocket.ts",
+        "src/adapter/deno/websocket.ts",
+        "src/helper/websocket/index.ts"
+      ],
+      "editedFiles": [
+        "src/helper/websocket/index.ts"
+      ],
+      "failedEdits": [],
+      "status": "committed",
+      "calls": [
+        {
+          "step": "select",
+          "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "tin": 4339,
+          "tout": 43,
+          "neurons": 124.519067,
+          "estimated": false,
+          "ms": 2312
+        },
+        {
+          "step": "edit",
+          "model": "@cf/qwen/qwen2.5-coder-32b-instruct",
+          "tin": 2939,
+          "tout": 159,
+          "neurons": 190.794531,
+          "estimated": false,
+          "ms": 5656
+        }
+      ],
+      "excerpted": [],
+      "fuzzyEdits": [],
+      "shortstat": "1 file changed, 2 insertions(+), 2 deletions(-)",
+      "sha": "786ba05d0c57adfcba8d78f2fbd17c45aa3a65f2",
+      "branch": "agent-replay/hono-pilot/i3198",
+      "elapsedMs": 8273
+    },
+    {
+      "id": "i4590",
+      "issue": 4590,
+      "humanFiles": [
+        "src/client/client.test.ts",
+        "src/client/index.ts",
+        "src/client/types.ts"
+      ],
+      "selected": [
+        "src/client/client.ts",
+        "src/client/fetch-result-please.ts",
+        "src/utils/http-status.ts",
+        "src/hono.ts"
+      ],
+      "editedFiles": [
+        "src/client/fetch-result-please.ts"
+      ],
+      "failedEdits": [],
+      "status": "committed",
+      "calls": [
+        {
+          "step": "select",
+          "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "tin": 4261,
+          "tout": 33,
+          "neurons": 120.390913,
+          "estimated": false,
+          "ms": 2537
+        },
+        {
+          "step": "edit",
+          "model": "@cf/qwen/qwen2.5-coder-32b-instruct",
+          "tin": 3519,
+          "tout": 326,
+          "neurons": 240.776334,
+          "estimated": false,
+          "ms": 10489
+        }
+      ],
+      "excerpted": [],
+      "fuzzyEdits": [],
+      "shortstat": "1 file changed, 12 insertions(+), 1 deletion(-)",
+      "sha": "717bfc836f0e066aec3393a4d58a8cccf7a5a79b",
+      "branch": "agent-replay/hono-pilot/i4590",
+      "elapsedMs": 13260
+    }
+  ]
+}
