@@ -1,0 +1,172 @@
+{
+  "date": "2026-10-06",
+  "what": "Latency of the three reviewer families of gf-agents on the committed patches of an agent-replay run; the queue is entered when two have attested (quorumMs)",
+  "measuredVia": "the account REST API from a local machine",
+  "models": [
+    {
+      "family": "meta-llama",
+      "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+      "style": "messages-json"
+    },
+    {
+      "family": "openai",
+      "model": "@cf/openai/gpt-oss-120b",
+      "style": "responses"
+    },
+    {
+      "family": "mistral",
+      "model": "@cf/mistralai/mistral-small-3.1-24b-instruct",
+      "style": "messages-guided"
+    }
+  ],
+  "patches": [
+    {
+      "taskId": "i4582",
+      "chars": 742,
+      "latenciesMs": {
+        "meta-llama": 5845,
+        "openai": 8224,
+        "mistral": 1885
+      },
+      "verdicts": {
+        "meta-llama": "approve",
+        "openai": "reject",
+        "mistral": "reject"
+      },
+      "errors": {},
+      "quorumMs": 5845,
+      "neurons": 77
+    },
+    {
+      "taskId": "i4440",
+      "chars": 812,
+      "latenciesMs": {
+        "meta-llama": 924,
+        "openai": 61593,
+        "mistral": 1132
+      },
+      "verdicts": {
+        "meta-llama": "approve",
+        "openai": "approve",
+        "mistral": "reject"
+      },
+      "errors": {},
+      "quorumMs": 1132,
+      "neurons": 66
+    },
+    {
+      "taskId": "i4389",
+      "chars": 540,
+      "latenciesMs": {
+        "meta-llama": 1085,
+        "openai": 26858,
+        "mistral": 1396
+      },
+      "verdicts": {
+        "meta-llama": "approve",
+        "openai": null,
+        "mistral": "reject"
+      },
+      "errors": {},
+      "quorumMs": 1396,
+      "neurons": 61
+    },
+    {
+      "taskId": "i4186",
+      "chars": 661,
+      "latenciesMs": {
+        "meta-llama": 1281,
+        "openai": 13062,
+        "mistral": 2887
+      },
+      "verdicts": {
+        "meta-llama": "reject",
+        "openai": "reject",
+        "mistral": "reject"
+      },
+      "errors": {},
+      "quorumMs": 2887,
+      "neurons": 74
+    },
+    {
+      "taskId": "i4192",
+      "chars": 981,
+      "latenciesMs": {
+        "meta-llama": 1731,
+        "openai": 20199,
+        "mistral": 1620
+      },
+      "verdicts": {
+        "meta-llama": "approve",
+        "openai": "reject",
+        "mistral": "approve"
+      },
+      "errors": {},
+      "quorumMs": 1731,
+      "neurons": 84
+    },
+    {
+      "taskId": "i4294",
+      "chars": 868,
+      "latenciesMs": {
+        "meta-llama": 1058,
+        "openai": 57174,
+        "mistral": 3989
+      },
+      "verdicts": {
+        "meta-llama": "approve",
+        "openai": "approve",
+        "mistral": "reject"
+      },
+      "errors": {},
+      "quorumMs": 3989,
+      "neurons": 76
+    },
+    {
+      "taskId": "i4493",
+      "chars": 1121,
+      "latenciesMs": {
+        "meta-llama": 2284,
+        "openai": 36821,
+        "mistral": 1496
+      },
+      "verdicts": {
+        "meta-llama": "reject",
+        "openai": "reject",
+        "mistral": "reject"
+      },
+      "errors": {},
+      "quorumMs": 2284,
+      "neurons": 72
+    },
+    {
+      "taskId": "i3750",
+      "chars": 1042,
+      "latenciesMs": {
+        "meta-llama": 1269,
+        "openai": 70507,
+        "mistral": 1490
+      },
+      "verdicts": {
+        "meta-llama": "reject",
+        "openai": "reject",
+        "mistral": "reject"
+      },
+      "errors": {},
+      "quorumMs": 1490,
+      "neurons": 92
+    }
+  ],
+  "quorumMs": [
+    5845,
+    1132,
+    1396,
+    2887,
+    1731,
+    3989,
+    2284,
+    1490
+  ],
+  "medianQuorumMs": 2007.5,
+  "neurons": 602
+}
