@@ -1,0 +1,89 @@
+{
+  "date": "2026-10-10",
+  "what": "G1: reference cell (10 agents, tests of 30 s, human footprints) for the eight repositories",
+  "scale": 0.25,
+  "reps": 3,
+  "times": {
+    "workMs": 12160,
+    "workCv": 0.4,
+    "reviewMs": 2008,
+    "rebaseMs": 7161,
+    "source": "agent pilot on honojs/hono (10 committed of 12 tasks, run hono-pilot, 2026-10-06); reviewer latency of 8 patches the account REST API from a local machine, 2026-10-06",
+    "derived": {
+      "taskP50Ms": 12160,
+      "taskP90Ms": 19882,
+      "editCalls": 10,
+      "reviewSamples": 8
+    },
+    "inputs": {
+      "pilots": [
+        "/private/tmp/git-flare-night/results/pilot-hono.manifest.json"
+      ],
+      "reviews": "/private/tmp/git-flare-night/results/review-latency.json",
+      "coder": "@cf/qwen/qwen2.5-coder-32b-instruct",
+      "selector": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+      "reviewers": [
+        "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+        "@cf/openai/gpt-oss-120b",
+        "@cf/mistralai/mistral-small-3.1-24b-instruct"
+      ]
+    }
+  },
+  "perRepo": [
+    {
+      "repo": "click",
+      "cells": 3,
+      "rejectionPerSubmissionPct": 87.7,
+      "firstAttemptRejectionPct": 86.1
+    },
+    {
+      "repo": "hono",
+      "cells": 3,
+      "rejectionPerSubmissionPct": 51.1,
+      "firstAttemptRejectionPct": 45.6
+    },
+    {
+      "repo": "axios",
+      "cells": 3,
+      "rejectionPerSubmissionPct": 69.9,
+      "firstAttemptRejectionPct": 60.7
+    },
+    {
+      "repo": "prettier",
+      "cells": 3,
+      "rejectionPerSubmissionPct": 59,
+      "firstAttemptRejectionPct": 55
+    },
+    {
+      "repo": "eslint",
+      "cells": 3,
+      "rejectionPerSubmissionPct": 68.5,
+      "firstAttemptRejectionPct": 71.4
+    },
+    {
+      "repo": "vite",
+      "cells": 3,
+      "rejectionPerSubmissionPct": 58.5,
+      "firstAttemptRejectionPct": 48.3
+    },
+    {
+      "repo": "svelte",
+      "cells": 3,
+      "rejectionPerSubmissionPct": 48.4,
+      "firstAttemptRejectionPct": 40.5
+    },
+    {
+      "repo": "cli",
+      "cells": 3,
+      "rejectionPerSubmissionPct": 59,
+      "firstAttemptRejectionPct": 52.2
+    }
+  ],
+  "decision": {
+    "median": 59,
+    "repositories": 8,
+    "atLeast20": 8,
+    "branch": "proceed",
+    "reason": "median 59% is 20% or more"
+  }
+}

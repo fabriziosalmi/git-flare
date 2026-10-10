@@ -1,0 +1,179 @@
+[
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 1,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 1,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/vite-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 0
+    },
+    "summary": {
+      "submissions": 16,
+      "merged": 10,
+      "stale": 6,
+      "other": 0,
+      "rejectionPerSubmissionPct": 37.5,
+      "firstAttemptRejectionPct": 50,
+      "tasks": 10,
+      "attemptsPerTask": {
+        "1": 5,
+        "2": 4,
+        "3": 1
+      },
+      "maxAttempts": 3,
+      "windowMs": {
+        "p50": 10300.5,
+        "p90": 17804.5,
+        "p99": 17805
+      },
+      "partsMs": {
+        "work": 1965.5,
+        "review": 517,
+        "queueAndTests": 13337.5
+      },
+      "landingsPerWindow": {
+        "mean": 2.2,
+        "p50": 2,
+        "p90": 4
+      },
+      "throughputPerMin": 13.6,
+      "wallMs": 44065,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 0
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 1,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 2,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/vite-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 1
+    },
+    "summary": {
+      "submissions": 17,
+      "merged": 10,
+      "stale": 7,
+      "other": 0,
+      "rejectionPerSubmissionPct": 41.2,
+      "firstAttemptRejectionPct": 50,
+      "tasks": 10,
+      "attemptsPerTask": {
+        "1": 5,
+        "2": 3,
+        "3": 2
+      },
+      "maxAttempts": 3,
+      "windowMs": {
+        "p50": 10112,
+        "p90": 17615,
+        "p99": 17625.9
+      },
+      "partsMs": {
+        "work": 1873,
+        "review": 517,
+        "queueAndTests": 14434
+      },
+      "landingsPerWindow": {
+        "mean": 1.6,
+        "p50": 1,
+        "p90": 4
+      },
+      "throughputPerMin": 11.5,
+      "wallMs": 52401,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 0
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 1,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 3,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/vite-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 2
+    },
+    "summary": {
+      "submissions": 14,
+      "merged": 10,
+      "stale": 4,
+      "other": 0,
+      "rejectionPerSubmissionPct": 28.6,
+      "firstAttemptRejectionPct": 30,
+      "tasks": 10,
+      "attemptsPerTask": {
+        "1": 7,
+        "2": 2,
+        "3": 1
+      },
+      "maxAttempts": 3,
+      "windowMs": {
+        "p50": 16341,
+        "p90": 17462,
+        "p99": 17587.3
+      },
+      "partsMs": {
+        "work": 3141.5,
+        "review": 515,
+        "queueAndTests": 13198.5
+      },
+      "landingsPerWindow": {
+        "mean": 2.9,
+        "p50": 1,
+        "p90": 6
+      },
+      "throughputPerMin": 13.9,
+      "wallMs": 43241,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 0
+    }
+  }
+]

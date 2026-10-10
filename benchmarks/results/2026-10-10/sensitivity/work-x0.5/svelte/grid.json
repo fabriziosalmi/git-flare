@@ -1,0 +1,191 @@
+[
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 6080,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 1,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/svelte-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 0
+    },
+    "summary": {
+      "submissions": 126,
+      "merged": 59,
+      "stale": 67,
+      "other": 0,
+      "rejectionPerSubmissionPct": 53.2,
+      "firstAttemptRejectionPct": 35,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 39,
+        "2": 6,
+        "3": 4,
+        "4": 2,
+        "5": 4,
+        "6": 3,
+        "7": 1,
+        "10": 1
+      },
+      "maxAttempts": 10,
+      "windowMs": {
+        "p50": 9352.5,
+        "p90": 15262.5,
+        "p99": 17029.5
+      },
+      "partsMs": {
+        "work": 1283,
+        "review": 519,
+        "queueAndTests": 13295
+      },
+      "landingsPerWindow": {
+        "mean": 2.7,
+        "p50": 2,
+        "p90": 6
+      },
+      "throughputPerMin": 16.2,
+      "wallMs": 217999,
+      "tasksGivenUp": 1,
+      "tasksClosedAtSubmit": 0
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 6080,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 2,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/svelte-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 1
+    },
+    "summary": {
+      "submissions": 119,
+      "merged": 60,
+      "stale": 59,
+      "other": 0,
+      "rejectionPerSubmissionPct": 49.6,
+      "firstAttemptRejectionPct": 40,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 36,
+        "2": 13,
+        "3": 4,
+        "5": 2,
+        "6": 2,
+        "7": 2,
+        "9": 1
+      },
+      "maxAttempts": 9,
+      "windowMs": {
+        "p50": 9346,
+        "p90": 16847,
+        "p99": 16910.6
+      },
+      "partsMs": {
+        "work": 1402.5,
+        "review": 519,
+        "queueAndTests": 13370
+      },
+      "landingsPerWindow": {
+        "mean": 2.9,
+        "p50": 2,
+        "p90": 7
+      },
+      "throughputPerMin": 17.4,
+      "wallMs": 206853,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 0
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 6080,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 3,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/svelte-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 2
+    },
+    "summary": {
+      "submissions": 101,
+      "merged": 60,
+      "stale": 41,
+      "other": 0,
+      "rejectionPerSubmissionPct": 40.6,
+      "firstAttemptRejectionPct": 31.7,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 41,
+        "2": 6,
+        "3": 8,
+        "4": 2,
+        "5": 2,
+        "6": 1
+      },
+      "maxAttempts": 6,
+      "windowMs": {
+        "p50": 12507,
+        "p90": 16967,
+        "p99": 17077
+      },
+      "partsMs": {
+        "work": 1551,
+        "review": 515.5,
+        "queueAndTests": 13872.5
+      },
+      "landingsPerWindow": {
+        "mean": 3.4,
+        "p50": 4,
+        "p90": 6
+      },
+      "throughputPerMin": 19.1,
+      "wallMs": 188573,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 0
+    }
+  }
+]

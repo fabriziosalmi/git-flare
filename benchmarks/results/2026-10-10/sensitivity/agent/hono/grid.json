@@ -1,0 +1,189 @@
+[
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 1,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-06/phase2/pilot-hono.manifest.json"
+      ],
+      "footprintKind": "agent",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 0
+    },
+    "summary": {
+      "submissions": 101,
+      "merged": 60,
+      "stale": 41,
+      "other": 0,
+      "rejectionPerSubmissionPct": 40.6,
+      "firstAttemptRejectionPct": 36.7,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 38,
+        "2": 14,
+        "3": 4,
+        "4": 1,
+        "5": 1,
+        "6": 1,
+        "8": 1
+      },
+      "maxAttempts": 8,
+      "windowMs": {
+        "p50": 15106,
+        "p90": 17100,
+        "p99": 17779
+      },
+      "partsMs": {
+        "work": 2061,
+        "review": 515,
+        "queueAndTests": 12725.5
+      },
+      "landingsPerWindow": {
+        "mean": 3.8,
+        "p50": 4,
+        "p90": 6
+      },
+      "throughputPerMin": 21.2,
+      "wallMs": 170200,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 0
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 2,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-06/phase2/pilot-hono.manifest.json"
+      ],
+      "footprintKind": "agent",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 1
+    },
+    "summary": {
+      "submissions": 112,
+      "merged": 60,
+      "stale": 52,
+      "other": 0,
+      "rejectionPerSubmissionPct": 46.4,
+      "firstAttemptRejectionPct": 40,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 36,
+        "2": 13,
+        "3": 4,
+        "4": 3,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1
+      },
+      "maxAttempts": 8,
+      "windowMs": {
+        "p50": 10089.5,
+        "p90": 16694.2,
+        "p99": 17593
+      },
+      "partsMs": {
+        "work": 2066.5,
+        "review": 518.5,
+        "queueAndTests": 12460.5
+      },
+      "landingsPerWindow": {
+        "mean": 2.9,
+        "p50": 2,
+        "p90": 7
+      },
+      "throughputPerMin": 17.8,
+      "wallMs": 201743,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 0
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 3,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-06/phase2/pilot-hono.manifest.json"
+      ],
+      "footprintKind": "agent",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 2
+    },
+    "summary": {
+      "submissions": 98,
+      "merged": 60,
+      "stale": 38,
+      "other": 0,
+      "rejectionPerSubmissionPct": 38.8,
+      "firstAttemptRejectionPct": 43.3,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 34,
+        "2": 17,
+        "3": 6,
+        "4": 3
+      },
+      "maxAttempts": 4,
+      "windowMs": {
+        "p50": 15047,
+        "p90": 17204,
+        "p99": 18010
+      },
+      "partsMs": {
+        "work": 2421,
+        "review": 517.5,
+        "queueAndTests": 12348
+      },
+      "landingsPerWindow": {
+        "mean": 3.7,
+        "p50": 5,
+        "p90": 6
+      },
+      "throughputPerMin": 20.8,
+      "wallMs": 172930,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 0
+    }
+  }
+]

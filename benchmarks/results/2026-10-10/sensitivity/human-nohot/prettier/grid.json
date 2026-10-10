@@ -1,0 +1,194 @@
+[
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 1,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/prettier-tasks.json"
+      ],
+      "footprintKind": "human-nohot",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 0
+    },
+    "summary": {
+      "submissions": 159,
+      "merged": 60,
+      "stale": 99,
+      "other": 0,
+      "rejectionPerSubmissionPct": 62.3,
+      "firstAttemptRejectionPct": 60,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 24,
+        "2": 15,
+        "3": 9,
+        "4": 1,
+        "5": 3,
+        "6": 1,
+        "7": 3,
+        "8": 4
+      },
+      "maxAttempts": 8,
+      "windowMs": {
+        "p50": 9405,
+        "p90": 16684.8,
+        "p99": 17788.4
+      },
+      "partsMs": {
+        "work": 1685.5,
+        "review": 516,
+        "queueAndTests": 12812
+      },
+      "landingsPerWindow": {
+        "mean": 1.9,
+        "p50": 2,
+        "p90": 4
+      },
+      "throughputPerMin": 13.2,
+      "wallMs": 272218,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 0
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 2,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/prettier-tasks.json"
+      ],
+      "footprintKind": "human-nohot",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 1
+    },
+    "summary": {
+      "submissions": 140,
+      "merged": 60,
+      "stale": 80,
+      "other": 0,
+      "rejectionPerSubmissionPct": 57.1,
+      "firstAttemptRejectionPct": 51.7,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 29,
+        "2": 10,
+        "3": 12,
+        "4": 1,
+        "5": 3,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "9": 1
+      },
+      "maxAttempts": 9,
+      "windowMs": {
+        "p50": 9368.5,
+        "p90": 16701.2,
+        "p99": 17602.1
+      },
+      "partsMs": {
+        "work": 2027.5,
+        "review": 515,
+        "queueAndTests": 12635.5
+      },
+      "landingsPerWindow": {
+        "mean": 2.1,
+        "p50": 1,
+        "p90": 4
+      },
+      "throughputPerMin": 15,
+      "wallMs": 240658,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 0
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 3,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/prettier-tasks.json"
+      ],
+      "footprintKind": "human-nohot",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 2
+    },
+    "summary": {
+      "submissions": 145,
+      "merged": 60,
+      "stale": 85,
+      "other": 0,
+      "rejectionPerSubmissionPct": 58.6,
+      "firstAttemptRejectionPct": 68.3,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 19,
+        "2": 23,
+        "3": 6,
+        "4": 5,
+        "5": 4,
+        "7": 2,
+        "8": 1
+      },
+      "maxAttempts": 8,
+      "windowMs": {
+        "p50": 9674,
+        "p90": 15314,
+        "p99": 17391.7
+      },
+      "partsMs": {
+        "work": 1837.5,
+        "review": 513,
+        "queueAndTests": 12693.5
+      },
+      "landingsPerWindow": {
+        "mean": 2.2,
+        "p50": 2,
+        "p90": 4
+      },
+      "throughputPerMin": 14.5,
+      "wallMs": 248622,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 0
+    }
+  }
+]

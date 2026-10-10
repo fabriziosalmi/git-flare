@@ -1,0 +1,178 @@
+[
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 1,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 1,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/hono-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 0
+    },
+    "summary": {
+      "submissions": 14,
+      "merged": 10,
+      "stale": 4,
+      "other": 0,
+      "rejectionPerSubmissionPct": 28.6,
+      "firstAttemptRejectionPct": 30,
+      "tasks": 10,
+      "attemptsPerTask": {
+        "1": 7,
+        "2": 2,
+        "3": 1
+      },
+      "maxAttempts": 3,
+      "windowMs": {
+        "p50": 10233.5,
+        "p90": 17745,
+        "p99": 17748
+      },
+      "partsMs": {
+        "work": 1965.5,
+        "review": 519,
+        "queueAndTests": 10419
+      },
+      "landingsPerWindow": {
+        "mean": 2.9,
+        "p50": 2.5,
+        "p90": 6
+      },
+      "throughputPerMin": 13.1,
+      "wallMs": 45746,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 0
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 1,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 2,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/hono-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 1
+    },
+    "summary": {
+      "submissions": 12,
+      "merged": 10,
+      "stale": 2,
+      "other": 0,
+      "rejectionPerSubmissionPct": 16.7,
+      "firstAttemptRejectionPct": 20,
+      "tasks": 10,
+      "attemptsPerTask": {
+        "1": 8,
+        "2": 2
+      },
+      "maxAttempts": 2,
+      "windowMs": {
+        "p50": 17367.5,
+        "p90": 17602,
+        "p99": 17602
+      },
+      "partsMs": {
+        "work": 2177,
+        "review": 511,
+        "queueAndTests": 12956.5
+      },
+      "landingsPerWindow": {
+        "mean": 4.1,
+        "p50": 4.5,
+        "p90": 7
+      },
+      "throughputPerMin": 17.1,
+      "wallMs": 35162,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 0
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 1,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 3,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/hono-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 2
+    },
+    "summary": {
+      "submissions": 14,
+      "merged": 10,
+      "stale": 4,
+      "other": 0,
+      "rejectionPerSubmissionPct": 28.6,
+      "firstAttemptRejectionPct": 30,
+      "tasks": 10,
+      "attemptsPerTask": {
+        "1": 7,
+        "2": 2,
+        "3": 1
+      },
+      "maxAttempts": 3,
+      "windowMs": {
+        "p50": 10025.5,
+        "p90": 17465,
+        "p99": 17465.9
+      },
+      "partsMs": {
+        "work": 2530.5,
+        "review": 514.5,
+        "queueAndTests": 12705
+      },
+      "landingsPerWindow": {
+        "mean": 3.1,
+        "p50": 1.5,
+        "p90": 6
+      },
+      "throughputPerMin": 15.7,
+      "wallMs": 38104,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 0
+    }
+  }
+]

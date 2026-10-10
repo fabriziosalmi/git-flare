@@ -1,0 +1,193 @@
+[
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 1,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/axios-tasks.json"
+      ],
+      "footprintKind": "human",
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 0
+    },
+    "summary": {
+      "submissions": 174,
+      "merged": 53,
+      "stale": 116,
+      "other": 5,
+      "rejectionPerSubmissionPct": 68.6,
+      "firstAttemptRejectionPct": 60,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 27,
+        "2": 10,
+        "3": 6,
+        "4": 3,
+        "5": 4,
+        "6": 4,
+        "7": 2,
+        "9": 1,
+        "10": 3
+      },
+      "maxAttempts": 10,
+      "windowMs": {
+        "p50": 9282,
+        "p90": 15253,
+        "p99": 17210.3
+      },
+      "partsMs": {
+        "work": 1771,
+        "review": 514,
+        "queueAndTests": 12898
+      },
+      "landingsPerWindow": {
+        "mean": 1.4,
+        "p50": 1,
+        "p90": 3
+      },
+      "throughputPerMin": 11.2,
+      "wallMs": 282792,
+      "tasksGivenUp": 2,
+      "tasksClosedAtSubmit": 5
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 2,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/axios-tasks.json"
+      ],
+      "footprintKind": "human",
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 1
+    },
+    "summary": {
+      "submissions": 179,
+      "merged": 54,
+      "stale": 121,
+      "other": 4,
+      "rejectionPerSubmissionPct": 69.1,
+      "firstAttemptRejectionPct": 62.5,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 25,
+        "2": 12,
+        "3": 5,
+        "4": 5,
+        "5": 4,
+        "6": 2,
+        "8": 2,
+        "9": 3,
+        "10": 2
+      },
+      "maxAttempts": 10,
+      "windowMs": {
+        "p50": 8854,
+        "p90": 15286.4,
+        "p99": 17643.4
+      },
+      "partsMs": {
+        "work": 1640.5,
+        "review": 516.5,
+        "queueAndTests": 12751
+      },
+      "landingsPerWindow": {
+        "mean": 1.5,
+        "p50": 1,
+        "p90": 3
+      },
+      "throughputPerMin": 10.9,
+      "wallMs": 296060,
+      "tasksGivenUp": 2,
+      "tasksClosedAtSubmit": 4
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 3,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/axios-tasks.json"
+      ],
+      "footprintKind": "human",
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 2
+    },
+    "summary": {
+      "submissions": 188,
+      "merged": 52,
+      "stale": 133,
+      "other": 3,
+      "rejectionPerSubmissionPct": 71.9,
+      "firstAttemptRejectionPct": 59.6,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 26,
+        "2": 8,
+        "3": 6,
+        "4": 6,
+        "5": 3,
+        "6": 3,
+        "7": 3,
+        "10": 5
+      },
+      "maxAttempts": 10,
+      "windowMs": {
+        "p50": 9203,
+        "p90": 15238,
+        "p99": 17319.6
+      },
+      "partsMs": {
+        "work": 1698,
+        "review": 516,
+        "queueAndTests": 12215.5
+      },
+      "landingsPerWindow": {
+        "mean": 1.4,
+        "p50": 1,
+        "p90": 2
+      },
+      "throughputPerMin": 10.4,
+      "wallMs": 298752,
+      "tasksGivenUp": 5,
+      "tasksClosedAtSubmit": 3
+    }
+  }
+]

@@ -1,0 +1,181 @@
+[
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 1,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 1,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/axios-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": true,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 0
+    },
+    "summary": {
+      "submissions": 19,
+      "merged": 9,
+      "stale": 9,
+      "other": 1,
+      "rejectionPerSubmissionPct": 50,
+      "firstAttemptRejectionPct": 55.6,
+      "tasks": 10,
+      "attemptsPerTask": {
+        "1": 5,
+        "2": 2,
+        "3": 2,
+        "4": 1
+      },
+      "maxAttempts": 4,
+      "windowMs": {
+        "p50": 10107,
+        "p90": 12366.2,
+        "p99": 17686.4
+      },
+      "partsMs": {
+        "work": 1938,
+        "review": 513,
+        "queueAndTests": 7657
+      },
+      "landingsPerWindow": {
+        "mean": 1.9,
+        "p50": 2,
+        "p90": 3
+      },
+      "throughputPerMin": 9.9,
+      "wallMs": 54792,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 1
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 1,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 2,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/axios-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": true,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 1
+    },
+    "summary": {
+      "submissions": 15,
+      "merged": 9,
+      "stale": 5,
+      "other": 1,
+      "rejectionPerSubmissionPct": 35.7,
+      "firstAttemptRejectionPct": 44.4,
+      "tasks": 10,
+      "attemptsPerTask": {
+        "1": 6,
+        "2": 3,
+        "3": 1
+      },
+      "maxAttempts": 3,
+      "windowMs": {
+        "p50": 10105,
+        "p90": 17608.7,
+        "p99": 17620.3
+      },
+      "partsMs": {
+        "work": 1949,
+        "review": 511,
+        "queueAndTests": 12322
+      },
+      "landingsPerWindow": {
+        "mean": 1.9,
+        "p50": 1,
+        "p90": 4
+      },
+      "throughputPerMin": 11.9,
+      "wallMs": 45207,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 1
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 1,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 3,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/axios-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": true,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 2
+    },
+    "summary": {
+      "submissions": 18,
+      "merged": 9,
+      "stale": 8,
+      "other": 1,
+      "rejectionPerSubmissionPct": 47.1,
+      "firstAttemptRejectionPct": 55.6,
+      "tasks": 10,
+      "attemptsPerTask": {
+        "1": 5,
+        "2": 3,
+        "3": 1,
+        "4": 1
+      },
+      "maxAttempts": 4,
+      "windowMs": {
+        "p50": 10298,
+        "p90": 17792.2,
+        "p99": 17800
+      },
+      "partsMs": {
+        "work": 1951,
+        "review": 514,
+        "queueAndTests": 13499
+      },
+      "landingsPerWindow": {
+        "mean": 1.2,
+        "p50": 1,
+        "p90": 3
+      },
+      "throughputPerMin": 9.7,
+      "wallMs": 55510,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 1
+    }
+  }
+]

@@ -1,0 +1,187 @@
+[
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 72960,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 1,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/svelte-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 0
+    },
+    "summary": {
+      "submissions": 124,
+      "merged": 60,
+      "stale": 64,
+      "other": 0,
+      "rejectionPerSubmissionPct": 51.6,
+      "firstAttemptRejectionPct": 53.3,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 28,
+        "2": 15,
+        "3": 8,
+        "4": 5,
+        "5": 3,
+        "7": 1
+      },
+      "maxAttempts": 7,
+      "windowMs": {
+        "p50": 15323,
+        "p90": 30659.1,
+        "p99": 37438.6
+      },
+      "partsMs": {
+        "work": 2482.5,
+        "review": 520,
+        "queueAndTests": 12472.5
+      },
+      "landingsPerWindow": {
+        "mean": 3.3,
+        "p50": 3,
+        "p90": 6.7
+      },
+      "throughputPerMin": 12.3,
+      "wallMs": 292660,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 0
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 72960,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 2,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/svelte-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 1
+    },
+    "summary": {
+      "submissions": 115,
+      "merged": 60,
+      "stale": 55,
+      "other": 0,
+      "rejectionPerSubmissionPct": 47.8,
+      "firstAttemptRejectionPct": 53.3,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 28,
+        "2": 22,
+        "3": 5,
+        "4": 1,
+        "5": 2,
+        "6": 1,
+        "8": 1
+      },
+      "maxAttempts": 8,
+      "windowMs": {
+        "p50": 15813,
+        "p90": 30914.8,
+        "p99": 41699
+      },
+      "partsMs": {
+        "work": 3931.5,
+        "review": 523,
+        "queueAndTests": 12403.5
+      },
+      "landingsPerWindow": {
+        "mean": 3.7,
+        "p50": 3,
+        "p90": 7
+      },
+      "throughputPerMin": 12.6,
+      "wallMs": 286254,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 0
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 72960,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 3,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/svelte-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 2
+    },
+    "summary": {
+      "submissions": 99,
+      "merged": 60,
+      "stale": 39,
+      "other": 0,
+      "rejectionPerSubmissionPct": 39.4,
+      "firstAttemptRejectionPct": 50,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 30,
+        "2": 22,
+        "3": 7,
+        "4": 1
+      },
+      "maxAttempts": 4,
+      "windowMs": {
+        "p50": 22945,
+        "p90": 33635.2,
+        "p99": 46273.9
+      },
+      "partsMs": {
+        "work": 6123.5,
+        "review": 521.5,
+        "queueAndTests": 12142
+      },
+      "landingsPerWindow": {
+        "mean": 4.4,
+        "p50": 4,
+        "p90": 7
+      },
+      "throughputPerMin": 13.3,
+      "wallMs": 269822,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 0
+    }
+  }
+]
