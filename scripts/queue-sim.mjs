@@ -23,6 +23,7 @@
 // closed the tasks), agent (the files the agent edited), or either with -nohot (without changelog, version and
 // dependency files); or --zipf files=40,s=1,sizes=1,2,4 for synthetic ones.
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { empiricalSampler, footprintsOf, lognormalMs, rng, summarizeRun, uniqueName, zipfSampler } from './lib/sim.mjs';
 
@@ -144,6 +145,7 @@ export async function runCell(p, name) {
   const pool = [...tasks];
   const submissions = []; // {patchId, taskId, attempt}
   const gaveUp = [];
+  const closedAtSubmit = [];
   const workRand = rng(p.seed + 1000);
   const agentLoop = async (key) => {
     for (;;) {
@@ -165,6 +167,11 @@ export async function runCell(p, name) {
         const commit = must(await api('POST', `/api/repos/${repo}/dev-commit`, key, { taskId: task.id, leaseEpoch: c.leaseEpoch, files, message: `${task.id} attempt ${attempt}`, rebase: attempt > 1 }), `dev-commit ${task.id}`);
         const sub = must(await api('POST', `/api/repos/${repo}/submit`, key, { taskId: task.id, leaseEpoch: c.leaseEpoch, commitSha: commit.commitSha }), `submit ${task.id}`);
         submissions.push({ patchId: sub.patchId, taskId: task.id, attempt });
+        if (sub.status !== 'evaluating') {
+          // the server closed the patch at submit (a gate, e.g. a protected path, or a duplicate): nobody reviews it and the same footprint would fail the same way
+          closedAtSubmit.push(task.id);
+          break;
+        }
         await sleep(sc(p.reviewMs));
         for (const r of reviewers) must(await api('POST', `/api/repos/${repo}/attest`, r, { patchId: sub.patchId, confidencePercent: 95 }), `attest ${sub.patchId}`);
         const out = await outcome(sub.patchId);
@@ -199,7 +206,7 @@ export async function runCell(p, name) {
     const d = await api('DELETE', `/api/repos/${repo}`, ADMIN);
     if (d.status !== 200 || d.body.done) break;
   }
-  return { params: { ...p, footprintFiles: undefined }, name, summary: { ...summarizeRun({ patches, wallMs }), tasksGivenUp: gaveUp.length }, queue: lastQueue, patches };
+  return { params: { ...p, footprintFiles: undefined }, name, summary: { ...summarizeRun({ patches, wallMs }), tasksGivenUp: gaveUp.length, tasksClosedAtSubmit: closedAtSubmit.length }, queue: lastQueue, patches };
 }
 
 // ─── grid and self-test ─────────────────────────────────────────────────────
@@ -241,7 +248,7 @@ async function gridMode() {
   fs.writeFileSync(path.join(dir, 'grid.json'), `${JSON.stringify(rows.map((r) => ({ params: r.params, summary: r.summary })), null, 2)}\n`);
 }
 
-/** Controls: every task on one file must conflict, tasks on distinct files must not, and a task that outlasts its lease must still merge. */
+/** Controls: every task on one file must conflict, tasks on distinct files must not, a task that outlasts its lease must still merge, and a task the server's gate closes at submit must not stop the cell. */
 async function selftest() {
   const common = { ...baseParams(), agents: 4, tasksPerAgent: 3, workMs: 200, workCv: 0, reviewMs: 100, rebaseMs: 100, testMs: null, scale: 1, maxAttempts: 100, timeoutMs: 120_000 }; // a task may lose many times in a row on one file: do not let the control depend on luck
   const same = await runCell({ ...common, footprintsFrom: [], zipf: 'files=1,s=0,sizes=1' }, `st-same-${uniqueName()}`);
@@ -257,10 +264,26 @@ async function selftest() {
   } catch (e) {
     longNote = String(e.message).slice(0, 140);
   }
-  const ok = same.summary.stale > 0 && same.summary.merged === 12 && apart.summary.stale === 0 && apart.summary.merged === 12 && timed && same.summary.maxAttempts > 1 && apart.summary.maxAttempts === 1 && longOk;
+  // the footprints of a task on a protected path (.github/workflows/): the server's gate closes the patch at submit, without review
+  const gateFile = path.join(os.tmpdir(), `gf-selftest-gate-${uniqueName()}.json`);
+  fs.writeFileSync(gateFile, JSON.stringify({ tasks: [{ pr: { files: ['.github/workflows/ci.yml'] } }, { pr: { files: ['src/a.js'] } }, { pr: { files: ['src/b.js'] } }] }));
+  let gateNote = '';
+  let gateOk = false;
+  try {
+    const gated = await runCell({ ...common, footprintsFrom: [gateFile], footprintKind: 'human', zipf: '', timeoutMs: 90_000 }, `st-gate-${uniqueName()}`);
+    const g = gated.summary;
+    gateOk = g.tasksClosedAtSubmit >= 1 && g.merged + g.tasksClosedAtSubmit === 12 && g.tasksGivenUp === 0;
+    gateNote = `${g.merged} merged, ${g.stale} stale, ${g.tasksClosedAtSubmit} closed at submit, ${g.other} other`;
+  } catch (e) {
+    gateNote = String(e.message).slice(0, 140);
+  } finally {
+    fs.rmSync(gateFile, { force: true });
+  }
+  const ok = gateOk && same.summary.stale > 0 && same.summary.merged === 12 && apart.summary.stale === 0 && apart.summary.merged === 12 && timed && same.summary.maxAttempts > 1 && apart.summary.maxAttempts === 1 && longOk;
   console.log(`positive control (12 tasks, one file): ${same.summary.merged} merged, ${same.summary.stale} stale, max attempts ${same.summary.maxAttempts}`);
   console.log(`negative control (12 tasks, 500 files): ${apart.summary.merged} merged, ${apart.summary.stale} stale`);
   console.log(`lease control (25 s of work, 10 s lease): ${longNote}`);
+  console.log(`gate control (12 tasks, some on a protected path): ${gateNote}`);
   console.log(`server times present: ${timed}`);
   console.log(ok ? 'selftest: ok' : 'selftest: WRONG');
   process.exit(ok ? 0 : 1);
