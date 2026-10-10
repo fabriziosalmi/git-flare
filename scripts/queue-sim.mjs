@@ -25,7 +25,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { empiricalSampler, footprintsOf, lognormalMs, rng, summarizeRun, uniqueName, zipfSampler } from './lib/sim.mjs';
+import { empiricalSampler, footprintsOf, lognormalMs, rng, shuffledSampler, summarizeRun, uniqueName, zipfSampler } from './lib/sim.mjs';
 
 const TERMINAL = new Set(['merged', 'rejected', 'stale', 'duplicate', 'expired']);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -58,6 +58,7 @@ function baseParams() {
     pollMs: num('poll-ms', 250),
     footprintsFrom: list(arg('footprints-from', '')),
     footprintKind: arg('footprint-kind', 'human'),
+    noReplacement: flag('no-replacement'), // footprints in shuffled order, each used once before any repeats
     zipf: arg('zipf', ''),
     timeoutMs: num('timeout-ms', 3_600_000),
     leaseMs: arg('lease-ms') === undefined ? null : num('lease-ms', 0), // the claim's lease; the server default is 120 s
@@ -70,7 +71,7 @@ function samplerFor(p, rand) {
     return zipfSampler(rand, { files: Number(o.files ?? 40), s: Number(o.s ?? 1), sizes: (o.sizes ?? '1').split(',').map(Number) });
   }
   const fps = footprintsOf(p.footprintsFrom.map((f) => JSON.parse(fs.readFileSync(f, 'utf8'))), p.footprintKind);
-  return empiricalSampler(rand, fps);
+  return (p.noReplacement ? shuffledSampler : empiricalSampler)(rand, fps);
 }
 
 // ─── the server ─────────────────────────────────────────────────────────────

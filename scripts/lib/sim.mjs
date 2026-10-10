@@ -63,6 +63,26 @@ export function empiricalSampler(rand, footprints) {
 }
 
 /**
+ * The footprints in a seeded shuffled order, each used once before any is used again (the sampler above draws with
+ * replacement, so a small population repeats a footprint often). Used for the no-replacement sensitivity of G1.
+ */
+export function shuffledSampler(rand, footprints) {
+  const usable = footprints.filter((f) => Array.isArray(f) && f.length > 0);
+  if (usable.length === 0) throw new Error('no footprint to sample from');
+  let order = [];
+  return () => {
+    if (order.length === 0) {
+      order = usable.map((_, i) => i);
+      for (let i = order.length - 1; i > 0; i--) {
+        const j = Math.floor(rand() * (i + 1));
+        [order[i], order[j]] = [order[j], order[i]];
+      }
+    }
+    return [...usable[order.pop()]];
+  };
+}
+
+/**
  * Synthetic footprints: `files` paths ranked by popularity with weight 1 / rank^s (s = 0 is uniform), the number of
  * files per patch drawn from `sizes`, files within a patch distinct.
  */
