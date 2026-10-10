@@ -1,0 +1,178 @@
+[
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 1,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-10/footprints-distinct/eslint-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": true,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 0
+    },
+    "summary": {
+      "submissions": 64,
+      "merged": 57,
+      "stale": 4,
+      "other": 3,
+      "rejectionPerSubmissionPct": 6.6,
+      "firstAttemptRejectionPct": 7,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 56,
+        "2": 4
+      },
+      "maxAttempts": 2,
+      "windowMs": {
+        "p50": 15150,
+        "p90": 17779,
+        "p99": 20794.2
+      },
+      "partsMs": {
+        "work": 2638,
+        "review": 515,
+        "queueAndTests": 12007
+      },
+      "landingsPerWindow": {
+        "mean": 7.7,
+        "p50": 8,
+        "p90": 9
+      },
+      "throughputPerMin": 33.3,
+      "wallMs": 102572,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 3
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 2,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-10/footprints-distinct/eslint-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": true,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 1
+    },
+    "summary": {
+      "submissions": 65,
+      "merged": 57,
+      "stale": 5,
+      "other": 3,
+      "rejectionPerSubmissionPct": 8.1,
+      "firstAttemptRejectionPct": 7,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 56,
+        "2": 3,
+        "3": 1
+      },
+      "maxAttempts": 3,
+      "windowMs": {
+        "p50": 15204.5,
+        "p90": 17610.9,
+        "p99": 18285.6
+      },
+      "partsMs": {
+        "work": 2677,
+        "review": 511,
+        "queueAndTests": 12109
+      },
+      "landingsPerWindow": {
+        "mean": 7.5,
+        "p50": 8,
+        "p90": 9
+      },
+      "throughputPerMin": 31.1,
+      "wallMs": 110062,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 3
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 3,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-10/footprints-distinct/eslint-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": true,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 2
+    },
+    "summary": {
+      "submissions": 66,
+      "merged": 57,
+      "stale": 6,
+      "other": 3,
+      "rejectionPerSubmissionPct": 9.5,
+      "firstAttemptRejectionPct": 8.8,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 55,
+        "2": 4,
+        "3": 1
+      },
+      "maxAttempts": 3,
+      "windowMs": {
+        "p50": 15145,
+        "p90": 17498,
+        "p99": 22725.6
+      },
+      "partsMs": {
+        "work": 3016,
+        "review": 514,
+        "queueAndTests": 11915
+      },
+      "landingsPerWindow": {
+        "mean": 7.2,
+        "p50": 8,
+        "p90": 9
+      },
+      "throughputPerMin": 31.1,
+      "wallMs": 110071,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 3
+    }
+  }
+]

@@ -1,0 +1,802 @@
+{
+  "slug": "pallets/click",
+  "since": "2026-02-01",
+  "until": "2026-08-01",
+  "rule": {
+    "keep": 60,
+    "maxFiles": 30,
+    "bots": "excluded",
+    "distinct": true
+  },
+  "mergedInWindow": 135,
+  "short": false,
+  "tasks": [
+    {
+      "id": "pr3697",
+      "pr": {
+        "number": 3697,
+        "mergedAt": "2026-07-24T20:26:39Z",
+        "files": [
+          "CHANGES.md",
+          "docs/arguments.md",
+          "docs/documentation.md",
+          "docs/option-decorators.md",
+          "docs/shell-completion.md",
+          "docs/utils.md",
+          "src/click/_compat.py",
+          "src/click/core.py",
+          "src/click/shell_completion.py",
+          "src/click/termui.py",
+          "src/click/utils.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3721",
+      "pr": {
+        "number": 3721,
+        "mergedAt": "2026-07-23T18:58:20Z",
+        "files": [
+          ".github/workflows/lock.yaml",
+          ".github/workflows/nightly.yaml",
+          ".github/workflows/pre-commit.yaml",
+          ".github/workflows/publish.yaml",
+          ".github/workflows/tests.yaml",
+          ".github/workflows/zizmor.yaml"
+        ]
+      }
+    },
+    {
+      "id": "pr3685",
+      "pr": {
+        "number": 3685,
+        "mergedAt": "2026-07-23T11:45:18Z",
+        "files": [
+          "pyproject.toml"
+        ]
+      }
+    },
+    {
+      "id": "pr3715",
+      "pr": {
+        "number": 3715,
+        "mergedAt": "2026-07-22T22:29:11Z",
+        "files": [
+          "tests/test_deprecations.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3407",
+      "pr": {
+        "number": 3407,
+        "mergedAt": "2026-07-22T22:25:17Z",
+        "files": [
+          "CHANGES.md",
+          "src/click/termui.py",
+          "src/click/types.py",
+          "tests/test_types.py",
+          "tests/test_utils/test_prompt.py",
+          "tests/typing/typing_prompt.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3704",
+      "pr": {
+        "number": 3704,
+        "mergedAt": "2026-07-20T17:43:21Z",
+        "files": [
+          "CHANGES.md",
+          "docs/testing.md",
+          "docs/upgrade-guides.md",
+          "src/click/testing.py",
+          "tests/test_arguments.py",
+          "tests/test_basic.py",
+          "tests/test_deprecations.py",
+          "tests/test_shell_completion.py",
+          "tests/test_testing.py",
+          "tests/test_utils/test_open_file.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3695",
+      "pr": {
+        "number": 3695,
+        "mergedAt": "2026-07-17T19:24:58Z",
+        "files": [
+          "CHANGES.md",
+          "docs/handling-files.md",
+          "docs/utils.md",
+          "src/click/__init__.py",
+          "src/click/_termui_impl.py",
+          "src/click/core.py",
+          "src/click/termui.py",
+          "src/click/types.py",
+          "src/click/utils.py",
+          "tests/test_deprecations.py",
+          "tests/test_testing.py",
+          "tests/test_utils/test_KeepOpenFile.py",
+          "tests/test_utils/test_LazyFile.py",
+          "tests/test_utils/test_make_default_short_help.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3637",
+      "pr": {
+        "number": 3637,
+        "mergedAt": "2026-07-16T23:56:43Z",
+        "files": [
+          "CHANGES.md",
+          "docs/shell-completion.md",
+          "src/click/shell_completion.py",
+          "tests/test_shell_completion.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3641",
+      "pr": {
+        "number": 3641,
+        "mergedAt": "2026-07-16T04:54:42Z",
+        "files": [
+          "CHANGES.md",
+          "src/click/core.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3678",
+      "pr": {
+        "number": 3678,
+        "mergedAt": "2026-07-10T03:24:09Z",
+        "files": [
+          "CHANGES.md",
+          "docs/documentation.md",
+          "src/click/core.py",
+          "tests/test_basic.py",
+          "tests/test_info_dict.py",
+          "tests/test_options.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3681",
+      "pr": {
+        "number": 3681,
+        "mergedAt": "2026-07-10T03:14:26Z",
+        "files": [
+          "CHANGES.md",
+          "src/click/_compat.py",
+          "tests/test_compat.py",
+          "tests/test_formatting.py",
+          "tests/test_utils/test_style.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3677",
+      "pr": {
+        "number": 3677,
+        "mergedAt": "2026-07-08T16:05:23Z",
+        "files": [
+          "CHANGES.md",
+          "src/click/termui.py",
+          "tests/test_utils/test_style.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3676",
+      "pr": {
+        "number": 3676,
+        "mergedAt": "2026-07-08T15:57:37Z",
+        "files": [
+          "tests/test_utils/test_echo.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3673",
+      "pr": {
+        "number": 3673,
+        "mergedAt": "2026-07-08T06:27:41Z",
+        "files": [
+          "tests/test_utils.py",
+          "tests/test_utils/__init__.py",
+          "tests/test_utils/test_KeepOpenFile.py",
+          "tests/test_utils/test_LazyFile.py",
+          "tests/test_utils/test__detect_program_name.py",
+          "tests/test_utils/test__expand_args.py",
+          "tests/test_utils/test_confirm.py",
+          "tests/test_utils/test_echo.py",
+          "tests/test_utils/test_echo_via_pager.py",
+          "tests/test_utils/test_format_filename.py",
+          "tests/test_utils/test_make_default_short_help.py",
+          "tests/test_utils/test_open_file.py",
+          "tests/test_utils/test_prompt.py",
+          "tests/test_utils/test_sentinel.py",
+          "tests/test_utils/test_style.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3671",
+      "pr": {
+        "number": 3671,
+        "mergedAt": "2026-07-08T05:57:12Z",
+        "files": [
+          "docs/utils.md",
+          "src/click/termui.py",
+          "src/click/utils.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3581",
+      "pr": {
+        "number": 3581,
+        "mergedAt": "2026-07-08T03:26:28Z",
+        "files": [
+          "CHANGES.md",
+          "docs/api.md",
+          "docs/utils.md",
+          "src/click/__init__.py",
+          "src/click/decorators.py",
+          "tests/test_basic.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3642",
+      "pr": {
+        "number": 3642,
+        "mergedAt": "2026-07-03T01:11:48Z",
+        "files": [
+          "src/click/types.py",
+          "tests/test_types.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3653",
+      "pr": {
+        "number": 3653,
+        "mergedAt": "2026-07-02T23:39:10Z",
+        "files": [
+          "CHANGES.md",
+          "src/click/termui.py",
+          "tests/test_termui.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3656",
+      "pr": {
+        "number": 3656,
+        "mergedAt": "2026-07-01T10:13:05Z",
+        "files": [
+          "CHANGES.md",
+          "tests/test_basic.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3645",
+      "pr": {
+        "number": 3645,
+        "mergedAt": "2026-07-01T04:07:01Z",
+        "files": [
+          "CHANGES.md",
+          "pyproject.toml",
+          "src/click/core.py",
+          "src/click/decorators.py",
+          "src/click/shell_completion.py",
+          "tests/test_basic.py",
+          "tests/test_options.py",
+          "uv.lock"
+        ]
+      }
+    },
+    {
+      "id": "pr3631",
+      "pr": {
+        "number": 3631,
+        "mergedAt": "2026-06-26T16:08:02Z",
+        "files": [
+          "CHANGES.md",
+          "pyproject.toml",
+          "uv.lock"
+        ]
+      }
+    },
+    {
+      "id": "pr3627",
+      "pr": {
+        "number": 3627,
+        "mergedAt": "2026-06-24T02:43:36Z",
+        "files": [
+          "src/click/shell_completion.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3582",
+      "pr": {
+        "number": 3582,
+        "mergedAt": "2026-06-14T20:30:14Z",
+        "files": [
+          "CHANGES.md",
+          "src/click/decorators.py",
+          "tests/test_basic.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3591",
+      "pr": {
+        "number": 3591,
+        "mergedAt": "2026-06-13T19:00:10Z",
+        "files": [
+          "tests/test_options.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3578",
+      "pr": {
+        "number": 3578,
+        "mergedAt": "2026-06-13T03:59:03Z",
+        "files": [
+          "CHANGES.md",
+          "src/click/core.py",
+          "tests/test_basic.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3563",
+      "pr": {
+        "number": 3563,
+        "mergedAt": "2026-06-07T03:59:47Z",
+        "files": [
+          ".github/workflows/nightly.yaml",
+          "CHANGES.md",
+          "docs/conf.py",
+          "docs/index.md",
+          "docs/parameters.md",
+          "pyproject.toml",
+          "src/click/_compat.py",
+          "src/click/_termui_impl.py",
+          "src/click/core.py",
+          "src/click/termui.py",
+          "src/click/testing.py",
+          "src/click/types.py",
+          "src/click/utils.py",
+          "tests/test_stream_lifecycle.py",
+          "tests/test_termui.py",
+          "tests/test_types.py",
+          "tests/test_utils.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3560",
+      "pr": {
+        "number": 3560,
+        "mergedAt": "2026-06-06T06:02:02Z",
+        "files": [
+          "CHANGES.md",
+          "CHANGES.rst",
+          "docs/changes.md"
+        ]
+      }
+    },
+    {
+      "id": "pr3553",
+      "pr": {
+        "number": 3553,
+        "mergedAt": "2026-06-04T16:22:39Z",
+        "files": [
+          ".github/workflows/nightly.yaml"
+        ]
+      }
+    },
+    {
+      "id": "pr3533",
+      "pr": {
+        "number": 3533,
+        "mergedAt": "2026-06-03T16:04:40Z",
+        "files": [
+          "CHANGES.rst",
+          "src/click/_termui_impl.py",
+          "src/click/utils.py",
+          "tests/test_termui.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3534",
+      "pr": {
+        "number": 3534,
+        "mergedAt": "2026-05-30T20:23:11Z",
+        "files": [
+          "CHANGES.rst",
+          "src/click/termui.py",
+          "tests/test_termui.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3450",
+      "pr": {
+        "number": 3450,
+        "mergedAt": "2026-05-30T19:28:26Z",
+        "files": [
+          "src/click/types.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3463",
+      "pr": {
+        "number": 3463,
+        "mergedAt": "2026-05-30T06:40:56Z",
+        "files": [
+          "src/click/core.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3452",
+      "pr": {
+        "number": 3452,
+        "mergedAt": "2026-05-30T06:22:50Z",
+        "files": [
+          "src/click/testing.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3498",
+      "pr": {
+        "number": 3498,
+        "mergedAt": "2026-05-30T06:12:35Z",
+        "files": [
+          "CHANGES.rst",
+          "docs/conf.py",
+          "docs/index.md",
+          "src/click/_termui_impl.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3528",
+      "pr": {
+        "number": 3528,
+        "mergedAt": "2026-05-29T07:38:37Z",
+        "files": [
+          "docs/parameters.md"
+        ]
+      }
+    },
+    {
+      "id": "pr3499",
+      "pr": {
+        "number": 3499,
+        "mergedAt": "2026-05-29T06:26:27Z",
+        "files": [
+          "pyproject.toml",
+          "src/click/_compat.py",
+          "tests/test_stream_lifecycle.py",
+          "tests/test_utils.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3526",
+      "pr": {
+        "number": 3526,
+        "mergedAt": "2026-05-29T03:42:14Z",
+        "files": [
+          "tests/test_types.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3473",
+      "pr": {
+        "number": 3473,
+        "mergedAt": "2026-05-28T07:30:45Z",
+        "files": [
+          "CHANGES.rst",
+          "docs/arguments.md",
+          "docs/documentation.md",
+          "src/click/core.py",
+          "tests/test_arguments.py",
+          "tests/test_info_dict.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3521",
+      "pr": {
+        "number": 3521,
+        "mergedAt": "2026-05-28T03:55:18Z",
+        "files": [
+          "CHANGES.rst",
+          "docs/advanced.md",
+          "docs/documentation.md",
+          "docs/options.md",
+          "src/click/core.py",
+          "src/click/exceptions.py",
+          "src/click/formatting.py",
+          "src/click/shell_completion.py",
+          "src/click/testing.py",
+          "tests/test_arguments.py",
+          "tests/test_commands.py",
+          "tests/test_options.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3507",
+      "pr": {
+        "number": 3507,
+        "mergedAt": "2026-05-27T16:23:34Z",
+        "files": [
+          "CHANGES.rst",
+          "docs/documentation.md",
+          "src/click/core.py",
+          "tests/test_arguments.py",
+          "tests/test_commands.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3510",
+      "pr": {
+        "number": 3510,
+        "mergedAt": "2026-05-27T08:59:54Z",
+        "files": [
+          "docs/options.md"
+        ]
+      }
+    },
+    {
+      "id": "pr3503",
+      "pr": {
+        "number": 3503,
+        "mergedAt": "2026-05-27T05:17:21Z",
+        "files": [
+          "docs/advanced.md"
+        ]
+      }
+    },
+    {
+      "id": "pr3454",
+      "pr": {
+        "number": 3454,
+        "mergedAt": "2026-05-27T05:15:24Z",
+        "files": [
+          "src/click/formatting.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3453",
+      "pr": {
+        "number": 3453,
+        "mergedAt": "2026-05-27T05:13:24Z",
+        "files": [
+          "src/click/exceptions.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3509",
+      "pr": {
+        "number": 3509,
+        "mergedAt": "2026-05-27T04:53:13Z",
+        "files": [
+          "CHANGES.rst",
+          "src/click/core.py",
+          "tests/test_commands.py",
+          "tests/test_options.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3505",
+      "pr": {
+        "number": 3505,
+        "mergedAt": "2026-05-24T14:30:06Z",
+        "files": [
+          "CHANGES.rst",
+          "docs/quickstart.md",
+          "docs/utils.md",
+          "examples/colors/README",
+          "pyproject.toml",
+          "src/click/_compat.py",
+          "src/click/termui.py",
+          "src/click/utils.py",
+          "tests/test_utils.py",
+          "uv.lock"
+        ]
+      }
+    },
+    {
+      "id": "pr3508",
+      "pr": {
+        "number": 3508,
+        "mergedAt": "2026-05-23T08:21:30Z",
+        "files": [
+          "CHANGES.rst",
+          "src/click/shell_completion.py",
+          "tests/test_shell_completion.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3504",
+      "pr": {
+        "number": 3504,
+        "mergedAt": "2026-05-23T07:05:17Z",
+        "files": [
+          "src/click/shell_completion.py",
+          "tests/test_shell_completion.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3472",
+      "pr": {
+        "number": 3472,
+        "mergedAt": "2026-05-23T05:25:38Z",
+        "files": [
+          "docs/documentation.md"
+        ]
+      }
+    },
+    {
+      "id": "pr3496",
+      "pr": {
+        "number": 3496,
+        "mergedAt": "2026-05-22T04:09:10Z",
+        "files": [
+          "CHANGES.rst",
+          "pyproject.toml",
+          "uv.lock"
+        ]
+      }
+    },
+    {
+      "id": "pr3495",
+      "pr": {
+        "number": 3495,
+        "mergedAt": "2026-05-22T03:59:43Z",
+        "files": [
+          "CHANGES.rst",
+          "docs/api.md",
+          "docs/options.md",
+          "src/click/core.py",
+          "src/click/exceptions.py",
+          "src/click/formatting.py",
+          "src/click/shell_completion.py",
+          "src/click/termui.py",
+          "src/click/types.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3482",
+      "pr": {
+        "number": 3482,
+        "mergedAt": "2026-05-22T03:40:19Z",
+        "files": [
+          "CHANGES.rst",
+          "src/click/_termui_impl.py",
+          "tests/test_termui.py",
+          "tests/test_testing.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3493",
+      "pr": {
+        "number": 3493,
+        "mergedAt": "2026-05-21T22:46:00Z",
+        "files": [
+          "CHANGES.rst",
+          "src/click/utils.py",
+          "tests/test_utils.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3484",
+      "pr": {
+        "number": 3484,
+        "mergedAt": "2026-05-21T15:20:36Z",
+        "files": [
+          "CHANGES.rst",
+          "docs/advanced.md",
+          "src/click/core.py",
+          "tests/test_defaults.py",
+          "tests/test_options.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3479",
+      "pr": {
+        "number": 3479,
+        "mergedAt": "2026-05-19T18:49:07Z",
+        "files": [
+          "CHANGES.rst",
+          "src/click/_compat.py",
+          "src/click/_termui_impl.py",
+          "src/click/shell_completion.py",
+          "src/click/types.py",
+          "tests/test_shell_completion.py",
+          "tests/test_utils.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3478",
+      "pr": {
+        "number": 3478,
+        "mergedAt": "2026-05-19T16:46:31Z",
+        "files": [
+          "src/click/_termui_impl.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3471",
+      "pr": {
+        "number": 3471,
+        "mergedAt": "2026-05-19T00:03:26Z",
+        "files": [
+          "CHANGES.rst",
+          "src/click/types.py",
+          "tests/test_shell_completion.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3470",
+      "pr": {
+        "number": 3470,
+        "mergedAt": "2026-05-18T21:02:53Z",
+        "files": [
+          "src/click/_compat.py",
+          "tests/test_utils.py"
+        ]
+      }
+    },
+    {
+      "id": "pr3469",
+      "pr": {
+        "number": 3469,
+        "mergedAt": "2026-05-18T18:36:14Z",
+        "files": [
+          "docs/quickstart.md"
+        ]
+      }
+    },
+    {
+      "id": "pr3467",
+      "pr": {
+        "number": 3467,
+        "mergedAt": "2026-05-18T18:34:58Z",
+        "files": [
+          "docs/wincmd.md"
+        ]
+      }
+    }
+  ]
+}

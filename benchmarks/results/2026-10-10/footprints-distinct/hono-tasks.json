@@ -1,0 +1,698 @@
+{
+  "slug": "honojs/hono",
+  "since": "2026-02-01",
+  "until": "2026-08-01",
+  "rule": {
+    "keep": 60,
+    "maxFiles": 30,
+    "bots": "excluded",
+    "distinct": true
+  },
+  "mergedInWindow": 150,
+  "short": false,
+  "tasks": [
+    {
+      "id": "pr5168",
+      "pr": {
+        "number": 5168,
+        "mergedAt": "2026-07-31T10:30:10Z",
+        "files": [
+          "bun.lock",
+          "package.json",
+          "runtime-tests/node/index.test.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5166",
+      "pr": {
+        "number": 5166,
+        "mergedAt": "2026-07-26T05:14:06Z",
+        "files": [
+          "src/jsx/hooks/dom.test.tsx",
+          "src/jsx/hooks/index.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5167",
+      "pr": {
+        "number": 5167,
+        "mergedAt": "2026-07-26T05:07:57Z",
+        "files": [
+          "bun.lock",
+          "package.json"
+        ]
+      }
+    },
+    {
+      "id": "pr5164",
+      "pr": {
+        "number": 5164,
+        "mergedAt": "2026-07-26T05:04:10Z",
+        "files": [
+          "src/utils/cookie.test.ts",
+          "src/utils/cookie.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5147",
+      "pr": {
+        "number": 5147,
+        "mergedAt": "2026-07-24T08:48:48Z",
+        "files": [
+          "src/middleware/secure-headers/index.test.ts",
+          "src/middleware/secure-headers/secure-headers.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5161",
+      "pr": {
+        "number": 5161,
+        "mergedAt": "2026-07-24T01:57:31Z",
+        "files": [
+          "src/request.test.ts",
+          "src/request.ts",
+          "src/utils/accept.test.ts",
+          "src/utils/accept.ts",
+          "src/utils/url.test.ts",
+          "src/utils/url.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5145",
+      "pr": {
+        "number": 5145,
+        "mergedAt": "2026-07-24T01:45:42Z",
+        "files": [
+          "src/adapter/cloudflare-workers/websocket.test.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5158",
+      "pr": {
+        "number": 5158,
+        "mergedAt": "2026-07-23T12:45:42Z",
+        "files": [
+          "src/request.ts",
+          "src/utils/cookie.ts",
+          "src/utils/url.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5122",
+      "pr": {
+        "number": 5122,
+        "mergedAt": "2026-07-22T09:30:39Z",
+        "files": [
+          "src/context.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5121",
+      "pr": {
+        "number": 5121,
+        "mergedAt": "2026-07-22T09:23:01Z",
+        "files": [
+          "src/request.ts",
+          "src/utils/url.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5113",
+      "pr": {
+        "number": 5113,
+        "mergedAt": "2026-07-22T09:19:19Z",
+        "files": [
+          "src/hono-base.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5138",
+      "pr": {
+        "number": 5138,
+        "mergedAt": "2026-07-21T11:26:54Z",
+        "files": [
+          "src/helper/streaming/sse.test.tsx",
+          "src/helper/streaming/sse.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5142",
+      "pr": {
+        "number": 5142,
+        "mergedAt": "2026-07-21T11:19:05Z",
+        "files": [
+          "src/adapter/aws-lambda/handler.test.ts",
+          "src/adapter/aws-lambda/types.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5148",
+      "pr": {
+        "number": 5148,
+        "mergedAt": "2026-07-21T11:06:54Z",
+        "files": [
+          ".github/workflows/ci.yml"
+        ]
+      }
+    },
+    {
+      "id": "pr5136",
+      "pr": {
+        "number": 5136,
+        "mergedAt": "2026-07-18T23:10:28Z",
+        "files": [
+          "src/validator/validator.test.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5133",
+      "pr": {
+        "number": 5133,
+        "mergedAt": "2026-07-17T23:43:46Z",
+        "files": [
+          "src/request.test.ts",
+          "src/request.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5131",
+      "pr": {
+        "number": 5131,
+        "mergedAt": "2026-07-17T23:26:28Z",
+        "files": [
+          "src/request.test.ts",
+          "src/utils/body.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5130",
+      "pr": {
+        "number": 5130,
+        "mergedAt": "2026-07-17T23:01:57Z",
+        "files": [
+          "src/adapter/aws-lambda/handler.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5126",
+      "pr": {
+        "number": 5126,
+        "mergedAt": "2026-07-17T23:01:42Z",
+        "files": [
+          "src/middleware/combine/index.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5117",
+      "pr": {
+        "number": 5117,
+        "mergedAt": "2026-07-15T02:01:10Z",
+        "files": [
+          "benchmarks/fetch/.gitignore",
+          "benchmarks/fetch/README.md",
+          "benchmarks/fetch/bench.mts",
+          "benchmarks/fetch/compare.sh",
+          "benchmarks/fetch/package.json",
+          "benchmarks/fetch/summarize.mts",
+          "benchmarks/fetch/ts-resolve.mjs",
+          "benchmarks/fetch/tsconfig.json"
+        ]
+      }
+    },
+    {
+      "id": "pr5116",
+      "pr": {
+        "number": 5116,
+        "mergedAt": "2026-07-15T00:07:04Z",
+        "files": [
+          "src/context.test.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5110",
+      "pr": {
+        "number": 5110,
+        "mergedAt": "2026-07-13T00:27:27Z",
+        "files": [
+          "src/middleware/method-override/index.test.ts",
+          "src/middleware/method-override/index.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5096",
+      "pr": {
+        "number": 5096,
+        "mergedAt": "2026-07-12T23:49:18Z",
+        "files": [
+          "src/client/utils.test.ts",
+          "src/client/utils.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5020",
+      "pr": {
+        "number": 5020,
+        "mergedAt": "2026-07-12T23:30:09Z",
+        "files": [
+          "src/middleware/compress/index.test.ts",
+          "src/middleware/compress/index.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5025",
+      "pr": {
+        "number": 5025,
+        "mergedAt": "2026-07-12T23:25:54Z",
+        "files": [
+          "src/middleware/cache/index.test.ts",
+          "src/middleware/cache/index.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5104",
+      "pr": {
+        "number": 5104,
+        "mergedAt": "2026-07-12T21:46:00Z",
+        "files": [
+          "bun.lock",
+          "package.json",
+          "perf-measures/type-check/scripts/tsconfig.json",
+          "src/helper/websocket/index.ts",
+          "src/jsx/context-isolation.test.ts",
+          "tsconfig.build.json"
+        ]
+      }
+    },
+    {
+      "id": "pr5108",
+      "pr": {
+        "number": 5108,
+        "mergedAt": "2026-07-12T00:19:16Z",
+        "files": [
+          "benchmarks/deno/.gitignore",
+          "benchmarks/deno/.vscode/settings.json",
+          "benchmarks/deno/fast.ts",
+          "benchmarks/deno/faster.ts",
+          "benchmarks/deno/hono.ts",
+          "benchmarks/deno/magalo.ts",
+          "benchmarks/deno/oak.ts",
+          "benchmarks/deno/opine.ts",
+          "benchmarks/handle-event/index.js",
+          "benchmarks/handle-event/package.json",
+          "benchmarks/handle-event/yarn.lock",
+          "benchmarks/webapp/.gitignore",
+          "benchmarks/webapp/hono.js",
+          "benchmarks/webapp/itty-router.js",
+          "benchmarks/webapp/package.json",
+          "benchmarks/webapp/sunder.js"
+        ]
+      }
+    },
+    {
+      "id": "pr5107",
+      "pr": {
+        "number": 5107,
+        "mergedAt": "2026-07-12T00:06:26Z",
+        "files": [
+          "benchmarks/routers/package.json",
+          "benchmarks/routers/src/express.mts",
+          "benchmarks/routers/src/koa-router.mts"
+        ]
+      }
+    },
+    {
+      "id": "pr5084",
+      "pr": {
+        "number": 5084,
+        "mergedAt": "2026-07-10T09:27:28Z",
+        "files": [
+          "src/middleware/etag/index.test.ts",
+          "src/middleware/etag/index.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5102",
+      "pr": {
+        "number": 5102,
+        "mergedAt": "2026-07-10T09:25:38Z",
+        "files": [
+          "src/router/common.case.test.ts",
+          "src/router/linear-router/router.test.ts",
+          "src/router/trie-router/node.test.ts",
+          "src/router/trie-router/node.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5103",
+      "pr": {
+        "number": 5103,
+        "mergedAt": "2026-07-10T09:15:03Z",
+        "files": [
+          "src/utils/types.test.ts",
+          "src/utils/types.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5101",
+      "pr": {
+        "number": 5101,
+        "mergedAt": "2026-07-09T20:45:12Z",
+        "files": [
+          "src/adapter/aws-lambda/handler.test.ts",
+          "src/adapter/aws-lambda/handler.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5099",
+      "pr": {
+        "number": 5099,
+        "mergedAt": "2026-07-09T20:30:10Z",
+        "files": [
+          "src/adapter/lambda-edge/handler.test.ts",
+          "src/adapter/lambda-edge/handler.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5100",
+      "pr": {
+        "number": 5100,
+        "mergedAt": "2026-07-09T20:25:27Z",
+        "files": [
+          "runtime-tests/workerd/index.test.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5081",
+      "pr": {
+        "number": 5081,
+        "mergedAt": "2026-07-09T20:04:31Z",
+        "files": [
+          "src/middleware/language/language.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5094",
+      "pr": {
+        "number": 5094,
+        "mergedAt": "2026-07-07T09:41:35Z",
+        "files": [
+          "runtime-tests/lambda-edge/index.test.ts",
+          "src/adapter/lambda-edge/handler.test.ts",
+          "src/adapter/lambda-edge/handler.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5093",
+      "pr": {
+        "number": 5093,
+        "mergedAt": "2026-07-07T09:18:57Z",
+        "files": [
+          "build/build.ts",
+          "package.json"
+        ]
+      }
+    },
+    {
+      "id": "pr5092",
+      "pr": {
+        "number": 5092,
+        "mergedAt": "2026-07-07T09:10:46Z",
+        "files": [
+          "src/client/client.test.ts",
+          "src/client/client.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5086",
+      "pr": {
+        "number": 5086,
+        "mergedAt": "2026-07-04T23:37:29Z",
+        "files": [
+          "src/middleware/context-storage/index.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5059",
+      "pr": {
+        "number": 5059,
+        "mergedAt": "2026-07-04T09:21:13Z",
+        "files": [
+          "src/adapter/bun/websocket.test.ts",
+          "src/adapter/bun/websocket.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5071",
+      "pr": {
+        "number": 5071,
+        "mergedAt": "2026-07-03T05:06:29Z",
+        "files": [
+          "src/utils/body.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5067",
+      "pr": {
+        "number": 5067,
+        "mergedAt": "2026-07-01T09:42:27Z",
+        "files": [
+          "src/utils/body.test.ts",
+          "src/utils/body.ts",
+          "src/utils/buffer.test.ts",
+          "src/utils/buffer.ts",
+          "src/validator/validator.test.ts",
+          "src/validator/validator.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5066",
+      "pr": {
+        "number": 5066,
+        "mergedAt": "2026-06-30T21:28:08Z",
+        "files": [
+          "package.json"
+        ]
+      }
+    },
+    {
+      "id": "pr5047",
+      "pr": {
+        "number": 5047,
+        "mergedAt": "2026-06-30T21:08:49Z",
+        "files": [
+          "docs/MIGRATION.md"
+        ]
+      }
+    },
+    {
+      "id": "pr5062",
+      "pr": {
+        "number": 5062,
+        "mergedAt": "2026-06-30T07:18:37Z",
+        "files": [
+          "src/middleware/serve-static/index.test.ts",
+          "src/middleware/serve-static/index.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5037",
+      "pr": {
+        "number": 5037,
+        "mergedAt": "2026-06-23T02:41:12Z",
+        "files": [
+          "src/jsx/components.test.tsx",
+          "src/jsx/context-isolation.test.ts",
+          "src/jsx/index.test.tsx"
+        ]
+      }
+    },
+    {
+      "id": "pr5036",
+      "pr": {
+        "number": 5036,
+        "mergedAt": "2026-06-23T02:29:08Z",
+        "files": [
+          "src/jsx/components.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5035",
+      "pr": {
+        "number": 5035,
+        "mergedAt": "2026-06-22T11:42:33Z",
+        "files": [
+          ".github/workflows/release.yml"
+        ]
+      }
+    },
+    {
+      "id": "pr5030",
+      "pr": {
+        "number": 5030,
+        "mergedAt": "2026-06-18T02:11:36Z",
+        "files": [
+          "build/build.ts",
+          "bun.lock",
+          "package.json"
+        ]
+      }
+    },
+    {
+      "id": "pr5029",
+      "pr": {
+        "number": 5029,
+        "mergedAt": "2026-06-18T01:17:35Z",
+        "files": [
+          ".devcontainer/Dockerfile",
+          ".devcontainer/devcontainer.json",
+          ".devcontainer/docker-compose.yml",
+          ".gitpod.yml",
+          "docs/CONTRIBUTING.md"
+        ]
+      }
+    },
+    {
+      "id": "pr5028",
+      "pr": {
+        "number": 5028,
+        "mergedAt": "2026-06-18T01:04:08Z",
+        "files": [
+          ".github/workflows/release.yml",
+          "package.json"
+        ]
+      }
+    },
+    {
+      "id": "pr5013",
+      "pr": {
+        "number": 5013,
+        "mergedAt": "2026-06-09T03:57:21Z",
+        "files": [
+          "src/adapter/lambda-edge/handler.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr5012",
+      "pr": {
+        "number": 5012,
+        "mergedAt": "2026-06-09T03:17:04Z",
+        "files": [
+          "runtime-tests/lambda/index.test.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr4998",
+      "pr": {
+        "number": 4998,
+        "mergedAt": "2026-06-03T21:51:33Z",
+        "files": [
+          "src/utils/ipaddr.test.ts",
+          "src/utils/ipaddr.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr4991",
+      "pr": {
+        "number": 4991,
+        "mergedAt": "2026-06-02T04:58:46Z",
+        "files": [
+          "src/middleware/timing/index.test.ts",
+          "src/middleware/timing/timing.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr4982",
+      "pr": {
+        "number": 4982,
+        "mergedAt": "2026-06-02T04:56:07Z",
+        "files": [
+          "package.json",
+          "tsconfig.build.json"
+        ]
+      }
+    },
+    {
+      "id": "pr4980",
+      "pr": {
+        "number": 4980,
+        "mergedAt": "2026-06-01T01:39:52Z",
+        "files": [
+          "src/middleware/language/index.test.ts",
+          "src/middleware/language/language.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr4987",
+      "pr": {
+        "number": 4987,
+        "mergedAt": "2026-06-01T00:59:07Z",
+        "files": [
+          "src/middleware/bearer-auth/index.test.ts",
+          "src/middleware/bearer-auth/index.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr4972",
+      "pr": {
+        "number": 4972,
+        "mergedAt": "2026-05-25T22:23:29Z",
+        "files": [
+          "docs/CONTRIBUTING.md"
+        ]
+      }
+    },
+    {
+      "id": "pr4543",
+      "pr": {
+        "number": 4543,
+        "mergedAt": "2026-05-24T08:44:33Z",
+        "files": [
+          "src/index.ts"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,833 @@
+{
+  "slug": "sveltejs/svelte",
+  "since": "2026-02-01",
+  "until": "2026-08-01",
+  "rule": {
+    "keep": 60,
+    "maxFiles": 30,
+    "bots": "excluded",
+    "distinct": true
+  },
+  "mergedInWindow": 300,
+  "short": false,
+  "tasks": [
+    {
+      "id": "pr18253",
+      "pr": {
+        "number": 18253,
+        "mergedAt": "2026-07-24T20:14:12Z",
+        "files": [
+          ".github/workflows/autofix.yml",
+          ".github/workflows/ci.yml",
+          ".github/workflows/ecosystem-ci-trigger.yml",
+          ".github/workflows/pkg.pr.new.yml",
+          ".github/workflows/release.yml",
+          "package.json",
+          "pnpm-workspace.yaml"
+        ]
+      }
+    },
+    {
+      "id": "pr18556",
+      "pr": {
+        "number": 18556,
+        "mergedAt": "2026-07-23T21:45:51Z",
+        "files": [
+          ".changeset/hydrated-boundary-reset.md",
+          "packages/svelte/src/internal/client/dom/blocks/boundary.js",
+          "packages/svelte/tests/runtime-runes/samples/error-boundary-hydrate-1/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/error-boundary-hydrate-1/child.svelte",
+          "packages/svelte/tests/runtime-runes/samples/error-boundary-hydrate-1/main.svelte",
+          "packages/svelte/tests/runtime-runes/samples/error-boundary-hydrate-2/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/error-boundary-hydrate-2/child.svelte",
+          "packages/svelte/tests/runtime-runes/samples/error-boundary-hydrate-2/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18561",
+      "pr": {
+        "number": 18561,
+        "mergedAt": "2026-07-22T12:17:28Z",
+        "files": [
+          ".changeset/tidy-select-spreads.md",
+          "packages/svelte/src/internal/client/dom/elements/bindings/select.js",
+          "packages/svelte/tests/runtime-legacy/samples/select-spread-preserve-selection/_config.js",
+          "packages/svelte/tests/runtime-legacy/samples/select-spread-preserve-selection/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18564",
+      "pr": {
+        "number": 18564,
+        "mergedAt": "2026-07-19T01:00:02Z",
+        "files": [
+          "documentation/docs/05-special-elements/01-svelte-boundary.md"
+        ]
+      }
+    },
+    {
+      "id": "pr18474",
+      "pr": {
+        "number": 18474,
+        "mergedAt": "2026-07-18T12:47:30Z",
+        "files": [
+          ".changeset/short-otters-find.md",
+          "packages/svelte/src/compiler/print/index.js",
+          "packages/svelte/src/compiler/print/types.d.ts",
+          "packages/svelte/types/index.d.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr18548",
+      "pr": {
+        "number": 18548,
+        "mergedAt": "2026-07-16T11:35:37Z",
+        "files": [
+          ".changeset/fast-cats-compile.md",
+          "packages/svelte/src/compiler/phases/2-analyze/index.js"
+        ]
+      }
+    },
+    {
+      "id": "pr18551",
+      "pr": {
+        "number": 18551,
+        "mergedAt": "2026-07-16T08:42:32Z",
+        "files": [
+          ".changeset/lucky-dolls-yell.md",
+          "packages/svelte/src/internal/client/runtime.js",
+          "packages/svelte/tests/runtime-runes/samples/abort-signal-derived-rerun-on-reconnect/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/abort-signal-derived-rerun-on-reconnect/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18530",
+      "pr": {
+        "number": 18530,
+        "mergedAt": "2026-07-14T09:54:14Z",
+        "files": [
+          ".changeset/long-buttons-hunt.md",
+          "packages/svelte/src/compiler/phases/3-transform/server/visitors/CallExpression.js",
+          "packages/svelte/tests/server-side-rendering/samples/state-eager/_expected.html",
+          "packages/svelte/tests/server-side-rendering/samples/state-eager/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18541",
+      "pr": {
+        "number": 18541,
+        "mergedAt": "2026-07-14T09:51:14Z",
+        "files": [
+          ".changeset/tween-previous-task-leak.md",
+          "packages/svelte/src/motion/tweened.js"
+        ]
+      }
+    },
+    {
+      "id": "pr18528",
+      "pr": {
+        "number": 18528,
+        "mergedAt": "2026-07-14T09:41:21Z",
+        "files": [
+          "packages/svelte/tests/runtime-runes/samples/async-derived-log-outside-reactivity/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-derived-log-outside-reactivity/main.svelte",
+          "packages/svelte/tests/runtime-runes/samples/async-derived-not-overfiring/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-derived-not-overfiring/main.svelte",
+          "packages/svelte/tests/runtime-runes/samples/async-derived-not-underfiring/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-derived-not-underfiring/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18400",
+      "pr": {
+        "number": 18400,
+        "mergedAt": "2026-07-14T09:40:30Z",
+        "files": [
+          ".changeset/early-crabs-rest.md",
+          "packages/svelte/src/internal/client/reactivity/deriveds.js",
+          "packages/svelte/src/internal/client/runtime.js",
+          "packages/svelte/tests/runtime-runes/samples/abort-signal-derived-destroy/Child.svelte",
+          "packages/svelte/tests/runtime-runes/samples/abort-signal-derived-destroy/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/abort-signal-derived-destroy/main.svelte",
+          "packages/svelte/tests/runtime-runes/samples/abort-signal-derived-set-state/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/abort-signal-derived-set-state/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18543",
+      "pr": {
+        "number": 18543,
+        "mergedAt": "2026-07-13T22:07:25Z",
+        "files": [
+          ".gitignore",
+          "benchmarking/compare/generate-report.js",
+          "benchmarking/compare/index.js",
+          "benchmarking/compare/results.template.html"
+        ]
+      }
+    },
+    {
+      "id": "pr18542",
+      "pr": {
+        "number": 18542,
+        "mergedAt": "2026-07-13T22:06:53Z",
+        "files": [
+          "benchmarking/compare/generate-report.js",
+          "benchmarking/compare/runner.js",
+          "benchmarking/run.js"
+        ]
+      }
+    },
+    {
+      "id": "pr18521",
+      "pr": {
+        "number": 18521,
+        "mergedAt": "2026-07-10T14:01:49Z",
+        "files": [
+          ".changeset/shiny-keys-dance.md",
+          "packages/svelte/src/compiler/phases/3-transform/client/visitors/EachBlock.js",
+          "packages/svelte/tests/runtime-runes/samples/each-keyed-computed-destructuring-key/Child.svelte",
+          "packages/svelte/tests/runtime-runes/samples/each-keyed-computed-destructuring-key/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/each-keyed-computed-destructuring-key/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18527",
+      "pr": {
+        "number": 18527,
+        "mergedAt": "2026-07-10T14:01:20Z",
+        "files": [
+          ".changeset/common-ways-deny.md"
+        ]
+      }
+    },
+    {
+      "id": "pr18517",
+      "pr": {
+        "number": 18517,
+        "mergedAt": "2026-07-10T13:59:35Z",
+        "files": [
+          "packages/svelte/src/internal/client/runtime.js",
+          "packages/svelte/tests/signals/test.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr18525",
+      "pr": {
+        "number": 18525,
+        "mergedAt": "2026-07-10T13:42:01Z",
+        "files": [
+          ".changeset/curly-wasps-hide.md",
+          "packages/svelte/src/internal/client/reactivity/batch.js",
+          "packages/svelte/tests/runtime-runes/samples/async-batch-derived/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-batch-derived/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18523",
+      "pr": {
+        "number": 18523,
+        "mergedAt": "2026-07-10T13:24:35Z",
+        "files": [
+          "benchmarking/benchmarks/reactivity/tests/kairo_broad_block.bench.js",
+          "benchmarking/benchmarks/reactivity/tests/kairo_deep_block.bench.js"
+        ]
+      }
+    },
+    {
+      "id": "pr18518",
+      "pr": {
+        "number": 18518,
+        "mergedAt": "2026-07-09T21:59:23Z",
+        "files": [
+          ".changeset/tame-donkeys-jump.md",
+          "packages/svelte/src/compiler/utils/mapped_code.js",
+          "packages/svelte/tests/sourcemaps/samples/sourcemap-empty-source/_config.js",
+          "packages/svelte/tests/sourcemaps/samples/sourcemap-empty-source/input.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18500",
+      "pr": {
+        "number": 18500,
+        "mergedAt": "2026-07-09T13:06:08Z",
+        "files": [
+          ".changeset/dull-oranges-fry.md",
+          "packages/svelte/src/compiler/phases/2-analyze/visitors/shared/function.js",
+          "packages/svelte/tests/validator/samples/declaration-tag-state-referenced-locally/input.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18507",
+      "pr": {
+        "number": 18507,
+        "mergedAt": "2026-07-06T11:50:56Z",
+        "files": [
+          ".changeset/young-doodles-beam.md",
+          "packages/svelte/src/compiler/phases/3-transform/client/visitors/shared/utils.js",
+          "packages/svelte/tests/runtime-runes/samples/declaration-tags-each/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/declaration-tags-each/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18496",
+      "pr": {
+        "number": 18496,
+        "mergedAt": "2026-07-02T14:31:54Z",
+        "files": [
+          ".changeset/big-months-shout.md",
+          "packages/svelte/src/internal/client/reactivity/props.js"
+        ]
+      }
+    },
+    {
+      "id": "pr18492",
+      "pr": {
+        "number": 18492,
+        "mergedAt": "2026-07-02T06:30:23Z",
+        "files": [
+          ".changeset/rich-jokes-attack.md",
+          "packages/svelte/src/compiler/phases/3-transform/server/visitors/shared/utils.js",
+          "packages/svelte/tests/server-side-rendering/samples/declaration-tags-transform/_expected.html",
+          "packages/svelte/tests/server-side-rendering/samples/declaration-tags-transform/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18453",
+      "pr": {
+        "number": 18453,
+        "mergedAt": "2026-06-22T18:09:05Z",
+        "files": [
+          ".changeset/late-geese-fix.md",
+          "packages/svelte/src/internal/client/reactivity/async.js",
+          "packages/svelte/tests/runtime-runes/samples/async-parallel-derived-template-mutation/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-parallel-derived-template-mutation/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18448",
+      "pr": {
+        "number": 18448,
+        "mergedAt": "2026-06-22T11:03:18Z",
+        "files": [
+          ".changeset/strip-optional-param-marker.md",
+          "packages/svelte/package.json",
+          "packages/svelte/src/compiler/phases/1-parse/remove_typescript_nodes.js",
+          "packages/svelte/tests/snapshot/samples/typescript-optional-parameter/_expected/client/index.svelte.js",
+          "packages/svelte/tests/snapshot/samples/typescript-optional-parameter/_expected/server/index.svelte.js",
+          "packages/svelte/tests/snapshot/samples/typescript-optional-parameter/index.svelte",
+          "pnpm-lock.yaml"
+        ]
+      }
+    },
+    {
+      "id": "pr18436",
+      "pr": {
+        "number": 18436,
+        "mergedAt": "2026-06-15T16:18:02Z",
+        "files": [
+          ".changeset/clean-melons-attack.md",
+          "packages/svelte/src/compiler/phases/1-parse/state/tag.js",
+          "packages/svelte/tests/parser-modern/samples/const-tag-parenthesized-init/input.svelte",
+          "packages/svelte/tests/parser-modern/samples/const-tag-parenthesized-init/output.json"
+        ]
+      }
+    },
+    {
+      "id": "pr18425",
+      "pr": {
+        "number": 18425,
+        "mergedAt": "2026-06-15T16:08:45Z",
+        "files": [
+          ".changeset/quick-meals-shout.md",
+          "packages/svelte/src/reactivity/url-search-params.js",
+          "packages/svelte/src/reactivity/url-search-params.test.ts",
+          "packages/svelte/src/reactivity/url.test.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr18317",
+      "pr": {
+        "number": 18317,
+        "mergedAt": "2026-06-08T12:59:04Z",
+        "files": [
+          "packages/svelte/src/index.d.ts",
+          "packages/svelte/src/internal/client/custom-renderer/index.js",
+          "packages/svelte/src/internal/client/render.js",
+          "packages/svelte/src/legacy/legacy-client.js",
+          "packages/svelte/tests/custom-renderers/shared.ts",
+          "packages/svelte/tests/runtime-legacy/shared.ts",
+          "packages/svelte/tests/types/component.ts",
+          "packages/svelte/tsconfig.json",
+          "packages/svelte/types/index.d.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr18362",
+      "pr": {
+        "number": 18362,
+        "mergedAt": "2026-06-05T21:52:07Z",
+        "files": [
+          "packages/svelte/src/internal/client/constants.js",
+          "packages/svelte/src/internal/client/reactivity/batch.js",
+          "packages/svelte/src/internal/client/reactivity/sources.js",
+          "packages/svelte/tests/runtime-runes/samples/async-eager-derived/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18373",
+      "pr": {
+        "number": 18373,
+        "mergedAt": "2026-06-04T01:49:19Z",
+        "files": [
+          ".changeset/rare-donkeys-repair.md",
+          "packages/svelte/src/internal/client/reactivity/async.js",
+          "packages/svelte/src/internal/client/runtime.js",
+          "packages/svelte/tests/runtime-runes/samples/async-reactivity-loss-no-false-positive-4/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-reactivity-loss-no-false-positive-4/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18371",
+      "pr": {
+        "number": 18371,
+        "mergedAt": "2026-06-04T00:59:57Z",
+        "files": [
+          ".changeset/async-hydration-orphan-nodes.md",
+          "packages/svelte/src/internal/client/dom/blocks/async.js",
+          "packages/svelte/tests/hydration/test.ts",
+          "packages/svelte/tests/runtime-runes/samples/async-sole-if-child/Child.svelte",
+          "packages/svelte/tests/runtime-runes/samples/async-sole-if-child/Footer.svelte",
+          "packages/svelte/tests/runtime-runes/samples/async-sole-if-child/Header.svelte",
+          "packages/svelte/tests/runtime-runes/samples/async-sole-if-child/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-sole-if-child/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18372",
+      "pr": {
+        "number": 18372,
+        "mergedAt": "2026-06-03T15:31:29Z",
+        "files": [
+          ".changeset/soft-moments-exist.md",
+          "packages/svelte/package.json",
+          "pnpm-lock.yaml"
+        ]
+      }
+    },
+    {
+      "id": "pr18359",
+      "pr": {
+        "number": 18359,
+        "mergedAt": "2026-06-03T08:37:45Z",
+        "files": [
+          "documentation/docs/98-reference/.generated/compile-errors.md",
+          "packages/svelte/messages/compile-errors/template.md",
+          "packages/svelte/src/compiler/errors.js",
+          "packages/svelte/src/compiler/index.js",
+          "packages/svelte/src/compiler/phases/1-parse/read/options.js",
+          "packages/svelte/src/compiler/phases/2-analyze/index.js",
+          "packages/svelte/src/compiler/phases/3-transform/client/transform-client.js",
+          "packages/svelte/src/compiler/phases/3-transform/client/visitors/shared/component.js",
+          "packages/svelte/src/compiler/state.js",
+          "packages/svelte/src/compiler/types/index.d.ts",
+          "packages/svelte/src/compiler/types/template.d.ts",
+          "packages/svelte/src/compiler/validate-options.js",
+          "packages/svelte/src/internal/client/custom-renderer/state.js",
+          "packages/svelte/src/internal/client/index.js",
+          "packages/svelte/tests/validator/samples/svelte-options-customrenderer-disabled/_config.js",
+          "packages/svelte/tests/validator/samples/svelte-options-customrenderer-disabled/errors.json",
+          "packages/svelte/tests/validator/samples/svelte-options-customrenderer-disabled/input.svelte",
+          "packages/svelte/types/index.d.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr18367",
+      "pr": {
+        "number": 18367,
+        "mergedAt": "2026-06-03T02:41:15Z",
+        "files": [
+          "documentation/docs/03-template-syntax/03-each.md"
+        ]
+      }
+    },
+    {
+      "id": "pr18366",
+      "pr": {
+        "number": 18366,
+        "mergedAt": "2026-06-02T23:12:25Z",
+        "files": [
+          ".changeset/tangy-keys-drop.md",
+          "packages/svelte/src/compiler/phases/2-analyze/visitors/shared/element.js",
+          "packages/svelte/tests/validator/samples/animation-each-with-declaration-tag/errors.json",
+          "packages/svelte/tests/validator/samples/animation-each-with-declaration-tag/input.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18265",
+      "pr": {
+        "number": 18265,
+        "mergedAt": "2026-06-02T01:45:58Z",
+        "files": [
+          ".github/workflows/ci.yml",
+          "package.json",
+          "packages/svelte/package.json",
+          "packages/svelte/tests/hydration/test.ts",
+          "packages/svelte/tests/runtime-browser/test.ts",
+          "packages/svelte/tests/runtime-legacy/shared.ts",
+          "packages/svelte/tests/sourcemaps/test.ts",
+          "pnpm-lock.yaml",
+          "vitest-xhtml-environment.ts",
+          "vitest.config.js"
+        ]
+      }
+    },
+    {
+      "id": "pr18308",
+      "pr": {
+        "number": 18308,
+        "mergedAt": "2026-06-01T22:44:44Z",
+        "files": [
+          ".changeset/warm-cougars-behave.md",
+          "packages/svelte/src/internal/client/reactivity/batch.js",
+          "packages/svelte/tests/runtime-runes/samples/async-fork-obsolete-ignore/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-fork-obsolete-ignore/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18351",
+      "pr": {
+        "number": 18351,
+        "mergedAt": "2026-06-01T22:01:39Z",
+        "files": [
+          ".changeset/clever-poems-shave.md",
+          "packages/svelte/src/compiler/phases/2-analyze/visitors/DeclarationTag.js",
+          "packages/svelte/src/compiler/phases/2-analyze/visitors/SnippetBlock.js",
+          "packages/svelte/tests/validator/samples/declaration-tag-already-declared/errors.json",
+          "packages/svelte/tests/validator/samples/declaration-tag-already-declared/input.svelte",
+          "packages/svelte/tests/validator/samples/snippet-already-declared/errors.json",
+          "packages/svelte/tests/validator/samples/snippet-already-declared/input.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18352",
+      "pr": {
+        "number": 18352,
+        "mergedAt": "2026-06-01T21:39:50Z",
+        "files": [
+          ".changeset/strong-cups-prove.md",
+          "packages/svelte/src/compiler/phases/3-transform/server/visitors/shared/utils.js",
+          "packages/svelte/tests/runtime-runes/samples/async-derived-prop-closure-hydration/Child.svelte",
+          "packages/svelte/tests/runtime-runes/samples/async-derived-prop-closure-hydration/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/async-derived-prop-closure-hydration/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18353",
+      "pr": {
+        "number": 18353,
+        "mergedAt": "2026-06-01T21:36:18Z",
+        "files": [
+          ".changeset/declaration-tag-division.md",
+          "packages/svelte/src/compiler/phases/1-parse/acorn.js",
+          "packages/svelte/tests/print/samples/declaration-tag-division/input.svelte",
+          "packages/svelte/tests/print/samples/declaration-tag-division/output.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18350",
+      "pr": {
+        "number": 18350,
+        "mergedAt": "2026-06-01T08:03:59Z",
+        "files": [
+          ".changeset/fix-find-matching-bracket-infinite-loop.md",
+          "packages/svelte/src/compiler/phases/1-parse/utils/bracket.js",
+          "packages/svelte/tests/compiler-errors/samples/declaration-tag-trailing-slash/_config.js",
+          "packages/svelte/tests/compiler-errors/samples/declaration-tag-trailing-slash/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18330",
+      "pr": {
+        "number": 18330,
+        "mergedAt": "2026-06-01T08:03:41Z",
+        "files": [
+          ".changeset/fix-type-identifier-in-tag.md",
+          "packages/svelte/src/compiler/phases/1-parse/state/tag.js",
+          "packages/svelte/src/compiler/phases/1-parse/utils/bracket.js",
+          "packages/svelte/tests/parser-modern/samples/loose-declaration-tag/input.svelte",
+          "packages/svelte/tests/parser-modern/samples/loose-declaration-tag/output.json",
+          "packages/svelte/tests/parser-modern/samples/tag-type-identifier-probe-comment/input.svelte",
+          "packages/svelte/tests/parser-modern/samples/tag-type-identifier-probe-comment/output.json",
+          "packages/svelte/tests/validator/samples/declaration-tag-invalid-type-2/errors.json",
+          "packages/svelte/tests/validator/samples/declaration-tag-invalid-type-2/input.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18348",
+      "pr": {
+        "number": 18348,
+        "mergedAt": "2026-06-01T07:59:38Z",
+        "files": [
+          ".changeset/declaration-tag-multiple-declarators.md",
+          ".changeset/declaration-tag-state-referenced-locally.md",
+          ".changeset/declaration-tag-whitespace.md",
+          "packages/svelte/src/compiler/phases/2-analyze/visitors/DeclarationTag.js",
+          "packages/svelte/src/compiler/phases/3-transform/client/visitors/DeclarationTag.js",
+          "packages/svelte/tests/runtime-runes/samples/declaration-tag-multiple-declarators/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/declaration-tag-multiple-declarators/main.svelte",
+          "packages/svelte/tests/validator/samples/declaration-tag-state-referenced-locally/input.svelte",
+          "packages/svelte/tests/validator/samples/declaration-tag-state-referenced-locally/warnings.json"
+        ]
+      }
+    },
+    {
+      "id": "pr18345",
+      "pr": {
+        "number": 18345,
+        "mergedAt": "2026-05-31T16:16:37Z",
+        "files": [
+          ".changeset/input-type-before-value.md",
+          "packages/svelte/src/internal/client/dom/elements/attributes.js",
+          "packages/svelte/tests/runtime-runes/samples/input-type-before-value-spread/_config.js",
+          "packages/svelte/tests/runtime-runes/samples/input-type-before-value-spread/main.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18336",
+      "pr": {
+        "number": 18336,
+        "mergedAt": "2026-05-31T16:07:28Z",
+        "files": [
+          ".changeset/search-params-duplicate-set.md",
+          "packages/svelte/src/reactivity/url-search-params.js",
+          "packages/svelte/src/reactivity/url-search-params.test.ts",
+          "packages/svelte/src/reactivity/url.test.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr18333",
+      "pr": {
+        "number": 18333,
+        "mergedAt": "2026-05-31T15:41:49Z",
+        "files": [
+          ".prettierignore",
+          "documentation/docs/07-misc/.generated/browser-support-features.md",
+          "documentation/docs/07-misc/.generated/browser-support.md",
+          "documentation/docs/07-misc/05-browser-support.md",
+          "packages/svelte/scripts/generate-browser-support.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr18326",
+      "pr": {
+        "number": 18326,
+        "mergedAt": "2026-05-30T12:03:58Z",
+        "files": [
+          "packages/svelte/src/internal/client/dom/elements/bindings/input.js",
+          "packages/svelte/src/internal/client/reactivity/async.js",
+          "packages/svelte/src/internal/client/reactivity/effects.js"
+        ]
+      }
+    },
+    {
+      "id": "pr18325",
+      "pr": {
+        "number": 18325,
+        "mergedAt": "2026-05-29T21:55:56Z",
+        "files": [
+          "packages/svelte/src/internal/client/dom/blocks/each.js"
+        ]
+      }
+    },
+    {
+      "id": "pr18324",
+      "pr": {
+        "number": 18324,
+        "mergedAt": "2026-05-29T21:05:13Z",
+        "files": [
+          "packages/svelte/src/compiler/phases/1-parse/state/tag.js",
+          "packages/svelte/tests/validator/samples/declaration-tag-invalid-function/errors.json"
+        ]
+      }
+    },
+    {
+      "id": "pr18322",
+      "pr": {
+        "number": 18322,
+        "mergedAt": "2026-05-29T20:22:56Z",
+        "files": [
+          "documentation/docs/03-template-syntax/11-declaration-tags.md"
+        ]
+      }
+    },
+    {
+      "id": "pr18320",
+      "pr": {
+        "number": 18320,
+        "mergedAt": "2026-05-29T19:58:58Z",
+        "files": [
+          ".changeset/dedupe-hoisted-templates.md",
+          "packages/svelte/src/compiler/phases/3-transform/client/transform-client.js",
+          "packages/svelte/src/compiler/phases/3-transform/client/transform-template/index.js",
+          "packages/svelte/src/compiler/phases/3-transform/client/types.d.ts",
+          "packages/svelte/src/compiler/phases/3-transform/client/visitors/Fragment.js",
+          "packages/svelte/src/compiler/phases/3-transform/client/visitors/RegularElement.js",
+          "packages/svelte/tests/snapshot/samples/async-const/_expected/client/index.svelte.js",
+          "packages/svelte/tests/snapshot/samples/dedupe-templates/_expected/client/index.svelte.js",
+          "packages/svelte/tests/snapshot/samples/dedupe-templates/_expected/server/index.svelte.js",
+          "packages/svelte/tests/snapshot/samples/dedupe-templates/index.svelte",
+          "packages/svelte/tests/snapshot/samples/delegated-locally-declared-shadowed/_expected/client/index.svelte.js",
+          "packages/svelte/tests/snapshot/samples/each-index-non-null/_expected/client/index.svelte.js",
+          "packages/svelte/tests/snapshot/samples/select-with-rich-content/_expected/client/index.svelte.js"
+        ]
+      }
+    },
+    {
+      "id": "pr18252",
+      "pr": {
+        "number": 18252,
+        "mergedAt": "2026-05-29T19:55:07Z",
+        "files": [
+          ".changeset/hoist-rest-excludes.md",
+          "packages/svelte/src/compiler/phases/3-transform/client/visitors/VariableDeclaration.js",
+          "packages/svelte/src/compiler/utils/builders.js",
+          "packages/svelte/src/internal/client/reactivity/props.js",
+          "packages/svelte/tests/snapshot/samples/props-identifier/_expected/client/index.svelte.js"
+        ]
+      }
+    },
+    {
+      "id": "pr18321",
+      "pr": {
+        "number": 18321,
+        "mergedAt": "2026-05-29T19:51:33Z",
+        "files": [
+          "packages/svelte/src/compiler/phases/1-parse/state/tag.js",
+          "packages/svelte/tests/validator/samples/declaration-tag-invalid-type-2/errors.json",
+          "packages/svelte/tests/validator/samples/declaration-tag-invalid-type-2/input.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18319",
+      "pr": {
+        "number": 18319,
+        "mergedAt": "2026-05-29T13:28:27Z",
+        "files": [
+          ".github/workflows/ci.yml",
+          "package.json",
+          "packages/svelte/package.json",
+          "pnpm-lock.yaml"
+        ]
+      }
+    },
+    {
+      "id": "pr18293",
+      "pr": {
+        "number": 18293,
+        "mergedAt": "2026-05-29T11:55:42Z",
+        "files": [
+          "AGENTS.md"
+        ]
+      }
+    },
+    {
+      "id": "pr18316",
+      "pr": {
+        "number": 18316,
+        "mergedAt": "2026-05-29T11:54:33Z",
+        "files": [
+          ".github/workflows/ci.yml"
+        ]
+      }
+    },
+    {
+      "id": "pr18318",
+      "pr": {
+        "number": 18318,
+        "mergedAt": "2026-05-29T11:51:18Z",
+        "files": [
+          "packages/svelte/src/internal/client/dom/blocks/boundary.js",
+          "packages/svelte/src/internal/client/reactivity/batch.js"
+        ]
+      }
+    },
+    {
+      "id": "pr18312",
+      "pr": {
+        "number": 18312,
+        "mergedAt": "2026-05-28T19:22:34Z",
+        "files": [
+          "packages/svelte/src/compiler/phases/1-parse/acorn.js",
+          "packages/svelte/src/compiler/phases/1-parse/state/tag.js",
+          "packages/svelte/src/compiler/print/index.js",
+          "packages/svelte/tests/print/samples/declaration-tag/input.svelte",
+          "packages/svelte/tests/print/samples/declaration-tag/output.svelte"
+        ]
+      }
+    },
+    {
+      "id": "pr18262",
+      "pr": {
+        "number": 18262,
+        "mergedAt": "2026-05-28T19:08:43Z",
+        "files": [
+          ".changeset/create-element-fast-path.md",
+          "packages/svelte/src/internal/client/dom/operations.js"
+        ]
+      }
+    },
+    {
+      "id": "pr18276",
+      "pr": {
+        "number": 18276,
+        "mergedAt": "2026-05-28T18:19:56Z",
+        "files": [
+          ".github/workflows/ci.yml",
+          ".gitignore",
+          "documentation/docs/07-misc/.generated/browser-support-features.md",
+          "documentation/docs/07-misc/.generated/browser-support.md",
+          "documentation/docs/07-misc/05-browser-support.md",
+          "eslint.config.js",
+          "packages/svelte/package.json",
+          "packages/svelte/scripts/browser-support.detector.js",
+          "packages/svelte/scripts/generate-browser-support.ts",
+          "packages/svelte/src/utils.js",
+          "pnpm-lock.yaml"
+        ]
+      }
+    }
+  ]
+}
