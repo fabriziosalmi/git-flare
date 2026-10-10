@@ -1,0 +1,687 @@
+{
+  "slug": "eslint/eslint",
+  "since": "2026-02-01",
+  "until": "2026-08-01",
+  "rule": {
+    "keep": 60,
+    "maxFiles": 30,
+    "bots": "excluded",
+    "distinct": true
+  },
+  "mergedInWindow": 300,
+  "short": false,
+  "tasks": [
+    {
+      "id": "pr21172",
+      "pr": {
+        "number": 21172,
+        "mergedAt": "2026-07-31T07:35:00Z",
+        "files": [
+          "package.json"
+        ]
+      }
+    },
+    {
+      "id": "pr21163",
+      "pr": {
+        "number": 21163,
+        "mergedAt": "2026-07-28T20:01:31Z",
+        "files": [
+          "lib/rules/accessor-pairs.js",
+          "lib/rules/getter-return.js",
+          "lib/rules/no-setter-return.js",
+          "lib/rules/utils/ast-utils.js",
+          "tests/lib/rules/accessor-pairs.js",
+          "tests/lib/rules/getter-return.js",
+          "tests/lib/rules/utils/ast-utils.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21092",
+      "pr": {
+        "number": 21092,
+        "mergedAt": "2026-07-28T15:13:43Z",
+        "files": [
+          ".github/workflows/ci.yml",
+          "Makefile.js",
+          "package.json"
+        ]
+      }
+    },
+    {
+      "id": "pr21141",
+      "pr": {
+        "number": 21141,
+        "mergedAt": "2026-07-28T14:58:38Z",
+        "files": [
+          ".github/dependabot.yml"
+        ]
+      }
+    },
+    {
+      "id": "pr21166",
+      "pr": {
+        "number": 21166,
+        "mergedAt": "2026-07-28T14:07:17Z",
+        "files": [
+          "lib/rules/id-denylist.js",
+          "tests/lib/rules/id-denylist.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21167",
+      "pr": {
+        "number": 21167,
+        "mergedAt": "2026-07-28T14:05:42Z",
+        "files": [
+          "lib/rules/id-match.js",
+          "tests/lib/rules/id-match.js"
+        ]
+      }
+    },
+    {
+      "id": "pr20935",
+      "pr": {
+        "number": 20935,
+        "mergedAt": "2026-07-27T20:34:38Z",
+        "files": [
+          "lib/rules/no-unused-vars.js",
+          "tests/lib/rules/no-unused-vars.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21156",
+      "pr": {
+        "number": 21156,
+        "mergedAt": "2026-07-27T11:49:56Z",
+        "files": [
+          "tools/test-ecosystem/plugins-data.json"
+        ]
+      }
+    },
+    {
+      "id": "pr21151",
+      "pr": {
+        "number": 21151,
+        "mergedAt": "2026-07-27T07:42:58Z",
+        "files": [
+          "tests/lib/rules/no-unreachable.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21147",
+      "pr": {
+        "number": 21147,
+        "mergedAt": "2026-07-26T14:21:31Z",
+        "files": [
+          "tests/lib/rules/no-undef.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21144",
+      "pr": {
+        "number": 21144,
+        "mergedAt": "2026-07-26T14:01:09Z",
+        "files": [
+          "tests/lib/rules/no-useless-catch.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21143",
+      "pr": {
+        "number": 21143,
+        "mergedAt": "2026-07-26T13:50:40Z",
+        "files": [
+          "lib/config/config.js",
+          "lib/languages/js/index.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21145",
+      "pr": {
+        "number": 21145,
+        "mergedAt": "2026-07-26T13:40:15Z",
+        "files": [
+          "tests/lib/rules/require-await.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21139",
+      "pr": {
+        "number": 21139,
+        "mergedAt": "2026-07-25T15:16:09Z",
+        "files": [
+          "tests/lib/rules/no-extra-label.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21140",
+      "pr": {
+        "number": 21140,
+        "mergedAt": "2026-07-25T14:19:34Z",
+        "files": [
+          "tests/lib/rules/no-useless-concat.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21138",
+      "pr": {
+        "number": 21138,
+        "mergedAt": "2026-07-25T13:54:17Z",
+        "files": [
+          "tests/lib/rules/no-const-assign.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21106",
+      "pr": {
+        "number": 21106,
+        "mergedAt": "2026-07-24T09:55:25Z",
+        "files": [
+          "docs/src/rules/rest-spread-spacing.md"
+        ]
+      }
+    },
+    {
+      "id": "pr21120",
+      "pr": {
+        "number": 21120,
+        "mergedAt": "2026-07-24T09:40:07Z",
+        "files": [
+          "docs/src/rules/no-eq-null.md"
+        ]
+      }
+    },
+    {
+      "id": "pr21129",
+      "pr": {
+        "number": 21129,
+        "mergedAt": "2026-07-23T08:57:06Z",
+        "files": [
+          "lib/cli-engine/formatters/html.js",
+          "tests/lib/cli-engine/formatters/html.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21101",
+      "pr": {
+        "number": 21101,
+        "mergedAt": "2026-07-21T21:24:44Z",
+        "files": [
+          "docs/src/_data/further_reading_links.json",
+          "docs/src/extend/code-path-analysis.md",
+          "docs/src/extend/custom-rule-tutorial.md",
+          "docs/src/extend/custom-rules.md",
+          "docs/src/rules/max-nested-callbacks.md",
+          "docs/src/rules/no-misleading-character-class.md",
+          "docs/src/rules/no-undef.md",
+          "docs/src/use/integrations.md",
+          "lib/linter/code-path-analysis/debug-helpers.js",
+          "lib/linter/vfile.js",
+          "lib/rules/complexity.js",
+          "lib/rules/key-spacing.js",
+          "lib/rules/max-len.js",
+          "lib/rules/quotes.js",
+          "tests/bench/large.js",
+          "tests/performance/jshint.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21123",
+      "pr": {
+        "number": 21123,
+        "mergedAt": "2026-07-21T21:23:45Z",
+        "files": [
+          "tests/lib/rules/no-class-assign.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21082",
+      "pr": {
+        "number": 21082,
+        "mergedAt": "2026-07-21T10:34:14Z",
+        "files": [
+          "lib/types/config-api.d.ts",
+          "package.json",
+          "tests/lib/types/types.test.mts"
+        ]
+      }
+    },
+    {
+      "id": "pr21117",
+      "pr": {
+        "number": 21117,
+        "mergedAt": "2026-07-20T21:22:16Z",
+        "files": [
+          "tests/lib/rules/no-eq-null.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21116",
+      "pr": {
+        "number": 21116,
+        "mergedAt": "2026-07-20T21:20:49Z",
+        "files": [
+          "lib/rules/no-unreachable-loop.js",
+          "tests/lib/rules/no-unreachable-loop.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21114",
+      "pr": {
+        "number": 21114,
+        "mergedAt": "2026-07-20T03:27:26Z",
+        "files": [
+          "tests/lib/rules/no-proto.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21110",
+      "pr": {
+        "number": 21110,
+        "mergedAt": "2026-07-19T16:05:28Z",
+        "files": [
+          "tests/lib/rules/no-div-regex.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21109",
+      "pr": {
+        "number": 21109,
+        "mergedAt": "2026-07-19T16:02:57Z",
+        "files": [
+          "tests/lib/rules/no-new-wrappers.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21095",
+      "pr": {
+        "number": 21095,
+        "mergedAt": "2026-07-19T15:42:32Z",
+        "files": [
+          "docs/src/use/core-concepts/glossary.md"
+        ]
+      }
+    },
+    {
+      "id": "pr21081",
+      "pr": {
+        "number": 21081,
+        "mergedAt": "2026-07-19T12:39:00Z",
+        "files": [
+          "lib/rules/prefer-object-spread.js",
+          "tests/lib/rules/prefer-object-spread.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21108",
+      "pr": {
+        "number": 21108,
+        "mergedAt": "2026-07-19T12:19:35Z",
+        "files": [
+          "docs/src/extend/custom-formatters.md"
+        ]
+      }
+    },
+    {
+      "id": "pr21102",
+      "pr": {
+        "number": 21102,
+        "mergedAt": "2026-07-19T09:20:01Z",
+        "files": [
+          "tests/lib/rules/no-ex-assign.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21098",
+      "pr": {
+        "number": 21098,
+        "mergedAt": "2026-07-19T09:05:04Z",
+        "files": [
+          "tests/lib/rules/no-label-var.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21105",
+      "pr": {
+        "number": 21105,
+        "mergedAt": "2026-07-19T08:52:55Z",
+        "files": [
+          "tests/lib/rules/no-delete-var.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21103",
+      "pr": {
+        "number": 21103,
+        "mergedAt": "2026-07-19T08:19:23Z",
+        "files": [
+          "docs/src/rules/no-global-assign.md",
+          "docs/src/rules/no-implicit-globals.md",
+          "docs/src/rules/no-native-reassign.md"
+        ]
+      }
+    },
+    {
+      "id": "pr21104",
+      "pr": {
+        "number": 21104,
+        "mergedAt": "2026-07-19T07:38:33Z",
+        "files": [
+          "lib/languages/js/index.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21099",
+      "pr": {
+        "number": 21099,
+        "mergedAt": "2026-07-19T06:53:18Z",
+        "files": [
+          "docs/src/use/integrations.md"
+        ]
+      }
+    },
+    {
+      "id": "pr21097",
+      "pr": {
+        "number": 21097,
+        "mergedAt": "2026-07-18T20:10:18Z",
+        "files": [
+          "lib/shared/translate-cli-options.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21096",
+      "pr": {
+        "number": 21096,
+        "mergedAt": "2026-07-18T13:37:13Z",
+        "files": [
+          "lib/rules/prefer-template.js",
+          "tests/lib/rules/prefer-template.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21094",
+      "pr": {
+        "number": 21094,
+        "mergedAt": "2026-07-18T09:17:18Z",
+        "files": [
+          "lib/rules/class-methods-use-this.js",
+          "tests/lib/rules/class-methods-use-this.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21093",
+      "pr": {
+        "number": 21093,
+        "mergedAt": "2026-07-17T18:52:27Z",
+        "files": [
+          "docs/src/use/command-line-interface.md"
+        ]
+      }
+    },
+    {
+      "id": "pr21091",
+      "pr": {
+        "number": 21091,
+        "mergedAt": "2026-07-17T15:50:42Z",
+        "files": [
+          "lib/shared/serialization.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21090",
+      "pr": {
+        "number": 21090,
+        "mergedAt": "2026-07-17T15:45:40Z",
+        "files": [
+          "tests/lib/rules/eqeqeq.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21089",
+      "pr": {
+        "number": 21089,
+        "mergedAt": "2026-07-17T15:35:49Z",
+        "files": [
+          ".github/workflows/rebuild-docs-sites.yml"
+        ]
+      }
+    },
+    {
+      "id": "pr21083",
+      "pr": {
+        "number": 21083,
+        "mergedAt": "2026-07-17T05:07:26Z",
+        "files": [
+          "lib/rules/preserve-caught-error.js",
+          "tests/lib/rules/preserve-caught-error.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21084",
+      "pr": {
+        "number": 21084,
+        "mergedAt": "2026-07-16T19:54:42Z",
+        "files": [
+          "tools/test-ecosystem/index.mjs",
+          "tools/test-ecosystem/plugins-data.json"
+        ]
+      }
+    },
+    {
+      "id": "pr21071",
+      "pr": {
+        "number": 21071,
+        "mergedAt": "2026-07-10T09:39:27Z",
+        "files": [
+          "eslint.config.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21074",
+      "pr": {
+        "number": 21074,
+        "mergedAt": "2026-07-09T22:08:12Z",
+        "files": [
+          "tests/lib/config/config-loader.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21065",
+      "pr": {
+        "number": 21065,
+        "mergedAt": "2026-07-09T20:58:10Z",
+        "files": [
+          "lib/config/config-loader.js",
+          "tests/lib/config/config-loader.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21032",
+      "pr": {
+        "number": 21032,
+        "mergedAt": "2026-07-09T15:27:21Z",
+        "files": [
+          "docs/src/rules/preserve-caught-error.md",
+          "lib/rules/preserve-caught-error.js",
+          "lib/types/rules.d.ts",
+          "tests/fixtures/config-rule/schemas.js",
+          "tests/lib/rules/preserve-caught-error.js",
+          "tests/tools/config-rule.js",
+          "tools/config-rule.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21063",
+      "pr": {
+        "number": 21063,
+        "mergedAt": "2026-07-08T22:21:34Z",
+        "files": [
+          "docs/src/rules/max-nested-callbacks.md",
+          "lib/rules/max-nested-callbacks.js",
+          "lib/types/rules.d.ts",
+          "tests/lib/rules/max-nested-callbacks.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21067",
+      "pr": {
+        "number": 21067,
+        "mergedAt": "2026-07-08T10:49:43Z",
+        "files": [
+          ".github/renovate.json5"
+        ]
+      }
+    },
+    {
+      "id": "pr20980",
+      "pr": {
+        "number": 20980,
+        "mergedAt": "2026-07-07T16:14:03Z",
+        "files": [
+          "docs/src/use/migrate-to-10.0.0.md",
+          "docs/src/use/migrate-to-9.0.0.md"
+        ]
+      }
+    },
+    {
+      "id": "pr21058",
+      "pr": {
+        "number": 21058,
+        "mergedAt": "2026-07-05T20:52:44Z",
+        "files": [
+          "lib/rules/eqeqeq.js",
+          "tests/lib/rules/eqeqeq.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21056",
+      "pr": {
+        "number": 21056,
+        "mergedAt": "2026-07-05T15:25:53Z",
+        "files": [
+          ".git-blame-ignore-revs"
+        ]
+      }
+    },
+    {
+      "id": "pr21054",
+      "pr": {
+        "number": 21054,
+        "mergedAt": "2026-07-04T17:12:27Z",
+        "files": [
+          "docs/src/assets/js/css-vars-ponyfill@2.js",
+          "docs/src/assets/js/inert-polyfill.js",
+          "docs/src/extend/custom-rules.md",
+          "docs/src/use/configure/ignore.md",
+          "lib/rules/func-name-matching.js",
+          "lib/rules/generator-star-spacing.js",
+          "lib/rules/indent.js",
+          "lib/rules/key-spacing.js",
+          "lib/rules/no-mixed-spaces-and-tabs.js",
+          "lib/rules/no-promise-executor-return.js",
+          "lib/rules/no-script-url.js",
+          "lib/rules/no-shadow.js",
+          "lib/rules/prefer-object-has-own.js",
+          "lib/rules/preserve-caught-error.js",
+          "lib/rules/utils/ast-utils.js",
+          "lib/types/index.d.ts",
+          "lib/types/rules.d.ts",
+          "package.json",
+          "tests/bench/large.js",
+          "tests/lib/types/types.test.mts"
+        ]
+      }
+    },
+    {
+      "id": "pr21051",
+      "pr": {
+        "number": 21051,
+        "mergedAt": "2026-07-03T15:17:13Z",
+        "files": [
+          "lib/rules/no-invalid-regexp.js",
+          "tests/lib/rules/no-invalid-regexp.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21050",
+      "pr": {
+        "number": 21050,
+        "mergedAt": "2026-07-03T15:07:12Z",
+        "files": [
+          "lib/rules/no-control-regex.js",
+          "tests/lib/rules/no-control-regex.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21045",
+      "pr": {
+        "number": 21045,
+        "mergedAt": "2026-07-03T13:47:56Z",
+        "files": [
+          "lib/rules/no-implicit-coercion.js",
+          "tests/lib/rules/no-implicit-coercion.js"
+        ]
+      }
+    },
+    {
+      "id": "pr21048",
+      "pr": {
+        "number": 21048,
+        "mergedAt": "2026-07-03T13:32:01Z",
+        "files": [
+          "README.md"
+        ]
+      }
+    },
+    {
+      "id": "pr21027",
+      "pr": {
+        "number": 21027,
+        "mergedAt": "2026-07-03T07:37:35Z",
+        "files": [
+          ".github/workflows/ecosystem-tests.yml"
+        ]
+      }
+    }
+  ]
+}

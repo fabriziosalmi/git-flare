@@ -1,0 +1,906 @@
+{
+  "slug": "axios/axios",
+  "since": "2026-02-01",
+  "until": "2026-08-01",
+  "rule": {
+    "keep": 60,
+    "maxFiles": 30,
+    "bots": "excluded",
+    "distinct": true
+  },
+  "mergedInWindow": 300,
+  "short": false,
+  "tasks": [
+    {
+      "id": "pr11094",
+      "pr": {
+        "number": 11094,
+        "mergedAt": "2026-07-30T06:24:05Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "lib/adapters/xhr.js",
+          "lib/core/buildFullPath.js",
+          "lib/helpers/normalizeURLForProtocolCheck.js",
+          "tests/browser/requests.browser.test.js",
+          "tests/unit/adapters/xhr.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11113",
+      "pr": {
+        "number": 11113,
+        "mergedAt": "2026-07-29T18:21:44Z",
+        "files": [
+          "README.md"
+        ]
+      }
+    },
+    {
+      "id": "pr11109",
+      "pr": {
+        "number": 11109,
+        "mergedAt": "2026-07-29T17:58:28Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "lib/core/Axios.js",
+          "tests/unit/core/Axios.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11087",
+      "pr": {
+        "number": 11087,
+        "mergedAt": "2026-07-29T17:39:20Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "lib/core/InterceptorManager.js",
+          "tests/browser/adapter.browser.test.js",
+          "tests/browser/interceptors.browser.test.js",
+          "tests/unit/core/InterceptorManager.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11084",
+      "pr": {
+        "number": 11084,
+        "mergedAt": "2026-07-19T13:22:27Z",
+        "files": [
+          ".github/workflows/publish.yml",
+          "test/specs/formdata.spec.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11083",
+      "pr": {
+        "number": 11083,
+        "mergedAt": "2026-07-19T12:53:03Z",
+        "files": [
+          ".github/workflows/publish.yml"
+        ]
+      }
+    },
+    {
+      "id": "pr11073",
+      "pr": {
+        "number": 11073,
+        "mergedAt": "2026-07-19T11:07:40Z",
+        "files": [
+          "sandbox/server.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11071",
+      "pr": {
+        "number": 11071,
+        "mergedAt": "2026-07-16T18:16:54Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "PRE_RELEASE_DOCS.md",
+          "lib/core/Axios.js",
+          "tests/browser/interceptors.browser.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11067",
+      "pr": {
+        "number": 11067,
+        "mergedAt": "2026-07-15T18:32:21Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "index.d.cts",
+          "index.d.ts",
+          "lib/helpers/HttpStatusCode.js",
+          "tests/module/cjs/tests/helpers/cjs-added-types.ts",
+          "tests/module/esm/tests/helpers/esm-added-types.ts",
+          "tests/unit/helpers/HttpStatusCode.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11062",
+      "pr": {
+        "number": 11062,
+        "mergedAt": "2026-07-15T17:59:36Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "lib/adapters/http.js",
+          "lib/core/setFormDataHeaders.js",
+          "lib/helpers/resolveConfig.js",
+          "tests/unit/adapters/http.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11081",
+      "pr": {
+        "number": 11081,
+        "mergedAt": "2026-07-15T09:58:53Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "PRE_RELEASE_DOCS.md",
+          "index.d.cts",
+          "index.d.ts",
+          "tests/module/cjs/tests/helpers/cjs-added-types.ts",
+          "tests/module/cjs/tests/helpers/cjs-is-cancel-typing.ts",
+          "tests/module/esm/tests/helpers/esm-added-types.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr11061",
+      "pr": {
+        "number": 11061,
+        "mergedAt": "2026-07-14T12:46:14Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "lib/adapters/http.js",
+          "lib/helpers/estimateDataURLDecodedBytes.js",
+          "tests/unit/adapters/fetch.test.js",
+          "tests/unit/adapters/http.test.js",
+          "tests/unit/estimateDataURLDecodedBytes.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11076",
+      "pr": {
+        "number": 11076,
+        "mergedAt": "2026-07-13T19:17:02Z",
+        "files": [
+          "SECURITY.md"
+        ]
+      }
+    },
+    {
+      "id": "pr11078",
+      "pr": {
+        "number": 11078,
+        "mergedAt": "2026-07-13T19:05:13Z",
+        "files": [
+          "docs/pages/advanced/config-defaults.md"
+        ]
+      }
+    },
+    {
+      "id": "pr11059",
+      "pr": {
+        "number": 11059,
+        "mergedAt": "2026-07-13T18:56:05Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "lib/core/AxiosError.js",
+          "tests/unit/core/AxiosError.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11053",
+      "pr": {
+        "number": 11053,
+        "mergedAt": "2026-07-13T15:24:18Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "lib/helpers/shouldBypassProxy.js",
+          "tests/unit/helpers/shouldBypassProxy.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11051",
+      "pr": {
+        "number": 11051,
+        "mergedAt": "2026-07-13T08:17:45Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "PRE_RELEASE_DOCS.md",
+          "index.d.cts",
+          "index.d.ts",
+          "lib/core/AxiosHeaders.js",
+          "tests/module/cjs/tests/helpers/cjs-added-types.ts",
+          "tests/module/cjs/tests/helpers/ts-require-default.ts",
+          "tests/module/cjs/tests/helpers/ts-require.ts",
+          "tests/module/esm/tests/helpers/esm-added-types.ts",
+          "tests/module/esm/tests/helpers/esm-functions.ts",
+          "tests/unit/axiosHeaders.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11068",
+      "pr": {
+        "number": 11068,
+        "mergedAt": "2026-07-06T08:22:00Z",
+        "files": [
+          "README.md",
+          "docs/es/pages/advanced/request-config.md",
+          "docs/es/pages/misc/security.md",
+          "docs/fr/pages/advanced/request-config.md",
+          "docs/fr/pages/misc/security.md",
+          "docs/pages/advanced/request-config.md",
+          "docs/pages/misc/security.md",
+          "docs/zh/pages/advanced/request-config.md",
+          "docs/zh/pages/misc/security.md"
+        ]
+      }
+    },
+    {
+      "id": "pr11044",
+      "pr": {
+        "number": 11044,
+        "mergedAt": "2026-07-01T18:47:22Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "lib/utils.js",
+          "tests/unit/core/AxiosError.test.js",
+          "tests/unit/utils.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11043",
+      "pr": {
+        "number": 11043,
+        "mergedAt": "2026-07-01T18:27:33Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "PRE_RELEASE_DOCS.md",
+          "lib/core/mergeConfig.js",
+          "tests/unit/core/mergeConfig.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11040",
+      "pr": {
+        "number": 11040,
+        "mergedAt": "2026-07-01T18:04:50Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "lib/adapters/http.js",
+          "lib/helpers/progressEventReducer.js",
+          "tests/unit/adapters/http.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11039",
+      "pr": {
+        "number": 11039,
+        "mergedAt": "2026-07-01T17:49:57Z",
+        "files": [
+          "lib/helpers/progressEventReducer.js",
+          "tests/unit/helpers/progressEventReducer.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11038",
+      "pr": {
+        "number": 11038,
+        "mergedAt": "2026-07-01T17:38:48Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "lib/helpers/combineURLs.js",
+          "tests/unit/core/buildFullPath.test.js",
+          "tests/unit/helpers/combineURLs.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11058",
+      "pr": {
+        "number": 11058,
+        "mergedAt": "2026-07-01T17:30:24Z",
+        "files": [
+          "package-lock.json",
+          "package.json",
+          "tests/module/esm/package.json",
+          "tests/smoke/esm/package.json"
+        ]
+      }
+    },
+    {
+      "id": "pr11054",
+      "pr": {
+        "number": 11054,
+        "mergedAt": "2026-06-30T19:07:35Z",
+        "files": [
+          "package.json",
+          "rollup.config.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11037",
+      "pr": {
+        "number": 11037,
+        "mergedAt": "2026-06-29T18:27:19Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "lib/core/AxiosHeaders.js",
+          "tests/unit/axiosHeaders.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11036",
+      "pr": {
+        "number": 11036,
+        "mergedAt": "2026-06-29T17:59:27Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "lib/helpers/parseHeaders.js",
+          "tests/unit/helpers/parseHeaders.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11035",
+      "pr": {
+        "number": 11035,
+        "mergedAt": "2026-06-29T17:36:21Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "lib/helpers/composeSignals.js",
+          "tests/unit/composeSignals.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11024",
+      "pr": {
+        "number": 11024,
+        "mergedAt": "2026-06-28T19:48:09Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "PRE_RELEASE_DOCS.md",
+          "lib/core/AxiosError.js",
+          "lib/core/buildFullPath.js",
+          "tests/browser/requests.browser.test.js",
+          "tests/unit/adapters/fetch.test.js",
+          "tests/unit/adapters/http.test.js",
+          "tests/unit/core/buildFullPath.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11018",
+      "pr": {
+        "number": 11018,
+        "mergedAt": "2026-06-25T18:59:21Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "lib/helpers/toFormData.js",
+          "lib/platform/node/classes/Buffer.js",
+          "package.json",
+          "tests/browser/toFormData.browser.test.js",
+          "tests/unit/toFormData.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11006",
+      "pr": {
+        "number": 11006,
+        "mergedAt": "2026-06-25T18:37:08Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "PRE_RELEASE_DOCS.md",
+          "lib/helpers/formDataToJSON.js",
+          "tests/unit/helpers/formDataToJSON.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11033",
+      "pr": {
+        "number": 11033,
+        "mergedAt": "2026-06-23T17:12:03Z",
+        "files": [
+          ".gitignore"
+        ]
+      }
+    },
+    {
+      "id": "pr11028",
+      "pr": {
+        "number": 11028,
+        "mergedAt": "2026-06-22T18:28:56Z",
+        "files": [
+          "package.json"
+        ]
+      }
+    },
+    {
+      "id": "pr11025",
+      "pr": {
+        "number": 11025,
+        "mergedAt": "2026-06-19T08:14:26Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "PRE_RELEASE_DOCS.md",
+          "README.md",
+          "docs/es/pages/advanced/config-defaults.md",
+          "docs/es/pages/advanced/request-config.md",
+          "docs/fr/pages/advanced/config-defaults.md",
+          "docs/fr/pages/advanced/request-config.md",
+          "docs/pages/advanced/config-defaults.md",
+          "docs/pages/advanced/request-config.md",
+          "docs/zh/pages/advanced/config-defaults.md",
+          "docs/zh/pages/advanced/request-config.md"
+        ]
+      }
+    },
+    {
+      "id": "pr11019",
+      "pr": {
+        "number": 11019,
+        "mergedAt": "2026-06-18T19:20:06Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "lib/helpers/AxiosURLSearchParams.js",
+          "tests/unit/helpers/AxiosURLSearchParams.test.js",
+          "tests/unit/helpers/buildURL.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11021",
+      "pr": {
+        "number": 11021,
+        "mergedAt": "2026-06-17T19:24:26Z",
+        "files": [
+          "lib/adapters/http.js",
+          "tests/unit/adapters/http.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr10959",
+      "pr": {
+        "number": 10959,
+        "mergedAt": "2026-06-17T18:33:41Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "PRE_RELEASE_DOCS.md",
+          "index.d.cts",
+          "index.d.ts",
+          "lib/adapters/adapters.js",
+          "lib/adapters/http.js",
+          "lib/adapters/xhr.js",
+          "lib/core/mergeConfig.js",
+          "lib/helpers/buildURL.js",
+          "lib/helpers/composeSignals.js",
+          "lib/helpers/cookies.js",
+          "lib/helpers/fromDataURI.js",
+          "lib/helpers/resolveConfig.js",
+          "lib/helpers/toFormData.js",
+          "lib/helpers/validator.js",
+          "tests/browser/cookies.browser.test.js",
+          "tests/browser/requests.browser.test.js",
+          "tests/module/cjs/tests/helpers/cjs-added-types.ts",
+          "tests/module/cjs/tests/typings.module.test.cjs",
+          "tests/module/esm/tests/helpers/esm-added-types.ts",
+          "tests/module/esm/tests/typings.module.test.js",
+          "tests/unit/adapters/adapters.test.js",
+          "tests/unit/adapters/http.test.js",
+          "tests/unit/core/mergeConfig.test.js",
+          "tests/unit/fromDataURI.test.js",
+          "tests/unit/helpers/buildURL.test.js",
+          "tests/unit/helpers/composeSignals.test.js",
+          "tests/unit/helpers/resolveConfig.test.js",
+          "tests/unit/helpers/validator.test.js",
+          "tests/unit/toFormData.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr10942",
+      "pr": {
+        "number": 10942,
+        "mergedAt": "2026-06-17T16:56:57Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "PRE_RELEASE_DOCS.md",
+          "lib/adapters/http.js",
+          "tests/unit/adapters/http.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr10930",
+      "pr": {
+        "number": 10930,
+        "mergedAt": "2026-06-16T18:23:13Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "lib/adapters/http.js",
+          "tests/unit/adapters/http.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11010",
+      "pr": {
+        "number": 11010,
+        "mergedAt": "2026-06-15T12:11:16Z",
+        "files": [
+          "CHANGELOG.md",
+          "PRE_RELEASE_CHANGELOG.md",
+          "PRE_RELEASE_DOCS.md",
+          "package.json"
+        ]
+      }
+    },
+    {
+      "id": "pr10913",
+      "pr": {
+        "number": 10913,
+        "mergedAt": "2026-06-14T18:34:36Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "lib/adapters/fetch.js",
+          "lib/core/AxiosError.js",
+          "tests/unit/adapters/fetch.test.js",
+          "tests/unit/core/AxiosError.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11007",
+      "pr": {
+        "number": 11007,
+        "mergedAt": "2026-06-14T18:07:56Z",
+        "files": [
+          "PRE_RELEASE_DOCS.md",
+          "README.md",
+          "docs/es/pages/advanced/request-config.md",
+          "docs/es/pages/misc/security.md",
+          "docs/fr/pages/advanced/request-config.md",
+          "docs/fr/pages/misc/security.md",
+          "docs/pages/advanced/request-config.md",
+          "docs/pages/misc/security.md",
+          "docs/zh/pages/advanced/request-config.md",
+          "docs/zh/pages/misc/security.md"
+        ]
+      }
+    },
+    {
+      "id": "pr11001",
+      "pr": {
+        "number": 11001,
+        "mergedAt": "2026-06-11T18:16:42Z",
+        "files": [
+          "lib/adapters/http.js",
+          "lib/adapters/xhr.js",
+          "lib/core/Axios.js",
+          "lib/helpers/buildURL.js",
+          "lib/helpers/formDataToJSON.js",
+          "lib/helpers/shouldBypassProxy.js",
+          "lib/helpers/toFormData.js",
+          "test/specs/__helpers.js",
+          "test/unit/adapters/http.js",
+          "test/unit/core/prototypePollution.js",
+          "test/unit/helpers/buildURL.js",
+          "test/unit/helpers/formDataToJSON.js",
+          "test/unit/helpers/shouldBypassProxy.js",
+          "test/unit/helpers/toFormData.js"
+        ]
+      }
+    },
+    {
+      "id": "pr11000",
+      "pr": {
+        "number": 11000,
+        "mergedAt": "2026-06-11T06:36:48Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "PRE_RELEASE_DOCS.md",
+          "lib/adapters/fetch.js",
+          "lib/adapters/http.js",
+          "lib/core/Axios.js",
+          "lib/core/AxiosHeaders.js",
+          "lib/core/buildFullPath.js",
+          "lib/helpers/buildURL.js",
+          "lib/helpers/estimateDataURLDecodedBytes.js",
+          "lib/helpers/formDataToJSON.js",
+          "lib/helpers/resolveConfig.js",
+          "lib/helpers/shouldBypassProxy.js",
+          "lib/helpers/toFormData.js",
+          "lib/utils.js",
+          "tests/browser/basicAuth.browser.test.js",
+          "tests/browser/requests.browser.test.js",
+          "tests/unit/adapters/fetch.test.js",
+          "tests/unit/adapters/http.test.js",
+          "tests/unit/api.test.js",
+          "tests/unit/axiosHeaders.test.js",
+          "tests/unit/core/buildFullPath.test.js",
+          "tests/unit/core/dispatchRequest.test.js",
+          "tests/unit/estimateDataURLDecodedBytes.test.js",
+          "tests/unit/helpers/buildURL.test.js",
+          "tests/unit/helpers/formDataToJSON.test.js",
+          "tests/unit/helpers/resolveConfig.test.js",
+          "tests/unit/helpers/shouldBypassProxy.test.js",
+          "tests/unit/toFormData.test.js",
+          "tests/unit/utils/isX.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr10995",
+      "pr": {
+        "number": 10995,
+        "mergedAt": "2026-06-09T11:59:48Z",
+        "files": [
+          "docs/pages/advanced/request-config.md"
+        ]
+      }
+    },
+    {
+      "id": "pr10992",
+      "pr": {
+        "number": 10992,
+        "mergedAt": "2026-06-05T06:13:24Z",
+        "files": [
+          ".github/PULL_REQUEST_TEMPLATE.md",
+          ".github/copilot-instructions.md",
+          ".github/dependabot.yml",
+          "AGENTS.md",
+          "COLLABORATOR_GUIDE.md",
+          "CONTRIBUTING.md",
+          "THREATMODEL.md"
+        ]
+      }
+    },
+    {
+      "id": "pr10899",
+      "pr": {
+        "number": 10899,
+        "mergedAt": "2026-06-03T18:09:06Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "PRE_RELEASE_DOCS.md",
+          "index.d.cts",
+          "index.d.ts",
+          "lib/core/Axios.js",
+          "lib/core/mergeConfig.js",
+          "lib/defaults/transitional.js",
+          "tests/browser/requests.browser.test.js",
+          "tests/unit/core/mergeConfig.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr10988",
+      "pr": {
+        "number": 10988,
+        "mergedAt": "2026-06-03T17:30:19Z",
+        "files": [
+          ".github/copilot-instructions.md",
+          "AGENTS.md",
+          "CHANGELOG.md",
+          "PRE_RELEASE_CHANGELOG.md",
+          "PRE_RELEASE_DOCS.md",
+          "README.md",
+          "docs/es/pages/advanced/api-reference.md",
+          "docs/es/pages/advanced/fetch-adapter.md",
+          "docs/es/pages/advanced/header-methods.md",
+          "docs/es/pages/advanced/multipart-form-data-format.md",
+          "docs/es/pages/advanced/request-config.md",
+          "docs/es/pages/advanced/type-script.md",
+          "docs/fr/pages/advanced/api-reference.md",
+          "docs/fr/pages/advanced/fetch-adapter.md",
+          "docs/fr/pages/advanced/header-methods.md",
+          "docs/fr/pages/advanced/multipart-form-data-format.md",
+          "docs/fr/pages/advanced/request-config.md",
+          "docs/fr/pages/advanced/type-script.md",
+          "docs/pages/advanced/api-reference.md",
+          "docs/pages/advanced/fetch-adapter.md",
+          "docs/pages/advanced/header-methods.md",
+          "docs/pages/advanced/multipart-form-data-format.md",
+          "docs/pages/advanced/request-config.md",
+          "docs/pages/advanced/type-script.md",
+          "docs/zh/pages/advanced/api-reference.md",
+          "docs/zh/pages/advanced/fetch-adapter.md",
+          "docs/zh/pages/advanced/header-methods.md",
+          "docs/zh/pages/advanced/multipart-form-data-format.md",
+          "docs/zh/pages/advanced/request-config.md",
+          "docs/zh/pages/advanced/type-script.md"
+        ]
+      }
+    },
+    {
+      "id": "pr10892",
+      "pr": {
+        "number": 10892,
+        "mergedAt": "2026-06-03T08:05:51Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "README.md",
+          "THREATMODEL.md",
+          "index.d.cts",
+          "index.d.ts",
+          "lib/adapters/http.js",
+          "tests/unit/adapters/http.test.js",
+          "tests/unit/prototypePollution.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr10984",
+      "pr": {
+        "number": 10984,
+        "mergedAt": "2026-06-03T07:00:00Z",
+        "files": [
+          "CHANGELOG.md"
+        ]
+      }
+    },
+    {
+      "id": "pr10896",
+      "pr": {
+        "number": 10896,
+        "mergedAt": "2026-06-01T16:12:55Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "lib/adapters/fetch.js",
+          "lib/adapters/http.js",
+          "tests/unit/adapters/fetch.test.js",
+          "tests/unit/adapters/http.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr10931",
+      "pr": {
+        "number": 10931,
+        "mergedAt": "2026-06-01T15:47:03Z",
+        "files": [
+          "scripts/axios-build-instance.js"
+        ]
+      }
+    },
+    {
+      "id": "pr10958",
+      "pr": {
+        "number": 10958,
+        "mergedAt": "2026-05-28T19:11:42Z",
+        "files": [
+          ".claude/commands/opsx/apply.md",
+          ".claude/commands/opsx/archive.md",
+          ".claude/commands/opsx/explore.md",
+          ".claude/commands/opsx/propose.md",
+          ".claude/skills/openspec-apply-change/SKILL.md",
+          ".claude/skills/openspec-archive-change/SKILL.md",
+          ".claude/skills/openspec-explore/SKILL.md",
+          ".claude/skills/openspec-propose/SKILL.md",
+          ".github/ISSUE_TEMPLATE.md",
+          ".github/PULL_REQUEST_TEMPLATE.md",
+          ".opencode/commands/opsx-apply.md",
+          ".opencode/commands/opsx-archive.md",
+          ".opencode/commands/opsx-explore.md",
+          ".opencode/commands/opsx-propose.md",
+          ".opencode/skills/openspec-apply-change/SKILL.md",
+          ".opencode/skills/openspec-archive-change/SKILL.md",
+          ".opencode/skills/openspec-explore/SKILL.md",
+          ".opencode/skills/openspec-propose/SKILL.md",
+          "openspec/config.yaml"
+        ]
+      }
+    },
+    {
+      "id": "pr10952",
+      "pr": {
+        "number": 10952,
+        "mergedAt": "2026-05-28T17:38:31Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "index.d.cts",
+          "tests/module/cjs/tests/helpers/cjs-is-cancel-typing.ts",
+          "tests/module/cjs/tests/typings.module.test.cjs"
+        ]
+      }
+    },
+    {
+      "id": "pr10956",
+      "pr": {
+        "number": 10956,
+        "mergedAt": "2026-05-28T16:55:27Z",
+        "files": [
+          "README.md",
+          "index.d.cts",
+          "index.d.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr10922",
+      "pr": {
+        "number": 10922,
+        "mergedAt": "2026-05-26T19:09:04Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "index.d.cts",
+          "lib/adapters/http.js",
+          "lib/core/AxiosHeaders.js",
+          "lib/helpers/buildURL.js",
+          "lib/helpers/formDataToStream.js",
+          "lib/helpers/resolveConfig.js",
+          "lib/helpers/toFormData.js",
+          "tests/unit/prototypePollution.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr10945",
+      "pr": {
+        "number": 10945,
+        "mergedAt": "2026-05-26T06:41:30Z",
+        "files": [
+          "THREATMODEL.md"
+        ]
+      }
+    },
+    {
+      "id": "pr10898",
+      "pr": {
+        "number": 10898,
+        "mergedAt": "2026-05-24T13:39:00Z",
+        "files": [
+          "PRE_RELEASE_CHANGELOG.md",
+          "lib/helpers/resolveConfig.js",
+          "tests/unit/core/dispatchRequest.test.js",
+          "tests/unit/helpers/resolveConfig.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr10891",
+      "pr": {
+        "number": 10891,
+        "mergedAt": "2026-05-24T13:04:26Z",
+        "files": [
+          "lib/helpers/resolveConfig.js"
+        ]
+      }
+    },
+    {
+      "id": "pr10905",
+      "pr": {
+        "number": 10905,
+        "mergedAt": "2026-05-24T11:33:33Z",
+        "files": [
+          "docs/pages/advanced/error-handling.md",
+          "docs/pages/advanced/request-config.md",
+          "docs/pages/advanced/x-www-form-urlencoded-format.md"
+        ]
+      }
+    }
+  ]
+}

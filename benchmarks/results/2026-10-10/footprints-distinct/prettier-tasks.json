@@ -1,0 +1,863 @@
+{
+  "slug": "prettier/prettier",
+  "since": "2026-02-01",
+  "until": "2026-08-01",
+  "rule": {
+    "keep": 60,
+    "maxFiles": 30,
+    "bots": "excluded",
+    "distinct": true
+  },
+  "mergedInWindow": 300,
+  "short": false,
+  "tasks": [
+    {
+      "id": "pr19759",
+      "pr": {
+        "number": 19759,
+        "mergedAt": "2026-07-31T10:27:44Z",
+        "files": [
+          "tests/format/js/bind-expressions/__snapshots__/format.test.js.snap",
+          "tests/format/js/bind-expressions/format.test.js",
+          "tests/format/js/bind-expressions/no-semi/__snapshots__/format.test.js.snap",
+          "tests/format/js/bind-expressions/no-semi/format.test.js",
+          "tests/format/js/bind-expressions/no-semi/no-semi.js",
+          "tests/format/js/no-semi/__snapshots__/format.test.js.snap",
+          "tests/format/js/no-semi/class-2.js"
+        ]
+      }
+    },
+    {
+      "id": "pr19757",
+      "pr": {
+        "number": 19757,
+        "mergedAt": "2026-07-30T12:42:35Z",
+        "files": [
+          ".gitattributes"
+        ]
+      }
+    },
+    {
+      "id": "pr19698",
+      "pr": {
+        "number": 19698,
+        "mergedAt": "2026-07-30T03:22:47Z",
+        "files": [
+          "src/language-js/comments/handle-comments.js",
+          "src/language-js/print/flow.js",
+          "src/language-js/print/mapped-type.js",
+          "tests/format/flow/comments/__snapshots__/format.test.js.snap",
+          "tests/format/flow/comments/object_type_indexer.js",
+          "tests/format/flow/internal-slot/__snapshots__/format.test.js.snap",
+          "tests/format/flow/internal-slot/comments.js",
+          "tests/format/flow/mapped-types/__snapshots__/format.test.js.snap",
+          "tests/format/flow/mapped-types/comments.js",
+          "tests/format/typescript/mapped-type/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/mapped-type/comments.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr19749",
+      "pr": {
+        "number": 19749,
+        "mergedAt": "2026-07-29T14:39:33Z",
+        "files": [
+          "tests/config/format-test/failed-format-tests.js",
+          "tests/format/typescript/compiler/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/compiler/format.test.js",
+          "tests/format/typescript/conformance/internalModules/importDeclarations/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/conformance/internalModules/importDeclarations/format.test.js",
+          "tests/format/typescript/conformance/types/ambient/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/conformance/types/ambient/format.test.js",
+          "tests/format/typescript/conformance/types/moduleDeclaration/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/conformance/types/moduleDeclaration/format.test.js",
+          "tests/format/typescript/const/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/const/format.test.js",
+          "tests/format/typescript/custom/stability/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/custom/stability/format.test.js",
+          "tests/format/typescript/custom/stability/module-block.ts",
+          "tests/format/typescript/interface2/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/interface2/format.test.js",
+          "tests/format/typescript/keywords/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/keywords/format.test.js",
+          "tests/format/typescript/module/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/module/format.test.js",
+          "tests/format/typescript/module/module-nested.ts",
+          "tests/format/typescript/module/namespace-function.ts",
+          "tests/format/typescript/module/namespace-nested.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr19721",
+      "pr": {
+        "number": 19721,
+        "mergedAt": "2026-07-29T14:10:21Z",
+        "files": [
+          ".yarnrc.yml",
+          "package.json",
+          "scripts/build/packages/prettier.js",
+          "scripts/build/transform/index.js",
+          "tests/config/format-test/failed-format-tests.js",
+          "tests/config/install-prettier.js",
+          "tests/format/js/_errors_/deferred-import-evaluation/__snapshots__/format.test.js.snap",
+          "tests/format/js/babel-plugins/__snapshots__/format.test.js.snap",
+          "tests/format/js/babel-plugins/format.test.js",
+          "tests/format/js/deferred-import-evaluation/__snapshots__/format.test.js.snap",
+          "tests/format/js/deferred-import-evaluation/format.test.js",
+          "tests/format/js/dynamic-import/__snapshots__/format.test.js.snap",
+          "tests/format/js/dynamic-import/format.test.js",
+          "tests/format/js/import/long-module-name/__snapshots__/format.test.js.snap",
+          "tests/format/js/import/long-module-name/format.test.js",
+          "tests/format/js/source-phase-imports/__snapshots__/format.test.js.snap",
+          "tests/format/js/source-phase-imports/format.test.js",
+          "yarn.lock"
+        ]
+      }
+    },
+    {
+      "id": "pr19747",
+      "pr": {
+        "number": 19747,
+        "mergedAt": "2026-07-29T02:14:17Z",
+        "files": [
+          "src/language-css/printer-postcss.js",
+          "src/language-css/utilities/index.js"
+        ]
+      }
+    },
+    {
+      "id": "pr19738",
+      "pr": {
+        "number": 19738,
+        "mergedAt": "2026-07-28T03:07:34Z",
+        "files": [
+          "changelog_unreleased/css/19738.md",
+          "src/language-css/printer-postcss.js",
+          "tests/format/css/combinator/__snapshots__/format.test.js.snap",
+          "tests/format/css/combinator/an-plus-b.css"
+        ]
+      }
+    },
+    {
+      "id": "pr19719",
+      "pr": {
+        "number": 19719,
+        "mergedAt": "2026-07-28T02:30:29Z",
+        "files": [
+          "docs/options.md",
+          "website/versioned_docs/version-stable/options.md"
+        ]
+      }
+    },
+    {
+      "id": "pr19739",
+      "pr": {
+        "number": 19739,
+        "mergedAt": "2026-07-28T02:29:52Z",
+        "files": [
+          "changelog_unreleased/markdown/19739.md",
+          "src/language-markdown/parse/parse-markdown.js",
+          "tests/format/markdown/delete/__snapshots__/format.test.js.snap",
+          "tests/format/markdown/delete/single-tilde.md",
+          "tests/format/markdown/gfm-test-suite/__snapshots__/format.test.js.snap"
+        ]
+      }
+    },
+    {
+      "id": "pr19732",
+      "pr": {
+        "number": 19732,
+        "mergedAt": "2026-07-27T02:17:57Z",
+        "files": [
+          ".codecov.yml"
+        ]
+      }
+    },
+    {
+      "id": "pr19729",
+      "pr": {
+        "number": 19729,
+        "mergedAt": "2026-07-26T17:07:07Z",
+        "files": [
+          "scripts/build/shims/method-is-well-formed.js"
+        ]
+      }
+    },
+    {
+      "id": "pr19725",
+      "pr": {
+        "number": 19725,
+        "mergedAt": "2026-07-26T08:35:22Z",
+        "files": [
+          "changelog_unreleased/javascript/19725.md",
+          "src/language-js/embed/css.js",
+          "src/language-js/embed/graphql.js",
+          "src/language-js/embed/html.js",
+          "src/language-js/print/template-literal.js",
+          "tests/config/format-test/failed-format-tests.js",
+          "tests/format/js/embeded/indention/19518.js",
+          "tests/format/js/embeded/indention/__snapshots__/format.test.js.snap",
+          "tests/format/js/embeded/indention/format.test.js",
+          "tests/format/js/embeded/indention/indention-2.js",
+          "tests/format/js/embeded/indention/indention.js",
+          "tests/format/js/multiparser-comments/__snapshots__/format.test.js.snap",
+          "tests/format/jsx/template/__snapshots__/format.test.js.snap"
+        ]
+      }
+    },
+    {
+      "id": "pr19718",
+      "pr": {
+        "number": 19718,
+        "mergedAt": "2026-07-25T04:52:52Z",
+        "files": [
+          "docs/related-projects.md",
+          "website/versioned_docs/version-stable/related-projects.md"
+        ]
+      }
+    },
+    {
+      "id": "pr19708",
+      "pr": {
+        "number": 19708,
+        "mergedAt": "2026-07-25T04:42:40Z",
+        "files": [
+          "docs/plugins.md",
+          "website/versioned_docs/version-stable/plugins.md"
+        ]
+      }
+    },
+    {
+      "id": "pr19709",
+      "pr": {
+        "number": 19709,
+        "mergedAt": "2026-07-25T00:08:13Z",
+        "files": [
+          "changelog_unreleased/html/19709.md",
+          "jest.config.js",
+          "src/language-html/parse/postprocess.js",
+          "tests/format/html/attributes/lowercase/__snapshots__/format.test.js.snap",
+          "tests/format/html/attributes/lowercase/format.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr19707",
+      "pr": {
+        "number": 19707,
+        "mergedAt": "2026-07-24T22:35:22Z",
+        "files": [
+          "package.json",
+          "src/language-html/parse/postprocess.js",
+          "src/language-html/utilities/html-elements-attributes.evaluate.js",
+          "tests/unit/__snapshots__/html-elements.js.snap",
+          "tests/unit/html-elements.js",
+          "yarn.lock"
+        ]
+      }
+    },
+    {
+      "id": "pr19696",
+      "pr": {
+        "number": 19696,
+        "mergedAt": "2026-07-24T01:49:49Z",
+        "files": [
+          "src/language-markdown/acorn/dummy-parser.js",
+          "tests/format/mdx/import-export/__snapshots__/format.test.js.snap",
+          "tests/format/mdx/import-export/issue-13934.mdx",
+          "tests/format/mdx/import-export/issue-16241.mdx",
+          "tests/format/mdx/import-export/issue-17906.mdx",
+          "tests/format/mdx/import-export/unterminated-comment.mdx"
+        ]
+      }
+    },
+    {
+      "id": "pr19702",
+      "pr": {
+        "number": 19702,
+        "mergedAt": "2026-07-24T01:12:15Z",
+        "files": [
+          "package.json",
+          "tests/format/js/babel-plugins/__snapshots__/format.test.js.snap",
+          "tests/format/js/babel-plugins/format.test.js",
+          "tests/format/js/explicit-resource-management/__snapshots__/format.test.js.snap",
+          "tests/format/js/explicit-resource-management/format.test.js",
+          "tests/format/js/optional-chaining-assignment/__snapshots__/format.test.js.snap",
+          "tests/format/js/optional-chaining-assignment/format.test.js",
+          "yarn.lock"
+        ]
+      }
+    },
+    {
+      "id": "pr19697",
+      "pr": {
+        "number": 19697,
+        "mergedAt": "2026-07-24T00:51:20Z",
+        "files": [
+          ".github/workflows/prod-test.yml",
+          "bin/prettier.cjs",
+          "eslint.config.js",
+          "package.json",
+          "scripts/build/packages/prettier.js",
+          "tests/integration/__tests__/node-version-check.js",
+          "tests/integration/cli-worker.js",
+          "yarn.lock"
+        ]
+      }
+    },
+    {
+      "id": "pr19694",
+      "pr": {
+        "number": 19694,
+        "mergedAt": "2026-07-23T06:22:25Z",
+        "files": [
+          ".github/renovate.json5"
+        ]
+      }
+    },
+    {
+      "id": "pr19691",
+      "pr": {
+        "number": 19691,
+        "mergedAt": "2026-07-23T02:52:09Z",
+        "files": [
+          "docs/editors.md",
+          "website/versioned_docs/version-stable/editors.md"
+        ]
+      }
+    },
+    {
+      "id": "pr19690",
+      "pr": {
+        "number": 19690,
+        "mergedAt": "2026-07-22T12:29:32Z",
+        "files": [
+          "src/language-css/print/css-declaration.js",
+          "src/language-css/printer-postcss.js"
+        ]
+      }
+    },
+    {
+      "id": "pr19688",
+      "pr": {
+        "number": 19688,
+        "mergedAt": "2026-07-22T10:10:37Z",
+        "files": [
+          "changelog_unreleased/typescript/19688.md",
+          "src/language-js/print/flow.js",
+          "src/language-js/print/index-signature.js",
+          "src/language-js/print/typescript.js",
+          "tests/format/typescript/index-signature/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/index-signature/comment.ts",
+          "tests/format/typescript/property-signature/consistent-with-flow/__snapshots__/format.test.js.snap"
+        ]
+      }
+    },
+    {
+      "id": "pr19687",
+      "pr": {
+        "number": 19687,
+        "mergedAt": "2026-07-22T01:46:33Z",
+        "files": [
+          "changelog_unreleased/scss/19687.md",
+          "src/language-css/print/comma-separated-value-group.js",
+          "tests/format/scss/atrule/__snapshots__/format.test.js.snap",
+          "tests/format/scss/atrule/if-else.scss"
+        ]
+      }
+    },
+    {
+      "id": "pr19630",
+      "pr": {
+        "number": 19630,
+        "mergedAt": "2026-07-22T01:37:03Z",
+        "files": [
+          "src/language-js/comments/handle-comments.js",
+          "tests/format/typescript/property-signature/consistent-with-flow/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/property-signature/consistent-with-flow/comments.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr19686",
+      "pr": {
+        "number": 19686,
+        "mergedAt": "2026-07-22T01:31:56Z",
+        "files": [
+          "scripts/build/hacks/build-oxc-wasm-parser.js",
+          "scripts/build/packages/plugin-yuku.js"
+        ]
+      }
+    },
+    {
+      "id": "pr19671",
+      "pr": {
+        "number": 19671,
+        "mergedAt": "2026-07-19T02:25:41Z",
+        "files": [
+          "scripts/build/builders/dependencies-license.js"
+        ]
+      }
+    },
+    {
+      "id": "pr19599",
+      "pr": {
+        "number": 19599,
+        "mergedAt": "2026-07-19T02:20:39Z",
+        "files": [
+          "changelog_unreleased/yaml/19599.md",
+          "src/language-yaml/printer-yaml.js",
+          "tests/format/yaml/spec/__snapshots__/format.test.js.snap",
+          "tests/format/yaml/yaml-test-suite/__snapshots__/format.test.js.snap"
+        ]
+      }
+    },
+    {
+      "id": "pr19345",
+      "pr": {
+        "number": 19345,
+        "mergedAt": "2026-07-19T02:18:37Z",
+        "files": [
+          "changelog_unreleased/javascript/19345.md",
+          "src/language-js/comments/handle-comments.js",
+          "tests/config/format-test/failed-format-tests.js",
+          "tests/format/js/comments/__snapshots__/format.test.js.snap",
+          "tests/format/js/comments/tagged-template-literal.js",
+          "tests/format/js/multiparser-comments/__snapshots__/format.test.js.snap"
+        ]
+      }
+    },
+    {
+      "id": "pr19665",
+      "pr": {
+        "number": 19665,
+        "mergedAt": "2026-07-18T06:40:45Z",
+        "files": [
+          "cspell.json",
+          "docs/plugins.md",
+          "website/versioned_docs/version-stable/plugins.md"
+        ]
+      }
+    },
+    {
+      "id": "pr19667",
+      "pr": {
+        "number": 19667,
+        "mergedAt": "2026-07-18T06:01:25Z",
+        "files": [
+          "docs/configuration.md"
+        ]
+      }
+    },
+    {
+      "id": "pr19666",
+      "pr": {
+        "number": 19666,
+        "mergedAt": "2026-07-18T05:44:41Z",
+        "files": [
+          "packages/plugin-hermes/README.md",
+          "packages/plugin-oxc/README.md",
+          "packages/plugin-yuku/README.md"
+        ]
+      }
+    },
+    {
+      "id": "pr19663",
+      "pr": {
+        "number": 19663,
+        "mergedAt": "2026-07-18T03:55:50Z",
+        "files": [
+          "package.json",
+          "yarn.lock"
+        ]
+      }
+    },
+    {
+      "id": "pr19652",
+      "pr": {
+        "number": 19652,
+        "mergedAt": "2026-07-17T05:52:03Z",
+        "files": [
+          "changelog_unreleased/javascript/19652.md",
+          "src/language-js/comments/handle-comments.js",
+          "tests/format/js/comments-closure-typecast/__snapshots__/format.test.js.snap",
+          "tests/format/js/comments-closure-typecast/nullish-coalescing.js",
+          "tests/format/js/nullish-coalescing/__snapshots__/format.test.js.snap",
+          "tests/format/js/nullish-coalescing/comments.js",
+          "tests/format/js/nullish-coalescing/nullish-coalesing-operator.js"
+        ]
+      }
+    },
+    {
+      "id": "pr19647",
+      "pr": {
+        "number": 19647,
+        "mergedAt": "2026-07-17T05:51:31Z",
+        "files": [
+          "changelog_unreleased/markdown/19647.md",
+          "src/language-markdown/print/list.js",
+          "tests/format/markdown/list/__snapshots__/format.test.js.snap",
+          "tests/format/markdown/list/issue-19644.md"
+        ]
+      }
+    },
+    {
+      "id": "pr19624",
+      "pr": {
+        "number": 19624,
+        "mergedAt": "2026-07-17T02:27:52Z",
+        "files": [
+          "changelog_unreleased/typescript/19624.md",
+          "package.json",
+          "tests/format/typescript/typescript-only/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/typescript-only/decorator-auto-accessors-abstract-class.ts",
+          "yarn.lock"
+        ]
+      }
+    },
+    {
+      "id": "pr19641",
+      "pr": {
+        "number": 19641,
+        "mergedAt": "2026-07-15T16:15:22Z",
+        "files": [
+          "scripts/lint-changelog.js"
+        ]
+      }
+    },
+    {
+      "id": "pr19640",
+      "pr": {
+        "number": 19640,
+        "mergedAt": "2026-07-15T16:08:43Z",
+        "files": [
+          "website/playground/panel/language.js"
+        ]
+      }
+    },
+    {
+      "id": "pr19639",
+      "pr": {
+        "number": 19639,
+        "mergedAt": "2026-07-15T16:05:50Z",
+        "files": [
+          "website/blog/2026-06-27-3.9.0.md"
+        ]
+      }
+    },
+    {
+      "id": "pr19638",
+      "pr": {
+        "number": 19638,
+        "mergedAt": "2026-07-15T15:58:35Z",
+        "files": [
+          "docs/browser.md",
+          "website/versioned_docs/version-stable/browser.md"
+        ]
+      }
+    },
+    {
+      "id": "pr19636",
+      "pr": {
+        "number": 19636,
+        "mergedAt": "2026-07-15T15:14:34Z",
+        "files": [
+          "tests/config/format-test/failed-format-tests.js",
+          "tests/format/js/await/__snapshots__/format.test.js.snap",
+          "tests/format/js/await/await-with-parens.js",
+          "tests/format/js/await/format.test.js",
+          "tests/format/js/await/like-call.js",
+          "tests/format/typescript/decorator-auto-accessors/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/decorator-auto-accessors/decorator-auto-accessors-abstract-class.ts",
+          "tests/format/typescript/decorator-auto-accessors/decorator-auto-accessors-declare-class.ts",
+          "tests/format/typescript/decorator-auto-accessors/decorator-auto-accessors-mixed-modifiers.ts",
+          "tests/format/typescript/decorator-auto-accessors/format.test.js",
+          "tests/format/typescript/prettier-ignore/no-semi/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/prettier-ignore/no-semi/format.test.js",
+          "tests/format/typescript/prettier-ignore/no-semi/prettier-ignore-parenthesized-type.ts",
+          "tests/format/typescript/typescript-only/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/typescript-only/parenthesized-decorators-call-expression.ts",
+          "tests/format/typescript/typescript-only/parenthesized-decorators-tagged-template.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr19635",
+      "pr": {
+        "number": 19635,
+        "mergedAt": "2026-07-15T14:07:34Z",
+        "files": [
+          "tests/format/typescript/decorators/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/decorators/parenthesized-decorators-call-expression.ts",
+          "tests/format/typescript/decorators/parenthesized-decorators-tagged-template.ts",
+          "tests/format/typescript/typescript-babel-only/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/typescript-babel-only/decorator-auto-accessors-new-line.ts",
+          "tests/format/typescript/typescript-babel-only/format.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr19634",
+      "pr": {
+        "number": 19634,
+        "mergedAt": "2026-07-15T13:48:02Z",
+        "files": [
+          "tests/format/js/classes/keyword-property/__snapshots__/format.test.js.snap",
+          "tests/format/js/classes/keyword-property/async-no-semi.js"
+        ]
+      }
+    },
+    {
+      "id": "pr19621",
+      "pr": {
+        "number": 19621,
+        "mergedAt": "2026-07-14T09:33:40Z",
+        "files": [
+          "changelog_unreleased/typescript/19621.md",
+          "src/language-js/print/key.js",
+          "tests/format/typescript/quote-props/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/quote-props/issue-19618.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr19613",
+      "pr": {
+        "number": 19613,
+        "mergedAt": "2026-07-12T11:13:58Z",
+        "files": [
+          "src/language-markdown/print/mdast.js",
+          "tests/format/mdx/attribute/__snapshots__/format.test.js.snap",
+          "tests/format/mdx/jsx/__snapshots__/format.test.js.snap",
+          "tests/format/mdx/jsx/format.test.js",
+          "tests/format/mdx/jsx/fragment.mdx"
+        ]
+      }
+    },
+    {
+      "id": "pr19612",
+      "pr": {
+        "number": 19612,
+        "mergedAt": "2026-07-12T11:13:09Z",
+        "files": [
+          "cspell.json",
+          "package.json",
+          "src/language-markdown/parse/parse-mdx.js",
+          "tests/format/mdx/html-comment/__snapshots__/format.test.js.snap",
+          "tests/format/mdx/html-comment/format.test.js",
+          "tests/format/mdx/html-comment/html-comment.mdx",
+          "yarn.lock"
+        ]
+      }
+    },
+    {
+      "id": "pr19610",
+      "pr": {
+        "number": 19610,
+        "mergedAt": "2026-07-12T08:13:40Z",
+        "files": [
+          "tests/format/markdown/list/__snapshots__/format.test.js.snap",
+          "tests/format/markdown/list/empty-list-items/__snapshots__/format.test.js.snap",
+          "tests/format/markdown/list/empty-list-items/format.test.js",
+          "tests/format/markdown/list/format.test.js",
+          "tests/format/markdown/list/indent/__snapshots__/format.test.js.snap",
+          "tests/format/markdown/list/indent/format.test.js",
+          "tests/format/markdown/list/indent/indent.md"
+        ]
+      }
+    },
+    {
+      "id": "pr19609",
+      "pr": {
+        "number": 19609,
+        "mergedAt": "2026-07-12T07:42:11Z",
+        "files": [
+          "tests/config/format-test/verify-fixtures.js",
+          "tests/format/markdown/list/__snapshots__/format.test.js.snap",
+          "tests/format/markdown/list/blank-lines/__snapshots__/format.test.js.snap",
+          "tests/format/markdown/list/blank-lines/format.test.js",
+          "tests/format/markdown/list/blank-lines/issue-17746-code-before-list.md",
+          "tests/format/markdown/list/blank-lines/issue-17746-code-sibling-nested-list.md",
+          "tests/format/markdown/list/blank-lines/issue-17746-fenced-code-then-nested-list.md",
+          "tests/format/markdown/list/blank-lines/issue-17746-indented-code-then-nested-list.md",
+          "tests/format/markdown/list/blank-lines/issue-17746.md",
+          "tests/format/mdx/mdx/__snapshots__/format.test.js.snap",
+          "tests/format/mdx/mdx/issue-17746-code-before-list.mdx",
+          "tests/format/mdx/mdx/issue-17746-fenced-code-then-nested-list.mdx",
+          "tests/format/mdx/mdx/issue-17746-indented-code-then-nested-list.mdx",
+          "tests/format/mdx/mdx/issue-17746.mdx"
+        ]
+      }
+    },
+    {
+      "id": "pr19601",
+      "pr": {
+        "number": 19601,
+        "mergedAt": "2026-07-11T13:46:10Z",
+        "files": [
+          "src/document/builders/break-parent.js",
+          "src/document/builders/line-suffix-boundary.js",
+          "src/document/builders/trim.js"
+        ]
+      }
+    },
+    {
+      "id": "pr19598",
+      "pr": {
+        "number": 19598,
+        "mergedAt": "2026-07-11T09:39:23Z",
+        "files": [
+          "src/language-js/parentheses/identifier.js"
+        ]
+      }
+    },
+    {
+      "id": "pr19593",
+      "pr": {
+        "number": 19593,
+        "mergedAt": "2026-07-11T01:17:55Z",
+        "files": [
+          "website/docusaurus.config.js"
+        ]
+      }
+    },
+    {
+      "id": "pr19538",
+      "pr": {
+        "number": 19538,
+        "mergedAt": "2026-07-10T11:20:54Z",
+        "files": [
+          "changelog_unreleased/misc/19538.md",
+          "src/utilities/get-string-width.js",
+          "tests/format/js/string-width/__snapshots__/format.test.js.snap",
+          "tests/format/js/string-width/format.test.js",
+          "tests/format/js/string-width/string-width.js",
+          "tests/integration/__tests__/public-utilities.js"
+        ]
+      }
+    },
+    {
+      "id": "pr19487",
+      "pr": {
+        "number": 19487,
+        "mergedAt": "2026-07-09T16:04:49Z",
+        "files": [
+          "changelog_unreleased/markdown/19487.md",
+          "src/language-markdown/print/mdast.js",
+          "tests/format/markdown/blockquote/__snapshots__/format.test.js.snap",
+          "tests/format/markdown/commonmark-test-suite/__snapshots__/format.test.js.snap",
+          "tests/format/markdown/link/__snapshots__/format.test.js.snap",
+          "tests/format/markdown/link/empty-url.md",
+          "tests/format/markdown/link/encodedLink.md"
+        ]
+      }
+    },
+    {
+      "id": "pr19567",
+      "pr": {
+        "number": 19567,
+        "mergedAt": "2026-07-09T15:48:02Z",
+        "files": [
+          "changelog_unreleased/misc/19567.md",
+          "src/main/comments/attach.js",
+          "tests/integration/__tests__/__snapshots__/debug-print-comments.js.snap"
+        ]
+      }
+    },
+    {
+      "id": "pr19587",
+      "pr": {
+        "number": 19587,
+        "mergedAt": "2026-07-09T15:24:06Z",
+        "files": [
+          "tests/format/flow/object-type/empty/__snapshots__/format.test.js.snap",
+          "tests/format/flow/object-type/empty/empty.js",
+          "tests/format/typescript/object-type/empty/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/object-type/empty/empty.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr19583",
+      "pr": {
+        "number": 19583,
+        "mergedAt": "2026-07-09T09:34:22Z",
+        "files": [
+          "changelog_unreleased/typescript/19583.md",
+          "src/language-js/print/class-body.js",
+          "tests/format/flow/object-inexact/comments/__snapshots__/format.test.js.snap",
+          "tests/format/flow/object-type/empty/__snapshots__/format.test.js.snap",
+          "tests/format/flow/object-type/empty/empty.js",
+          "tests/format/flow/object-type/empty/format.test.js",
+          "tests/format/typescript/class-and-interface/empty/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/object-type/empty/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/object-type/empty/empty.ts",
+          "tests/format/typescript/object-type/empty/format.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr19568",
+      "pr": {
+        "number": 19568,
+        "mergedAt": "2026-07-09T04:57:47Z",
+        "files": [
+          "changelog_unreleased/flow/19568.md",
+          "src/language-js/print/block.js",
+          "tests/format/flow/flow-repo/coverage/__snapshots__/format.test.js.snap",
+          "tests/format/flow/type-declarations/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/declare/declare-module-empty/__snapshots__/format.test.js.snap",
+          "tests/format/typescript/declare/declare-module-empty/empty.ts",
+          "tests/format/typescript/declare/declare-module-empty/format.test.js"
+        ]
+      }
+    },
+    {
+      "id": "pr19516",
+      "pr": {
+        "number": 19516,
+        "mergedAt": "2026-07-09T04:56:57Z",
+        "files": [
+          "changelog_unreleased/css/19516.md",
+          "src/language-css/print/comma-separated-value-group.js",
+          "tests/format/css/type-function/__snapshots__/format.test.js.snap",
+          "tests/format/css/type-function/format.test.js",
+          "tests/format/css/type-function/type.css"
+        ]
+      }
+    },
+    {
+      "id": "pr19572",
+      "pr": {
+        "number": 19572,
+        "mergedAt": "2026-07-09T03:34:37Z",
+        "files": [
+          "changelog_unreleased/typescript/19572.md",
+          "src/language-js/print/type-parameters.js",
+          "tests/format/typescript/type-parameters-arguments/19505.ts",
+          "tests/format/typescript/type-parameters-arguments/__snapshots__/format.test.js.snap"
+        ]
+      }
+    },
+    {
+      "id": "pr19581",
+      "pr": {
+        "number": 19581,
+        "mergedAt": "2026-07-09T03:28:32Z",
+        "files": [
+          "changelog_unreleased/javascript/19581.md",
+          "src/language-js/comments/attach/handle-switch-statement-comments.js",
+          "src/language-js/comments/handle-comments.js",
+          "src/language-js/print/switch-statement.js",
+          "tests/format/js/comments/while-like/__snapshots__/format.test.js.snap",
+          "tests/format/js/comments/while-like/if.js",
+          "tests/format/js/comments/while-like/switch.js",
+          "tests/format/js/comments/while-like/while.js",
+          "tests/format/js/comments/while-like/with.js"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,895 @@
+{
+  "slug": "cli/cli",
+  "since": "2026-02-01",
+  "until": "2026-08-01",
+  "rule": {
+    "keep": 60,
+    "maxFiles": 30,
+    "bots": "excluded",
+    "distinct": true
+  },
+  "mergedInWindow": 300,
+  "short": false,
+  "tasks": [
+    {
+      "id": "pr13988",
+      "pr": {
+        "number": 13988,
+        "mergedAt": "2026-08-01T07:52:47Z",
+        "files": [
+          "api/client.go",
+          "api/client_test.go",
+          "pkg/cmd/attestation/api/client_test.go",
+          "pkg/cmd/status/status_test.go"
+        ]
+      }
+    },
+    {
+      "id": "pr14030",
+      "pr": {
+        "number": 14030,
+        "mergedAt": "2026-07-31T15:26:23Z",
+        "files": [
+          ".github/workflows/dependabot-triage.lock.yml",
+          ".github/workflows/dependabot-triage.md"
+        ]
+      }
+    },
+    {
+      "id": "pr14027",
+      "pr": {
+        "number": 14027,
+        "mergedAt": "2026-07-31T15:18:02Z",
+        "files": [
+          ".github/workflows/detect-spam.yml",
+          ".github/workflows/issue-triage.lock.yml",
+          ".github/workflows/issue-triage.md",
+          ".github/workflows/scripts/spam-detection/check-issue-prompts.yml",
+          ".github/workflows/scripts/spam-detection/check-issue.sh",
+          ".github/workflows/scripts/spam-detection/eval-instructions.md",
+          ".github/workflows/scripts/spam-detection/eval-prompts.yml",
+          ".github/workflows/scripts/spam-detection/eval.sh",
+          ".github/workflows/scripts/spam-detection/generate-sys-prompt.sh",
+          ".github/workflows/scripts/spam-detection/process-issue.sh",
+          ".github/workflows/shared/spam-criteria.md",
+          ".github/workflows/triage-issues.yml"
+        ]
+      }
+    },
+    {
+      "id": "pr14028",
+      "pr": {
+        "number": 14028,
+        "mergedAt": "2026-07-31T13:43:59Z",
+        "files": [
+          ".github/PULL_REQUEST_TEMPLATE.md"
+        ]
+      }
+    },
+    {
+      "id": "pr14019",
+      "pr": {
+        "number": 14019,
+        "mergedAt": "2026-07-31T11:31:05Z",
+        "files": [
+          ".github/skills/dependabot-triager/SKILL.md",
+          ".github/workflows/dependabot-triage.lock.yml",
+          ".github/workflows/dependabot-triage.md"
+        ]
+      }
+    },
+    {
+      "id": "pr14003",
+      "pr": {
+        "number": 14003,
+        "mergedAt": "2026-07-30T20:20:03Z",
+        "files": [
+          ".github/skills/cli-code-reviewer/SKILL.md",
+          "AGENTS.md"
+        ]
+      }
+    },
+    {
+      "id": "pr13967",
+      "pr": {
+        "number": 13967,
+        "mergedAt": "2026-07-30T13:43:52Z",
+        "files": [
+          "pkg/cmd/skills/install/install.go",
+          "pkg/cmd/skills/install/install_test.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13985",
+      "pr": {
+        "number": 13985,
+        "mergedAt": "2026-07-30T11:46:02Z",
+        "files": [
+          ".github/aw/actions-lock.json",
+          ".github/skills/dependabot-triager/SKILL.md",
+          ".github/workflows/agentics-maintenance.yml",
+          ".github/workflows/dependabot-triage.lock.yml",
+          ".github/workflows/dependabot-triage.md",
+          ".github/workflows/issue-triage.lock.yml",
+          ".github/workflows/shared/dependabot-triage-security.md"
+        ]
+      }
+    },
+    {
+      "id": "pr13987",
+      "pr": {
+        "number": 13987,
+        "mergedAt": "2026-07-29T10:05:19Z",
+        "files": [
+          "internal/skills/registry/registry.go",
+          "internal/skills/registry/registry_test.go",
+          "pkg/cmd/skills/install/install.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13960",
+      "pr": {
+        "number": 13960,
+        "mergedAt": "2026-07-24T17:57:09Z",
+        "files": [
+          "docs/macos-keyring.md"
+        ]
+      }
+    },
+    {
+      "id": "pr13949",
+      "pr": {
+        "number": 13949,
+        "mergedAt": "2026-07-24T14:22:05Z",
+        "files": [
+          ".gitattributes",
+          ".github/agents/agentic-workflows.md",
+          ".github/aw/actions-lock.json",
+          ".github/mcp.json",
+          ".github/skills/agentic-workflows/SKILL.md",
+          ".github/workflows/agentics-maintenance.yml",
+          ".github/workflows/copilot-setup-steps.yml",
+          ".github/workflows/issue-triage.lock.yml",
+          ".github/workflows/issue-triage.md"
+        ]
+      }
+    },
+    {
+      "id": "pr13900",
+      "pr": {
+        "number": 13900,
+        "mergedAt": "2026-07-23T02:34:03Z",
+        "files": [
+          "internal/featuredetection/feature_detection.go",
+          "pkg/cmd/api/api_test.go",
+          "pkg/cmd/workflow/run/run.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13927",
+      "pr": {
+        "number": 13927,
+        "mergedAt": "2026-07-23T02:20:43Z",
+        "files": [
+          "pkg/cmd/project/item-edit/item_edit.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13823",
+      "pr": {
+        "number": 13823,
+        "mergedAt": "2026-07-22T20:52:28Z",
+        "files": [
+          "pkg/cmd/project/item-list/item_list.go",
+          "pkg/cmd/project/item-list/item_list_test.go",
+          "pkg/cmd/project/shared/queries/queries.go",
+          "pkg/cmd/project/shared/queries/queries_test.go",
+          "pkg/cmd/project/shared/queries/resolve_fields.go",
+          "pkg/cmd/project/shared/queries/resolve_fields_test.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13943",
+      "pr": {
+        "number": 13943,
+        "mergedAt": "2026-07-22T15:43:29Z",
+        "files": [
+          ".github/dependabot.yml"
+        ]
+      }
+    },
+    {
+      "id": "pr13940",
+      "pr": {
+        "number": 13940,
+        "mergedAt": "2026-07-22T11:00:31Z",
+        "files": [
+          "acceptance/README.md",
+          "acceptance/testdata/label/label.txtar",
+          "internal/codespaces/rpc/invoker.go",
+          "pkg/cmd/agent-task/capi/job.go",
+          "pkg/cmd/issue/argparsetest/argparsetest.go",
+          "pkg/cmd/pr/diff/diff.go",
+          "pkg/cmd/pr/shared/find_refs_resolution.go",
+          "pkg/cmd/skills/install/install.go",
+          "pkg/cmd/skills/publish/publish.go",
+          "pkg/iostreams/iostreams.go",
+          "pkg/search/result.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13886",
+      "pr": {
+        "number": 13886,
+        "mergedAt": "2026-07-21T15:32:00Z",
+        "files": [
+          ".github/CODEOWNERS"
+        ]
+      }
+    },
+    {
+      "id": "pr13922",
+      "pr": {
+        "number": 13922,
+        "mergedAt": "2026-07-20T20:09:26Z",
+        "files": [
+          "pkg/cmd/search/code/code.go",
+          "pkg/cmd/search/commits/commits.go",
+          "pkg/cmd/search/issues/issues.go",
+          "pkg/cmd/search/prs/prs.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13807",
+      "pr": {
+        "number": 13807,
+        "mergedAt": "2026-07-20T17:44:06Z",
+        "files": [
+          "pkg/cmd/project/item-edit/item_edit.go",
+          "pkg/cmd/project/item-edit/item_edit_test.go",
+          "pkg/cmd/project/shared/queries/queries.go",
+          "pkg/cmd/project/shared/queries/resolve.go",
+          "pkg/cmd/project/shared/queries/resolve_fields.go",
+          "pkg/cmd/project/shared/queries/resolve_fields_test.go",
+          "pkg/cmd/project/shared/queries/resolve_test.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13787",
+      "pr": {
+        "number": 13787,
+        "mergedAt": "2026-07-16T14:42:13Z",
+        "files": [
+          "internal/keyring/keyring.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13492",
+      "pr": {
+        "number": 13492,
+        "mergedAt": "2026-07-13T16:06:21Z",
+        "files": [
+          ".github/workflows/deployment.yml",
+          "docs/release-process-deep-dive.md"
+        ]
+      }
+    },
+    {
+      "id": "pr13780",
+      "pr": {
+        "number": 13780,
+        "mergedAt": "2026-07-13T16:06:19Z",
+        "files": [
+          ".github/workflows/deployment.yml",
+          "docs/release-process-deep-dive.md",
+          "script/release",
+          "script/sign",
+          "script/sign.ps1"
+        ]
+      }
+    },
+    {
+      "id": "pr13864",
+      "pr": {
+        "number": 13864,
+        "mergedAt": "2026-07-13T10:27:31Z",
+        "files": [
+          "internal/skills/registry/registry.go",
+          "internal/skills/registry/registry_test.go",
+          "pkg/cmd/skills/install/install.go",
+          "pkg/cmd/skills/update/update.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13624",
+      "pr": {
+        "number": 13624,
+        "mergedAt": "2026-07-10T18:36:08Z",
+        "files": [
+          "pkg/cmd/attestation/verification/sigstore.go",
+          "pkg/cmd/attestation/verification/sigstore_integration_test.go",
+          "pkg/cmd/attestation/verification/sigstore_test.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13830",
+      "pr": {
+        "number": 13830,
+        "mergedAt": "2026-07-09T13:58:03Z",
+        "files": [
+          ".github/workflows/issue-triage.lock.yml",
+          ".github/workflows/issue-triage.md"
+        ]
+      }
+    },
+    {
+      "id": "pr13777",
+      "pr": {
+        "number": 13777,
+        "mergedAt": "2026-07-09T11:44:05Z",
+        "files": [
+          ".github/aw/actions-lock.json",
+          ".github/workflows/issue-triage.lock.yml",
+          ".github/workflows/issue-triage.md"
+        ]
+      }
+    },
+    {
+      "id": "pr13313",
+      "pr": {
+        "number": 13313,
+        "mergedAt": "2026-07-02T20:39:34Z",
+        "files": [
+          "internal/codespaces/connection/connection.go",
+          "internal/codespaces/portforwarder/port_forwarder.go",
+          "internal/codespaces/portforwarder/port_forwarder_test.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13690",
+      "pr": {
+        "number": 13690,
+        "mergedAt": "2026-07-02T20:25:42Z",
+        "files": [
+          "docs/install_linux.md",
+          "docs/install_macos.md",
+          "docs/install_windows.md"
+        ]
+      }
+    },
+    {
+      "id": "pr13677",
+      "pr": {
+        "number": 13677,
+        "mergedAt": "2026-07-02T19:42:17Z",
+        "files": [
+          "docs/primer/README.md"
+        ]
+      }
+    },
+    {
+      "id": "pr13756",
+      "pr": {
+        "number": 13756,
+        "mergedAt": "2026-07-01T09:45:55Z",
+        "files": [
+          "pkg/cmd/search/code/code.go",
+          "pkg/cmd/search/commits/commits.go",
+          "pkg/cmd/search/issues/issues.go",
+          "pkg/cmd/search/prs/prs.go",
+          "pkg/cmd/search/repos/repos.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13723",
+      "pr": {
+        "number": 13723,
+        "mergedAt": "2026-06-26T21:35:19Z",
+        "files": [
+          "pkg/cmd/release/download/download.go",
+          "pkg/cmd/release/download/download_test.go",
+          "pkg/cmd/release/shared/fetch.go",
+          "pkg/cmdutil/repo_override.go",
+          "pkg/cmdutil/repo_override_test.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13675",
+      "pr": {
+        "number": 13675,
+        "mergedAt": "2026-06-25T15:40:58Z",
+        "files": [
+          "internal/prompter/huh_prompter_test.go",
+          "internal/prompter/multi_select_with_search.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13722",
+      "pr": {
+        "number": 13722,
+        "mergedAt": "2026-06-25T15:15:41Z",
+        "files": [
+          "internal/agents/detect.go",
+          "internal/agents/detect_test.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13720",
+      "pr": {
+        "number": 13720,
+        "mergedAt": "2026-06-24T16:16:23Z",
+        "files": [
+          "AGENTS.md"
+        ]
+      }
+    },
+    {
+      "id": "pr13681",
+      "pr": {
+        "number": 13681,
+        "mergedAt": "2026-06-24T08:40:46Z",
+        "files": [
+          "internal/skills/registry/registry.go",
+          "internal/skills/registry/registry_test.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13705",
+      "pr": {
+        "number": 13705,
+        "mergedAt": "2026-06-23T11:48:46Z",
+        "files": [
+          ".github/workflows/deployment.yml",
+          ".github/workflows/triage-issues.yml",
+          ".github/workflows/triage-pull-requests.yml",
+          ".github/workflows/triage-scheduled-tasks.yml"
+        ]
+      }
+    },
+    {
+      "id": "pr13679",
+      "pr": {
+        "number": 13679,
+        "mergedAt": "2026-06-22T12:10:27Z",
+        "files": [
+          "pkg/cmd/pr/checks/output.go",
+          "pkg/cmd/pr/checks/output_test.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13403",
+      "pr": {
+        "number": 13403,
+        "mergedAt": "2026-06-19T21:40:22Z",
+        "files": [
+          "internal/codespaces/api/api.go",
+          "pkg/cmd/agent-task/capi/job.go",
+          "pkg/cmd/cache/delete/delete.go",
+          "pkg/cmd/cache/shared/shared.go",
+          "pkg/cmd/codespace/common.go",
+          "pkg/cmd/codespace/create.go",
+          "pkg/cmd/codespace/create_test.go",
+          "pkg/cmd/codespace/mock_api.go",
+          "pkg/cmd/gpg-key/delete/delete.go",
+          "pkg/cmd/gpg-key/delete/http.go",
+          "pkg/cmd/repo/autolink/shared/autolink.go",
+          "pkg/cmd/repo/deploy-key/list/http.go",
+          "pkg/cmd/repo/deploy-key/list/list.go",
+          "pkg/cmd/ruleset/list/list.go",
+          "pkg/cmd/ruleset/shared/shared.go",
+          "pkg/cmd/ruleset/view/view.go",
+          "pkg/cmd/skills/publish/publish.go",
+          "pkg/cmd/ssh-key/list/list.go",
+          "pkg/cmd/ssh-key/shared/user_keys.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13688",
+      "pr": {
+        "number": 13688,
+        "mergedAt": "2026-06-19T19:52:36Z",
+        "files": [
+          "docs/release-process-deep-dive.md"
+        ]
+      }
+    },
+    {
+      "id": "pr13449",
+      "pr": {
+        "number": 13449,
+        "mergedAt": "2026-06-17T17:53:47Z",
+        "files": [
+          "acceptance/testdata/skills/skills-update-inplace.txtar",
+          "pkg/cmd/skills/update/update.go",
+          "pkg/cmd/skills/update/update_test.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13580",
+      "pr": {
+        "number": 13580,
+        "mergedAt": "2026-06-17T16:59:15Z",
+        "files": [
+          "acceptance/testdata/repo/repo-read-dir.txtar",
+          "acceptance/testdata/repo/repo-read-file.txtar",
+          "internal/text/text.go",
+          "internal/text/text_test.go",
+          "pkg/cmd/repo/read-dir/http.go",
+          "pkg/cmd/repo/read-dir/read_dir.go",
+          "pkg/cmd/repo/read-dir/read_dir_test.go",
+          "pkg/cmd/repo/read-file/http.go",
+          "pkg/cmd/repo/read-file/read_file.go",
+          "pkg/cmd/repo/read-file/read_file_test.go",
+          "pkg/cmd/repo/repo.go",
+          "skills/gh/SKILL.md"
+        ]
+      }
+    },
+    {
+      "id": "pr13674",
+      "pr": {
+        "number": 13674,
+        "mergedAt": "2026-06-16T18:00:44Z",
+        "files": [
+          ".devcontainer/devcontainer.json"
+        ]
+      }
+    },
+    {
+      "id": "pr13642",
+      "pr": {
+        "number": 13642,
+        "mergedAt": "2026-06-16T13:03:32Z",
+        "files": [
+          "pkg/cmd/issue/list/list.go",
+          "pkg/cmd/pr/list/list.go",
+          "pkg/cmd/search/issues/issues.go",
+          "pkg/cmd/search/prs/prs.go",
+          "skills/gh/SKILL.md"
+        ]
+      }
+    },
+    {
+      "id": "pr13523",
+      "pr": {
+        "number": 13523,
+        "mergedAt": "2026-06-15T08:36:30Z",
+        "files": [
+          "internal/skills/registry/registry.go",
+          "internal/skills/registry/registry_test.go",
+          "pkg/cmd/skills/install/install_test.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13632",
+      "pr": {
+        "number": 13632,
+        "mergedAt": "2026-06-10T22:22:38Z",
+        "files": [
+          "pkg/cmd/discussion/create/create.go",
+          "pkg/cmd/discussion/discussion.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13631",
+      "pr": {
+        "number": 13631,
+        "mergedAt": "2026-06-10T21:30:22Z",
+        "files": [
+          "README.md",
+          "skills/gh/SKILL.md"
+        ]
+      }
+    },
+    {
+      "id": "pr13541",
+      "pr": {
+        "number": 13541,
+        "mergedAt": "2026-06-10T20:18:52Z",
+        "files": [
+          "acceptance/README.md",
+          "acceptance/acceptance_test.go",
+          "acceptance/testdata/discussion/discussion-comment.txtar",
+          "acceptance/testdata/discussion/discussion-create.txtar",
+          "acceptance/testdata/discussion/discussion-edit.txtar",
+          "acceptance/testdata/discussion/discussion-list.txtar",
+          "acceptance/testdata/discussion/discussion-view.txtar",
+          "pkg/cmd/discussion/client/client.go",
+          "pkg/cmd/discussion/client/client_mock.go",
+          "pkg/cmd/discussion/client/client_test.go",
+          "pkg/cmd/discussion/client/types.go",
+          "pkg/cmd/discussion/comment/comment.go",
+          "pkg/cmd/discussion/comment/comment_test.go",
+          "pkg/cmd/discussion/create/create.go",
+          "pkg/cmd/discussion/create/create_test.go",
+          "pkg/cmd/discussion/discussion.go",
+          "pkg/cmd/discussion/edit/edit.go",
+          "pkg/cmd/discussion/edit/edit_test.go",
+          "pkg/cmd/discussion/list/list.go",
+          "pkg/cmd/discussion/list/list_test.go",
+          "pkg/cmd/discussion/shared/categories.go",
+          "pkg/cmd/discussion/shared/client.go",
+          "pkg/cmd/discussion/shared/labels.go",
+          "pkg/cmd/discussion/shared/labels_test.go",
+          "pkg/cmd/discussion/shared/lookup.go",
+          "pkg/cmd/discussion/shared/lookup_test.go",
+          "pkg/cmd/discussion/view/view.go",
+          "pkg/cmd/discussion/view/view_test.go",
+          "pkg/cmd/root/root.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13620",
+      "pr": {
+        "number": 13620,
+        "mergedAt": "2026-06-10T11:57:55Z",
+        "files": [
+          "acceptance/testdata/discussion/discussion-comment.txtar",
+          "acceptance/testdata/discussion/discussion-list.txtar",
+          "acceptance/testdata/discussion/discussion-view.txtar",
+          "pkg/cmd/discussion/client/client.go",
+          "pkg/cmd/discussion/client/client_impl.go",
+          "pkg/cmd/discussion/client/client_impl_test.go",
+          "pkg/cmd/discussion/client/client_mock.go",
+          "pkg/cmd/discussion/client/types.go",
+          "pkg/cmd/discussion/comment/comment.go",
+          "pkg/cmd/discussion/comment/comment_test.go",
+          "pkg/cmd/discussion/create/create.go",
+          "pkg/cmd/discussion/discussion.go",
+          "pkg/cmd/discussion/edit/edit.go",
+          "pkg/cmd/discussion/shared/lookup.go",
+          "pkg/cmd/discussion/shared/lookup_test.go",
+          "pkg/cmd/discussion/view/view.go",
+          "pkg/cmd/discussion/view/view_test.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13612",
+      "pr": {
+        "number": 13612,
+        "mergedAt": "2026-06-08T16:42:53Z",
+        "files": [
+          ".github/extensions/terminal-mockup/README.md",
+          ".github/extensions/terminal-mockup/assets/ansi.js",
+          ".github/extensions/terminal-mockup/assets/app.js",
+          ".github/extensions/terminal-mockup/assets/html2canvas.min.js",
+          ".github/extensions/terminal-mockup/assets/index.html",
+          ".github/extensions/terminal-mockup/assets/styles.css",
+          ".github/extensions/terminal-mockup/extension.mjs",
+          ".github/extensions/terminal-mockup/library/discussion-list-monas-cafe.json",
+          ".github/extensions/terminal-mockup/library/discussion-view-monas-cafe.json",
+          ".github/extensions/terminal-mockup/library/issue-create-monas-cafe.json",
+          ".github/extensions/terminal-mockup/library/issue-view-json-monas-cafe.json",
+          ".github/extensions/terminal-mockup/library/issue-view-monas-cafe.json",
+          ".github/extensions/terminal-mockup/library/sample-issue-list.json",
+          ".github/extensions/terminal-mockup/library/sample-pr-list.json",
+          ".github/extensions/terminal-mockup/library/sample-pr-view-comments.json",
+          ".github/extensions/terminal-mockup/library/sample-repo-view.json",
+          ".github/extensions/terminal-mockup/library/sample-run-watch.json"
+        ]
+      }
+    },
+    {
+      "id": "pr13599",
+      "pr": {
+        "number": 13599,
+        "mergedAt": "2026-06-05T19:35:43Z",
+        "files": [
+          "pkg/cmd/extension/command.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13418",
+      "pr": {
+        "number": 13418,
+        "mergedAt": "2026-06-04T21:13:45Z",
+        "files": [
+          "pkg/cmd/skills/list/list.go",
+          "pkg/cmd/skills/list/list_test.go",
+          "pkg/cmd/skills/skills.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13584",
+      "pr": {
+        "number": 13584,
+        "mergedAt": "2026-06-04T16:54:17Z",
+        "files": [
+          "pkg/cmd/issue/create/create.go",
+          "pkg/cmd/issue/edit/edit.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13581",
+      "pr": {
+        "number": 13581,
+        "mergedAt": "2026-06-04T16:15:27Z",
+        "files": [
+          "acceptance/testdata/telemetry/telemetry-for-official-extension-stub.txtar",
+          "pkg/cmd/root/official_extension_stub.go",
+          "pkg/cmd/root/official_extension_stub_test.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13057",
+      "pr": {
+        "number": 13057,
+        "mergedAt": "2026-06-04T00:27:11Z",
+        "files": [
+          "acceptance/acceptance_test.go",
+          "acceptance/testdata/issues-2.0/issue-create-and-edit-issue-type.txtar",
+          "acceptance/testdata/issues-2.0/issue-create-and-edit-parent.txtar",
+          "acceptance/testdata/issues-2.0/issue-create-and-edit-relationships.txtar",
+          "acceptance/testdata/issues-2.0/issue-edit-sub-issues.txtar",
+          "acceptance/testdata/issues-2.0/issue-list-filter-by-type.txtar",
+          "acceptance/testdata/issues-2.0/issue-view-issues-2.0-fields.txtar",
+          "api/export_pr.go",
+          "api/export_pr_test.go",
+          "api/queries_issue.go",
+          "api/query_builder.go",
+          "internal/featuredetection/feature_detection.go",
+          "internal/featuredetection/feature_detection_test.go",
+          "pkg/cmd/issue/create/create.go",
+          "pkg/cmd/issue/create/create_test.go",
+          "pkg/cmd/issue/edit/edit.go",
+          "pkg/cmd/issue/edit/edit_test.go",
+          "pkg/cmd/issue/list/list.go",
+          "pkg/cmd/issue/list/list_test.go",
+          "pkg/cmd/issue/shared/lookup.go",
+          "pkg/cmd/issue/view/view.go",
+          "pkg/cmd/issue/view/view_test.go",
+          "pkg/cmd/pr/edit/edit.go",
+          "pkg/cmd/pr/shared/editable.go",
+          "pkg/cmd/pr/shared/params.go",
+          "pkg/cmd/pr/shared/params_test.go",
+          "pkg/cmd/pr/shared/survey_test.go",
+          "pkg/search/query.go",
+          "pkg/search/query_test.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13411",
+      "pr": {
+        "number": 13411,
+        "mergedAt": "2026-06-04T00:17:59Z",
+        "files": [
+          "acceptance/acceptance_test.go",
+          "acceptance/testdata/issues-2.0/issue-create-and-edit-issue-type.txtar",
+          "acceptance/testdata/issues-2.0/issue-create-and-edit-parent.txtar",
+          "acceptance/testdata/issues-2.0/issue-create-and-edit-relationships.txtar",
+          "acceptance/testdata/issues-2.0/issue-edit-sub-issues.txtar",
+          "acceptance/testdata/issues-2.0/issue-list-filter-by-type.txtar",
+          "acceptance/testdata/issues-2.0/issue-view-issues-2.0-fields.txtar",
+          "api/queries_issue.go",
+          "pkg/cmd/issue/create/create.go",
+          "pkg/cmd/issue/create/create_test.go",
+          "pkg/cmd/issue/edit/edit.go",
+          "pkg/cmd/issue/edit/edit_test.go",
+          "pkg/cmd/issue/list/list_test.go",
+          "pkg/cmd/issue/shared/lookup.go",
+          "pkg/cmd/issue/shared/resolve.go",
+          "pkg/cmd/issue/view/view.go",
+          "pkg/cmd/issue/view/view_test.go",
+          "pkg/cmd/pr/edit/edit.go",
+          "pkg/cmd/pr/shared/editable.go",
+          "pkg/cmd/pr/shared/params.go",
+          "pkg/cmd/pr/shared/params_test.go",
+          "pkg/cmd/pr/shared/survey_test.go",
+          "pkg/search/query.go",
+          "pkg/search/query_test.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13412",
+      "pr": {
+        "number": 13412,
+        "mergedAt": "2026-06-04T00:17:42Z",
+        "files": [
+          "acceptance/acceptance_test.go",
+          "acceptance/testdata/issues-2.0/issue-create-and-edit-issue-type.txtar",
+          "acceptance/testdata/issues-2.0/issue-create-and-edit-parent.txtar",
+          "acceptance/testdata/issues-2.0/issue-create-and-edit-relationships.txtar",
+          "acceptance/testdata/issues-2.0/issue-edit-sub-issues.txtar",
+          "acceptance/testdata/issues-2.0/issue-list-filter-by-type.txtar",
+          "acceptance/testdata/issues-2.0/issue-view-issues-2.0-fields.txtar",
+          "api/queries_issue.go",
+          "pkg/cmd/issue/edit/edit.go",
+          "pkg/cmd/issue/edit/edit_test.go",
+          "pkg/cmd/pr/edit/edit.go",
+          "pkg/cmd/pr/shared/editable.go",
+          "pkg/cmd/pr/shared/survey_test.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13413",
+      "pr": {
+        "number": 13413,
+        "mergedAt": "2026-06-04T00:17:22Z",
+        "files": [
+          "acceptance/acceptance_test.go",
+          "acceptance/testdata/issues-2.0/issue-create-and-edit-issue-type.txtar",
+          "acceptance/testdata/issues-2.0/issue-create-and-edit-parent.txtar",
+          "acceptance/testdata/issues-2.0/issue-create-and-edit-relationships.txtar",
+          "acceptance/testdata/issues-2.0/issue-edit-sub-issues.txtar",
+          "acceptance/testdata/issues-2.0/issue-list-filter-by-type.txtar",
+          "acceptance/testdata/issues-2.0/issue-view-issues-2.0-fields.txtar",
+          "api/queries_issue.go",
+          "pkg/cmd/issue/edit/edit_test.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13414",
+      "pr": {
+        "number": 13414,
+        "mergedAt": "2026-06-04T00:17:18Z",
+        "files": [
+          "acceptance/acceptance_test.go",
+          "acceptance/testdata/issues-2.0/issue-create-and-edit-issue-type.txtar",
+          "acceptance/testdata/issues-2.0/issue-create-and-edit-parent.txtar",
+          "acceptance/testdata/issues-2.0/issue-create-and-edit-relationships.txtar",
+          "acceptance/testdata/issues-2.0/issue-edit-sub-issues.txtar",
+          "acceptance/testdata/issues-2.0/issue-list-filter-by-type.txtar",
+          "acceptance/testdata/issues-2.0/issue-view-issues-2.0-fields.txtar"
+        ]
+      }
+    },
+    {
+      "id": "pr13459",
+      "pr": {
+        "number": 13459,
+        "mergedAt": "2026-06-02T09:06:58Z",
+        "files": [
+          "internal/skills/discovery/discovery.go",
+          "internal/skills/discovery/discovery_test.go",
+          "pkg/cmd/skills/install/install.go",
+          "pkg/cmd/skills/install/install_test.go",
+          "pkg/cmd/skills/preview/preview.go",
+          "pkg/cmd/skills/preview/preview_test.go"
+        ]
+      }
+    },
+    {
+      "id": "pr13469",
+      "pr": {
+        "number": 13469,
+        "mergedAt": "2026-06-01T10:00:47Z",
+        "files": [
+          "pkg/cmd/skills/update/update.go",
+          "pkg/cmd/skills/update/update_test.go"
+        ]
+      }
+    }
+  ]
+}

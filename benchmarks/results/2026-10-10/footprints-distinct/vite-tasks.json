@@ -1,0 +1,821 @@
+{
+  "slug": "vitejs/vite",
+  "since": "2026-02-01",
+  "until": "2026-08-01",
+  "rule": {
+    "keep": 60,
+    "maxFiles": 30,
+    "bots": "excluded",
+    "distinct": true
+  },
+  "mergedInWindow": 300,
+  "short": false,
+  "tasks": [
+    {
+      "id": "pr23085",
+      "pr": {
+        "number": 23085,
+        "mergedAt": "2026-07-31T07:56:34Z",
+        "files": [
+          "docs/.vitepress/theme/components/SupportedVersions.vue",
+          "docs/.vitepress/theme/components/VersionsList.vue"
+        ]
+      }
+    },
+    {
+      "id": "pr23038",
+      "pr": {
+        "number": 23038,
+        "mergedAt": "2026-07-31T07:56:20Z",
+        "files": [
+          ".oxfmtrc.json",
+          "packages/vite/src/node/__tests__/config.spec.ts",
+          "packages/vite/src/node/__tests__/fixtures/config/shebang-crlf/.gitattributes",
+          "packages/vite/src/node/__tests__/fixtures/config/shebang-crlf/vite.config.ts",
+          "packages/vite/src/node/__tests__/utils.spec.ts",
+          "packages/vite/src/node/config.ts",
+          "packages/vite/src/node/plugins/css.ts",
+          "packages/vite/src/node/plugins/importAnalysisBuild.ts",
+          "packages/vite/src/node/ssr/__tests__/ssrTransform.spec.ts",
+          "packages/vite/src/node/utils.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr22955",
+      "pr": {
+        "number": 22955,
+        "mergedAt": "2026-07-31T07:46:53Z",
+        "files": [
+          "playground/assets/__tests__/assets.spec.ts",
+          "playground/assets/index.html",
+          "playground/assets/nested/relative-path.custom",
+          "playground/assets/vite.config.js"
+        ]
+      }
+    },
+    {
+      "id": "pr23107",
+      "pr": {
+        "number": 23107,
+        "mergedAt": "2026-07-30T11:05:52Z",
+        "files": [
+          "playground/backend-integration/vite.config.js",
+          "playground/css-codesplit-cjs/vite.config.js",
+          "playground/css-codesplit/vite.config.js",
+          "playground/css-no-codesplit/vite.config.js",
+          "playground/css/vite.config-sass-modern-compiler-build.js",
+          "playground/css/vite.config.js",
+          "playground/environment-react-ssr/vite.config.ts",
+          "playground/fs-serve/root/vite.config-base.js",
+          "playground/fs-serve/root/vite.config-deny.js",
+          "playground/fs-serve/root/vite.config.js",
+          "playground/hmr/vite.config.ts",
+          "playground/html/vite.config.js",
+          "playground/legacy/vite.config-modern-target.js",
+          "playground/legacy/vite.config-no-polyfills-no-systemjs.js",
+          "playground/legacy/vite.config-no-polyfills.js",
+          "playground/legacy/vite.config-watch.js",
+          "playground/legacy/vite.config.js",
+          "playground/multiple-entrypoints/vite.config.js",
+          "playground/resolve/vite.config-sass-node-builtin-clash.js"
+        ]
+      }
+    },
+    {
+      "id": "pr23106",
+      "pr": {
+        "number": 23106,
+        "mergedAt": "2026-07-30T11:05:34Z",
+        "files": [
+          "packages/vite/src/client/bundledDevClient.ts",
+          "packages/vite/src/client/bundledDevHmrClient.ts",
+          "packages/vite/src/node/server/bundledDev.ts",
+          "packages/vite/types/customEvent.d.ts",
+          "playground/hmr-full-bundle-mode/__tests__/hmr-full-bundle-mode.spec.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr23101",
+      "pr": {
+        "number": 23101,
+        "mergedAt": "2026-07-30T10:00:07Z",
+        "files": [
+          "packages/vite/src/node/__tests__/build.spec.ts",
+          "packages/vite/src/node/__tests__/config.spec.ts",
+          "packages/vite/src/node/__tests__/dev.spec.ts",
+          "packages/vite/src/node/__tests__/scan.spec.ts",
+          "packages/vite/src/node/build.ts",
+          "packages/vite/src/node/config.ts",
+          "packages/vite/src/node/optimizer/scan.ts",
+          "packages/vite/src/node/server/__tests__/pluginContainer.spec.ts",
+          "packages/vite/src/node/server/environment.ts",
+          "packages/vite/src/node/server/index.ts",
+          "packages/vite/src/node/server/pluginContainer.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr22932",
+      "pr": {
+        "number": 22932,
+        "mergedAt": "2026-07-30T06:15:47Z",
+        "files": [
+          "packages/vite/src/node/server/middlewares/__tests__/fixtures/base-root/index.html",
+          "packages/vite/src/node/server/middlewares/__tests__/fixtures/base-root/src/main.ts",
+          "packages/vite/src/node/server/middlewares/__tests__/indexHtml.spec.ts",
+          "packages/vite/src/node/server/middlewares/indexHtml.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr23064",
+      "pr": {
+        "number": 23064,
+        "mergedAt": "2026-07-28T11:52:19Z",
+        "files": [
+          "packages/vite/src/node/__tests__/config.spec.ts",
+          "packages/vite/src/node/nativeConfigCompat.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr23029",
+      "pr": {
+        "number": 23029,
+        "mergedAt": "2026-07-28T11:41:33Z",
+        "files": [
+          "packages/vite/src/node/plugins/importAnalysis.ts",
+          "playground/optimize-deps/__tests__/optimize-deps.spec.ts",
+          "playground/optimize-deps/dep-cjs-for-injected-import/index.js",
+          "playground/optimize-deps/dep-cjs-for-injected-import/package.json",
+          "playground/optimize-deps/dep-with-injected-import/index.js",
+          "playground/optimize-deps/dep-with-injected-import/package.json",
+          "playground/optimize-deps/index.html",
+          "playground/optimize-deps/injected-import.js",
+          "playground/optimize-deps/package.json",
+          "playground/optimize-deps/vite.config.js",
+          "pnpm-lock.yaml"
+        ]
+      }
+    },
+    {
+      "id": "pr23043",
+      "pr": {
+        "number": 23043,
+        "mergedAt": "2026-07-28T11:28:21Z",
+        "files": [
+          ".github/workflows/issue-template-check.yml",
+          ".github/workflows/pull-request-template-check.yml",
+          "README.md"
+        ]
+      }
+    },
+    {
+      "id": "pr23084",
+      "pr": {
+        "number": 23084,
+        "mergedAt": "2026-07-28T09:15:54Z",
+        "files": [
+          ".github/workflows/semgrep.yml"
+        ]
+      }
+    },
+    {
+      "id": "pr23077",
+      "pr": {
+        "number": 23077,
+        "mergedAt": "2026-07-28T07:42:49Z",
+        "files": [
+          "playground/vitestSetup.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr23068",
+      "pr": {
+        "number": 23068,
+        "mergedAt": "2026-07-28T05:32:40Z",
+        "files": [
+          "packages/vite/src/node/plugins/worker.ts",
+          "packages/vite/src/node/plugins/workerImportMetaUrl.ts",
+          "playground/hmr-full-bundle-mode/__tests__/hmr-full-bundle-mode.spec.ts",
+          "playground/hmr-full-bundle-mode/index.html",
+          "playground/hmr-full-bundle-mode/main.js",
+          "playground/hmr-full-bundle-mode/worker-accept-src.js",
+          "playground/hmr-full-bundle-mode/worker-accept.js",
+          "playground/hmr-full-bundle-mode/worker-nested-inner.js",
+          "playground/hmr-full-bundle-mode/worker-nested-outer.js",
+          "playground/hmr-full-bundle-mode/worker-nested.js"
+        ]
+      }
+    },
+    {
+      "id": "pr23056",
+      "pr": {
+        "number": 23056,
+        "mergedAt": "2026-07-28T05:19:37Z",
+        "files": [
+          "CONTRIBUTING.md"
+        ]
+      }
+    },
+    {
+      "id": "pr23054",
+      "pr": {
+        "number": 23054,
+        "mergedAt": "2026-07-27T10:59:17Z",
+        "files": [
+          "docs/guide/index.md"
+        ]
+      }
+    },
+    {
+      "id": "pr23060",
+      "pr": {
+        "number": 23060,
+        "mergedAt": "2026-07-27T10:53:58Z",
+        "files": [
+          "packages/vite/src/node/config.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr23061",
+      "pr": {
+        "number": 23061,
+        "mergedAt": "2026-07-27T10:53:51Z",
+        "files": [
+          "docs/changes/shared-plugins-during-build.md"
+        ]
+      }
+    },
+    {
+      "id": "pr23071",
+      "pr": {
+        "number": 23071,
+        "mergedAt": "2026-07-27T10:44:00Z",
+        "files": [
+          "docs/changes/hotupdate-hook.md"
+        ]
+      }
+    },
+    {
+      "id": "pr23073",
+      "pr": {
+        "number": 23073,
+        "mergedAt": "2026-07-27T10:42:13Z",
+        "files": [
+          "packages/vite/src/module-runner/sourcemap/interceptor.ts",
+          "packages/vite/src/node/ssr/runtime/__tests__/server-source-maps.spec.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr22965",
+      "pr": {
+        "number": 22965,
+        "mergedAt": "2026-07-24T10:18:07Z",
+        "files": [
+          "packages/vite/src/node/__tests__/__snapshots__/logger.spec.ts.snap",
+          "packages/vite/src/node/__tests__/logger.spec.ts",
+          "packages/vite/src/node/__tests__/utils.spec.ts",
+          "packages/vite/src/node/utils.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr23027",
+      "pr": {
+        "number": 23027,
+        "mergedAt": "2026-07-24T06:43:26Z",
+        "files": [
+          ".github/workflows/ci.yml",
+          "CONTRIBUTING.md",
+          "package.json",
+          "playground/css-lightningcss/__tests__/css-lightningcss.spec.ts",
+          "playground/define/__tests__/define.spec.ts",
+          "playground/dynamic-import/__tests__/dynamic-import.spec.ts",
+          "playground/env/__tests__/env.spec.ts",
+          "playground/environment-react-ssr/__tests__/environment-react-ssr.spec.ts",
+          "playground/extensions/__tests__/extensions.spec.ts",
+          "playground/glob-import/__tests__/glob-import.spec.ts",
+          "playground/json/__tests__/csr/json-csr.spec.ts",
+          "playground/legacy/__tests__/legacy.spec.ts",
+          "playground/optimize-deps-no-discovery/__tests__/optimize-deps-no-discovery.spec.ts",
+          "playground/resolve/__tests__/resolve.spec.ts",
+          "playground/transform-plugin/__tests__/tests.ts",
+          "playground/tsconfig-json/__tests__/tsconfig-json.spec.ts",
+          "playground/vitestSetup.ts",
+          "playground/wasm/__tests__/wasm.spec.ts",
+          "vitest.config.e2e.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr22974",
+      "pr": {
+        "number": 22974,
+        "mergedAt": "2026-07-24T06:03:34Z",
+        "files": [
+          "docs/config/index.md"
+        ]
+      }
+    },
+    {
+      "id": "pr22992",
+      "pr": {
+        "number": 22992,
+        "mergedAt": "2026-07-24T05:49:23Z",
+        "files": [
+          "packages/vite/src/node/server/__tests__/hmr.spec.ts",
+          "packages/vite/src/node/server/hmr.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr23035",
+      "pr": {
+        "number": 23035,
+        "mergedAt": "2026-07-24T05:49:08Z",
+        "files": [
+          "packages/vite/src/node/__tests__/config.spec.ts",
+          "packages/vite/src/node/config.ts",
+          "packages/vite/src/node/server/index.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr23024",
+      "pr": {
+        "number": 23024,
+        "mergedAt": "2026-07-24T03:57:07Z",
+        "files": [
+          "packages/vite/src/node/server/bundledDev.ts",
+          "playground/hmr-full-bundle-mode/__tests__/hmr-full-bundle-mode.spec.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr23036",
+      "pr": {
+        "number": 23036,
+        "mergedAt": "2026-07-24T03:42:26Z",
+        "files": [
+          "docs/guide/cli.md",
+          "docs/guide/features.md",
+          "docs/guide/index.md",
+          "docs/guide/using-plugins.md"
+        ]
+      }
+    },
+    {
+      "id": "pr23023",
+      "pr": {
+        "number": 23023,
+        "mergedAt": "2026-07-23T07:18:00Z",
+        "files": [
+          "docs/blog/announcing-vite8-1.md",
+          "docs/guide/migration.md"
+        ]
+      }
+    },
+    {
+      "id": "pr22954",
+      "pr": {
+        "number": 22954,
+        "mergedAt": "2026-07-23T04:17:26Z",
+        "files": [
+          "docs/guide/build.md"
+        ]
+      }
+    },
+    {
+      "id": "pr23013",
+      "pr": {
+        "number": 23013,
+        "mergedAt": "2026-07-23T04:15:17Z",
+        "files": [
+          "packages/plugin-legacy/src/index.ts",
+          "playground/legacy/__tests__/legacy.spec.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr22953",
+      "pr": {
+        "number": 22953,
+        "mergedAt": "2026-07-23T03:59:55Z",
+        "files": [
+          "docs/guide/migration.md"
+        ]
+      }
+    },
+    {
+      "id": "pr23015",
+      "pr": {
+        "number": 23015,
+        "mergedAt": "2026-07-23T03:59:03Z",
+        "files": [
+          "packages/create-vite/__tests__/cli.spec.ts",
+          "packages/create-vite/src/index.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr23020",
+      "pr": {
+        "number": 23020,
+        "mergedAt": "2026-07-23T03:34:44Z",
+        "files": [
+          "playground/tsconfig.json"
+        ]
+      }
+    },
+    {
+      "id": "pr22887",
+      "pr": {
+        "number": 22887,
+        "mergedAt": "2026-07-22T14:44:58Z",
+        "files": [
+          "playground/resolve-tsconfig-paths/__tests__/resolve.spec.ts",
+          "playground/resolve-tsconfig-paths/index.html",
+          "playground/resolve-tsconfig-paths/src/glob/a.ts",
+          "playground/resolve-tsconfig-paths/src/glob/b.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr23010",
+      "pr": {
+        "number": 23010,
+        "mergedAt": "2026-07-22T10:03:34Z",
+        "files": [
+          "packages/vite/src/node/__tests__/config.spec.ts",
+          "packages/vite/src/node/__tests__/fixtures/config/cjs-module-vars-in-esm/package.json",
+          "packages/vite/src/node/__tests__/fixtures/config/cjs-module-vars-in-esm/vite.config.ts",
+          "pnpm-lock.yaml"
+        ]
+      }
+    },
+    {
+      "id": "pr23006",
+      "pr": {
+        "number": 23006,
+        "mergedAt": "2026-07-22T06:04:00Z",
+        "files": [
+          "packages/vite/src/node/plugins/resolve.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr23002",
+      "pr": {
+        "number": 23002,
+        "mergedAt": "2026-07-22T04:29:55Z",
+        "files": [
+          "docs/guide/api-hmr.md",
+          "packages/vite/src/shared/hmr.ts",
+          "playground/hmr-ssr/__tests__/hmr-ssr.spec.ts",
+          "playground/hmr-ssr/file-delete-restore/child.js",
+          "playground/hmr-ssr/hmr.ts",
+          "playground/hmr-ssr/hotData.js",
+          "playground/hmr/__tests__/hmr.spec.ts",
+          "playground/hmr/file-delete-restore/child.js",
+          "playground/hmr/hmr.ts",
+          "playground/hmr/hotData.js"
+        ]
+      }
+    },
+    {
+      "id": "pr23005",
+      "pr": {
+        "number": 23005,
+        "mergedAt": "2026-07-22T04:23:03Z",
+        "files": [
+          "packages/vite/src/client/bundledDevHmrClient.ts",
+          "playground/hmr-full-bundle-mode/__tests__/hmr-full-bundle-mode.spec.ts",
+          "playground/hmr-full-bundle-mode/data.js",
+          "playground/hmr-full-bundle-mode/index.html",
+          "playground/hmr-full-bundle-mode/main.js"
+        ]
+      }
+    },
+    {
+      "id": "pr22883",
+      "pr": {
+        "number": 22883,
+        "mergedAt": "2026-07-21T13:35:07Z",
+        "files": [
+          "packages/vite/rolldown.config.ts",
+          "packages/vite/src/client/bundledDevClient.ts",
+          "packages/vite/src/client/bundledDevHmrClient.ts",
+          "packages/vite/src/client/client.ts",
+          "packages/vite/src/client/clientEntry.ts",
+          "packages/vite/src/module-runner/hmrHandler.ts",
+          "packages/vite/src/node/config.ts",
+          "packages/vite/src/node/constants.ts",
+          "packages/vite/src/node/plugins/clientInjections.ts",
+          "packages/vite/src/node/server/bundledDev.ts",
+          "packages/vite/src/node/server/environment.ts",
+          "packages/vite/src/node/server/middlewares/indexHtml.ts",
+          "packages/vite/src/node/server/middlewares/memoryFiles.ts",
+          "packages/vite/src/node/server/middlewares/triggerLazyBundling.ts",
+          "packages/vite/types/customEvent.d.ts",
+          "packages/vite/types/hmrPayload.d.ts",
+          "playground/hmr-full-bundle-mode/__tests__/hmr-full-bundle-mode.spec.ts",
+          "playground/hmr-full-bundle-mode/cycle-a.js",
+          "playground/hmr-full-bundle-mode/cycle-b.js",
+          "playground/hmr-full-bundle-mode/dead-accept.js",
+          "playground/hmr-full-bundle-mode/index.html",
+          "playground/hmr-full-bundle-mode/main.js",
+          "playground/hmr-full-bundle-mode/worker-plain-dep.js",
+          "playground/hmr-full-bundle-mode/worker-plain.js"
+        ]
+      }
+    },
+    {
+      "id": "pr22979",
+      "pr": {
+        "number": 22979,
+        "mergedAt": "2026-07-21T12:56:18Z",
+        "files": [
+          "packages/vite/src/node/__tests__/fixtures/config/native-compat/mts-config/package.json",
+          "packages/vite/src/node/__tests__/fixtures/config/native-compat/mts-config/vite.config.mts",
+          "packages/vite/src/node/nativeConfigCompat.ts",
+          "packages/vite/src/node/utils.ts",
+          "pnpm-lock.yaml"
+        ]
+      }
+    },
+    {
+      "id": "pr22983",
+      "pr": {
+        "number": 22983,
+        "mergedAt": "2026-07-21T08:28:57Z",
+        "files": [
+          "packages/vite/src/node/plugins/css.ts",
+          "playground/css/__tests__/css.spec.ts",
+          "playground/css/index.html",
+          "playground/css/injected-source/injected-bg.png",
+          "playground/css/postcss-inject-url.css",
+          "playground/css/postcss.config.js"
+        ]
+      }
+    },
+    {
+      "id": "pr22988",
+      "pr": {
+        "number": 22988,
+        "mergedAt": "2026-07-21T06:00:58Z",
+        "files": [
+          "docs/.vitepress/config.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr22993",
+      "pr": {
+        "number": 22993,
+        "mergedAt": "2026-07-21T05:26:57Z",
+        "files": [
+          "docs/guide/performance.md",
+          "docs/guide/static-deploy.md",
+          "docs/guide/troubleshooting.md"
+        ]
+      }
+    },
+    {
+      "id": "pr22989",
+      "pr": {
+        "number": 22989,
+        "mergedAt": "2026-07-21T05:15:08Z",
+        "files": [
+          "docs/guide/static-deploy.md"
+        ]
+      }
+    },
+    {
+      "id": "pr22990",
+      "pr": {
+        "number": 22990,
+        "mergedAt": "2026-07-21T05:13:21Z",
+        "files": [
+          "docs/guide/troubleshooting.md"
+        ]
+      }
+    },
+    {
+      "id": "pr22973",
+      "pr": {
+        "number": 22973,
+        "mergedAt": "2026-07-21T05:12:01Z",
+        "files": [
+          "docs/guide/performance.md"
+        ]
+      }
+    },
+    {
+      "id": "pr22972",
+      "pr": {
+        "number": 22972,
+        "mergedAt": "2026-07-21T05:10:29Z",
+        "files": [
+          "packages/vite/src/node/__tests__/utils.spec.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr22947",
+      "pr": {
+        "number": 22947,
+        "mergedAt": "2026-07-17T13:08:28Z",
+        "files": [
+          "packages/vite/src/node/plugins/css.ts",
+          "packages/vite/src/node/plugins/html.ts",
+          "playground/chunk-importmap/__tests__/chunk-importmap.spec.ts",
+          "playground/chunk-importmap/direct-dynamic.css",
+          "playground/chunk-importmap/index.html",
+          "playground/chunk-importmap/index.js"
+        ]
+      }
+    },
+    {
+      "id": "pr22832",
+      "pr": {
+        "number": 22832,
+        "mergedAt": "2026-07-17T11:12:16Z",
+        "files": [
+          "packages/vite/src/node/__tests__/config.spec.ts",
+          "packages/vite/src/node/config.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr22642",
+      "pr": {
+        "number": 22642,
+        "mergedAt": "2026-07-17T07:50:31Z",
+        "files": [
+          "docs/config/build-options.md",
+          "docs/config/dep-optimization-options.md",
+          "docs/config/shared-options.md",
+          "docs/guide/backend-integration.md",
+          "docs/guide/build.md",
+          "packages/vite/src/node/__tests__/build.spec.ts",
+          "packages/vite/src/node/__tests__/config.spec.ts",
+          "packages/vite/src/node/__tests__/fixtures/input-option/entry.js",
+          "packages/vite/src/node/__tests__/scan.spec.ts",
+          "packages/vite/src/node/build.ts",
+          "packages/vite/src/node/config.ts",
+          "packages/vite/src/node/optimizer/scan.ts",
+          "packages/vite/src/node/utils.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr22830",
+      "pr": {
+        "number": 22830,
+        "mergedAt": "2026-07-17T07:01:24Z",
+        "files": [
+          "packages/vite/src/node/__tests__/__snapshots__/logger.spec.ts.snap",
+          "packages/vite/src/node/__tests__/dev.spec.ts",
+          "packages/vite/src/node/__tests__/logger.spec.ts",
+          "packages/vite/src/node/__tests__/utils.spec.ts",
+          "packages/vite/src/node/logger.ts",
+          "packages/vite/src/node/server/index.ts",
+          "packages/vite/src/node/utils.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr22891",
+      "pr": {
+        "number": 22891,
+        "mergedAt": "2026-07-16T11:59:09Z",
+        "files": [
+          "docs/guide/dep-pre-bundling.md",
+          "packages/vite/src/node/optimizer/index.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr22674",
+      "pr": {
+        "number": 22674,
+        "mergedAt": "2026-07-16T11:44:51Z",
+        "files": [
+          "packages/vite/src/node/plugins/wasm.ts",
+          "playground/wasm/__tests__/wasm.spec.ts",
+          "playground/wasm/global-consumer.wasm",
+          "playground/wasm/global.wasm",
+          "playground/wasm/index.html",
+          "playground/wasm/string-constants.wasm"
+        ]
+      }
+    },
+    {
+      "id": "pr22792",
+      "pr": {
+        "number": 22792,
+        "mergedAt": "2026-07-16T11:42:15Z",
+        "files": [
+          "packages/vite/rolldown.dts.config.ts",
+          "packages/vite/src/node/__tests_dts__/postcss.ts",
+          "packages/vite/src/node/index.ts",
+          "packages/vite/src/node/plugins/css.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr22909",
+      "pr": {
+        "number": 22909,
+        "mergedAt": "2026-07-16T11:36:16Z",
+        "files": [
+          "packages/vite/src/node/optimizer/index.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr22940",
+      "pr": {
+        "number": 22940,
+        "mergedAt": "2026-07-16T11:35:13Z",
+        "files": [
+          "docs/guide/api-environment-frameworks.md",
+          "docs/guide/api-environment-plugins.md",
+          "docs/guide/api-plugin.md"
+        ]
+      }
+    },
+    {
+      "id": "pr22951",
+      "pr": {
+        "number": 22951,
+        "mergedAt": "2026-07-16T05:15:24Z",
+        "files": [
+          "packages/vite/src/node/plugins/importAnalysis.ts",
+          "packages/vite/src/node/utils.ts",
+          "playground/optimize-deps/__tests__/optimize-deps.spec.ts",
+          "playground/optimize-deps/cjs-dynamic-importer-ambiguous/index.js",
+          "playground/optimize-deps/cjs-dynamic-importer-ambiguous/package.json",
+          "playground/optimize-deps/cjs-dynamic-importer-cjs/index.js",
+          "playground/optimize-deps/cjs-dynamic-importer-cjs/package.json",
+          "playground/optimize-deps/index.html",
+          "pnpm-lock.yaml"
+        ]
+      }
+    },
+    {
+      "id": "pr22869",
+      "pr": {
+        "number": 22869,
+        "mergedAt": "2026-07-16T05:08:16Z",
+        "files": [
+          "packages/vite/src/client/overlay.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr22945",
+      "pr": {
+        "number": 22945,
+        "mergedAt": "2026-07-16T04:52:25Z",
+        "files": [
+          "packages/vite/src/module-runner/sourcemap/interceptor.ts",
+          "packages/vite/src/module-runner/utils.ts",
+          "packages/vite/src/node/ssr/runtime/__tests__/server-source-maps.spec.ts"
+        ]
+      }
+    },
+    {
+      "id": "pr22939",
+      "pr": {
+        "number": 22939,
+        "mergedAt": "2026-07-16T04:39:35Z",
+        "files": [
+          "packages/plugin-legacy/src/index.ts",
+          "playground/legacy/__tests__/modern-target/legacy-modern-target.spec.ts",
+          "playground/legacy/modern-target.html",
+          "playground/legacy/modern-target.js",
+          "playground/legacy/vite.config-modern-target.js"
+        ]
+      }
+    },
+    {
+      "id": "pr22931",
+      "pr": {
+        "number": 22931,
+        "mergedAt": "2026-07-16T04:39:26Z",
+        "files": [
+          "packages/vite/src/node/server/bundledDev.ts",
+          "packages/vite/src/node/server/environment.ts",
+          "playground/hmr-full-bundle-mode/__tests__/build-hooks.spec.ts"
+        ]
+      }
+    }
+  ]
+}
