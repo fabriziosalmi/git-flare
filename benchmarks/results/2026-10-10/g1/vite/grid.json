@@ -1,0 +1,191 @@
+[
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 1,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/vite-tasks.json"
+      ],
+      "footprintKind": "human",
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 0
+    },
+    "summary": {
+      "submissions": 119,
+      "merged": 60,
+      "stale": 59,
+      "other": 0,
+      "rejectionPerSubmissionPct": 49.6,
+      "firstAttemptRejectionPct": 38.3,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 37,
+        "2": 9,
+        "3": 4,
+        "4": 5,
+        "5": 2,
+        "6": 1,
+        "8": 2
+      },
+      "maxAttempts": 8,
+      "windowMs": {
+        "p50": 10108,
+        "p90": 15248.2,
+        "p99": 17649.4
+      },
+      "partsMs": {
+        "work": 1945,
+        "review": 515,
+        "queueAndTests": 12453.5
+      },
+      "landingsPerWindow": {
+        "mean": 3.1,
+        "p50": 3,
+        "p90": 5
+      },
+      "throughputPerMin": 17.1,
+      "wallMs": 210925,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 0
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 2,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/vite-tasks.json"
+      ],
+      "footprintKind": "human",
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 1
+    },
+    "summary": {
+      "submissions": 145,
+      "merged": 60,
+      "stale": 85,
+      "other": 0,
+      "rejectionPerSubmissionPct": 58.6,
+      "firstAttemptRejectionPct": 56.7,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 26,
+        "2": 13,
+        "3": 8,
+        "4": 5,
+        "5": 4,
+        "6": 1,
+        "7": 2,
+        "9": 1
+      },
+      "maxAttempts": 9,
+      "windowMs": {
+        "p50": 9531,
+        "p90": 16571,
+        "p99": 17609
+      },
+      "partsMs": {
+        "work": 1686,
+        "review": 517,
+        "queueAndTests": 12861.5
+      },
+      "landingsPerWindow": {
+        "mean": 1.9,
+        "p50": 1,
+        "p90": 4
+      },
+      "throughputPerMin": 14.3,
+      "wallMs": 252254,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 0
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 3,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/vite-tasks.json"
+      ],
+      "footprintKind": "human",
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 2
+    },
+    "summary": {
+      "submissions": 178,
+      "merged": 58,
+      "stale": 120,
+      "other": 0,
+      "rejectionPerSubmissionPct": 67.4,
+      "firstAttemptRejectionPct": 50,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 30,
+        "2": 12,
+        "3": 2,
+        "4": 3,
+        "6": 3,
+        "7": 1,
+        "8": 3,
+        "9": 3,
+        "10": 3
+      },
+      "maxAttempts": 10,
+      "windowMs": {
+        "p50": 9336,
+        "p90": 15316.6,
+        "p99": 17463
+      },
+      "partsMs": {
+        "work": 2189,
+        "review": 520,
+        "queueAndTests": 12521.5
+      },
+      "landingsPerWindow": {
+        "mean": 1.5,
+        "p50": 1,
+        "p90": 3
+      },
+      "throughputPerMin": 11.5,
+      "wallMs": 303731,
+      "tasksGivenUp": 2,
+      "tasksClosedAtSubmit": 0
+    }
+  }
+]

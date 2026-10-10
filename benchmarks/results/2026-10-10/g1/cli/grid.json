@@ -1,0 +1,192 @@
+[
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 1,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/cli-tasks.json"
+      ],
+      "footprintKind": "human",
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 0
+    },
+    "summary": {
+      "submissions": 141,
+      "merged": 60,
+      "stale": 81,
+      "other": 0,
+      "rejectionPerSubmissionPct": 57.4,
+      "firstAttemptRejectionPct": 53.3,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 28,
+        "2": 14,
+        "3": 7,
+        "4": 6,
+        "6": 1,
+        "8": 2,
+        "9": 2
+      },
+      "maxAttempts": 9,
+      "windowMs": {
+        "p50": 9439,
+        "p90": 16590,
+        "p99": 17770
+      },
+      "partsMs": {
+        "work": 1938.5,
+        "review": 514.5,
+        "queueAndTests": 12332
+      },
+      "landingsPerWindow": {
+        "mean": 2.1,
+        "p50": 2,
+        "p90": 4
+      },
+      "throughputPerMin": 14.7,
+      "wallMs": 245448,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 0
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 2,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/cli-tasks.json"
+      ],
+      "footprintKind": "human",
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 1
+    },
+    "summary": {
+      "submissions": 153,
+      "merged": 58,
+      "stale": 95,
+      "other": 0,
+      "rejectionPerSubmissionPct": 62.1,
+      "firstAttemptRejectionPct": 51.7,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 29,
+        "2": 15,
+        "3": 4,
+        "4": 3,
+        "5": 1,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "9": 2,
+        "10": 2
+      },
+      "maxAttempts": 10,
+      "windowMs": {
+        "p50": 9313,
+        "p90": 15299.2,
+        "p99": 17701
+      },
+      "partsMs": {
+        "work": 1994.5,
+        "review": 515,
+        "queueAndTests": 12476
+      },
+      "landingsPerWindow": {
+        "mean": 2,
+        "p50": 2,
+        "p90": 3
+      },
+      "throughputPerMin": 13.4,
+      "wallMs": 259213,
+      "tasksGivenUp": 2,
+      "tasksClosedAtSubmit": 0
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 3,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/cli-tasks.json"
+      ],
+      "footprintKind": "human",
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 2
+    },
+    "summary": {
+      "submissions": 141,
+      "merged": 60,
+      "stale": 81,
+      "other": 0,
+      "rejectionPerSubmissionPct": 57.4,
+      "firstAttemptRejectionPct": 51.7,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 29,
+        "2": 12,
+        "3": 10,
+        "4": 3,
+        "6": 1,
+        "7": 1,
+        "8": 3,
+        "9": 1
+      },
+      "maxAttempts": 9,
+      "windowMs": {
+        "p50": 9578,
+        "p90": 17078,
+        "p99": 17494
+      },
+      "partsMs": {
+        "work": 1983,
+        "review": 512.5,
+        "queueAndTests": 13018.5
+      },
+      "landingsPerWindow": {
+        "mean": 2.1,
+        "p50": 2,
+        "p90": 4
+      },
+      "throughputPerMin": 14.9,
+      "wallMs": 241773,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 0
+    }
+  }
+]
