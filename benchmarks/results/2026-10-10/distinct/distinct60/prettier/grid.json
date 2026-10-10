@@ -1,0 +1,179 @@
+[
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 1,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-10/footprints-distinct/prettier-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": true,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 0
+    },
+    "summary": {
+      "submissions": 72,
+      "merged": 59,
+      "stale": 12,
+      "other": 1,
+      "rejectionPerSubmissionPct": 16.9,
+      "firstAttemptRejectionPct": 16.9,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 50,
+        "2": 8,
+        "3": 2
+      },
+      "maxAttempts": 3,
+      "windowMs": {
+        "p50": 15312,
+        "p90": 18649,
+        "p99": 18673.3
+      },
+      "partsMs": {
+        "work": 2847,
+        "review": 531,
+        "queueAndTests": 12604
+      },
+      "landingsPerWindow": {
+        "mean": 6.2,
+        "p50": 7,
+        "p90": 8
+      },
+      "throughputPerMin": 30,
+      "wallMs": 118070,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 1
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 2,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-10/footprints-distinct/prettier-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": true,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 1
+    },
+    "summary": {
+      "submissions": 72,
+      "merged": 59,
+      "stale": 12,
+      "other": 1,
+      "rejectionPerSubmissionPct": 16.9,
+      "firstAttemptRejectionPct": 16.9,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 50,
+        "2": 8,
+        "3": 2
+      },
+      "maxAttempts": 3,
+      "windowMs": {
+        "p50": 15308,
+        "p90": 18143,
+        "p99": 19594.6
+      },
+      "partsMs": {
+        "work": 2723,
+        "review": 552,
+        "queueAndTests": 12139
+      },
+      "landingsPerWindow": {
+        "mean": 6.3,
+        "p50": 7,
+        "p90": 9
+      },
+      "throughputPerMin": 28.7,
+      "wallMs": 123173,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 1
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 3,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-10/footprints-distinct/prettier-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": true,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 2
+    },
+    "summary": {
+      "submissions": 70,
+      "merged": 59,
+      "stale": 10,
+      "other": 1,
+      "rejectionPerSubmissionPct": 14.5,
+      "firstAttemptRejectionPct": 13.6,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 52,
+        "2": 6,
+        "3": 2
+      },
+      "maxAttempts": 3,
+      "windowMs": {
+        "p50": 15237,
+        "p90": 17622.2,
+        "p99": 18143.2
+      },
+      "partsMs": {
+        "work": 3053,
+        "review": 545,
+        "queueAndTests": 11949
+      },
+      "landingsPerWindow": {
+        "mean": 6.4,
+        "p50": 7,
+        "p90": 8
+      },
+      "throughputPerMin": 31.3,
+      "wallMs": 113195,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 1
+    }
+  }
+]

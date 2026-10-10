@@ -1,0 +1,169 @@
+{
+  "date": "2026-10-10",
+  "what": "G1 sensitivities: the reference cell with one change at a time",
+  "times": {
+    "workMs": 12160,
+    "workCv": 0.4,
+    "reviewMs": 2008,
+    "rebaseMs": 7161,
+    "source": "agent pilot on honojs/hono (10 committed of 12 tasks, run hono-pilot, 2026-10-06); reviewer latency of 8 patches the account REST API from a local machine, 2026-10-06",
+    "derived": {
+      "taskP50Ms": 12160,
+      "taskP90Ms": 19882,
+      "editCalls": 10,
+      "reviewSamples": 8
+    },
+    "inputs": {
+      "pilots": [
+        "/private/tmp/git-flare-night/results/pilot-hono.manifest.json"
+      ],
+      "reviews": "/private/tmp/git-flare-night/results/review-latency.json",
+      "coder": "@cf/qwen/qwen2.5-coder-32b-instruct",
+      "selector": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+      "reviewers": [
+        "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+        "@cf/openai/gpt-oss-120b",
+        "@cf/mistralai/mistral-small-3.1-24b-instruct"
+      ]
+    }
+  },
+  "results": [
+    {
+      "condition": "distinct60",
+      "change": {
+        "kind": "human",
+        "workFactor": 1,
+        "tasksPerAgent": 6,
+        "noReplacement": true,
+        "distinctFootprints": true
+      },
+      "perRepo": [
+        {
+          "repo": "click",
+          "cells": 3,
+          "rejectionPerSubmissionPct": 66.6,
+          "firstAttemptRejectionPct": 53.8,
+          "tasksGivenUp": 6,
+          "tasksClosedAtSubmit": 9,
+          "g1ReferencePct": 87.7
+        },
+        {
+          "repo": "hono",
+          "cells": 3,
+          "rejectionPerSubmissionPct": 17.8,
+          "firstAttemptRejectionPct": 16.4,
+          "tasksGivenUp": 0,
+          "tasksClosedAtSubmit": 9,
+          "g1ReferencePct": 51.1
+        },
+        {
+          "repo": "axios",
+          "cells": 3,
+          "rejectionPerSubmissionPct": 79.5,
+          "firstAttemptRejectionPct": 56.9,
+          "tasksGivenUp": 29,
+          "tasksClosedAtSubmit": 6,
+          "g1ReferencePct": 69.9
+        },
+        {
+          "repo": "prettier",
+          "cells": 3,
+          "rejectionPerSubmissionPct": 16.1,
+          "firstAttemptRejectionPct": 15.8,
+          "tasksGivenUp": 0,
+          "tasksClosedAtSubmit": 3,
+          "g1ReferencePct": 59
+        },
+        {
+          "repo": "eslint",
+          "cells": 3,
+          "rejectionPerSubmissionPct": 8.1,
+          "firstAttemptRejectionPct": 7.6,
+          "tasksGivenUp": 0,
+          "tasksClosedAtSubmit": 9,
+          "g1ReferencePct": 68.5
+        },
+        {
+          "repo": "vite",
+          "cells": 3,
+          "rejectionPerSubmissionPct": 30.8,
+          "firstAttemptRejectionPct": 26.9,
+          "tasksGivenUp": 0,
+          "tasksClosedAtSubmit": 9,
+          "g1ReferencePct": 58.5
+        },
+        {
+          "repo": "svelte",
+          "cells": 3,
+          "rejectionPerSubmissionPct": 16.2,
+          "firstAttemptRejectionPct": 16.9,
+          "tasksGivenUp": 0,
+          "tasksClosedAtSubmit": 15,
+          "g1ReferencePct": 48.4
+        },
+        {
+          "repo": "cli",
+          "cells": 3,
+          "rejectionPerSubmissionPct": 23.1,
+          "firstAttemptRejectionPct": 21.3,
+          "tasksGivenUp": 0,
+          "tasksClosedAtSubmit": 30,
+          "g1ReferencePct": 59
+        }
+      ],
+      "decision": {
+        "median": 20.450000000000003,
+        "repositories": 8,
+        "atLeast20": 4,
+        "branch": "proceed",
+        "reason": "median 20.450000000000003% is 20% or more"
+      }
+    },
+    {
+      "condition": "distinct60-replace",
+      "change": {
+        "kind": "human",
+        "workFactor": 1,
+        "tasksPerAgent": 6,
+        "noReplacement": false,
+        "distinctFootprints": true
+      },
+      "perRepo": [
+        {
+          "repo": "click",
+          "cells": 3,
+          "rejectionPerSubmissionPct": 65,
+          "firstAttemptRejectionPct": 56.2,
+          "tasksGivenUp": 6,
+          "tasksClosedAtSubmit": 11,
+          "g1ReferencePct": 87.7
+        },
+        {
+          "repo": "hono",
+          "cells": 3,
+          "rejectionPerSubmissionPct": 22.6,
+          "firstAttemptRejectionPct": 21.6,
+          "tasksGivenUp": 0,
+          "tasksClosedAtSubmit": 10,
+          "g1ReferencePct": 51.1
+        },
+        {
+          "repo": "svelte",
+          "cells": 3,
+          "rejectionPerSubmissionPct": 18.9,
+          "firstAttemptRejectionPct": 20,
+          "tasksGivenUp": 0,
+          "tasksClosedAtSubmit": 14,
+          "g1ReferencePct": 48.4
+        }
+      ],
+      "decision": {
+        "median": 22.6,
+        "repositories": 3,
+        "atLeast20": 2,
+        "branch": "proceed",
+        "reason": "median 22.6% is 20% or more"
+      }
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+[
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 1,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-10/footprints-distinct/cli-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": true,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 0
+    },
+    "summary": {
+      "submissions": 74,
+      "merged": 50,
+      "stale": 14,
+      "other": 10,
+      "rejectionPerSubmissionPct": 21.9,
+      "firstAttemptRejectionPct": 22,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 49,
+        "2": 8,
+        "3": 3
+      },
+      "maxAttempts": 3,
+      "windowMs": {
+        "p50": 15159.5,
+        "p90": 17124.6,
+        "p99": 20399.7
+      },
+      "partsMs": {
+        "work": 2528,
+        "review": 518.5,
+        "queueAndTests": 12322.5
+      },
+      "landingsPerWindow": {
+        "mean": 5.5,
+        "p50": 6,
+        "p90": 8
+      },
+      "throughputPerMin": 24.9,
+      "wallMs": 120608,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 10
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 2,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-10/footprints-distinct/cli-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": true,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 1
+    },
+    "summary": {
+      "submissions": 74,
+      "merged": 50,
+      "stale": 14,
+      "other": 10,
+      "rejectionPerSubmissionPct": 21.9,
+      "firstAttemptRejectionPct": 22,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 49,
+        "2": 8,
+        "3": 3
+      },
+      "maxAttempts": 3,
+      "windowMs": {
+        "p50": 15237.5,
+        "p90": 17771,
+        "p99": 19069.3
+      },
+      "partsMs": {
+        "work": 2500,
+        "review": 522,
+        "queueAndTests": 12333.5
+      },
+      "landingsPerWindow": {
+        "mean": 5.8,
+        "p50": 6,
+        "p90": 9
+      },
+      "throughputPerMin": 23.4,
+      "wallMs": 128148,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 10
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 3,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-10/footprints-distinct/cli-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": true,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 2
+    },
+    "summary": {
+      "submissions": 77,
+      "merged": 50,
+      "stale": 17,
+      "other": 10,
+      "rejectionPerSubmissionPct": 25.4,
+      "firstAttemptRejectionPct": 20,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 50,
+        "2": 5,
+        "3": 3,
+        "4": 2
+      },
+      "maxAttempts": 4,
+      "windowMs": {
+        "p50": 15258,
+        "p90": 17766.4,
+        "p99": 18924
+      },
+      "partsMs": {
+        "work": 2930,
+        "review": 521,
+        "queueAndTests": 12014
+      },
+      "landingsPerWindow": {
+        "mean": 5.2,
+        "p50": 6,
+        "p90": 8
+      },
+      "throughputPerMin": 24.9,
+      "wallMs": 120613,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 10
+    }
+  }
+]

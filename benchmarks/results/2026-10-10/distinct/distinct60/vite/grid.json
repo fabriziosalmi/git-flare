@@ -1,0 +1,184 @@
+[
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 1,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-10/footprints-distinct/vite-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": true,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 0
+    },
+    "summary": {
+      "submissions": 89,
+      "merged": 57,
+      "stale": 29,
+      "other": 3,
+      "rejectionPerSubmissionPct": 33.7,
+      "firstAttemptRejectionPct": 29.8,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 43,
+        "2": 9,
+        "3": 5,
+        "4": 2,
+        "5": 1
+      },
+      "maxAttempts": 5,
+      "windowMs": {
+        "p50": 15170.5,
+        "p90": 17071,
+        "p99": 17933.2
+      },
+      "partsMs": {
+        "work": 2457,
+        "review": 520,
+        "queueAndTests": 12314
+      },
+      "landingsPerWindow": {
+        "mean": 4.4,
+        "p50": 5,
+        "p90": 6
+      },
+      "throughputPerMin": 22.4,
+      "wallMs": 152762,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 3
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 2,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-10/footprints-distinct/vite-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": true,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 1
+    },
+    "summary": {
+      "submissions": 79,
+      "merged": 57,
+      "stale": 19,
+      "other": 3,
+      "rejectionPerSubmissionPct": 25,
+      "firstAttemptRejectionPct": 22.8,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 47,
+        "2": 8,
+        "3": 4,
+        "4": 1
+      },
+      "maxAttempts": 4,
+      "windowMs": {
+        "p50": 15243,
+        "p90": 17391.5,
+        "p99": 17641
+      },
+      "partsMs": {
+        "work": 2743,
+        "review": 518,
+        "queueAndTests": 12057
+      },
+      "landingsPerWindow": {
+        "mean": 5.1,
+        "p50": 6,
+        "p90": 8
+      },
+      "throughputPerMin": 26.4,
+      "wallMs": 129367,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 3
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 3,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-10/footprints-distinct/vite-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": true,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 2
+    },
+    "summary": {
+      "submissions": 89,
+      "merged": 57,
+      "stale": 29,
+      "other": 3,
+      "rejectionPerSubmissionPct": 33.7,
+      "firstAttemptRejectionPct": 28.1,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 44,
+        "2": 12,
+        "3": 1,
+        "5": 2,
+        "8": 1
+      },
+      "maxAttempts": 8,
+      "windowMs": {
+        "p50": 15148.5,
+        "p90": 17643.5,
+        "p99": 19287.9
+      },
+      "partsMs": {
+        "work": 2667,
+        "review": 517,
+        "queueAndTests": 12756
+      },
+      "landingsPerWindow": {
+        "mean": 4.5,
+        "p50": 4,
+        "p90": 9
+      },
+      "throughputPerMin": 21.5,
+      "wallMs": 158995,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 3
+    }
+  }
+]

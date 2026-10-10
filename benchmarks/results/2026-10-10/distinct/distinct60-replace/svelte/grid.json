@@ -1,0 +1,180 @@
+[
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 1,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-10/footprints-distinct/svelte-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 0
+    },
+    "summary": {
+      "submissions": 76,
+      "merged": 53,
+      "stale": 16,
+      "other": 7,
+      "rejectionPerSubmissionPct": 23.2,
+      "firstAttemptRejectionPct": 26.4,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 46,
+        "2": 12,
+        "3": 2
+      },
+      "maxAttempts": 3,
+      "windowMs": {
+        "p50": 15142,
+        "p90": 15336,
+        "p99": 19509.4
+      },
+      "partsMs": {
+        "work": 2602,
+        "review": 523,
+        "queueAndTests": 12186
+      },
+      "landingsPerWindow": {
+        "mean": 5.5,
+        "p50": 6,
+        "p90": 8.2
+      },
+      "throughputPerMin": 25.3,
+      "wallMs": 125917,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 7
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 2,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-10/footprints-distinct/svelte-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 1
+    },
+    "summary": {
+      "submissions": 69,
+      "merged": 57,
+      "stale": 9,
+      "other": 3,
+      "rejectionPerSubmissionPct": 13.6,
+      "firstAttemptRejectionPct": 14,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 52,
+        "2": 7,
+        "3": 1
+      },
+      "maxAttempts": 3,
+      "windowMs": {
+        "p50": 15228.5,
+        "p90": 17627,
+        "p99": 19522.2
+      },
+      "partsMs": {
+        "work": 2702,
+        "review": 520,
+        "queueAndTests": 12214
+      },
+      "landingsPerWindow": {
+        "mean": 6.7,
+        "p50": 7,
+        "p90": 9
+      },
+      "throughputPerMin": 27.2,
+      "wallMs": 125893,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 3
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 3,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-10/footprints-distinct/svelte-tasks.json"
+      ],
+      "footprintKind": "human",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 2
+    },
+    "summary": {
+      "submissions": 74,
+      "merged": 56,
+      "stale": 14,
+      "other": 4,
+      "rejectionPerSubmissionPct": 20,
+      "firstAttemptRejectionPct": 19.6,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 49,
+        "2": 9,
+        "3": 1,
+        "4": 1
+      },
+      "maxAttempts": 4,
+      "windowMs": {
+        "p50": 15165,
+        "p90": 17562,
+        "p99": 20556.4
+      },
+      "partsMs": {
+        "work": 2822.5,
+        "review": 528,
+        "queueAndTests": 12198.5
+      },
+      "landingsPerWindow": {
+        "mean": 5.9,
+        "p50": 7,
+        "p90": 7
+      },
+      "throughputPerMin": 24.7,
+      "wallMs": 136075,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 4
+    }
+  }
+]
