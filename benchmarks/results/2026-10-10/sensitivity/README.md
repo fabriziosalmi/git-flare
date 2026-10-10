@@ -1,7 +1,7 @@
 # G1 sensitivities — 2026-10-10 (local, NOT pushed)
 
 Result file: `sensitivity.json`; per-cell data under `<condition>/<repo>/`. Each condition is the G1 reference cell (10 agents, tests 30 s,
-scale 0.25, 3 reps, times file of phase 2, kind human) with ONE change. Code: commit dfb86f9 (branch `sensitivity/2026-10-10`) on the G1 snapshot;
+scale 0.25, 3 reps, times file of phase 2, kind human) with ONE change. Code: the G1 snapshot plus the pull request that adds the no-replacement sampler and `scripts/queue-sim-sensitivity.mjs`;
 conditions and the criterion are in the header of `scripts/queue-sim-sensitivity.mjs`, committed before any run.
 
 | Condition | Median | Repositories (rejection per submission; G1 reference in brackets) |
@@ -24,3 +24,5 @@ repetition, they show how much of it comes from repetition. A like-for-like chec
   The retry rule was extended, with no rate in sight, to: HTTP 500 plus that signature or "Network connection lost" voids the cell; anything else stops.
 - Runs 2 and 3: one "HTTP 500 {}" each ("Network connection lost"), cells rerun. Run 4 finished. Whole sensitivity: 119,638 requests, p50 11 ms, p99 55 ms.
 - tasksGivenUp (10 attempts at most) is high on click in the reference scenario (22-55 of 180 tasks per condition); axios and eslint tasks on protected paths close at submit (tasksClosedAtSubmit).
+
+Note: the commit ids in `supervisor.log` are those of local snapshots of the code, not of this repository.

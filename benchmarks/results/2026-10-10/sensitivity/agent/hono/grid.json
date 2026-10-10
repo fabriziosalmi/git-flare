@@ -14,7 +14,7 @@
       "shards": 4,
       "pollMs": 250,
       "footprintsFrom": [
-        "/Users/fab/git-flare-g1/results/sens-inputs/pilot-hono.manifest.json"
+        "benchmarks/results/2026-10-06/phase2/pilot-hono.manifest.json"
       ],
       "footprintKind": "agent",
       "noReplacement": false,
@@ -77,7 +77,7 @@
       "shards": 4,
       "pollMs": 250,
       "footprintsFrom": [
-        "/Users/fab/git-flare-g1/results/sens-inputs/pilot-hono.manifest.json"
+        "benchmarks/results/2026-10-06/phase2/pilot-hono.manifest.json"
       ],
       "footprintKind": "agent",
       "noReplacement": false,
@@ -141,7 +141,7 @@
       "shards": 4,
       "pollMs": 250,
       "footprintsFrom": [
-        "/Users/fab/git-flare-g1/results/sens-inputs/pilot-hono.manifest.json"
+        "benchmarks/results/2026-10-06/phase2/pilot-hono.manifest.json"
       ],
       "footprintKind": "agent",
       "noReplacement": false,

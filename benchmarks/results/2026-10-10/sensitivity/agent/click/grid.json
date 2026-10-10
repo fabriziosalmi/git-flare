@@ -14,8 +14,8 @@
       "shards": 4,
       "pollMs": 250,
       "footprintsFrom": [
-        "/Users/fab/git-flare-g1/code-sens/benchmarks/results/2026-10-05/agent-replay-click/pilot2.manifest.json",
-        "/Users/fab/git-flare-g1/code-sens/benchmarks/results/2026-10-05/agent-replay-click/pilot2b.manifest.json"
+        "benchmarks/results/2026-10-05/agent-replay-click/pilot2.manifest.json",
+        "benchmarks/results/2026-10-05/agent-replay-click/pilot2b.manifest.json"
       ],
       "footprintKind": "agent",
       "noReplacement": false,
@@ -81,8 +81,8 @@
       "shards": 4,
       "pollMs": 250,
       "footprintsFrom": [
-        "/Users/fab/git-flare-g1/code-sens/benchmarks/results/2026-10-05/agent-replay-click/pilot2.manifest.json",
-        "/Users/fab/git-flare-g1/code-sens/benchmarks/results/2026-10-05/agent-replay-click/pilot2b.manifest.json"
+        "benchmarks/results/2026-10-05/agent-replay-click/pilot2.manifest.json",
+        "benchmarks/results/2026-10-05/agent-replay-click/pilot2b.manifest.json"
       ],
       "footprintKind": "agent",
       "noReplacement": false,
@@ -147,8 +147,8 @@
       "shards": 4,
       "pollMs": 250,
       "footprintsFrom": [
-        "/Users/fab/git-flare-g1/code-sens/benchmarks/results/2026-10-05/agent-replay-click/pilot2.manifest.json",
-        "/Users/fab/git-flare-g1/code-sens/benchmarks/results/2026-10-05/agent-replay-click/pilot2b.manifest.json"
+        "benchmarks/results/2026-10-05/agent-replay-click/pilot2.manifest.json",
+        "benchmarks/results/2026-10-05/agent-replay-click/pilot2b.manifest.json"
       ],
       "footprintKind": "agent",
       "noReplacement": false,

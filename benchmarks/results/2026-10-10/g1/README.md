@@ -3,9 +3,9 @@
 Result file: `g1.json`. Decision by the preregistered rule: **median 59% of 8 repositories, all 8 >= 20% -> "proceed" (phases 4-6)**.
 
 Inputs, all fixed before the run: times file `benchmarks/results/2026-10-06/phase2/phase2-times.json` of branch
-`results/phase2-times-2026-10-06` (commit d5b00b1, sha256 609f62cf...1f82179), footprints `benchmarks/results/2026-10-05/footprints`,
-scale 0.25, 3 reps, parallel 3, 10 agents, tests 30 s, kind human. Code: b1144d5 + the commit "queue-sim: a patch the server
-closes at submit..." (the run used its cherry-pick b6e11ec). Local server in mock mode; no Workers AI neurons were used.
+`results/phase2-times-2026-10-06` (sha256 609f62cf...1f82179), footprints `benchmarks/results/2026-10-05/footprints`,
+scale 0.25, 3 reps, parallel 3, 10 agents, tests 30 s, kind human. Code: `scripts/queue-sim-g1.mjs` and `scripts/queue-sim.mjs` with the fix of the pull request "queue-sim: a patch the server
+closes at submit...". Local server in mock mode; no Workers AI neurons were used.
 
 ## Deviations from the overnight plan (the overnight run left no G1 output; its work dir was gone)
 1. Attempt 1 (2026-10-10 07:03Z): hono cell died with HTTP 500 / "Network connection lost" while the Mac load average was 45 (other
@@ -22,3 +22,5 @@ closes at submit..." (the run used its cherry-pick b6e11ec). Local server in moc
 - Footprints are drawn with replacement: 60 tasks from 7-12 distinct footprints, so identical footprints recur 5-8 times.
 - 10 attempts at most: click gave up 14-17 of 60 tasks per cell.
 - Eslint: its 2 protected-path footprints (of 7) never enter the queue, so its rate is on the other 5.
+
+Note: the commit ids in `supervisor.log` are those of local snapshots of the code, not of this repository.
