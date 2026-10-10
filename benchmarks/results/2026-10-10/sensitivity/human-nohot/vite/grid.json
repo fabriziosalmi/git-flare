@@ -1,0 +1,192 @@
+[
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 1,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/vite-tasks.json"
+      ],
+      "footprintKind": "human-nohot",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 0
+    },
+    "summary": {
+      "submissions": 119,
+      "merged": 60,
+      "stale": 59,
+      "other": 0,
+      "rejectionPerSubmissionPct": 49.6,
+      "firstAttemptRejectionPct": 38.3,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 37,
+        "2": 6,
+        "3": 7,
+        "4": 7,
+        "5": 1,
+        "8": 2
+      },
+      "maxAttempts": 8,
+      "windowMs": {
+        "p50": 10079,
+        "p90": 15276.2,
+        "p99": 17612.4
+      },
+      "partsMs": {
+        "work": 2082.5,
+        "review": 519,
+        "queueAndTests": 12077
+      },
+      "landingsPerWindow": {
+        "mean": 3.1,
+        "p50": 3,
+        "p90": 5
+      },
+      "throughputPerMin": 17.1,
+      "wallMs": 210825,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 0
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 2,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/vite-tasks.json"
+      ],
+      "footprintKind": "human-nohot",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 1
+    },
+    "summary": {
+      "submissions": 146,
+      "merged": 60,
+      "stale": 86,
+      "other": 0,
+      "rejectionPerSubmissionPct": 58.9,
+      "firstAttemptRejectionPct": 60,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 24,
+        "2": 17,
+        "3": 8,
+        "4": 2,
+        "5": 5,
+        "6": 1,
+        "7": 1,
+        "9": 2
+      },
+      "maxAttempts": 9,
+      "windowMs": {
+        "p50": 9329.5,
+        "p90": 16621,
+        "p99": 17616.3
+      },
+      "partsMs": {
+        "work": 1658,
+        "review": 515.5,
+        "queueAndTests": 12982
+      },
+      "landingsPerWindow": {
+        "mean": 1.9,
+        "p50": 2,
+        "p90": 4
+      },
+      "throughputPerMin": 14.2,
+      "wallMs": 254124,
+      "tasksGivenUp": 0,
+      "tasksClosedAtSubmit": 0
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 3,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/vite-tasks.json"
+      ],
+      "footprintKind": "human-nohot",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 2
+    },
+    "summary": {
+      "submissions": 171,
+      "merged": 57,
+      "stale": 114,
+      "other": 0,
+      "rejectionPerSubmissionPct": 66.7,
+      "firstAttemptRejectionPct": 48.3,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 31,
+        "2": 10,
+        "3": 6,
+        "4": 1,
+        "5": 1,
+        "6": 2,
+        "7": 3,
+        "10": 6
+      },
+      "maxAttempts": 10,
+      "windowMs": {
+        "p50": 9420,
+        "p90": 15278,
+        "p99": 17508
+      },
+      "partsMs": {
+        "work": 2126,
+        "review": 516,
+        "queueAndTests": 12528
+      },
+      "landingsPerWindow": {
+        "mean": 1.8,
+        "p50": 1,
+        "p90": 3
+      },
+      "throughputPerMin": 11.9,
+      "wallMs": 286998,
+      "tasksGivenUp": 3,
+      "tasksClosedAtSubmit": 0
+    }
+  }
+]

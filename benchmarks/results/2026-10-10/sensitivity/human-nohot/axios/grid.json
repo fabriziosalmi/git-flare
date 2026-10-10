@@ -1,0 +1,198 @@
+[
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 1,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/axios-tasks.json"
+      ],
+      "footprintKind": "human-nohot",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 0
+    },
+    "summary": {
+      "submissions": 173,
+      "merged": 52,
+      "stale": 116,
+      "other": 5,
+      "rejectionPerSubmissionPct": 69,
+      "firstAttemptRejectionPct": 65.5,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 24,
+        "2": 13,
+        "3": 6,
+        "4": 6,
+        "5": 3,
+        "6": 3,
+        "8": 1,
+        "10": 4
+      },
+      "maxAttempts": 10,
+      "windowMs": {
+        "p50": 9120.5,
+        "p90": 15231.9,
+        "p99": 17221.6
+      },
+      "partsMs": {
+        "work": 1682.5,
+        "review": 513.5,
+        "queueAndTests": 12858.5
+      },
+      "landingsPerWindow": {
+        "mean": 1.5,
+        "p50": 1,
+        "p90": 2.3
+      },
+      "throughputPerMin": 10.9,
+      "wallMs": 285329,
+      "tasksGivenUp": 3,
+      "tasksClosedAtSubmit": 5
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 2,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/axios-tasks.json"
+      ],
+      "footprintKind": "human-nohot",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 1
+    },
+    "summary": {
+      "submissions": 178,
+      "merged": 54,
+      "stale": 120,
+      "other": 4,
+      "rejectionPerSubmissionPct": 69,
+      "firstAttemptRejectionPct": 55.4,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 29,
+        "2": 7,
+        "3": 3,
+        "4": 8,
+        "5": 4,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "9": 3,
+        "10": 2
+      },
+      "maxAttempts": 10,
+      "windowMs": {
+        "p50": 9285,
+        "p90": 15257.6,
+        "p99": 17604
+      },
+      "partsMs": {
+        "work": 1814,
+        "review": 515.5,
+        "queueAndTests": 12352
+      },
+      "landingsPerWindow": {
+        "mean": 1.5,
+        "p50": 1,
+        "p90": 3
+      },
+      "throughputPerMin": 11.2,
+      "wallMs": 289712,
+      "tasksGivenUp": 2,
+      "tasksClosedAtSubmit": 4
+    }
+  },
+  {
+    "params": {
+      "agents": 10,
+      "tasksPerAgent": 6,
+      "workMs": 12160,
+      "workCv": 0.4,
+      "reviewMs": 2008,
+      "rebaseMs": 7161,
+      "testMs": 30000,
+      "scale": 0.25,
+      "seed": 3,
+      "maxAttempts": 10,
+      "shards": 4,
+      "pollMs": 250,
+      "footprintsFrom": [
+        "benchmarks/results/2026-10-05/footprints/axios-tasks.json"
+      ],
+      "footprintKind": "human-nohot",
+      "noReplacement": false,
+      "zipf": "",
+      "timeoutMs": 3600000,
+      "leaseMs": null,
+      "rep": 2
+    },
+    "summary": {
+      "submissions": 202,
+      "merged": 54,
+      "stale": 145,
+      "other": 3,
+      "rejectionPerSubmissionPct": 72.9,
+      "firstAttemptRejectionPct": 70.2,
+      "tasks": 60,
+      "attemptsPerTask": {
+        "1": 20,
+        "2": 8,
+        "3": 12,
+        "4": 6,
+        "5": 3,
+        "6": 2,
+        "7": 2,
+        "8": 1,
+        "9": 3,
+        "10": 3
+      },
+      "maxAttempts": 10,
+      "windowMs": {
+        "p50": 9248,
+        "p90": 15236,
+        "p99": 17203.8
+      },
+      "partsMs": {
+        "work": 1689,
+        "review": 513,
+        "queueAndTests": 12531.5
+      },
+      "landingsPerWindow": {
+        "mean": 1.3,
+        "p50": 1,
+        "p90": 2
+      },
+      "throughputPerMin": 9.9,
+      "wallMs": 328154,
+      "tasksGivenUp": 3,
+      "tasksClosedAtSubmit": 3
+    }
+  }
+]
