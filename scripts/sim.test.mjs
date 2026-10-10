@@ -1,7 +1,7 @@
 // node --test scripts/sim.test.mjs
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { buildPhase2Times, changesFromDiff, reviewInput, empiricalSampler, footprintsOf, g1Decision, lognormalCv, lognormalMs, median, quorumLatency, quantile, rng, summarizeRun, uniqueName, zipfSampler } from './lib/sim.mjs';
+import { buildPhase2Times, changesFromDiff, reviewInput, empiricalSampler, footprintsOf, g1Decision, shuffledSampler, lognormalCv, lognormalMs, median, quorumLatency, quantile, rng, summarizeRun, uniqueName, zipfSampler } from './lib/sim.mjs';
 
 test('rng: the same seed gives the same sequence, another seed another, all in [0, 1)', () => {
   const a = rng(7);
@@ -253,4 +253,22 @@ test('reviewInput: the body of a review call for each model style, as the platfo
   assert.deepEqual(reviewInput('messages-guided', 'SYS', schema, 'CHANGE'), { messages: m, guided_json: schema, max_tokens: 400, temperature: 0.1 });
   assert.deepEqual(reviewInput('responses', 'SYS', schema, 'CHANGE'), { input: m, reasoning: { effort: 'low' } });
   assert.deepEqual(reviewInput('anything-else', 'SYS', schema, 'CHANGE').response_format.type, 'json_schema'); // the default is the JSON-schema chat style
+});
+
+test('shuffledSampler uses every footprint once before repeating, and the order depends on the seed', () => {
+  const fps = [['a'], ['b'], ['c'], ['d'], ['e']];
+  const draw = (seed, n) => {
+    const next = shuffledSampler(rng(seed), fps);
+    return Array.from({ length: n }, () => next()[0]);
+  };
+  const first = draw(1, 5);
+  assert.deepEqual([...first].sort(), ['a', 'b', 'c', 'd', 'e'], 'the first five draws are the five footprints');
+  const ten = draw(1, 10);
+  assert.deepEqual([...ten.slice(5)].sort(), ['a', 'b', 'c', 'd', 'e'], 'the next five are again all of them');
+  assert.notDeepEqual(draw(1, 5), draw(2, 5), 'another seed, another order');
+  assert.throws(() => shuffledSampler(rng(1), []), /no footprint/);
+  const next = shuffledSampler(rng(1), fps);
+  const a = next();
+  a.push('mutated');
+  assert.equal(fps.flat().includes('mutated'), false, 'the caller gets a copy');
 });
